@@ -59,3 +59,4 @@ crashlytics-build.properties
 
 # Ignore Visual Studio configuration file
 /NekoCatGame/.vsconfig
+/ml-agents/
