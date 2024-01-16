@@ -54,7 +54,7 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 10000
-  earlyTraining: 1
+  earlyTraining: 0
   targetT: {fileID: 7370140648814756900}
   targetController: {fileID: 7370140648814756896}
   hips: {fileID: 721841690266355922}
