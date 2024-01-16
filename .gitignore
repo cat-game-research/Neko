@@ -1,6 +1,9 @@
 # Reference: https://github.com/github/gitignore/blob/main/Unity.gitignore
 # Ignore all files and folders that start with L, T, O, B, M, R, or U in any case
-/NekoCatGame/[LlTtOoBbMmRrUu]*
+/NekoCatGame/[Uu]serSettings/*
+/NekoCatGame/[Oo]bj/*
+/NekoCatGame/[Tt]emp/*
+/NekoCatGame/[Ll]ibrary/*
 
 # Ignore asset store tools plugin
 # /[Aa]ssets/AssetStoreTools*
@@ -62,10 +65,4 @@ crashlytics-build.properties
 /ml-agents/
 *run_logs*
 *events.out.tfevents*
-RagdollTrainer/UserSettings/Layouts/default-2023.dwlt
 *.asset
-RagdollTrainer/UserSettings/Layouts/default-2023.dwlt
-RagdollTrainer/UserSettings/EditorUserSettings.asset
-RagdollTrainer/UserSettings/Search.index
-RagdollTrainer/UserSettings/Search.settings
-RagdollTrainer/UserSettings/Layouts/default-2023.dwlt
