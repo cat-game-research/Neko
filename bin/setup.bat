@@ -4,8 +4,8 @@ setlocal
 call :set_variables
 call :download_miniconda
 call :install_miniconda
-call :create_conda_environment
-call :check_installation
+call :create_conda_env
+call :check_install
 endlocal
 goto :eof
 
@@ -24,25 +24,38 @@ set DOCTOR=%BIN%doctor.bat
 goto :eof
 
 :download_miniconda
-echo Downloading miniconda...
-echo.
-call curl %MINICONDA_URL% -o %MINICONDA_EXE%
-echo.
+if exist %MINICONDA_PATH% (
+    goto :eof
+) else (
+    echo Downloading miniconda...
+    echo.
+    call curl %MINICONDA_URL% -o %MINICONDA_EXE%
+    echo.
+)
 goto :eof
 
 :install_miniconda
-echo Installing miniconda...
-start /wait "" %MINICONDA_EXE% /InstallationType=JustMe /RegisterPython=0 /S /Q /D=%MINICONDA_PATH%
-del %MINICONDA_EXE%
+if exist %MINICONDA_EXE% (
+    echo Installing miniconda...
+    start /wait "" %MINICONDA_EXE% /InstallationType=JustMe /RegisterPython=0 /S /Q /D=%MINICONDA_PATH%
+    del %MINICONDA_EXE%
+    echo.
+) else (
+    echo Miniconda already installed =^^_^^=
+    echo.
+)
+goto :eof
+
+:create_conda_env
+echo Creating the conda environment...
+call %CONDA% env create -n %PROJ% -f %ENV% --quiet
+call %CONDA% init powershell
+call %MINICONDA_PATH%\Scripts\activate NekoCatGame
+call %CONDA% install pytorch-cuda=11.8 -c pytorch -c nvidia -y
 echo.
 goto :eof
 
-:create_conda_environment
-echo Creating the conda environment...
-call %CONDA% env create -n %PROJ% -f %ENV%
-goto :eof
-
-:check_installation
+:check_install
 echo Checking the installation...
 call %DOCTOR%
 goto :eof
