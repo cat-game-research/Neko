@@ -3,9 +3,10 @@
 [Oo]bj/
 [Ll]ogs/
 [Bb]uild/
-[Bb]uilds/
+# [Bb]uilds/
 [Rr]esults/
 [Vv]env/
+[Uu]serSettings/
 Assets/AssetStoreTools*
 
 # Visual Studio cache directory
