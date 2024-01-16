@@ -51,6 +51,7 @@ echo Creating the conda environment...
 call %CONDA% env create -n %PROJ% -f %ENV% --quiet
 call %CONDA% init powershell
 call %MINICONDA_PATH%\Scripts\activate NekoCatGame
+rem TODO this should be optional
 call %CONDA% install pytorch-cuda=11.8 -c pytorch -c nvidia -y
 echo.
 goto :eof
