@@ -67,4 +67,4 @@ crashlytics-build.properties
 *events.out.tfevents*
 *.asset
 */ML-Agents/Timers/*
-RagdollTrainer/UserSettings/Layouts/default-2023.dwlt
+RagdollTrainer/UserSettings/*
