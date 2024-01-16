@@ -2,8 +2,6 @@ name: NekoCatGame
 channels:
   - conda-forge
   - defaults
-  - pytorch
-  - nvidia 
 dependencies:
   - python=3.10.12
   - ascii-art
@@ -11,3 +9,4 @@ dependencies:
   - GitPython
   - click
   - tqdm
+  - conda-pack

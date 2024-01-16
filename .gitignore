@@ -73,3 +73,6 @@ RagdollTrainer/Builds/server_windows_x64/RagdollTrainer_Data/ML-Agents/Timers/Wa
 RagdollTrainer/Builds/windows_x64/RagdollTrainer_Data/ML-Agents/Timers/WalkerScene_timers.json
 RagdollTrainer/Builds/windows_x64/RagdollTrainer_Data/ML-Agents/Timers/WalkerScene_timers.json
 RagdollTrainer/Builds/windows_x64/RagdollTrainer_Data/ML-Agents/Timers/WalkerScene_timers.json
+bin/miniconda.exe
+dist/NekoCatGame.zip
+RagdollTrainer/Builds/windows_x64/RagdollTrainer_Data/ML-Agents/Timers/WalkerScene_timers.json
