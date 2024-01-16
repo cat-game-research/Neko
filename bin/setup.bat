@@ -29,20 +29,20 @@ if exist %MINICONDA_PATH% (
 ) else (
     echo Downloading miniconda...
     echo.
-    call curl %MINICONDA_URL% -o %MINICONDA_EXE%
+    call curl %MINICONDA_URL% -o %BIN%%MINICONDA_EXE%
     echo.
 )
 goto :eof
 
 :install_miniconda
-if exist %MINICONDA_EXE% (
+if exist %BIN%%MINICONDA_EXE% (
     echo Installing miniconda...
-    start /wait "" %MINICONDA_EXE% /InstallationType=JustMe /RegisterPython=0 /S /Q /D=%MINICONDA_PATH%
-    del %MINICONDA_EXE%
+    start /wait "" %BIN%%MINICONDA_EXE% /InstallationType=JustMe /RegisterPython=0 /S /Q /D=%MINICONDA_PATH%
     echo.
 ) else (
-    echo Miniconda already installed =^^_^^=
+    echo Error: missing %MINICONDA_EXE%
     echo.
+	exit /b 1
 )
 goto :eof
 
@@ -50,9 +50,7 @@ goto :eof
 echo Creating the conda environment...
 call %CONDA% env create -n %PROJ% -f %ENV% --quiet
 call %CONDA% init powershell
-call %MINICONDA_PATH%\Scripts\activate NekoCatGame
-rem TODO this should be optional
-call %CONDA% install pytorch-cuda=11.8 -c pytorch -c nvidia -y
+call %MINICONDA_PATH%\Scripts\activate %PROJ%
 echo.
 goto :eof
 

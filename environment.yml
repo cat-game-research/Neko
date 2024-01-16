@@ -4,9 +4,9 @@ channels:
   - defaults
 dependencies:
   - python=3.10.12
+  - conda-pack
   - ascii-art
-  - rich
   - GitPython
   - click
+  - rich
   - tqdm
-  - conda-pack

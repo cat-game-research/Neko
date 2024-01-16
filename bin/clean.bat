@@ -9,6 +9,7 @@ set CLEAN=Cleaning...
 set MINI=miniconda
 set LOGS=Logs
 set ML=ml-agents
+set DIST=dist
 
 call :main
 endlocal
@@ -16,6 +17,7 @@ exit /b 1
 
 :main
 echo %CLEAN%
+call :remove %ROOT%%DIST%
 call :remove %ROOT%%MINI%
 call :remove %ROOT%%ML%
 call :remove %ROOT%%PROJ%\%LOGS%
