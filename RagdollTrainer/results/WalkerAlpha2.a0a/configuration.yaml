@@ -48,7 +48,7 @@ behaviors:
         learning_rate: 0.0003
         encoding_size: null
     init_path: null
-    keep_checkpoints: 40
+    keep_checkpoints: 80
     checkpoint_interval: 1000000
     max_steps: 80000000
     time_horizon: 1000
