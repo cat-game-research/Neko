@@ -3654,10 +3654,10 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  rayDown: 10
-  spawnX: {x: -10, y: 10}
+  rayDown: 8
+  spawnX: {x: -8, y: 8}
   spawnY: {x: 0.5, y: 1.5}
-  spawnZ: {x: -10, y: 10}
+  spawnZ: {x: -8, y: 8}
   respawnIfTouched: 1
 --- !u!1 &7370140649000329935
 GameObject:

@@ -62,3 +62,4 @@ crashlytics-build.properties
 /ml-agents/
 *run_logs*
 *events.out.tfevents*
+RagdollTrainer/UserSettings/Layouts/default-2023.dwlt
