@@ -68,3 +68,6 @@ crashlytics-build.properties
 *.asset
 */ML-Agents/Timers/*
 RagdollTrainer/UserSettings/*
+RagdollTrainer/Builds/windows_x64/RagdollTrainer_Data/ML-Agents/Timers/WalkerScene_timers.json
+RagdollTrainer/Builds/server_windows_x64/RagdollTrainer_Data/ML-Agents/Timers/WalkerScene_timers.json
+RagdollTrainer/Builds/windows_x64/RagdollTrainer_Data/ML-Agents/Timers/WalkerScene_timers.json
