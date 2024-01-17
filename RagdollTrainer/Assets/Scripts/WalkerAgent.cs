@@ -118,7 +118,8 @@ namespace JKress.AITrainer
             //Random start rotation to help generalize
             hips.rotation = Quaternion.Euler(0, Random.Range(0.0f, 360.0f), 0);
 
-            UpdateOrientationObjects();
+            //Agent should want to face the target
+            m_OrientationCube.UpdateOrientation(hips, targetT);
 
             //Set our goal walking speed
             MTargetWalkingSpeed =
@@ -127,8 +128,9 @@ namespace JKress.AITrainer
 
         void FixedUpdate()
         {
-            UpdateOrientationObjects();
-           
+            //Update where the the agent should be facing
+            m_OrientationCube.UpdateOrientation(hips, targetT);
+
             //Penalty if feet cross over
             var footSpacingReward = Vector3.Dot(footR.position - footL.position, footL.right);
             if (footSpacingReward > 0.1f) footSpacingReward = 0.1f;
@@ -237,50 +239,6 @@ namespace JKress.AITrainer
             bpDict[forearmL].SetJointStrength(continuousActions[++i]);
             bpDict[armR].SetJointStrength(continuousActions[++i]);
             bpDict[forearmR].SetJointStrength(continuousActions[++i]);
-        }
-
-        public override void Heuristic(in ActionBuffers actionBuffers)
-        {
-            float x = Input.GetAxis("Vertical");
-            float y = Input.GetAxis("Horizontal");
-            float force = Input.GetKey(KeyCode.Space) ? 1.0f : 0.0f;
-
-            var continuousActions = actionBuffers.ContinuousActions;
-            var i = -1;
-
-            //SetJointTargetRotation
-            continuousActions[++i] = -x; continuousActions[++i] = y; continuousActions[++i] = y;
-            continuousActions[++i] = x; continuousActions[++i] = y;
-            continuousActions[++i] = x; continuousActions[++i] = y;
-            continuousActions[++i] = x;
-            continuousActions[++i] = x;
-            continuousActions[++i] = x; continuousActions[++i] = y; continuousActions[++i] = y;
-            continuousActions[++i] = x; continuousActions[++i] = y; continuousActions[++i] = y;
-            continuousActions[++i] = x; continuousActions[++i] = y;
-            continuousActions[++i] = x; continuousActions[++i] = y;
-            continuousActions[++i] = x;
-            continuousActions[++i] = x;
-            continuousActions[++i] = x; continuousActions[++i] = y;
-
-            //SetJointStrength 
-            continuousActions[++i] = force;
-            continuousActions[++i] = force;
-            continuousActions[++i] = force;
-            continuousActions[++i] = force;
-            continuousActions[++i] = force;
-            continuousActions[++i] = force;
-            continuousActions[++i] = force;
-            continuousActions[++i] = force;
-            continuousActions[++i] = force;
-            continuousActions[++i] = force;
-            continuousActions[++i] = force;
-            continuousActions[++i] = force;
-        }
-
-        //Update OrientationCube and DirectionIndicator
-        void UpdateOrientationObjects()
-        {
-            m_OrientationCube.UpdateOrientation(hips, targetT);
         }
 
         //Returns the average velocity of all of the body parts
