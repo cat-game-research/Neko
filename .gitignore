@@ -72,3 +72,7 @@ RagdollTrainer/Builds/server_windows_x64/RagdollTrainer_Data/ML-Agents/Timers/Wa
 RagdollTrainer/Builds/windows_x64/RagdollTrainer_Data/ML-Agents/Timers/WalkerScene_timers.json
 bin/miniconda.exe
 [Dd]ist/*
+RagdollTrainer/Assets/ML-Agents/Timers/WalkerScene_timers.json
+RagdollTrainer/Assets/ML-Agents/Timers.meta
+RagdollTrainer/Assets/ML-Agents/Timers/WalkerScene_timers.json.meta
+RagdollTrainer/Assets/ML-Agents.meta
