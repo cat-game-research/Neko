@@ -52,7 +52,7 @@ namespace JKress.AITrainer
         float m_minWalkingSpeed = 0.1f; 
         float m_maxWalkingSpeed = 4; 
 
-        public float MTargetWalkingSpeed // property
+        public float TargetWalkingSpeed // property
         {
             get { return m_TargetWalkingSpeed; }
             set { m_TargetWalkingSpeed = Mathf.Clamp(value, m_minWalkingSpeed, m_maxWalkingSpeed); }
@@ -67,6 +67,7 @@ namespace JKress.AITrainer
         //Should the agent sample a new goal velocity each episode?
         //If true, walkSpeed will be randomly set between zero and m_maxWalkingSpeed in OnEpisodeBegin()
         //If false, the goal velocity will be walkingSpeed
+        //Will be overwritten if external direction and speed agent is used
         public bool randomizeWalkSpeedEachEpisode;
 
         //This will be used as a stabilized model space reference point for observations
@@ -75,6 +76,11 @@ namespace JKress.AITrainer
 
         //The indicator graphic gameobject that points towards the target
         JointDriveController m_JdController;
+
+        public void UpdateTargetWalkingSpeed(float velocity)
+        {
+            m_TargetWalkingSpeed = velocity;
+        }
 
 
         public override void Initialize()
@@ -122,8 +128,8 @@ namespace JKress.AITrainer
             m_OrientationCube.UpdateOrientation(hips, targetT);
 
             //Set our goal walking speed
-            MTargetWalkingSpeed =
-                randomizeWalkSpeedEachEpisode ? Random.Range(m_minWalkingSpeed, m_maxWalkingSpeed) : MTargetWalkingSpeed;
+            TargetWalkingSpeed =
+                randomizeWalkSpeedEachEpisode ? Random.Range(m_minWalkingSpeed, m_maxWalkingSpeed) : TargetWalkingSpeed;
         }
 
         void FixedUpdate()
@@ -139,12 +145,12 @@ namespace JKress.AITrainer
             var cubeForward = m_OrientationCube.transform.forward;
             var lookAtTargetReward = Vector3.Dot(head.forward, cubeForward) + 1; 
 
-            var matchSpeedReward = GetMatchingVelocityReward(cubeForward * MTargetWalkingSpeed, GetAvgVelocity());
+            var matchSpeedReward = GetMatchingVelocityReward(cubeForward * TargetWalkingSpeed, GetAvgVelocity());
 
             if (earlyTraining)
             { //*Important* Forces movement towards target (penalize stationary swinging)
                 matchSpeedReward = Vector3.Dot(GetAvgVelocity(), cubeForward); 
-                if (matchSpeedReward > 0) matchSpeedReward = GetMatchingVelocityReward(cubeForward * MTargetWalkingSpeed, GetAvgVelocity());
+                if (matchSpeedReward > 0) matchSpeedReward = GetMatchingVelocityReward(cubeForward * TargetWalkingSpeed, GetAvgVelocity());
             }
 
             AddReward(matchSpeedReward + 0.1f * lookAtTargetReward);
@@ -182,7 +188,7 @@ namespace JKress.AITrainer
             var cubeForward = m_OrientationCube.transform.forward;
 
             //velocity we want to match
-            var velGoal = cubeForward * MTargetWalkingSpeed;
+            var velGoal = cubeForward * TargetWalkingSpeed;
             //ragdoll's avg vel
             var avgVel = GetAvgVelocity();
 
@@ -280,14 +286,14 @@ namespace JKress.AITrainer
         public float GetMatchingVelocityReward(Vector3 velocityGoal, Vector3 actualVelocity)
         {
             //distance between our actual velocity and goal velocity
-            var velDeltaMagnitude = Mathf.Clamp(Vector3.Distance(actualVelocity, velocityGoal), 0, MTargetWalkingSpeed);
+            var velDeltaMagnitude = Mathf.Clamp(Vector3.Distance(actualVelocity, velocityGoal), 0, TargetWalkingSpeed);
 
             //fix nan error
-            if (MTargetWalkingSpeed == 0) MTargetWalkingSpeed = 0.01f;
+            if (TargetWalkingSpeed == 0) TargetWalkingSpeed = 0.01f;
 
             //return the value on a declining sigmoid shaped curve that decays from 1 to 0
             //This reward will approach 1 if it matches perfectly and approach zero as it deviates
-            return Mathf.Pow(1 - Mathf.Pow(velDeltaMagnitude / MTargetWalkingSpeed, 2), 2);
+            return Mathf.Pow(1 - Mathf.Pow(velDeltaMagnitude / TargetWalkingSpeed, 2), 2);
         }
     }
 }
