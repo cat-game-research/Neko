@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 15eacce68fcf83c4d898c8705931bc17
+timeCreated: 1556881435
+licenseType: Store
+TextScriptImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 144966
+  packageName: Character Movement Fundamentals
+  packageVersion: 2.2
+  assetPath: Assets/Character Movement Fundamentals/README.txt
+  uploadId: 426944
