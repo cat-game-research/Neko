@@ -41,16 +41,19 @@ namespace JKress.AITrainer
         [SerializeField] Transform forearmR;
 
         [Header("Stabilizer")]
-        [Range(1000, 4000)] [SerializeField] float m_stabilizerTorque = 4000f;
+        [Range(1000, 4000)][SerializeField] float m_stabilizerTorque = 4000f;
         float m_minStabilizerTorque = 1000;
-        float m_maxStabilizerTorque = 4000; 
+        float m_maxStabilizerTorque = 4000;
         [SerializeField] Stabilizer hipsStabilizer;
         [SerializeField] Stabilizer spineStabilizer;
 
         [Header("Walk Speed")] //The walking speed to try and achieve
-        [Range(0.1f, 4)] [SerializeField] float m_TargetWalkingSpeed = 2; 
-        float m_minWalkingSpeed = 0.1f; 
-        float m_maxWalkingSpeed = 4; 
+        [Range(0.1f, 4)][SerializeField] float m_TargetWalkingSpeed = 2;
+        float m_minWalkingSpeed = 0.1f;
+        float m_maxWalkingSpeed = 4;
+
+        [HideInInspector] public Vector3 m_AvgVelocity = Vector3.zero;
+        [HideInInspector] public Vector3 m_AvgPosition = Vector3.zero;
 
         public float TargetWalkingSpeed // property
         {
@@ -58,7 +61,7 @@ namespace JKress.AITrainer
             set { m_TargetWalkingSpeed = Mathf.Clamp(value, m_minWalkingSpeed, m_maxWalkingSpeed); }
         }
 
-        public float MStabilizerTorque 
+        public float MStabilizerTorque
         {
             get { return m_stabilizerTorque; }
             set { m_stabilizerTorque = Mathf.Clamp(value, m_minStabilizerTorque, m_maxStabilizerTorque); }
@@ -72,14 +75,14 @@ namespace JKress.AITrainer
 
         //This will be used as a stabilized model space reference point for observations
         //Because ragdolls can move erratically during training, using a stabilized reference transform improves learning
-        OrientationCubeController m_OrientationCube;
+        public OrientationCubeController m_OrientationCube;
 
         //The indicator graphic gameobject that points towards the target
-        JointDriveController m_JdController;
+        public JointDriveController m_JdController;
 
         public void UpdateTargetWalkingSpeed(float velocity)
         {
-            m_TargetWalkingSpeed = velocity;
+            TargetWalkingSpeed = velocity;
         }
 
 
@@ -143,14 +146,14 @@ namespace JKress.AITrainer
             AddReward(footSpacingReward);
 
             var cubeForward = m_OrientationCube.transform.forward;
-            var lookAtTargetReward = Vector3.Dot(head.forward, cubeForward) + 1; 
+            var lookAtTargetReward = Vector3.Dot(head.forward, cubeForward) + 1;
 
             var matchSpeedReward = GetMatchingVelocityReward(cubeForward * TargetWalkingSpeed, GetAvgVelocity());
 
             if (earlyTraining)
             { //*Important* Forces movement towards target (penalize stationary swinging)
-                matchSpeedReward = Vector3.Dot(GetAvgVelocity(), cubeForward); 
-                if (matchSpeedReward > 0) matchSpeedReward = GetMatchingVelocityReward(cubeForward * TargetWalkingSpeed, GetAvgVelocity());
+                matchSpeedReward = Vector3.Dot(m_AvgVelocity, cubeForward);
+                if (matchSpeedReward > 0) matchSpeedReward = GetMatchingVelocityReward(cubeForward * TargetWalkingSpeed, m_AvgVelocity);
             }
 
             AddReward(matchSpeedReward + 0.1f * lookAtTargetReward);
@@ -205,7 +208,7 @@ namespace JKress.AITrainer
 
             //Position of target position relative to cube
             sensor.AddObservation(m_OrientationCube.transform.InverseTransformPoint(targetT.position));
-            
+
             foreach (var bodyPart in m_JdController.bodyPartsList)
             {
                 CollectObservationBodyPart(bodyPart, sensor);
@@ -250,7 +253,7 @@ namespace JKress.AITrainer
         //Returns the average velocity of all of the body parts
         //Using the velocity of the hips only has shown to result in more erratic movement from the limbs, so...
         //...using the average helps prevent this erratic movement
-        Vector3 GetAvgVelocity()
+        public Vector3 GetAvgVelocity()
         {
             Vector3 velSum = Vector3.zero;
 
@@ -263,10 +266,11 @@ namespace JKress.AITrainer
             }
 
             var avgVel = velSum / numOfRb;
-            return avgVel;
+            m_AvgVelocity = avgVel;
+            return m_AvgVelocity;
         }
 
-        Vector3 GetAvgPosition()
+        public Vector3 GetAvgPosition()
         {
             Vector3 posSum = Vector3.zero;
 
@@ -279,7 +283,8 @@ namespace JKress.AITrainer
             }
 
             var avgPos = posSum / numOfRb;
-            return avgPos;
+            m_AvgPosition = avgPos;
+            return m_AvgPosition;
         }
 
         //normalized value of the difference in avg speed vs goal walking speed.
