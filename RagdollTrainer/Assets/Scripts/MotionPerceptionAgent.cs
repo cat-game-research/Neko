@@ -1,103 +1,149 @@
-using JKress.AITrainer;
+using System.Linq;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
-using Unity.MLAgentsExamples;
 using Unity.Sentis.Layers;
 using UnityEngine;
 
-public class MotionPerceptionAgent : Agent
+namespace Unity.MLAgentsExamples
 {
-    [Header("Root Agent")]
-    [SerializeField] WalkerAgent m_WalkerAgent;
-
-    [Header("Body Parts")]
-    [SerializeField] Transform m_Hips;
-    [SerializeField] Transform m_Head;
-    [SerializeField] Transform m_EyeLeft;
-    [SerializeField] Transform m_EyeRight;
-
-    [Header("Focus Sphere Controller")]
-    FocusSphereController m_FocusSphere;
-
-    [Header("Focus Sphere Transform")]
-    [SerializeField] Transform m_FocusT;
-
-    [Header("Focus Sphere Range")]
-    [Range(1f, 100f)] public float m_MaxDistance = 20f;
-
-    [Header("Focus Position")]
-    Vector3 m_FocusPosition = Vector3.zero;
-    [Range(0.1f, 10f)][SerializeField] float m_PositionScale = 1f;
-
-    [Header("Acceleration")]
-    [Range(0.1f, 10f)][SerializeField] float m_AccelerationScale = 1f;
-    [Range(0.1f, 4f)] public float m_TargetWalkingSpeed = 2f;
-
-    /// <summary>
-    /// called before anything else is run in our training excercise
-    /// </summary>
-    public override void Initialize()
+    public class MotionPerceptionAgent : Agent
     {
-        m_FocusSphere = GetComponentInChildren<FocusSphereController>();
-        transform.SetPositionAndRotation(m_Head.position, m_Hips.rotation);
-        m_FocusPosition = m_FocusSphere.UpdatePosition(transform.position);
-        m_WalkerAgent.UpdateTargetWalkingSpeed(m_TargetWalkingSpeed);
-    }
+        [Header("Root Agent")]
+        [SerializeField] WalkerAgent m_WalkerAgent;
 
-    public override void OnEpisodeBegin()
-    {
-        //reset our positions and walking speeds
-        transform.SetPositionAndRotation(m_Head.position, m_Hips.rotation);
-        m_FocusPosition = m_FocusSphere.UpdatePosition(m_Head.position);
-        m_WalkerAgent.UpdateTargetWalkingSpeed(m_TargetWalkingSpeed);
-    }
+        [Header("Body Parts")]
+        [SerializeField] Transform m_Hips;
+        [SerializeField] Transform m_Head;
+        [SerializeField] Transform m_EyeLeft;
+        [SerializeField] Transform m_EyeRight;
 
-    void FixedUpdate()
-    {
-        transform.position = m_Head.position;
-        transform.rotation = m_Hips.rotation;
+        [Header("Focus Sphere Controller")]
+        FocusSphereController m_FocusSphere;
 
-        //TODO handle our reward mechanisms
-    }
+        [Header("Focus Sphere Transform")]
+        [SerializeField] Transform m_Focus;
 
-    public override void CollectObservations(VectorSensor sensor)
-    {
-        //Add all root agents observations to model
-        m_WalkerAgent.CollectObservations(sensor);
+        [Header("Focus Sphere Range")]
+        [Range(1f, 100f)] public float m_MaxDistance = 20f;
 
-        //Motion perception systems
-        sensor.AddObservation(transform.localPosition);
-        sensor.AddObservation(transform.localRotation);
+        [Header("Focus Position")]
+        Vector3 m_FocusPosition = Vector3.zero;
+        [Range(0.1f, 10f)][SerializeField] float m_PositionScale = 1f;
 
-        //Focus sphere observations
-        sensor.AddObservation(m_MaxDistance);
-        sensor.AddObservation(m_FocusPosition);
-        sensor.AddObservation(m_FocusT.localPosition);
-        sensor.AddObservation(m_TargetWalkingSpeed);
+        [Header("Acceleration")]
+        [Range(0.1f, 10f)][SerializeField] float m_AccelerationScale = 1f;
+        [Range(0.1f, 4f)] public float m_TargetWalkingSpeed = 2f;
 
-        //Relative position and speed of focus sphere
-        sensor.AddObservation(Vector3.Distance(m_WalkerAgent.m_AvgPosition, m_FocusPosition));
-        sensor.AddObservation(Vector3.Distance(m_FocusT.position, m_FocusPosition));
-        sensor.AddObservation(m_TargetWalkingSpeed - m_WalkerAgent.m_AvgVelocity.magnitude);
-        sensor.AddObservation(transform.InverseTransformDirection(m_FocusPosition));
-        sensor.AddObservation(transform.InverseTransformDirection(m_WalkerAgent.m_AvgPosition));
-    }
+        [Header("The Reward Tag for A Treat")]
+        public string m_RewardTag = "target";
 
-    public override void OnActionReceived(ActionBuffers actionBuffers)
-    {
-        var continuousActions = actionBuffers.ContinuousActions;
-        var i = -1;
+        [Header("Floor Is Lava")]
+        public string m_PunishTag = "ground";
 
-        //set local position of focus sphere.
-        Vector3 position = new Vector3(continuousActions[++i], continuousActions[++i], continuousActions[++i]);
-        position *= m_PositionScale;
-        m_FocusPosition += position;
-        m_FocusPosition = Vector3.ClampMagnitude(m_FocusPosition, m_MaxDistance);
-        m_FocusPosition = m_FocusSphere.UpdatePosition(m_FocusPosition);
+        float _tagMemoryReward = 0.0f;
+        float _Variance = 0.0f;
+        float[] _ContinuousActions;
+        float _MeanAction = 0.0f;
+        float _tagMemoryPunish = -1.0f;
 
-        //set target walking speed of agent
-        m_TargetWalkingSpeed = m_WalkerAgent.TargetWalkingSpeed + continuousActions[++i] * m_AccelerationScale;
-        m_WalkerAgent.UpdateTargetWalkingSpeed(m_TargetWalkingSpeed);
+        public override void Initialize()
+        {
+            m_FocusSphere = GetComponentInChildren<FocusSphereController>();
+            transform.SetPositionAndRotation(m_Head.position, m_Hips.rotation);
+            m_FocusPosition = m_FocusSphere.UpdatePosition(transform.position);
+            m_WalkerAgent.UpdateTargetWalkingSpeed(m_TargetWalkingSpeed);
+            m_FocusSphere.ResetTagMemory();
+        }
+
+        public override void OnEpisodeBegin()
+        {
+            transform.SetPositionAndRotation(m_Head.position, m_Hips.rotation);
+            m_FocusPosition = m_FocusSphere.UpdatePosition(m_Head.position);
+            m_WalkerAgent.UpdateTargetWalkingSpeed(m_TargetWalkingSpeed);
+            m_FocusSphere.ResetTagMemory();
+        }
+
+        void FixedUpdate()
+        {
+            transform.position = m_Head.position;
+            transform.rotation = m_Hips.rotation;
+
+            _tagMemoryReward = 0f;
+            foreach (bool value in m_FocusSphere.m_TagMemory)
+            {
+                if (value)
+                {
+                    _tagMemoryReward += 0.1f;
+                }
+            }
+            if (m_FocusSphere.m_TagMemory[m_FocusSphere.DetectableTags.IndexOf(m_RewardTag)])
+            {
+                _tagMemoryReward += 1f;
+            }
+            else if (m_FocusSphere.m_TagMemory[m_FocusSphere.DetectableTags.IndexOf(m_PunishTag)])
+            {
+                _tagMemoryReward -= 1f;
+            }
+
+            _Variance = 0f;
+            _MeanAction = 0f;
+            foreach (float action in _ContinuousActions)
+            {
+                _MeanAction += action;
+            }
+            _MeanAction /= _ContinuousActions.Length;
+            foreach (float action in _ContinuousActions)
+            {
+                _Variance += Mathf.Pow(action - _MeanAction, 2f);
+            }
+            _Variance /= _ContinuousActions.Length;
+            _Variance *= -1f;
+
+            _tagMemoryPunish = 0f;
+            if (m_FocusSphere.m_TagMemory.All(x => x == false))
+            {
+                _tagMemoryPunish = -1f;
+            }
+
+            AddReward(0.6f * _tagMemoryReward + 0.2f * _Variance + 0.2f * _tagMemoryPunish);
+        }
+
+        public override void CollectObservations(VectorSensor sensor)
+        {
+            m_WalkerAgent.CollectObservations(sensor);
+
+            sensor.AddObservation(transform.localPosition);
+            sensor.AddObservation(transform.localRotation);
+            sensor.AddObservation(m_MaxDistance);
+            sensor.AddObservation(m_FocusPosition);
+            sensor.AddObservation(m_Focus.localPosition);
+            sensor.AddObservation(m_TargetWalkingSpeed);
+            sensor.AddObservation(Vector3.Distance(m_WalkerAgent.m_AvgPosition, m_FocusPosition));
+            sensor.AddObservation(Vector3.Distance(m_Focus.position, m_FocusPosition));
+            sensor.AddObservation(m_TargetWalkingSpeed - m_WalkerAgent.m_AvgVelocity.magnitude);
+            sensor.AddObservation(transform.InverseTransformDirection(m_FocusPosition));
+            sensor.AddObservation(transform.InverseTransformDirection(m_WalkerAgent.m_AvgPosition));
+
+            foreach (bool value in m_FocusSphere.m_TagMemory)
+            {
+                sensor.AddObservation(value);
+            }
+        }
+
+        public override void OnActionReceived(ActionBuffers actionBuffers)
+        {
+            _ContinuousActions = actionBuffers.ContinuousActions.Array;
+            var continuousActions = actionBuffers.ContinuousActions;
+            var i = -1;
+
+            Vector3 position = new Vector3(continuousActions[++i], continuousActions[++i], continuousActions[++i]);
+            position *= m_PositionScale;
+            m_FocusPosition += position;
+            m_FocusPosition = Vector3.ClampMagnitude(m_FocusPosition, m_MaxDistance);
+            m_FocusPosition = m_FocusSphere.UpdatePosition(m_FocusPosition);
+            m_TargetWalkingSpeed = m_WalkerAgent.TargetWalkingSpeed + continuousActions[++i] * m_AccelerationScale;
+            m_WalkerAgent.UpdateTargetWalkingSpeed(m_TargetWalkingSpeed);
+        }
     }
 }

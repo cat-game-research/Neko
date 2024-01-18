@@ -97,10 +97,10 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 449
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 38
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -120,6 +120,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e333b7973a2bb34792ef20d58d29f2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_RayPerceptionMask:
+    serializedVersion: 2
+    m_Bits: 449
+  _DetectableTags: []
+  m_TagMemory: 
 --- !u!1 &721841688864160580
 GameObject:
   m_ObjectHideFlags: 0
@@ -5127,10 +5132,13 @@ MonoBehaviour:
   m_Head: {fileID: 721841690674506249}
   m_EyeLeft: {fileID: 113323728818762667}
   m_EyeRight: {fileID: 1325922943877483813}
-  m_FocusT: {fileID: 3008990071149887977}
+  m_Focus: {fileID: 3008990071149887977}
+  m_MaxDistance: 20
   m_PositionScale: 1
   m_AccelerationScale: 1
-  m_FocusVelocity: 2
+  m_TargetWalkingSpeed: 2
+  m_RewardTag: target
+  m_PunishTag: ground
 --- !u!114 &2414939274573218627
 MonoBehaviour:
   m_ObjectHideFlags: 0

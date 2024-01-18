@@ -2,12 +2,10 @@
 using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
-using Unity.MLAgentsExamples;
 using Unity.MLAgents.Sensors;
-using BodyPart = Unity.MLAgentsExamples.BodyPart;
 using Random = UnityEngine.Random;
 
-namespace JKress.AITrainer
+namespace Unity.MLAgentsExamples
 {
     public class WalkerAgent : Agent
     {

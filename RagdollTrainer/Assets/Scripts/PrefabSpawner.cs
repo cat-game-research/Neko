@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace JKress.AITrainer
+namespace Unity.MLAgentsExamples  
 {
     public class PrefabSpawner : MonoBehaviour
     {
