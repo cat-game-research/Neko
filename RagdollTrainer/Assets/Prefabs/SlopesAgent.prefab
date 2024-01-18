@@ -54,7 +54,7 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 10000
-  earlyTraining: 0
+  earlyTraining: 1
   targetT: {fileID: 7370140648814756900}
   targetController: {fileID: 7370140648814756896}
   hips: {fileID: 721841690266355922}
@@ -4076,6 +4076,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 23158856390613334, guid: 306992aaa36a615449dc9b27ef645f52, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 609bd1cd8d9c9004bbc7d85853029e55, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
