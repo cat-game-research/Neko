@@ -12,17 +12,15 @@ namespace Unity.MLAgentsExamples
         [Header("Root Agent")]
         [SerializeField] WalkerAgent m_WalkerAgent;
 
-        [Header("Body Parts")]
-        [SerializeField] Transform m_Hips;
-        [SerializeField] Transform m_Head;
-        [SerializeField] Transform m_EyeLeft;
-        [SerializeField] Transform m_EyeRight;
+        [Header("Body Part Transforms")]
+        [SerializeField] Transform m_HipsT;
+        [SerializeField] Transform m_HeadT;
+        [SerializeField] Transform m_EyeLeftT;
+        [SerializeField] Transform m_EyeRightT;
 
-        [Header("Focus Sphere Controller")]
-        FocusSphereController m_FocusSphere;
-
-        [Header("Focus Sphere Transform")]
-        [SerializeField] Transform m_Focus;
+        [Header("Focus Sphere")]
+        [SerializeField] FocusSphereController m_FocusSphere;
+        [SerializeField] Transform m_FocusSphereT;
 
         [Header("Focus Sphere Range")]
         [Range(1f, 100f)] public float m_MaxDistance = 20f;
@@ -33,60 +31,60 @@ namespace Unity.MLAgentsExamples
 
         [Header("Acceleration")]
         [Range(0.1f, 10f)][SerializeField] float m_AccelerationScale = 1f;
-        [Range(0.1f, 4f)] public float m_TargetWalkingSpeed = 2f;
+        [Range(0.1f, 4f)] float m_TargetWalkingSpeed = 2f;
 
-        [Header("The Reward Tag for A Treat")]
+        float m_minWalkingSpeed = 0.1f;
+        float m_maxWalkingSpeed = 4f;
+
+        public float TargetWalkingSpeed // property
+        {
+            get { return m_TargetWalkingSpeed; }
+            set { m_TargetWalkingSpeed = Mathf.Clamp(value, m_minWalkingSpeed, m_maxWalkingSpeed); }
+        }
+
+        [Header("Tag for Positive Reward")]
         public string m_RewardTag = "target";
-
-        [Header("Floor Is Lava")]
-        public string m_PunishTag = "ground";
+        public float m_RewardTagAmount = 1f;
+        public float m_MinRewardTagAmount = 0.1f;
 
         float _tagMemoryReward = 0.0f;
-        float _Variance = 0.0f;
+        float _VarianceReward = 0.0f;
         float[] _ContinuousActions;
         float _MeanAction = 0.0f;
-        float _tagMemoryPunish = -1.0f;
 
         public override void Initialize()
         {
-            m_FocusSphere = GetComponentInChildren<FocusSphereController>();
-            transform.SetPositionAndRotation(m_Head.position, m_Hips.rotation);
+            transform.SetPositionAndRotation(m_HeadT.position, m_HipsT.rotation);
             m_FocusPosition = m_FocusSphere.UpdatePosition(transform.position);
-            m_WalkerAgent.UpdateTargetWalkingSpeed(m_TargetWalkingSpeed);
             m_FocusSphere.ResetTagMemory();
         }
 
         public override void OnEpisodeBegin()
         {
-            transform.SetPositionAndRotation(m_Head.position, m_Hips.rotation);
-            m_FocusPosition = m_FocusSphere.UpdatePosition(m_Head.position);
-            m_WalkerAgent.UpdateTargetWalkingSpeed(m_TargetWalkingSpeed);
+            transform.SetPositionAndRotation(m_HeadT.position, m_HipsT.rotation);
+            m_FocusPosition = m_FocusSphere.UpdatePosition(transform.position);
             m_FocusSphere.ResetTagMemory();
         }
 
         void FixedUpdate()
         {
-            transform.position = m_Head.position;
-            transform.rotation = m_Hips.rotation;
+            transform.position = m_HeadT.position;
+            transform.rotation = m_HipsT.rotation;
 
             _tagMemoryReward = 0f;
             foreach (bool value in m_FocusSphere.m_TagMemory)
             {
                 if (value)
                 {
-                    _tagMemoryReward += 0.1f;
+                    _tagMemoryReward += m_MinRewardTagAmount;
                 }
             }
             if (m_FocusSphere.m_TagMemory[m_FocusSphere.DetectableTags.IndexOf(m_RewardTag)])
             {
-                _tagMemoryReward += 1f;
-            }
-            else if (m_FocusSphere.m_TagMemory[m_FocusSphere.DetectableTags.IndexOf(m_PunishTag)])
-            {
-                _tagMemoryReward -= 1f;
+                _tagMemoryReward += m_RewardTagAmount;
             }
 
-            _Variance = 0f;
+            _VarianceReward = 0f;
             _MeanAction = 0f;
             foreach (float action in _ContinuousActions)
             {
@@ -95,18 +93,14 @@ namespace Unity.MLAgentsExamples
             _MeanAction /= _ContinuousActions.Length;
             foreach (float action in _ContinuousActions)
             {
-                _Variance += Mathf.Pow(action - _MeanAction, 2f);
+                _VarianceReward += Mathf.Pow(action - _MeanAction, 2f);
             }
-            _Variance /= _ContinuousActions.Length;
-            _Variance *= -1f;
+            _VarianceReward /= _ContinuousActions.Length;
+            _VarianceReward *= -1f;
 
-            _tagMemoryPunish = 0f;
-            if (m_FocusSphere.m_TagMemory.All(x => x == false))
-            {
-                _tagMemoryPunish = -1f;
-            }
+            Debug.Log("$REWARD: tag: " + _tagMemoryReward + " var: " + _VarianceReward + " | spd: " + TargetWalkingSpeed + " | fcs: " + m_FocusPosition);
 
-            AddReward(0.6f * _tagMemoryReward + 0.2f * _Variance + 0.2f * _tagMemoryPunish);
+            AddReward(0.8f * _tagMemoryReward + 0.2f * _VarianceReward);
         }
 
         public override void CollectObservations(VectorSensor sensor)
@@ -117,11 +111,11 @@ namespace Unity.MLAgentsExamples
             sensor.AddObservation(transform.localRotation);
             sensor.AddObservation(m_MaxDistance);
             sensor.AddObservation(m_FocusPosition);
-            sensor.AddObservation(m_Focus.localPosition);
-            sensor.AddObservation(m_TargetWalkingSpeed);
+            sensor.AddObservation(m_FocusSphereT.localPosition);
+            sensor.AddObservation(TargetWalkingSpeed);
             sensor.AddObservation(Vector3.Distance(m_WalkerAgent.m_AvgPosition, m_FocusPosition));
-            sensor.AddObservation(Vector3.Distance(m_Focus.position, m_FocusPosition));
-            sensor.AddObservation(m_TargetWalkingSpeed - m_WalkerAgent.m_AvgVelocity.magnitude);
+            sensor.AddObservation(Vector3.Distance(m_FocusSphereT.position, m_FocusPosition));
+            sensor.AddObservation(TargetWalkingSpeed - m_WalkerAgent.m_AvgVelocity.magnitude);
             sensor.AddObservation(transform.InverseTransformDirection(m_FocusPosition));
             sensor.AddObservation(transform.InverseTransformDirection(m_WalkerAgent.m_AvgPosition));
 
@@ -142,8 +136,7 @@ namespace Unity.MLAgentsExamples
             m_FocusPosition += position;
             m_FocusPosition = Vector3.ClampMagnitude(m_FocusPosition, m_MaxDistance);
             m_FocusPosition = m_FocusSphere.UpdatePosition(m_FocusPosition);
-            m_TargetWalkingSpeed = m_WalkerAgent.TargetWalkingSpeed + continuousActions[++i] * m_AccelerationScale;
-            m_WalkerAgent.UpdateTargetWalkingSpeed(m_TargetWalkingSpeed);
+            TargetWalkingSpeed = m_WalkerAgent.TargetWalkingSpeed + continuousActions[++i] * m_AccelerationScale;
         }
     }
 }

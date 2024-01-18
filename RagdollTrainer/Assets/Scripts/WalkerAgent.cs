@@ -45,7 +45,7 @@ namespace Unity.MLAgentsExamples
         [SerializeField] Stabilizer hipsStabilizer;
         [SerializeField] Stabilizer spineStabilizer;
 
-        [Header("Walk Speed")] //The walking speed to try and achieve
+        [Header("Walk Speed")]
         [Range(0.1f, 4)][SerializeField] float m_TargetWalkingSpeed = 2;
         float m_minWalkingSpeed = 0.1f;
         float m_maxWalkingSpeed = 4;
@@ -65,30 +65,19 @@ namespace Unity.MLAgentsExamples
             set { m_stabilizerTorque = Mathf.Clamp(value, m_minStabilizerTorque, m_maxStabilizerTorque); }
         }
 
-        //Should the agent sample a new goal velocity each episode?
-        //If true, walkSpeed will be randomly set between zero and m_maxWalkingSpeed in OnEpisodeBegin()
-        //If false, the goal velocity will be walkingSpeed
-        //Will be overwritten if external direction and speed agent is used
+        [Tooltip("If true, walkSpeed will be randomly set between zero and m_maxWalkingSpeed in OnEpisodeBegin(). If false, the goal velocity will be walkingSpeed. Will be overwritten if external direction and speed agent is used.")]
         public bool randomizeWalkSpeedEachEpisode;
 
-        //This will be used as a stabilized model space reference point for observations
-        //Because ragdolls can move erratically during training, using a stabilized reference transform improves learning
-        public OrientationCubeController m_OrientationCube;
+        [Tooltip("This will be used as a stabilized model space reference point for observations. Because ragdolls can move erratically during training, using a stabilized reference transform improves learning.")]
+        [HideInInspector] public OrientationCubeController m_OrientationCube;
 
-        //The indicator graphic gameobject that points towards the target
-        public JointDriveController m_JdController;
-
-        public void UpdateTargetWalkingSpeed(float velocity)
-        {
-            TargetWalkingSpeed = velocity;
-        }
-
+        [Tooltip("The indicator graphic gameobject that points towards the target.")]
+        [HideInInspector] public JointDriveController m_JdController;
 
         public override void Initialize()
         {
             m_OrientationCube = GetComponentInChildren<OrientationCubeController>();
 
-            //Setup each body part
             m_JdController = GetComponent<JointDriveController>();
 
             m_JdController.SetupBodyPart(hips);
@@ -136,7 +125,12 @@ namespace Unity.MLAgentsExamples
         void FixedUpdate()
         {
             //Update where the the agent should be facing
+            //TODO Update orientation cube based on where the focus sphere is in the motion perception agent
             m_OrientationCube.UpdateOrientation(hips, targetT);
+
+            //Update our target speed from motion perception agent
+            //TODO update target walking speed from motion perception agent
+            //TargetWalkingSpeed = velocity;
 
             //Penalty if feet cross over
             var footSpacingReward = Vector3.Dot(footR.position - footL.position, footL.right);
@@ -145,7 +139,6 @@ namespace Unity.MLAgentsExamples
 
             var cubeForward = m_OrientationCube.transform.forward;
             var lookAtTargetReward = Vector3.Dot(head.forward, cubeForward) + 1;
-
             var matchSpeedReward = GetMatchingVelocityReward(cubeForward * TargetWalkingSpeed, GetAvgVelocity());
 
             if (earlyTraining)

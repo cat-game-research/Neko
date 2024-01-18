@@ -640,7 +640,11 @@ MonoBehaviour:
   hipsStabilizer: {fileID: 4994514608111800899}
   spineStabilizer: {fileID: 2537324434630596456}
   m_TargetWalkingSpeed: 2
+  m_AvgVelocity: {x: 0, y: 0, z: 0}
+  m_AvgPosition: {x: 0, y: 0, z: 0}
   randomizeWalkSpeedEachEpisode: 1
+  m_OrientationCube: {fileID: 0}
+  m_JdController: {fileID: 0}
 --- !u!114 &3320658684163787749
 MonoBehaviour:
   m_ObjectHideFlags: 0

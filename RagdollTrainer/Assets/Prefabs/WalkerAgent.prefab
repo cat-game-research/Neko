@@ -123,7 +123,15 @@ MonoBehaviour:
   m_RayPerceptionMask:
     serializedVersion: 2
     m_Bits: 449
-  _DetectableTags: []
+  _DetectableTags:
+  - wall
+  - target
+  - ground
+  - agent
+  - obsticle
+  - environment
+  - food
+  - poison
   m_TagMemory: 
 --- !u!1 &721841688864160580
 GameObject:
@@ -3901,7 +3909,7 @@ Transform:
   m_GameObject: {fileID: 5924963553172332523}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.053, y: -0.045, z: 0.13}
+  m_LocalPosition: {x: 0.053, y: -0.06, z: 0.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4366,7 +4374,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 858caf43898b0b6408f887564417c685, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5102,8 +5110,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8376965439771478298}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalRotation: {x: -0.000000039284988, y: 0.00000020663214, z: 0.00000020663211, w: 1}
+  m_LocalPosition: {x: -0.00000004790661, y: 1.5166137, z: 0.02007874}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5128,17 +5136,17 @@ MonoBehaviour:
   hasUpgradedFromAgentParameters: 1
   MaxStep: 10000
   m_WalkerAgent: {fileID: 7553413468682519851}
-  m_Hips: {fileID: 721841690266355922}
-  m_Head: {fileID: 721841690674506249}
-  m_EyeLeft: {fileID: 113323728818762667}
-  m_EyeRight: {fileID: 1325922943877483813}
-  m_Focus: {fileID: 3008990071149887977}
+  m_HipsT: {fileID: 721841690266355922}
+  m_HeadT: {fileID: 721841690674506249}
+  m_EyeLeftT: {fileID: 113323728818762667}
+  m_EyeRightT: {fileID: 1325922943877483813}
+  m_FocusSphere: {fileID: 1747362105518813984}
+  m_FocusSphereT: {fileID: 3008990071149887977}
   m_MaxDistance: 20
   m_PositionScale: 1
   m_AccelerationScale: 1
-  m_TargetWalkingSpeed: 2
   m_RewardTag: target
-  m_PunishTag: ground
+  m_PunishTag: poison
 --- !u!114 &2414939274573218627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5210,7 +5218,7 @@ Transform:
   m_GameObject: {fileID: 9006351660739666416}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.053, y: -0.045, z: 0.13}
+  m_LocalPosition: {x: -0.053, y: -0.06, z: 0.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
