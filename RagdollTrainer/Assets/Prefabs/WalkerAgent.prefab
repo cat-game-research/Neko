@@ -97,7 +97,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: 9781122063c52fb4b934cdb6a8732925, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: 041b2f7b11d51794b8ae240d5fd63888, type: 3}
   m_InferenceDevice: 2
   m_BehaviorType: 0
   m_BehaviorName: Walker
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DecisionPeriod: 8
+  DecisionPeriod: 5
   DecisionStep: 0
   TakeActionsBetweenDecisions: 0
 --- !u!1 &721841688981208256
