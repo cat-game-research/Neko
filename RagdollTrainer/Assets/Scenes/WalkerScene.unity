@@ -286,10 +286,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2570026590891329045, guid: d5ae7e86a25282041a3478764844594b, type: 3}
-      propertyPath: 'basePrefab.Array.data[0]'
-      value: 
-      objectReference: {fileID: 7370140648595448830, guid: 347526641e12b3e49b0e83d40a15c855, type: 3}
     - target: {fileID: 6093055303679104388, guid: d5ae7e86a25282041a3478764844594b, type: 3}
       propertyPath: m_Name
       value: PrefabSpawner

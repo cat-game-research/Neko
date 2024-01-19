@@ -30,7 +30,7 @@ namespace JKress.AITrainer
                     for (int j = 0; j < zCount; j++)
                     {
                         Instantiate(basePrefab[k], new Vector3(i * offsetX, 0, j * offsetZ),
-                            Quaternion.identity);
+                            basePrefab[k].transform.rotation);
                     }
                 }
             }

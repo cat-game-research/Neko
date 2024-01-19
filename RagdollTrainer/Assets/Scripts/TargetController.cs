@@ -21,6 +21,8 @@ namespace Unity.MLAgentsExamples
 
         public bool respawnIfTouched = true; //Should the target respawn to a different position when touched
 
+        public bool m_LocalRespawn = false;
+
         const string k_Agent = "agent";
 
         void FixedUpdate()
@@ -40,9 +42,16 @@ namespace Unity.MLAgentsExamples
             Vector3 newTargetPos;
             Collider[] hitColliders;
 
-            do 
+            do
             {
-                newTargetPos = new Vector3(Random.Range(spawnX.x, spawnX.y), rayDown, Random.Range(spawnZ.x, spawnZ.y));
+                if (m_LocalRespawn)
+                {
+                    newTargetPos = new Vector3(Random.Range(transform.position.x + spawnX.x, transform.position.x + spawnX.y), rayDown, Random.Range(transform.position.z + spawnZ.x, transform.position.z + spawnZ.y));
+                }
+                else
+                {
+                    newTargetPos = new Vector3(Random.Range(spawnX.x, spawnX.y), rayDown, Random.Range(spawnZ.x, spawnZ.y));
+                }
 
                 RaycastHit hit;
                 if (Physics.Raycast(newTargetPos, Vector3.down, out hit, Mathf.Infinity, layerMask))
