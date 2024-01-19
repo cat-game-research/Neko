@@ -4,11 +4,15 @@ namespace Unity.MLAgentsExamples
 {
     public class PrefabSpawner : MonoBehaviour
     {
+        [Header("Automatic Start")]
+        [SerializeField] bool _RunOnAwake = true;
+
+        [Header("Agent Prefab to Initialize")]
         [SerializeField] GameObject[] basePrefab;
 
-        [SerializeField] int xCount = 5;
-        [SerializeField] int zCount = 5;
-
+        [Header("Spawning Configuration")]
+        [SerializeField] int xCount = 10;
+        [SerializeField] int zCount = 10;
         [SerializeField] float offsetX = 20f;
         [SerializeField] float offsetZ = 20f;
 
@@ -16,10 +20,7 @@ namespace Unity.MLAgentsExamples
 
         void Awake()
         {
-            scenePrefab = GameObject.FindWithTag("agentPrefab");
-            if (scenePrefab != null) Destroy(scenePrefab); //If prefab is in the scene, remove it
-
-            float behaviorOffset = 0;
+            if (!_RunOnAwake) return;
 
             for (int k = 0; k < basePrefab.Length; k++)
             {
@@ -28,8 +29,8 @@ namespace Unity.MLAgentsExamples
                 {
                     for (int j = 0; j < zCount; j++)
                     {
-                        Instantiate(basePrefab[k], new Vector3(i * offsetX + behaviorOffset, 0, j * offsetZ),
-                            Quaternion.identity);
+                        Instantiate(basePrefab[k], new Vector3(i * offsetX, 0, j * offsetZ),
+                            basePrefab[k].transform.rotation);
                     }
                 }
             }

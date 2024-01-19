@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: d61d4d0e3c8671743b1dc985afa043fb
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 116144
+  packageName: 3D Modern Menu UI
+  packageVersion: 1.3.1
+  assetPath: Assets/SlimUI/Modern Menu 1/Scripts/ThemeEditor/ThemedUI.cs
+  uploadId: 628808

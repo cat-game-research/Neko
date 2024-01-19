@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e152dd3c2d246a94d86ef49dcdde0f1c
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 116144
+  packageName: 3D Modern Menu UI
+  packageVersion: 1.3.1
+  assetPath: Assets/SlimUI/Modern Menu 1/Animations/Panels/WindowPopUpBig.anim
+  uploadId: 628808

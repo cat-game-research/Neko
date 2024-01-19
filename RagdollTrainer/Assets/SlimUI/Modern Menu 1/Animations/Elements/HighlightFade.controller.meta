@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f4f43775b058eee41abe03f631fe83a5
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 116144
+  packageName: 3D Modern Menu UI
+  packageVersion: 1.3.1
+  assetPath: Assets/SlimUI/Modern Menu 1/Animations/Elements/HighlightFade.controller
+  uploadId: 628808

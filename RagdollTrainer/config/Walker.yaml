@@ -27,6 +27,6 @@ behaviors:
           learning_rate: 0.0001
     keep_checkpoints: 40
     checkpoint_interval: 1000000
-    max_steps: 40000000
+    max_steps: 20000000
     time_horizon: 1000
-    summary_freq: 100000
+    summary_freq: 250000
