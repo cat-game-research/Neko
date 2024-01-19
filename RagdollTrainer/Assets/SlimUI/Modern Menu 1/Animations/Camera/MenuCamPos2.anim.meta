@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 31c7aa033cec5e24ea90edc627167f6c
+timeCreated: 1470700747
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 116144
+  packageName: 3D Modern Menu UI
+  packageVersion: 1.3.1
+  assetPath: Assets/SlimUI/Modern Menu 1/Animations/Camera/MenuCamPos2.anim
+  uploadId: 628808
