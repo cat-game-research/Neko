@@ -14,7 +14,7 @@ namespace Unity.MLAgentsExamples
 
         [Header("Body Part Transforms")]
         [SerializeField] Transform m_HipsT;
-        [SerializeField] Transform m_HeadT;
+        [SerializeField] Transform m_HeadEndT;
         [SerializeField] Transform m_EyeLeftT;
         [SerializeField] Transform m_EyeRightT;
 
@@ -54,21 +54,21 @@ namespace Unity.MLAgentsExamples
 
         public override void Initialize()
         {
-            transform.SetPositionAndRotation(m_HeadT.position, m_HipsT.rotation);
+            transform.SetPositionAndRotation(m_HeadEndT.position, m_HipsT.rotation);
             m_FocusPosition = m_FocusSphere.UpdatePosition(transform.position);
             m_FocusSphere.ResetTagMemory();
         }
 
         public override void OnEpisodeBegin()
         {
-            transform.SetPositionAndRotation(m_HeadT.position, m_HipsT.rotation);
+            transform.SetPositionAndRotation(m_HeadEndT.position, m_HipsT.rotation);
             m_FocusPosition = m_FocusSphere.UpdatePosition(transform.position);
             m_FocusSphere.ResetTagMemory();
         }
 
         void FixedUpdate()
         {
-            transform.position = m_HeadT.position;
+            transform.position = m_HeadEndT.position;
             transform.rotation = m_HipsT.rotation;
 
             _tagMemoryReward = 0f;
