@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4160746226523773102, guid: 40e8585610ed6364d9b59e5d9c1b8165, type: 3}
       propertyPath: m_Name
-      value: RobotKyle Variant
+      value: RobotKyleMotion
       objectReference: {fileID: 0}
     - target: {fileID: 4160746226523773137, guid: 40e8585610ed6364d9b59e5d9c1b8165, type: 3}
       propertyPath: m_LocalPosition.x
@@ -51,10 +51,6 @@ PrefabInstance:
     - target: {fileID: 4160746226523773137, guid: 40e8585610ed6364d9b59e5d9c1b8165, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4335886516414775034, guid: 40e8585610ed6364d9b59e5d9c1b8165, type: 3}
-      propertyPath: m_BehaviorType
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

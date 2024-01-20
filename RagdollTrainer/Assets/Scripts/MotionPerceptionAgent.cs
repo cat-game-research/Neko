@@ -79,25 +79,28 @@ namespace Unity.MLAgentsExamples
                     _tagMemoryReward += m_MinRewardTagAmount;
                 }
             }
-            if (m_FocusSphere.m_TagMemory[m_FocusSphere.DetectableTags.IndexOf(m_RewardTag)])
+            if (m_FocusSphere.m_TagMemory.Count > 0 &&
+                m_FocusSphere.m_TagMemory[m_FocusSphere.DetectableTags.IndexOf(m_RewardTag)])
             {
                 _tagMemoryReward += m_RewardTagAmount;
             }
 
             _VarianceReward = 0f;
-            _MeanAction = 0f;
-            foreach (float action in _ContinuousActions)
+            if (_ContinuousActions != null)
             {
-                _MeanAction += action;
+                _MeanAction = 0f;
+                foreach (float action in _ContinuousActions)
+                {
+                    _MeanAction += action;
+                }
+                _MeanAction /= _ContinuousActions.Length;
+                foreach (float action in _ContinuousActions)
+                {
+                    _VarianceReward += Mathf.Pow(action - _MeanAction, 2f);
+                }
+                _VarianceReward /= _ContinuousActions.Length;
+                _VarianceReward *= -1f;
             }
-            _MeanAction /= _ContinuousActions.Length;
-            foreach (float action in _ContinuousActions)
-            {
-                _VarianceReward += Mathf.Pow(action - _MeanAction, 2f);
-            }
-            _VarianceReward /= _ContinuousActions.Length;
-            _VarianceReward *= -1f;
-
             Debug.Log("$REWARD: tag: " + _tagMemoryReward + " var: " + _VarianceReward + " | spd: " + TargetWalkingSpeed + " | fcs: " + m_FocusPosition);
 
             AddReward(0.8f * _tagMemoryReward + 0.2f * _VarianceReward);

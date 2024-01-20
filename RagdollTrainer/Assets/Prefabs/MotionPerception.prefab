@@ -644,7 +644,7 @@ MonoBehaviour:
     hasUpgradedBrainParametersWithActionSpec: 1
   m_Model: {fileID: 0}
   m_InferenceDevice: 2
-  m_BehaviorType: 1
+  m_BehaviorType: 2
   m_BehaviorName: MotionPerception
   TeamId: 0
   m_UseChildSensors: 1
@@ -663,9 +663,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DecisionPeriod: 8
+  DecisionPeriod: 5
   DecisionStep: 0
-  TakeActionsBetweenDecisions: 1
+  TakeActionsBetweenDecisions: 0
 --- !u!1 &3121622705035941364
 GameObject:
   m_ObjectHideFlags: 0

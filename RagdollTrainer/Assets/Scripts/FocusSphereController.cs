@@ -54,7 +54,7 @@ namespace Unity.MLAgentsExamples
 
         void OnTriggerEnter(Collider other)
         {
-            if (DetectableTags.Contains(other.tag))
+            if (m_TagMemory.Count > 0 && DetectableTags.Contains(other.tag))
             {
                 int index = DetectableTags.IndexOf(other.tag);
                 m_TagMemory[index] = true;
@@ -63,7 +63,7 @@ namespace Unity.MLAgentsExamples
 
         void OnTriggerExit(Collider other)
         {
-            if (DetectableTags.Contains(other.tag))
+            if (m_TagMemory.Count > 0 && DetectableTags.Contains(other.tag))
             {
                 int index = DetectableTags.IndexOf(other.tag);
                 m_TagMemory[index] = false;

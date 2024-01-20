@@ -1,5 +1,5 @@
 behaviors:
-  Walker:
+  MotionPerception:
     trainer_type: ppo
     hyperparameters:
       batch_size: 4096
