@@ -135,7 +135,7 @@ namespace Unity.MLAgentsExamples
             var i = -1;
 
             Vector3 position = new Vector3(continuousActions[++i], continuousActions[++i], continuousActions[++i]);
-            position *= m_PositionScale;
+            position *= Time.deltaTime * m_PositionScale;
             m_FocusPosition += position;
             m_FocusPosition = Vector3.ClampMagnitude(m_FocusPosition, m_MaxDistance);
             m_FocusPosition = m_FocusSphere.UpdatePosition(m_FocusPosition);

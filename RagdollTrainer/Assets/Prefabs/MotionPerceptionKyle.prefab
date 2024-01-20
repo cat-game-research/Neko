@@ -8,9 +8,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1255365268771739320, guid: fe905a63043a4234a99c04fc8d3f94fb, type: 3}
+      propertyPath: m_SphereCastRadius
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 2989765110100174675, guid: fe905a63043a4234a99c04fc8d3f94fb, type: 3}
       propertyPath: m_Name
-      value: MotionPerception Variant
+      value: MotionPerceptionKyle
+      objectReference: {fileID: 0}
+    - target: {fileID: 3650579012294977364, guid: fe905a63043a4234a99c04fc8d3f94fb, type: 3}
+      propertyPath: m_SphereCastRadius
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5521728391969227636, guid: fe905a63043a4234a99c04fc8d3f94fb, type: 3}
+      propertyPath: m_SphereCastRadius
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 6300731220879016342, guid: fe905a63043a4234a99c04fc8d3f94fb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -51,6 +63,10 @@ PrefabInstance:
     - target: {fileID: 6300731220879016342, guid: fe905a63043a4234a99c04fc8d3f94fb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8910708010743721894, guid: fe905a63043a4234a99c04fc8d3f94fb, type: 3}
+      propertyPath: m_SphereCastRadius
+      value: 0.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -633,7 +633,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 2000
+    VectorObservationSize: 249
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 4
@@ -644,8 +644,8 @@ MonoBehaviour:
     hasUpgradedBrainParametersWithActionSpec: 1
   m_Model: {fileID: 0}
   m_InferenceDevice: 2
-  m_BehaviorType: 2
-  m_BehaviorName: MotionPerception
+  m_BehaviorType: 0
+  m_BehaviorName: Motion
   TeamId: 0
   m_UseChildSensors: 1
   m_UseChildActuators: 1
@@ -1037,9 +1037,9 @@ GameObject:
   - component: {fileID: 7973826300679644535}
   - component: {fileID: 6642940896197089522}
   - component: {fileID: 4972768636910460265}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: FocusSphere
-  m_TagString: target
+  m_TagString: focus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1054,7 +1054,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.125, y: 0.125, z: 0.125}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6300731220879016342}
@@ -1130,7 +1130,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.1
+  m_Radius: 0.125
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4972768636910460265
 MonoBehaviour:
@@ -1144,9 +1144,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e333b7973a2bb34792ef20d58d29f2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RayPerceptionMask:
+  m_FocusSphereLayerMask:
     serializedVersion: 2
-    m_Bits: 449
+    m_Bits: 961
   _DetectableTags:
   - wall
   - target

@@ -47,7 +47,7 @@ MonoBehaviour:
   _RunOnAwake: 1
   basePrefab:
   - {fileID: 7370140648595448830, guid: 4315e9c335412064493e04ba3e658086, type: 3}
-  xCount: 10
-  zCount: 10
+  xCount: 5
+  zCount: 5
   offsetX: 20
   offsetZ: 20

@@ -13,8 +13,8 @@ namespace Unity.MLAgentsExamples
     {
 
         [Header("Tags to Focus")]
-        [Tooltip("The layer mask for the ray perception sensors.")]
-        public LayerMask m_RayPerceptionMask;
+        [Tooltip("The layer mask for the focus sphere to collide with")]
+        public LayerMask m_FocusSphereLayerMask;
 
         [Header("Layers of Focus")]
         [SerializeField, FormerlySerializedAs("detectableTags")]
@@ -54,6 +54,7 @@ namespace Unity.MLAgentsExamples
 
         void OnTriggerEnter(Collider other)
         {
+            Debug.Log(">>>" + other.tag);
             if (m_TagMemory.Count > 0 && DetectableTags.Contains(other.tag))
             {
                 int index = DetectableTags.IndexOf(other.tag);
@@ -63,6 +64,7 @@ namespace Unity.MLAgentsExamples
 
         void OnTriggerExit(Collider other)
         {
+            Debug.Log("<<<" + other.tag);
             if (m_TagMemory.Count > 0 && DetectableTags.Contains(other.tag))
             {
                 int index = DetectableTags.IndexOf(other.tag);
