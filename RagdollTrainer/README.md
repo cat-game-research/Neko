@@ -32,16 +32,46 @@ The Robot Kyle model from the Unity assets store is used for the ragdoll.
 
 # Training Process
 
-* Walking:
-  1. WalkerAgent
-    a. early training = true
-    b. steps = 40 million
-  2. WalkerAgent
-    a. early_training = false
-    b. steps = 80 million
-* Walls: WalkerAgent (true) -> WalkerAgent (false) -> WallsAgent (false)
-* Stairs: WalkerAgent (true) -> StairsAgent (true) -> StairsAgent (false)
+The following is the current basic overview of the iteration of the model and which environment and settings where used to achieve the latest checkpoint release.
 
+* Model: Walker
+  1. WalkerAgent (Basic Training - Easy) [**Walker-a0a-40m**]
+     * early training = true
+     * steps = 40 million
+  2. WalkerAgent (Basic Training - Hard) [**Walker-a0a-120m**]
+     * early_training = false
+     * steps = 80 million
+  3. SlopesWalkerAgent (Basic Training - Easy) [**Walker-a0a-140m**]
+     * early_training = false
+     * steps = 20 million
+     * Note: Cooldown phase of 20 million steps of (Basic Training - Hard)
+  4. WalkerMotionAgent (Basic Training - Hard) [**Walker-a0a-150m**]
+     * early_training = false
+     * has_columns = true
+     * steps = 10 million
+     * Note: Added small columns to introduce blocked line of sight.
+  5. WalkerMotionAgent (Basic Training - Easy)
+     * early_training = false
+     * has_columns = false
+     * use_motion_perception = true
+     * steps = 10 million
+     * Note: Added Motion Perception Agent for direction and velocity
+
+The following is the basic overview of how the motion perception agent model was trained in which environment and their respective settings.
+
+* Motion Perception
+  1. MotionPerceptionAgent (Basic Training - Easy)
+     * early_training = false
+     * has_columns = false
+     * use_motion_perception = true
+     * steps = 10 million
+  2. MotionPerceptionAgent (Basic Training - Hard)
+     * early_training = false
+     * has_columns = true
+     * use_motion_perception = true
+     * steps = 10 million
+     * ...
+ 
 ---
 
 # How the WalkerAgent Prefab Model Works
