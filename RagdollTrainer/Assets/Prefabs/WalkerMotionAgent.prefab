@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4828838778791546605
 Transform:
   m_ObjectHideFlags: 0
@@ -125,7 +125,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &9000957221597683773
 Transform:
   m_ObjectHideFlags: 0
@@ -232,7 +232,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7723535352662856932
 Transform:
   m_ObjectHideFlags: 0
@@ -339,7 +339,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7056406158728181871
 Transform:
   m_ObjectHideFlags: 0
@@ -1213,6 +1213,10 @@ PrefabInstance:
     - target: {fileID: 1780101062401493895, guid: d6c47b2120e1c8f4a9d7645e967f25d5, type: 3}
       propertyPath: m_Name
       value: MotionPerceptionKyle
+      objectReference: {fileID: 0}
+    - target: {fileID: 1780101062401493895, guid: d6c47b2120e1c8f4a9d7645e967f25d5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2568026435386160574, guid: d6c47b2120e1c8f4a9d7645e967f25d5, type: 3}
       propertyPath: m_HipsT
