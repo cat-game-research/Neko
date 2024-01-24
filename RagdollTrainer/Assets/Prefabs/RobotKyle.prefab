@@ -26,11 +26,11 @@ Transform:
   m_GameObject: {fileID: 361860591009595548}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.47, z: -3.35}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalPosition: {x: -1, y: -0.306, z: 0.99700004}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4160746227957015835}
+  m_Father: {fileID: 410093189039141369}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &8926312532378608807
 Light:
@@ -80,7 +80,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
@@ -170,6 +170,7 @@ MonoBehaviour:
   m_TargetWalkingSpeed: 2
   m_AvgVelocity: {x: 0, y: 0, z: 0}
   m_AvgPosition: {x: 0, y: 0, z: 0}
+  m_ColumnSpawner: {fileID: 0}
   randomizeWalkSpeedEachEpisode: 1
   m_OrientationCube: {fileID: 0}
   m_JdController: {fileID: 0}
@@ -195,8 +196,8 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: 975475ccbc87f9e4489199fd431e755f, type: 3}
-  m_InferenceDevice: 2
+  m_Model: {fileID: 5022602860645237092, guid: cd7950bb3b3314442ac5be61d0d61703, type: 3}
+  m_InferenceDevice: 3
   m_BehaviorType: 0
   m_BehaviorName: Walker
   TeamId: 0
@@ -1711,8 +1712,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 0.2, y: 0.19999999, z: 0.20000002}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1475215522316574058}
+  m_Children: []
   m_Father: {fileID: 4160746226523773137}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4160746227957015839
@@ -3359,6 +3359,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2056835502194720456}
+  - {fileID: 1475215522316574058}
   m_Father: {fileID: 4160746226523773137}
   m_LocalEulerAnglesHint: {x: 0, y: -0.1, z: 0}
 --- !u!114 &469960815628747078

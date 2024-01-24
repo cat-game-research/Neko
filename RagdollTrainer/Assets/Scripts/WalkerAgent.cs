@@ -53,6 +53,9 @@ namespace Unity.MLAgentsExamples
         [HideInInspector] public Vector3 m_AvgVelocity = Vector3.zero;
         [HideInInspector] public Vector3 m_AvgPosition = Vector3.zero;
 
+        [Header("Environmental Column Spawner")]
+        public ColumnSpawner m_ColumnSpawner;
+
         public float TargetWalkingSpeed // property
         {
             get { return m_TargetWalkingSpeed; }
@@ -74,10 +77,17 @@ namespace Unity.MLAgentsExamples
         [Tooltip("The indicator graphic gameobject that points towards the target.")]
         [HideInInspector] public JointDriveController m_JdController;
 
+        private void Start()
+        {
+            if (m_ColumnSpawner == null)
+            {
+                throw new MissingReferenceException("Column Spawner must be defined");
+            }
+        }
+
         public override void Initialize()
         {
             m_OrientationCube = GetComponentInChildren<OrientationCubeController>();
-
             m_JdController = GetComponent<JointDriveController>();
 
             m_JdController.SetupBodyPart(hips);
@@ -116,6 +126,9 @@ namespace Unity.MLAgentsExamples
 
             //Agent should want to face the target
             m_OrientationCube.UpdateOrientation(hips, targetT);
+            
+            //Make our training environment dynamic
+            m_ColumnSpawner.RandomizeColumns(4, 4);
 
             //Set our goal walking speed
             TargetWalkingSpeed =

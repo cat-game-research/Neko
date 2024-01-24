@@ -44,7 +44,6 @@ namespace Unity.MLAgentsExamples
         private void Update()
         {
             _Timer -= Time.deltaTime;
-            Debug.Log(_Timer);
             if (_Timer <= 0)
             {
                 ResetTarget();
