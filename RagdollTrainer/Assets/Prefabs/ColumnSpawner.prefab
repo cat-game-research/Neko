@@ -52,4 +52,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   m_OverwriteColumns: 1
-  m_MinDistance: 5
+  m_MinDistance: 6
