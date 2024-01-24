@@ -438,7 +438,7 @@ MonoBehaviour:
   agent: {fileID: 0}
   targetReward: 1
   groundContactPenalty: -1
-  wallContactPenalty: 0
+  wallContactPenalty: -1
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
@@ -645,7 +645,7 @@ MonoBehaviour:
   agent: {fileID: 0}
   targetReward: 1
   groundContactPenalty: -1
-  wallContactPenalty: 0
+  wallContactPenalty: -1
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
@@ -1046,7 +1046,7 @@ MonoBehaviour:
   agent: {fileID: 0}
   targetReward: 1
   groundContactPenalty: -1
-  wallContactPenalty: 0
+  wallContactPenalty: -1
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
@@ -1253,7 +1253,7 @@ MonoBehaviour:
   agent: {fileID: 0}
   targetReward: 1
   groundContactPenalty: -1
-  wallContactPenalty: 0
+  wallContactPenalty: -1
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
@@ -1500,7 +1500,7 @@ MonoBehaviour:
   agent: {fileID: 0}
   targetReward: 1
   groundContactPenalty: -1
-  wallContactPenalty: 0
+  wallContactPenalty: -1
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
@@ -1638,7 +1638,7 @@ MonoBehaviour:
   agent: {fileID: 0}
   targetReward: 1
   groundContactPenalty: -1
-  wallContactPenalty: 0
+  wallContactPenalty: -1
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
@@ -2013,7 +2013,7 @@ MonoBehaviour:
   agent: {fileID: 0}
   targetReward: 1
   groundContactPenalty: -1
-  wallContactPenalty: 0
+  wallContactPenalty: -1
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
@@ -2220,7 +2220,7 @@ MonoBehaviour:
   agent: {fileID: 0}
   targetReward: 1
   groundContactPenalty: -1
-  wallContactPenalty: 0
+  wallContactPenalty: -1
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
@@ -2427,7 +2427,7 @@ MonoBehaviour:
   agent: {fileID: 0}
   targetReward: 1
   groundContactPenalty: -1
-  wallContactPenalty: 0
+  wallContactPenalty: -1
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
@@ -2642,7 +2642,7 @@ MonoBehaviour:
   agent: {fileID: 0}
   targetReward: 1
   groundContactPenalty: 0
-  wallContactPenalty: 0
+  wallContactPenalty: -1
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
@@ -2902,7 +2902,7 @@ MonoBehaviour:
   agent: {fileID: 0}
   targetReward: 1
   groundContactPenalty: -1
-  wallContactPenalty: 0
+  wallContactPenalty: -1
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
@@ -3086,7 +3086,7 @@ MonoBehaviour:
   agent: {fileID: 0}
   targetReward: 1
   groundContactPenalty: 0
-  wallContactPenalty: 0
+  wallContactPenalty: -1
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
@@ -3293,7 +3293,7 @@ MonoBehaviour:
   agent: {fileID: 0}
   targetReward: 1
   groundContactPenalty: -1
-  wallContactPenalty: 0
+  wallContactPenalty: -1
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0

@@ -130,7 +130,7 @@ MonoBehaviour:
   m_RespawnIfTouched: 1
   m_LocalRespawn: 0
   m_SpawnOnlyOnGround: 1
-  m_RespawnTime: 10
+  m_RespawnTime: 60
   m_MinRespawnTime: 30
   m_MaxRespawnTime: 60
   m_RandomizeRespawnTime: 0

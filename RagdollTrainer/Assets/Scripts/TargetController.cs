@@ -32,20 +32,20 @@ namespace Unity.MLAgentsExamples
         [Range(1f, 60f)][SerializeField] float m_MaxRespawnTime = 60f;
 
         [Tooltip("This will use the min and max respawn times to generate a new time between that.")]
-        public bool m_RandomizeRespawnTime = false;
+        public bool m_RandomizeRespawnTime = true;
 
-        float _Timer;
+        float _Timer = 0f;
 
         private void Start()
         {
-            _Timer = m_RandomizeRespawnTime ? Random.Range(m_MinRespawnTime, m_MaxRespawnTime) : m_RespawnTime;
+            ResetTarget();
         }
 
         private void Update()
         {
             _Timer -= Time.deltaTime;
-
-            if (Mathf.Approximately(_Timer, 0f) || _Timer < 0f)
+            Debug.Log(_Timer);
+            if (_Timer <= 0)
             {
                 ResetTarget();
             }
@@ -63,7 +63,7 @@ namespace Unity.MLAgentsExamples
         private void ResetTarget()
         {
             MoveTargetToRandomPosition();
-            _Timer = m_RandomizeRespawnTime ? Random.Range(m_RespawnTime / 10, m_RespawnTime) : m_RespawnTime;
+            _Timer = m_RandomizeRespawnTime ? Random.Range(m_MinRespawnTime, m_MaxRespawnTime) : m_RespawnTime;
         }
 
         public void MoveTargetToRandomPosition()

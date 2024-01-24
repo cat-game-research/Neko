@@ -17,7 +17,7 @@ namespace Unity.MLAgentsExamples
 
         // Penalty amount (ex: -1)
         public float groundContactPenalty = -1;
-        public float wallContactPenalty = 0;
+        public float wallContactPenalty = -1;
 
         //Contact with the gameObject for observation
         public bool touchingGround;
