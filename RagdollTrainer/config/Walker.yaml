@@ -29,4 +29,4 @@ behaviors:
     checkpoint_interval: 1000000
     max_steps: 20000000
     time_horizon: 1000
-    summary_freq: 250000
+    summary_freq: 200000
