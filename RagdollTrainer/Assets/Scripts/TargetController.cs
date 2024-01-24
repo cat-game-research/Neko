@@ -27,12 +27,12 @@ namespace Unity.MLAgentsExamples
         [Tooltip("This is the default timer used to make the target respawn. Randomize Respawn Time will override this value. Be careful when setting this value to low or high.")]
         [Range(1f, 60f)][SerializeField] float m_RespawnTime = 30f;
         [Tooltip("This is the minimum time which the random respawn time will be.")]
-        [Range(1f, 60f)][SerializeField] float m_MinRespawnTime = 1f;
+        [Range(1f, 60f)][SerializeField] float m_MinRespawnTime = 30f;
         [Tooltip("This is the maximum time which the random respawn time will be.")]
-        [Range(1f, 60f)][SerializeField] float m_MaxRespawnTime = 20f;
+        [Range(1f, 60f)][SerializeField] float m_MaxRespawnTime = 60f;
 
         [Tooltip("This will use the min and max respawn times to generate a new time between that.")]
-        public bool m_RandomizeRespawnTime = true;
+        public bool m_RandomizeRespawnTime = false;
 
         float _Timer;
 

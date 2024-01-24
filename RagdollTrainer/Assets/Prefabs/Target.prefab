@@ -131,6 +131,6 @@ MonoBehaviour:
   m_LocalRespawn: 0
   m_SpawnOnlyOnGround: 1
   m_RespawnTime: 10
-  m_MinRespawnTime: 1
-  m_MaxRespawnTime: 20
-  m_RandomizeRespawnTime: 1
+  m_MinRespawnTime: 30
+  m_MaxRespawnTime: 60
+  m_RandomizeRespawnTime: 0
