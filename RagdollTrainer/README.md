@@ -56,6 +56,12 @@ The following is the current basic overview of the iteration of the model and wh
      * use_motion_perception = true
      * steps = 10 million
      * Note: Added Motion Perception Agent for direction and velocity
+  6. WalkerMotionAgent (Basic Training - Intermediate)
+     * early_training = false
+     * has_columns = true
+     * use_motion_perception = false
+     * steps = 5 million
+     * Note: Added wall avoidance
 
 The following is the basic overview of how the motion perception agent model was trained in which environment and their respective settings.
 
@@ -70,8 +76,7 @@ The following is the basic overview of how the motion perception agent model was
      * has_columns = true
      * use_motion_perception = true
      * steps = 10 million
-     * ...
- 
+     * ... work in progress 
 ---
 
 # How the WalkerAgent Prefab Model Works
