@@ -2,11 +2,11 @@
 
 Neko Cat Game is a 3D simulation game that aims to create realistic and interactive cat behaviors using machine learning and physics-based animation. The game is still in development and currently features some ragdoll robot biped walkers roaming around a scene.
 
-![Screenshot of the game](./WalkerMotionAgent_01.png)
+![Screenshot of the game]
 
 ## Installation
 
-To install the game, you need to have Unity Hub and Unity 2020.3.18f1 or later. You can download them from [here](^2^) and [here](^3^) respectively. 
+To install the game, you need to have Unity Hub and Unity 2020.3.18f1 or later. You can download them from [here] and [here] respectively. 
 
 Then, clone this repository to your local machine using the following command:
 
@@ -38,12 +38,22 @@ The game is still under development and we have many features and improvements p
 - Adding more interactivity and gameplay elements, such as obstacles, goals, and user input.
 - Creating more diverse and realistic environments for the cat to explore.
 
+## Steam Page
+
+We are excited to announce that we are working on a **Steam page** for the game, where you will be able to access the **beta early access** version of the game and enjoy the following features:
+
+- **Multiplayer**: Play with your friends and other cat lovers online and explore the world together.
+- **Cloud saves**: Save your progress and preferences on the cloud and access them from any device.
+- **Achievements**: Unlock various achievements and show off your skills and progress to the world.
+
+The game will and always be **free to play**, and never **pay to win**, only play. We believe that everyone should be able to enjoy the game without any barriers or limitations.
+
 ## Contributing
 
 We welcome any contributions to the game, whether it is bug fixes, new features, or suggestions. If you want to contribute, please follow these steps:
 
 - Fork the repository and create a new branch for your changes.
-- Make sure your code follows the [C# coding conventions](^4^) and the [Unity best practices](^5^).
+- Make sure your code follows the [C# coding conventions] and the [Unity best practices].
 - Test your code thoroughly and make sure it does not break the existing functionality.
 - Commit and push your changes to your forked repository.
 - Create a pull request and describe your changes in detail.
@@ -51,4 +61,4 @@ We welcome any contributions to the game, whether it is bug fixes, new features,
 
 ## License
 
-The game is licensed under the [MIT License](^6^), which means you can use, modify, and distribute it as you wish, as long as you give credit to the original authors and include the license file in your distribution.
+The game is licensed under the [MIT License], which means you can use, modify, and distribute it as you wish, as long as you give credit to the original authors and include the license file in your distribution.
