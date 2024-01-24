@@ -12,6 +12,8 @@ public class ColumnSpawner : MonoBehaviour
     public LayerMask m_EnvironmentLayer;
     [Tooltip("This will make the columns remain where they are after each episode")]
     public bool m_OverwriteColumns = true;
+    [Tooltip("This will set the minimum distance between two columns")]
+    public float m_MinDistance = 1f;
 
     List<GameObject> _Columns = new List<GameObject>();
 
@@ -33,29 +35,23 @@ public class ColumnSpawner : MonoBehaviour
 
         for (int i = 0; i < newNumberOfColumns; i++)
         {
-            GameObject column = Instantiate(m_WallColumnPrefab, transform);
+            var column = Instantiate(m_WallColumnPrefab, transform);
             _Columns.Add(column);
 
-            Vector2 randomPosition = GetRandomPosition(m_GroundRadius);
-            Vector3 position = column.transform.position;
+            var randomPosition = GetRandomPosition(m_GroundRadius);
+            var position = column.transform.position;
 
             position.x = randomPosition.x;
             position.z = randomPosition.y;
 
-            Collider[] overlaps = Physics.OverlapSphere(position, column.transform.localScale.x / 2, m_EnvironmentLayer);
-
-            while (overlaps.Length > 0)
+            while (IsTooClose(randomPosition, _Columns, m_MinDistance))
             {
                 randomPosition = GetRandomPosition(m_GroundRadius);
-
                 position.x = randomPosition.x;
                 position.z = randomPosition.y;
-
-                overlaps = Physics.OverlapSphere(position, column.transform.localScale.x / 2, m_EnvironmentLayer);
             }
 
-            RaycastHit hit;
-            if (Physics.Raycast(position, Vector3.down, out hit, Mathf.Infinity, m_EnvironmentLayer))
+            if (Physics.Raycast(position, Vector3.down, out var hit, Mathf.Infinity, m_EnvironmentLayer))
             {
                 position.y = hit.point.y;
             }
@@ -77,12 +73,11 @@ public class ColumnSpawner : MonoBehaviour
         _Columns.Clear();
     }
 
-
-    private Vector2 GetRandomPosition(float radius)
+    private Vector2Int GetRandomPosition(float radius)
     {
         Vector2 randomPosition = Random.insideUnitCircle;
         randomPosition *= radius;
-        return randomPosition;
+        return Vector2Int.RoundToInt(randomPosition);
     }
 
     private void Start()
@@ -98,5 +93,19 @@ public class ColumnSpawner : MonoBehaviour
         }
 
         RandomizeColumns(m_NumberOfColumns, m_NumberOfColumns);
+    }
+
+    private bool IsTooClose(Vector2Int position, List<GameObject> columns, float minDistance)
+    {
+        foreach (var prevColumn in columns)
+        {
+            var prevPosition = new Vector2Int((int)prevColumn.transform.position.x, (int)prevColumn.transform.position.z);
+            var distance = Vector2Int.Distance(position, prevPosition);
+            if (distance < minDistance)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

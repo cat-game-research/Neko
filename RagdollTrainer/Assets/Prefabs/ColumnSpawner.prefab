@@ -44,10 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15d1f102b797a0646a07ef0647d47202, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ColumnsController: {fileID: 486613098647395570}
+  m_ColumnsGroup: {fileID: 0}
   m_WallColumnPrefab: {fileID: 1764450238102495910, guid: f8b9fdc76707082409573967fa3baac7, type: 3}
-  m_NumberOfColumns: 4
-  m_GroundRadius: 9
+  m_NumberOfColumns: 3
+  m_GroundRadius: 10
   m_EnvironmentLayer:
     serializedVersion: 2
     m_Bits: 256
+  m_OverwriteColumns: 1
+  m_MinDistance: 1
