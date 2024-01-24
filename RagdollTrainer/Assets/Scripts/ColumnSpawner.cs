@@ -5,7 +5,6 @@ using Random = UnityEngine.Random;
 
 public class ColumnSpawner : MonoBehaviour
 {
-    public GameObject m_ColumnsController;
     public GameObject m_ColumnsGroup;
     public GameObject m_WallColumnPrefab;
     public int m_NumberOfColumns;
@@ -34,7 +33,7 @@ public class ColumnSpawner : MonoBehaviour
 
         for (int i = 0; i < newNumberOfColumns; i++)
         {
-            GameObject column = Instantiate(m_WallColumnPrefab, m_ColumnsController.transform);
+            GameObject column = Instantiate(m_WallColumnPrefab, transform);
             _Columns.Add(column);
 
             Vector2 randomPosition = GetRandomPosition(m_GroundRadius);
@@ -61,7 +60,7 @@ public class ColumnSpawner : MonoBehaviour
                 position.y = hit.point.y;
             }
 
-            column.transform.position = position;
+            column.transform.SetLocalPositionAndRotation(position, Quaternion.identity);
         }
     }
 
@@ -88,11 +87,6 @@ public class ColumnSpawner : MonoBehaviour
 
     private void Start()
     {
-        if (m_ColumnsController == null)
-        {
-            throw new MissingReferenceException("Column Controller must be defined");
-        }
-
         if (m_ColumnsGroup == null)
         {
             throw new MissingReferenceException("Columns Group GameObject must be defined");
