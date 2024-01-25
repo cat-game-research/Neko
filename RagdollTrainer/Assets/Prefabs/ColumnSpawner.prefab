@@ -46,10 +46,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ColumnsGroup: {fileID: 0}
   m_WallColumnPrefab: {fileID: 1764450238102495910, guid: f8b9fdc76707082409573967fa3baac7, type: 3}
-  m_NumberOfColumns: 1
-  m_GroundRadius: 10
+  m_NumberOfColumns: 4
+  m_GroundRadius: 8
   m_EnvironmentLayer:
     serializedVersion: 2
     m_Bits: 256
-  m_OverwriteColumns: 1
-  m_MinDistance: 6
+  m_ClearColumns: 1
+  m_RandomizeColumns: 1
+  m_MinDistance: 8

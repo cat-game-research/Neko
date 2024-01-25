@@ -25,7 +25,7 @@ behaviors:
         network_settings:
           hidden_units: 128
           learning_rate: 0.0001
-    keep_checkpoints: 40
+    keep_checkpoints: 50
     checkpoint_interval: 1000000
     max_steps: 10000000
     time_horizon: 1000

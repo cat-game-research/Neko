@@ -5,37 +5,55 @@ using Random = UnityEngine.Random;
 
 public class ColumnSpawner : MonoBehaviour
 {
+    //TODO this should be managed automatically, with optional parent gameobject, no parent just put in root of hierarchy
     public GameObject m_ColumnsGroup;
     public GameObject m_WallColumnPrefab;
     public int m_NumberOfColumns;
     public float m_GroundRadius;
     public LayerMask m_EnvironmentLayer;
     [Tooltip("This will make the columns remain where they are after each episode")]
-    public bool m_OverwriteColumns = true;
+    public bool m_ClearColumns = true;
+    [Tooltip("This will randomize the position of columns at the start of every episode")]
+    public bool m_RandomizeColumns = true;
     [Tooltip("This will set the minimum distance between two columns")]
-    public float m_MinDistance = 1f;
+    public float m_MinDistance = 8f;
 
     List<GameObject> _Columns = new List<GameObject>();
+    int _Checks = 0;
 
-    public void RandomizeColumns(int minAmount, int maxAmount)
+    private void Start()
     {
-        if (minAmount < 1 || maxAmount < 1)
+        if (m_ColumnsGroup == null)
         {
-            throw new ArgumentException("The minAmount and maxAmount parameters must be positive integers");
+            throw new MissingReferenceException("Columns Group GameObject must be defined");
         }
 
-        if (maxAmount < minAmount)
+        if (m_WallColumnPrefab == null)
         {
-            throw new ArgumentException("The maxAmount parameter must be greater than or equal to the minAmount parameter");
+            throw new MissingReferenceException("Wall Column Prefab must be defined");
+        }
+    }
+
+    public void RandomizeColumns()
+    {
+        RandomizeColumns(m_NumberOfColumns);
+    }
+
+    public void RandomizeColumns(int numOfColumns)
+    {
+        if (m_ClearColumns)
+        {
+            ClearColumns();
         }
 
-        int newNumberOfColumns = Random.Range(minAmount, maxAmount);
-
-        ClearColumns();
-
-        for (int i = 0; i < newNumberOfColumns; i++)
+        if (!m_RandomizeColumns)
         {
-            var column = Instantiate(m_WallColumnPrefab, transform);
+            return;
+        }
+
+        for (int i = 0; i < numOfColumns; i++)
+        {
+            var column = Instantiate(m_WallColumnPrefab, m_ColumnsGroup.transform);
             _Columns.Add(column);
 
             var randomPosition = GetRandomPosition(m_GroundRadius);
@@ -44,7 +62,8 @@ public class ColumnSpawner : MonoBehaviour
             position.x = randomPosition.x;
             position.z = randomPosition.y;
 
-            while (IsTooClose(randomPosition, _Columns, m_MinDistance))
+            while (numOfColumns * numOfColumns >= _Checks++ &&
+                   IsTooClose(randomPosition, m_MinDistance, _Columns))
             {
                 randomPosition = GetRandomPosition(m_GroundRadius);
                 position.x = randomPosition.x;
@@ -62,12 +81,9 @@ public class ColumnSpawner : MonoBehaviour
 
     private void ClearColumns()
     {
-        if (m_OverwriteColumns)
+        foreach (Transform child in m_ColumnsGroup.transform)
         {
-            foreach (Transform child in m_ColumnsGroup.transform)
-            {
-                DestroyImmediate(child.gameObject);
-            }
+            Destroy(child.gameObject);
         }
 
         _Columns.Clear();
@@ -75,37 +91,21 @@ public class ColumnSpawner : MonoBehaviour
 
     private Vector2Int GetRandomPosition(float radius)
     {
-        Vector2 randomPosition = Random.insideUnitCircle;
-        randomPosition *= radius;
-        return Vector2Int.RoundToInt(randomPosition);
+        return Vector2Int.RoundToInt(Random.insideUnitCircle * radius);
     }
 
-    private void Start()
+    private bool IsTooClose(Vector2Int position, float minDistance, List<GameObject> columns)
     {
-        if (m_ColumnsGroup == null)
+        foreach (var column in columns)
         {
-            throw new MissingReferenceException("Columns Group GameObject must be defined");
-        }
-
-        if (m_WallColumnPrefab == null)
-        {
-            throw new MissingReferenceException("Wall Column Prefab must be defined");
-        }
-
-        RandomizeColumns(m_NumberOfColumns, m_NumberOfColumns);
-    }
-
-    private bool IsTooClose(Vector2Int position, List<GameObject> columns, float minDistance)
-    {
-        foreach (var prevColumn in columns)
-        {
-            var prevPosition = new Vector2Int((int)prevColumn.transform.position.x, (int)prevColumn.transform.position.z);
+            var prevPosition = new Vector2Int((int)column.transform.position.x, (int)column.transform.position.z);
             var distance = Vector2Int.Distance(position, prevPosition);
             if (distance < minDistance)
             {
                 return true;
             }
         }
+
         return false;
     }
 }

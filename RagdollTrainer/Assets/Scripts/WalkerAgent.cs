@@ -9,18 +9,11 @@ namespace Unity.MLAgentsExamples
 {
     public class WalkerAgent : Agent
     {
-        /// <summary>
-        /// Based on walker example.
-        /// Changed body parts and joints for Robot Kyle rig.
-        /// Added Heuristic function to test joints by user input.
-        /// Added ray perception sensor 3d to help navigate around walls.
-        /// </summary>
-        /// 
-        [Header("Training Type")] //If true, agent is penalized for moving away from target
+        [Header("Training Type")]
         public bool earlyTraining = false;
 
         [Header("Target Goal")]
-        [SerializeField] Transform targetT; //Target the agent will walk towards during training
+        [SerializeField] Transform targetT;
         [SerializeField] TargetController targetController;
 
         [Header("Body Parts")]
@@ -56,7 +49,7 @@ namespace Unity.MLAgentsExamples
         [Header("Environmental Column Spawner")]
         public ColumnSpawner m_ColumnSpawner;
 
-        public float TargetWalkingSpeed // property
+        public float TargetWalkingSpeed
         {
             get { return m_TargetWalkingSpeed; }
             set { m_TargetWalkingSpeed = Mathf.Clamp(value, m_minWalkingSpeed, m_maxWalkingSpeed); }
@@ -69,7 +62,7 @@ namespace Unity.MLAgentsExamples
         }
 
         [Tooltip("If true, walkSpeed will be randomly set between zero and m_maxWalkingSpeed in OnEpisodeBegin(). If false, the goal velocity will be walkingSpeed. Will be overwritten if external direction and speed agent is used.")]
-        public bool randomizeWalkSpeedEachEpisode;
+        public bool randomizeWalkSpeed;
 
         [Tooltip("This will be used as a stabilized model space reference point for observations. Because ragdolls can move erratically during training, using a stabilized reference transform improves learning.")]
         [HideInInspector] public OrientationCubeController m_OrientationCube;
@@ -108,44 +101,32 @@ namespace Unity.MLAgentsExamples
             spineStabilizer.uprightTorque = m_stabilizerTorque;
         }
 
-        /// <summary>
-        /// Loop over body parts and reset them to initial conditions.
-        /// </summary>
         public override void OnEpisodeBegin()
         {
-            targetController.MoveTargetToRandomPosition(); //method also fixes overlaps
+            targetController.MoveTargetToRandomPosition();
 
-            //Reset all of the body parts
             foreach (var bodyPart in m_JdController.bodyPartsDict.Values)
             {
                 bodyPart.Reset(bodyPart);
             }
 
-            //Random start rotation to help generalize
+            //TODO Make random hip starting rotation an option in the editor inspector
             hips.rotation = Quaternion.Euler(0, Random.Range(0.0f, 360.0f), 0);
 
-            //Agent should want to face the target
+            //TODO Motion agent needs to define starting conditions for Orientation Cube
             m_OrientationCube.UpdateOrientation(hips, targetT);
             
-            //Make our training environment dynamic
-            m_ColumnSpawner.RandomizeColumns(4, 4);
+            //TODO This needs to use the Event system to talk to column spawner -- no direct reference.
+            m_ColumnSpawner.RandomizeColumns();
 
-            //Set our goal walking speed
-            TargetWalkingSpeed =
-                randomizeWalkSpeedEachEpisode ? Random.Range(m_minWalkingSpeed, m_maxWalkingSpeed) : TargetWalkingSpeed;
+            TargetWalkingSpeed = randomizeWalkSpeed ? Random.Range(m_minWalkingSpeed, m_maxWalkingSpeed) : TargetWalkingSpeed;
         }
 
         void FixedUpdate()
         {
-            //Update where the the agent should be facing
-            //TODO Update orientation cube based on where the focus sphere is in the motion perception agent
+            //TODO Motion agent needs to define targetT rather then Walker agent
             m_OrientationCube.UpdateOrientation(hips, targetT);
 
-            //Update our target speed from motion perception agent
-            //TODO update target walking speed from motion perception agent
-            //TargetWalkingSpeed = velocity;
-
-            //Penalty if feet cross over
             var footSpacingReward = Vector3.Dot(footR.position - footL.position, footL.right);
             if (footSpacingReward > 0.1f) footSpacingReward = 0.1f;
             AddReward(footSpacingReward);
@@ -154,8 +135,9 @@ namespace Unity.MLAgentsExamples
             var lookAtTargetReward = Vector3.Dot(head.forward, cubeForward) + 1;
             var matchSpeedReward = GetMatchingVelocityReward(cubeForward * TargetWalkingSpeed, GetAvgVelocity());
 
+            //*Important* Forces movement towards target (penalize stationary swinging)
             if (earlyTraining)
-            { //*Important* Forces movement towards target (penalize stationary swinging)
+            {
                 matchSpeedReward = Vector3.Dot(m_AvgVelocity, cubeForward);
                 if (matchSpeedReward > 0) matchSpeedReward = GetMatchingVelocityReward(cubeForward * TargetWalkingSpeed, m_AvgVelocity);
             }
@@ -163,54 +145,32 @@ namespace Unity.MLAgentsExamples
             AddReward(matchSpeedReward + 0.1f * lookAtTargetReward);
         }
 
-        /// <summary>
-        /// Add relevant information on each body part to observations.
-        /// </summary>
         public void CollectObservationBodyPart(BodyPart bp, VectorSensor sensor)
         {
-            //Interaction Objects Contact Check
-            sensor.AddObservation(bp.objectContact.touchingGround); // Is this bp touching the ground
-            sensor.AddObservation(bp.objectContact.touchingWall); // Is this bp touching the wall
-
-            //Get velocities in the context of our orientation cube's space
-            //Note: You can get these velocities in world space as well but it may not train as well.
+            sensor.AddObservation(bp.objectContact.touchingGround);
+            sensor.AddObservation(bp.objectContact.touchingWall);
             sensor.AddObservation(m_OrientationCube.transform.InverseTransformDirection(bp.rb.velocity));
             sensor.AddObservation(m_OrientationCube.transform.InverseTransformDirection(bp.rb.angularVelocity));
-
-            //Get position relative to hips in the context of our orientation cube's space
             sensor.AddObservation(m_OrientationCube.transform.InverseTransformDirection(bp.rb.position - hips.position));
-
-            //Get local rotations (including hips)
             sensor.AddObservation(bp.rb.transform.localRotation);
 
-            //Skip body parts without a joint drive
-            if (bp.rb.transform != hips) sensor.AddObservation(bp.currentStrength / m_JdController.maxJointForceLimit);
+            if (bp.rb.transform != hips)
+            {
+                sensor.AddObservation(bp.currentStrength / m_JdController.maxJointForceLimit);
+            }
         }
 
-        /// <summary>
-        /// Loop over body parts to add them to observation.
-        /// </summary>
         public override void CollectObservations(VectorSensor sensor)
         {
             var cubeForward = m_OrientationCube.transform.forward;
-
-            //velocity we want to match
             var velGoal = cubeForward * TargetWalkingSpeed;
-            //ragdoll's avg vel
             var avgVel = GetAvgVelocity();
 
-            //current ragdoll velocity. normalized
             sensor.AddObservation(Vector3.Distance(velGoal, avgVel));
-            //avg body vel relative to cube
             sensor.AddObservation(m_OrientationCube.transform.InverseTransformDirection(avgVel));
-            //vel goal relative to cube
             sensor.AddObservation(m_OrientationCube.transform.InverseTransformDirection(velGoal));
-
-            //rotation deltas
             sensor.AddObservation(Quaternion.FromToRotation(hips.forward, cubeForward));
             sensor.AddObservation(Quaternion.FromToRotation(head.forward, cubeForward));
-
-            //Position of target position relative to cube
             sensor.AddObservation(m_OrientationCube.transform.InverseTransformPoint(targetT.position));
 
             foreach (var bodyPart in m_JdController.bodyPartsList)
@@ -254,14 +214,10 @@ namespace Unity.MLAgentsExamples
             bpDict[forearmR].SetJointStrength(continuousActions[++i]);
         }
 
-        //Returns the average velocity of all of the body parts
-        //Using the velocity of the hips only has shown to result in more erratic movement from the limbs, so...
-        //...using the average helps prevent this erratic movement
         public Vector3 GetAvgVelocity()
         {
             Vector3 velSum = Vector3.zero;
 
-            //All Rbs
             int numOfRb = 0;
             foreach (var item in m_JdController.bodyPartsList)
             {
@@ -271,15 +227,15 @@ namespace Unity.MLAgentsExamples
 
             var avgVel = velSum / numOfRb;
             m_AvgVelocity = avgVel;
+
             return m_AvgVelocity;
         }
 
         public Vector3 GetAvgPosition()
         {
             Vector3 posSum = Vector3.zero;
-
-            //All Rbs
             int numOfRb = 0;
+
             foreach (var item in m_JdController.bodyPartsList)
             {
                 numOfRb++;
@@ -288,20 +244,19 @@ namespace Unity.MLAgentsExamples
 
             var avgPos = posSum / numOfRb;
             m_AvgPosition = avgPos;
+
             return m_AvgPosition;
         }
 
-        //normalized value of the difference in avg speed vs goal walking speed.
         public float GetMatchingVelocityReward(Vector3 velocityGoal, Vector3 actualVelocity)
         {
-            //distance between our actual velocity and goal velocity
             var velDeltaMagnitude = Mathf.Clamp(Vector3.Distance(actualVelocity, velocityGoal), 0, TargetWalkingSpeed);
 
-            //fix nan error
-            if (TargetWalkingSpeed == 0) TargetWalkingSpeed = 0.01f;
+            if (TargetWalkingSpeed == 0)
+            {
+                TargetWalkingSpeed = 0.01f;
+            }
 
-            //return the value on a declining sigmoid shaped curve that decays from 1 to 0
-            //This reward will approach 1 if it matches perfectly and approach zero as it deviates
             return Mathf.Pow(1 - Mathf.Pow(velDeltaMagnitude / TargetWalkingSpeed, 2), 2);
         }
     }

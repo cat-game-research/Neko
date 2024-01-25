@@ -1,3 +1,4 @@
+using Unity.Sentis.Layers;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -6,6 +7,7 @@ namespace Unity.MLAgentsExamples
     public class TargetController : MonoBehaviour
     {
         const string k_Agent = "agent";
+        const string k_Wall = "wall";
 
         [SerializeField] LayerMask m_LayerMask;
         [SerializeField] float m_RayDown = 10;
@@ -54,7 +56,6 @@ namespace Unity.MLAgentsExamples
         {
             if (transform.localPosition.y < -5)
             {
-                Debug.Log($"{transform.name} Off Platform");
                 MoveTargetToRandomPosition();
             }
         }
@@ -100,15 +101,40 @@ namespace Unity.MLAgentsExamples
                 {
                     continue;
                 }
-
-            } while (hitColliders.Length > 0);
+            }
+            while (hitColliders.Length > 0);
 
             transform.localPosition = newTargetPos;
         }
 
         private void OnCollisionEnter(Collision col)
         {
-            if (col.transform.CompareTag(k_Agent))
+            if (col.transform.CompareTag(k_Agent) ||
+                col.transform.CompareTag(k_Wall))
+            {
+                if (m_RespawnIfTouched)
+                {
+                    ResetTarget();
+                }
+            }
+        }
+
+        private void OnCollisionStay(Collision col)
+        {
+            if (col.transform.CompareTag(k_Agent) ||
+               col.transform.CompareTag(k_Wall))
+            {
+                if (m_RespawnIfTouched)
+                {
+                    ResetTarget();
+                }
+            }
+        }
+
+        private void OnCollisionExit(Collision col)
+        {
+            if (col.transform.CompareTag(k_Agent) ||
+               col.transform.CompareTag(k_Wall))
             {
                 if (m_RespawnIfTouched)
                 {
