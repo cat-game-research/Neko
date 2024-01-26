@@ -4,6 +4,7 @@ using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
 using Random = UnityEngine.Random;
+using static UnityEngine.InputSystem.LowLevel.InputStateHistory;
 
 namespace Unity.MLAgentsExamples
 {
@@ -14,6 +15,8 @@ namespace Unity.MLAgentsExamples
         public bool m_ResetOnEpisodeBegin = false;
         [Tooltip("When starting new models this should be set to true. Penalizes the agent for moving their torso backwards.")]
         public bool earlyTraining = false;
+        [Tooltip("The minimum amount of cumulative reward required to continue the episode.")]
+        public float m_RewardThreshold = -1000f;
 
         [Header("Target Goal")]
         [SerializeField] Transform targetT;
@@ -49,8 +52,10 @@ namespace Unity.MLAgentsExamples
         [HideInInspector] public Vector3 m_AvgVelocity = Vector3.zero;
         [HideInInspector] public Vector3 m_AvgPosition = Vector3.zero;
 
-        [Header("Environmental Column Spawner")]
+        [Header("Environment Column Spawner")]
         public ColumnSpawner m_ColumnSpawner;
+
+        public static int AGENT_ID = 0;
 
         public float TargetWalkingSpeed
         {
@@ -75,6 +80,7 @@ namespace Unity.MLAgentsExamples
 
         public override void Initialize()
         {
+            ++AGENT_ID;
             m_OrientationCube = GetComponentInChildren<OrientationCubeController>();
             m_JdController = GetComponent<JointDriveController>();
 
@@ -202,7 +208,6 @@ namespace Unity.MLAgentsExamples
         public override void OnActionReceived(ActionBuffers actionBuffers)
         {
             var bpDict = m_JdController.bodyPartsDict;
-
             var continuousActions = actionBuffers.ContinuousActions;
             var i = -1;
 
@@ -232,6 +237,11 @@ namespace Unity.MLAgentsExamples
             bpDict[forearmL].SetJointStrength(continuousActions[++i]);
             bpDict[armR].SetJointStrength(continuousActions[++i]);
             bpDict[forearmR].SetJointStrength(continuousActions[++i]);
+
+            if (GetCumulativeReward() < m_RewardThreshold)
+            {
+                EndEpisode();
+            }
         }
 
         public Vector3 GetAvgVelocity()

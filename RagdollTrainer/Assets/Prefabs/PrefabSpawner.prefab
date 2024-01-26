@@ -84,5 +84,5 @@ MonoBehaviour:
   m_ZCount: 10
   m_WidthX: 20
   m_WidthZ: 20
-  m_OffsetX: 0
-  m_OffsetZ: 0
+  m_OffsetX: -90
+  m_OffsetZ: -90

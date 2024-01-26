@@ -150,6 +150,7 @@ MonoBehaviour:
   MaxStep: 10000
   m_ResetOnEpisodeBegin: 0
   earlyTraining: 0
+  m_RewardThreshold: -1000
   targetT: {fileID: 0}
   targetController: {fileID: 0}
   hips: {fileID: 4160746227938044728}
@@ -197,8 +198,8 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: 41a6fb9b8b811f648ae423dc8d9a45f5, type: 3}
-  m_InferenceDevice: 3
+  m_Model: {fileID: 5022602860645237092, guid: 65af97898e1a61c4c9c008c0dfd91b40, type: 3}
+  m_InferenceDevice: 2
   m_BehaviorType: 2
   m_BehaviorName: Walker
   TeamId: 0
