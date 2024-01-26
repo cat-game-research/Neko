@@ -5,32 +5,42 @@ namespace Unity.MLAgentsExamples
     public class PrefabSpawner : MonoBehaviour
     {
         [Header("Automatic Start")]
-        [SerializeField] bool _RunOnAwake = true;
+        [SerializeField] bool m_RunOnAwake = true;
 
         [Header("Agent Prefab to Initialize")]
-        [SerializeField] GameObject[] basePrefab;
+        public GameObject m_ParentGroup;
+        public GameObject[] m_BasePrefab;
 
         [Header("Spawning Configuration")]
-        [SerializeField] int xCount = 10;
-        [SerializeField] int zCount = 10;
-        [SerializeField] float widthX = 20f;
-        [SerializeField] float widthZ = 20f;
-        [SerializeField] float offsetX = 0f;
-        [SerializeField] float offsetZ = 0f;
+        [SerializeField] int m_XCount = 10;
+        [SerializeField] int m_ZCount = 10;
+        [SerializeField] float m_WidthX = 20f;
+        [SerializeField] float m_WidthZ = 20f;
+        [SerializeField] float m_OffsetX = 0f;
+        [SerializeField] float m_OffsetZ = 0f;
 
         void Awake()
         {
-            if (!_RunOnAwake) return;
-
-            for (int k = 0; k < basePrefab.Length; k++)
+            if (!m_RunOnAwake)
             {
-                //Spawn prefabs along x and z from basePrefab 
-                for (int i = 0; i < xCount; i++)
+                return;
+            }
+
+            if (m_ParentGroup == null)
+            {
+                m_ParentGroup = gameObject;
+            }
+
+            for (int k = 0; k < m_BasePrefab.Length; k++)
+            {
+                for (int i = 0; i < m_XCount; i++)
                 {
-                    for (int j = 0; j < zCount; j++)
+                    for (int j = 0; j < m_ZCount; j++)
                     {
-                        Instantiate(basePrefab[k], new Vector3(i * widthX + offsetX, 0, j * widthZ + offsetZ),
-                            basePrefab[k].transform.rotation);
+                        Instantiate(m_BasePrefab[k],
+                                    new Vector3(i * m_WidthX + m_OffsetX, 0, j * m_WidthZ + m_OffsetZ),
+                                    m_BasePrefab[k].transform.rotation,
+                                    m_ParentGroup.transform);
                     }
                 }
             }

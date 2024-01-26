@@ -97,21 +97,21 @@ namespace Unity.MLAgentsExamples
 
             if (targetT == null)
             {
-                targetT = GetRandomTransform(-1000, 1000, -1000, 1000);
+                targetT = GetRandomTransform(-1000, 1000, -1000, 1000, 1);
+            }
+
+            if (randomizeWalkSpeed)
+            {
+                TargetWalkingSpeed = Random.Range(m_minWalkingSpeed, m_maxWalkingSpeed);
             }
         }
 
-        public Transform GetRandomTransform(float minX, float maxX, float minY, float maxY)
+        public Transform GetRandomTransform(float minX, float maxX, float minY, float maxY, float heightY)
         {
-            var waypoint = new GameObject();
-            var position = new Vector3();
-
-            position.x = Random.Range(minX, maxX);
-            position.y = 1f;
-            position.z = Random.Range(minY, maxY);
-
-            waypoint.transform.rotation = Quaternion.Euler(0, Random.Range(0.0f, 360.0f), 0);
+            var waypoint = new GameObject("TargetWaypoint");
+            var position = new Vector3(Random.Range(minX, maxX), heightY, Random.Range(minY, maxY));
             waypoint.transform.SetPositionAndRotation(position, Quaternion.identity);
+            waypoint.transform.SetParent(transform);
 
             return waypoint.transform;
         }

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1933627168689445832}
   m_Layer: 0
-  m_Name: Columns
+  m_Name: Prefabs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,11 +53,11 @@ PrefabInstance:
       objectReference: {fileID: 7835084046698613992}
     - target: {fileID: 729151186524499181, guid: 195221c350fd38f438c15fd3a994d596, type: 3}
       propertyPath: m_GroundRadius
-      value: 100
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 729151186524499181, guid: 195221c350fd38f438c15fd3a994d596, type: 3}
       propertyPath: m_NumberOfColumns
-      value: 100
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 729151186524499181, guid: 195221c350fd38f438c15fd3a994d596, type: 3}
       propertyPath: m_RandomizeOnStart

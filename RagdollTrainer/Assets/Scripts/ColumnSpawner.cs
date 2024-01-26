@@ -62,16 +62,16 @@ public class ColumnSpawner : MonoBehaviour
             var column = Instantiate(m_WallColumnPrefab, m_ColumnsGroup.transform);
             _Columns.Add(column);
 
-            var randomPosition = GetRandomPosition(m_GroundRadius);
+            var randomPosition = GameUtil.GetRandomPosition(m_GroundRadius);
             var position = column.transform.position;
 
             position.x = randomPosition.x;
             position.z = randomPosition.y;
 
             while (numOfColumns * numOfColumns >= _Checks++ &&
-                   IsTooClose(randomPosition, m_MinDistance, _Columns))
+                   GameUtil.IsTooClose(randomPosition, m_MinDistance, _Columns))
             {
-                randomPosition = GetRandomPosition(m_GroundRadius);
+                randomPosition = GameUtil.GetRandomPosition(m_GroundRadius);
                 position.x = randomPosition.x;
                 position.z = randomPosition.y;
             }
@@ -93,25 +93,5 @@ public class ColumnSpawner : MonoBehaviour
         }
 
         _Columns.Clear();
-    }
-
-    private Vector2Int GetRandomPosition(float radius)
-    {
-        return Vector2Int.RoundToInt(Random.insideUnitCircle * radius);
-    }
-
-    private bool IsTooClose(Vector2Int position, float minDistance, List<GameObject> columns)
-    {
-        foreach (var column in columns)
-        {
-            var prevPosition = new Vector2Int((int)column.transform.position.x, (int)column.transform.position.z);
-            var distance = Vector2Int.Distance(position, prevPosition);
-            if (distance < minDistance)
-            {
-                return true;
-            }
-        }
-
-        return false;
     }
 }

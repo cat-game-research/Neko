@@ -32,11 +32,6 @@ public class AgentPrefabSpawner : MonoBehaviour
         }
     }
 
-    private void Awake()
-    {
-        Object.DontDestroyOnLoad(gameObject);
-    }
-
     private void Start()
     {
         if (m_AgentPrefab == null)
@@ -52,16 +47,16 @@ public class AgentPrefabSpawner : MonoBehaviour
 
             if (m_IsRandomSpawn)
             {
-                var randomPosition = GetRandomPosition(m_SpawnRadius);
+                var randomPosition = GameUtil.GetRandomPosition(m_SpawnRadius);
                 var position = agent.transform.position;
 
                 position.x = randomPosition.x;
                 position.z = randomPosition.y;
 
                 while (m_AgentsToSpawn * m_AgentsToSpawn >= _Checks++ &&
-                       IsTooClose(randomPosition, m_MinDistance, _Agents))
+                       GameUtil.IsTooClose(randomPosition, m_MinDistance, _Agents))
                 {
-                    randomPosition = GetRandomPosition(m_SpawnRadius);
+                    randomPosition = GameUtil.GetRandomPosition(m_SpawnRadius);
                     position.x = randomPosition.x;
                     position.z = randomPosition.y;
                 }
@@ -74,25 +69,5 @@ public class AgentPrefabSpawner : MonoBehaviour
                 agent.transform.SetLocalPositionAndRotation(position, Quaternion.identity);
             }
         }
-    }
-
-    private Vector2Int GetRandomPosition(float radius)
-    {
-        return Vector2Int.RoundToInt(Random.insideUnitCircle * radius);
-    }
-
-    private bool IsTooClose(Vector2Int position, float minDistance, List<GameObject> columns)
-    {
-        foreach (var column in columns)
-        {
-            var prevPosition = new Vector2Int((int)column.transform.position.x, (int)column.transform.position.z);
-            var distance = Vector2Int.Distance(position, prevPosition);
-            if (distance < minDistance)
-            {
-                return true;
-            }
-        }
-
-        return false;
     }
 }
