@@ -49,5 +49,7 @@ MonoBehaviour:
   - {fileID: 7370140648595448830, guid: 4315e9c335412064493e04ba3e658086, type: 3}
   xCount: 10
   zCount: 10
-  offsetX: 20
-  offsetZ: 20
+  widthX: 20
+  widthZ: 20
+  offsetX: -90
+  offsetZ: -90

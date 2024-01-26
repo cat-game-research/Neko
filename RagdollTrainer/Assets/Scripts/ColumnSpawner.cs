@@ -17,6 +17,7 @@ public class ColumnSpawner : MonoBehaviour
     public bool m_RandomizeColumns = true;
     [Tooltip("This will set the minimum distance between two columns")]
     public float m_MinDistance = 8f;
+    public bool m_RandomizeOnStart = false;
 
     List<GameObject> _Columns = new List<GameObject>();
     int _Checks = 0;
@@ -31,6 +32,11 @@ public class ColumnSpawner : MonoBehaviour
         if (m_WallColumnPrefab == null)
         {
             throw new MissingReferenceException("Wall Column Prefab must be defined");
+        }
+
+        if (m_RandomizeOnStart)
+        {
+            RandomizeColumns();
         }
     }
 

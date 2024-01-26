@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Unity.MLAgentsExamples  
+namespace Unity.MLAgentsExamples
 {
     public class PrefabSpawner : MonoBehaviour
     {
@@ -13,10 +13,10 @@ namespace Unity.MLAgentsExamples
         [Header("Spawning Configuration")]
         [SerializeField] int xCount = 10;
         [SerializeField] int zCount = 10;
-        [SerializeField] float offsetX = 20f;
-        [SerializeField] float offsetZ = 20f;
-
-        GameObject scenePrefab;
+        [SerializeField] float widthX = 20f;
+        [SerializeField] float widthZ = 20f;
+        [SerializeField] float offsetX = 0f;
+        [SerializeField] float offsetZ = 0f;
 
         void Awake()
         {
@@ -29,7 +29,7 @@ namespace Unity.MLAgentsExamples
                 {
                     for (int j = 0; j < zCount; j++)
                     {
-                        Instantiate(basePrefab[k], new Vector3(i * offsetX, 0, j * offsetZ),
+                        Instantiate(basePrefab[k], new Vector3(i * widthX + offsetX, 0, j * widthZ + offsetZ),
                             basePrefab[k].transform.rotation);
                     }
                 }
