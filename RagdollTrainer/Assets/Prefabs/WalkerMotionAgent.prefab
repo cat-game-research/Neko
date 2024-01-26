@@ -604,6 +604,10 @@ PrefabInstance:
       propertyPath: targetController
       value: 
       objectReference: {fileID: 7079100500683310822}
+    - target: {fileID: 7869843435263198220, guid: ed983ac6d2d40754dba9d0309a68ce53, type: 3}
+      propertyPath: m_ResetOnEpisodeBegin
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

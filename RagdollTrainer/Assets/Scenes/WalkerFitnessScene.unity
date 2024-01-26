@@ -239,7 +239,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2086902579}
   m_Layer: 0
-  m_Name: Agents
+  m_Name: Gameplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -495,5 +495,5 @@ SceneRoots:
   m_Roots:
   - {fileID: 3837599198369908128}
   - {fileID: 2980802909255402215}
-  - {fileID: 2086902579}
   - {fileID: 1916480244}
+  - {fileID: 2086902579}

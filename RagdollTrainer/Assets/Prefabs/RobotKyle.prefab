@@ -148,6 +148,7 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 10000
+  m_ResetOnEpisodeBegin: 0
   earlyTraining: 0
   targetT: {fileID: 0}
   targetController: {fileID: 0}

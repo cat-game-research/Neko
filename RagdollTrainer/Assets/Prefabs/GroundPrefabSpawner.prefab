@@ -49,6 +49,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2570026590891329045, guid: d5ae7e86a25282041a3478764844594b, type: 3}
+      propertyPath: offsetX
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2570026590891329045, guid: d5ae7e86a25282041a3478764844594b, type: 3}
+      propertyPath: offsetZ
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2570026590891329045, guid: d5ae7e86a25282041a3478764844594b, type: 3}
       propertyPath: 'basePrefab.Array.data[0]'
       value: 
       objectReference: {fileID: 752525605495674752, guid: 320f51ea0297a654f9db5f580b2dee09, type: 3}

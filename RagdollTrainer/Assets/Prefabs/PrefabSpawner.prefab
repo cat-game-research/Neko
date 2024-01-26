@@ -51,5 +51,5 @@ MonoBehaviour:
   zCount: 10
   widthX: 20
   widthZ: 20
-  offsetX: -90
-  offsetZ: -90
+  offsetX: 0
+  offsetZ: 0

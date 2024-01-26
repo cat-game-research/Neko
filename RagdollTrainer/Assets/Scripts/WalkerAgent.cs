@@ -10,6 +10,9 @@ namespace Unity.MLAgentsExamples
     public class WalkerAgent : Agent
     {
         [Header("Training Type")]
+        [Tooltip("Typically set to true for training. Leaving false will make the agent retain memory between episodes.")]
+        public bool m_ResetOnEpisodeBegin = false;
+        [Tooltip("When starting new models this should be set to true. Penalizes the agent for moving their torso backwards.")]
         public bool earlyTraining = false;
 
         [Header("Target Goal")]
@@ -70,14 +73,6 @@ namespace Unity.MLAgentsExamples
         [Tooltip("The indicator graphic gameobject that points towards the target.")]
         [HideInInspector] public JointDriveController m_JdController;
 
-        private void Start()
-        {
-            if (m_ColumnSpawner == null)
-            {
-                throw new MissingReferenceException("Column Spawner must be defined");
-            }
-        }
-
         public override void Initialize()
         {
             m_OrientationCube = GetComponentInChildren<OrientationCubeController>();
@@ -99,10 +94,35 @@ namespace Unity.MLAgentsExamples
 
             hipsStabilizer.uprightTorque = m_stabilizerTorque;
             spineStabilizer.uprightTorque = m_stabilizerTorque;
+
+            if (targetT == null)
+            {
+                targetT = GetRandomTransform(-1000, 1000, -1000, 1000);
+            }
+        }
+
+        public Transform GetRandomTransform(float minX, float maxX, float minY, float maxY)
+        {
+            var waypoint = new GameObject();
+            var position = new Vector3();
+
+            position.x = Random.Range(minX, maxX);
+            position.y = 1f;
+            position.z = Random.Range(minY, maxY);
+
+            waypoint.transform.rotation = Quaternion.Euler(0, Random.Range(0.0f, 360.0f), 0);
+            waypoint.transform.SetPositionAndRotation(position, Quaternion.identity);
+
+            return waypoint.transform;
         }
 
         public override void OnEpisodeBegin()
         {
+            if (!m_ResetOnEpisodeBegin)
+            {
+                return;
+            }
+
             targetController.MoveTargetToRandomPosition();
 
             foreach (var bodyPart in m_JdController.bodyPartsDict.Values)
@@ -115,9 +135,9 @@ namespace Unity.MLAgentsExamples
 
             //TODO Motion agent needs to define starting conditions for Orientation Cube
             m_OrientationCube.UpdateOrientation(hips, targetT);
-            
+
             //TODO This needs to use the Event system to talk to column spawner -- no direct reference.
-            m_ColumnSpawner.RandomizeColumns();
+            m_ColumnSpawner?.RandomizeColumns();
 
             TargetWalkingSpeed = randomizeWalkSpeed ? Random.Range(m_minWalkingSpeed, m_maxWalkingSpeed) : TargetWalkingSpeed;
         }
