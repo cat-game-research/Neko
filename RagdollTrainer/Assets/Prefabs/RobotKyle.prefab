@@ -171,7 +171,7 @@ MonoBehaviour:
   m_AvgVelocity: {x: 0, y: 0, z: 0}
   m_AvgPosition: {x: 0, y: 0, z: 0}
   m_ColumnSpawner: {fileID: 0}
-  randomizeWalkSpeedEachEpisode: 1
+  randomizeWalkSpeed: 1
   m_OrientationCube: {fileID: 0}
   m_JdController: {fileID: 0}
 --- !u!114 &4335886516414775034
@@ -196,9 +196,9 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: cd7950bb3b3314442ac5be61d0d61703, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: 41a6fb9b8b811f648ae423dc8d9a45f5, type: 3}
   m_InferenceDevice: 3
-  m_BehaviorType: 0
+  m_BehaviorType: 2
   m_BehaviorName: Walker
   TeamId: 0
   m_UseChildSensors: 1
