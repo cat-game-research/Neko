@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44202211, g: 0.48387098, b: 0.53250504, a: 1}
+  m_IndirectSpecularColor: {r: 0.4458688, g: 0.49560297, b: 0.5743568, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -226,15 +226,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 958739640343593579, guid: f08f72ebbaa02764c828776dbaa3424d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1
+      value: 0.9999987
       objectReference: {fileID: 0}
     - target: {fileID: 958739640343593579, guid: f08f72ebbaa02764c828776dbaa3424d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.6
+      value: 1.5999999
       objectReference: {fileID: 0}
     - target: {fileID: 958739640343593579, guid: f08f72ebbaa02764c828776dbaa3424d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.667
+      value: -1.6670005
       objectReference: {fileID: 0}
     - target: {fileID: 958739640343593579, guid: f08f72ebbaa02764c828776dbaa3424d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -242,15 +242,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 958739640343593579, guid: f08f72ebbaa02764c828776dbaa3424d, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0.000000039284988
       objectReference: {fileID: 0}
     - target: {fileID: 958739640343593579, guid: f08f72ebbaa02764c828776dbaa3424d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.00000020663214
       objectReference: {fileID: 0}
     - target: {fileID: 958739640343593579, guid: f08f72ebbaa02764c828776dbaa3424d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -6.0933136e-15
+      value: 0.00000020663211
       objectReference: {fileID: 0}
     - target: {fileID: 958739640343593579, guid: f08f72ebbaa02764c828776dbaa3424d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

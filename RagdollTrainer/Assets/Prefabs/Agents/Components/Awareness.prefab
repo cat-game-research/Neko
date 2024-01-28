@@ -89,7 +89,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7449553463249151343}
   - component: {fileID: 7831364829220653104}
-  - component: {fileID: 3862414242367944035}
   m_Layer: 0
   m_Name: BackSide
   m_TagString: Untagged
@@ -141,49 +140,13 @@ MonoBehaviour:
   m_RayLayerMask:
     serializedVersion: 2
     m_Bits: 4294967241
-  m_ObservationStacks: 1
+  m_ObservationStacks: 2
   m_AlternatingRayOrder: 0
   m_UseBatchedRaycasts: 1
   rayHitColor: {r: 1, g: 0, b: 0, a: 1}
   rayMissColor: {r: 1, g: 1, b: 1, a: 1}
   m_StartVerticalOffset: 0
   m_EndVerticalOffset: -3
---- !u!114 &3862414242367944035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6239552092329593724}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bb6b867a41448888c1cd4f99643ad71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SensorName: AwarenessBackSideUp
-  m_DetectableTags:
-  - wall
-  - target
-  - ground
-  - agent
-  - obsticle
-  - environment
-  - food
-  - poison
-  m_RaysPerDirection: 2
-  m_MaxRayDegrees: 70
-  m_SphereCastRadius: 0.1
-  m_RayLength: 5
-  m_RayLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967241
-  m_ObservationStacks: 1
-  m_AlternatingRayOrder: 0
-  m_UseBatchedRaycasts: 1
-  rayHitColor: {r: 1, g: 0, b: 0, a: 1}
-  rayMissColor: {r: 1, g: 1, b: 1, a: 1}
-  m_StartVerticalOffset: 0
-  m_EndVerticalOffset: 10
 --- !u!1 &6963600267383598947
 GameObject:
   m_ObjectHideFlags: 0
@@ -194,7 +157,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6041859215810170680}
   - component: {fileID: 462847562453659950}
-  - component: {fileID: 6473657010490394647}
+  - component: {fileID: 6781372417618819127}
+  - component: {fileID: 8841531311019366201}
+  - component: {fileID: 849942446949277193}
   m_Layer: 0
   m_Name: FrontSide
   m_TagString: Untagged
@@ -246,14 +211,14 @@ MonoBehaviour:
   m_RayLayerMask:
     serializedVersion: 2
     m_Bits: 4294967241
-  m_ObservationStacks: 1
+  m_ObservationStacks: 2
   m_AlternatingRayOrder: 0
   m_UseBatchedRaycasts: 1
   rayHitColor: {r: 1, g: 0, b: 0, a: 1}
   rayMissColor: {r: 1, g: 1, b: 1, a: 1}
   m_StartVerticalOffset: 0
   m_EndVerticalOffset: -3
---- !u!114 &6473657010490394647
+--- !u!114 &6781372417618819127
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -266,29 +231,77 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SensorName: AwarenessFrontSideUp
-  m_DetectableTags:
-  - wall
-  - target
-  - ground
-  - agent
-  - obsticle
-  - environment
-  - food
-  - poison
-  m_RaysPerDirection: 2
-  m_MaxRayDegrees: 70
+  m_DetectableTags: []
+  m_RaysPerDirection: 9
+  m_MaxRayDegrees: 90
   m_SphereCastRadius: 0.1
-  m_RayLength: 5
+  m_RayLength: 20
   m_RayLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967241
-  m_ObservationStacks: 1
-  m_AlternatingRayOrder: 0
-  m_UseBatchedRaycasts: 1
+    m_Bits: 4294967291
+  m_ObservationStacks: 3
+  m_AlternatingRayOrder: 1
+  m_UseBatchedRaycasts: 0
   rayHitColor: {r: 1, g: 0, b: 0, a: 1}
   rayMissColor: {r: 1, g: 1, b: 1, a: 1}
-  m_StartVerticalOffset: 0
-  m_EndVerticalOffset: 10
+  m_StartVerticalOffset: -0.575
+  m_EndVerticalOffset: 4
+--- !u!114 &8841531311019366201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6963600267383598947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bb6b867a41448888c1cd4f99643ad71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SensorName: AwarenessFrontSideForward
+  m_DetectableTags: []
+  m_RaysPerDirection: 9
+  m_MaxRayDegrees: 90
+  m_SphereCastRadius: 0.1
+  m_RayLength: 20
+  m_RayLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967291
+  m_ObservationStacks: 3
+  m_AlternatingRayOrder: 1
+  m_UseBatchedRaycasts: 0
+  rayHitColor: {r: 1, g: 0, b: 0, a: 1}
+  rayMissColor: {r: 1, g: 1, b: 1, a: 1}
+  m_StartVerticalOffset: -0.575
+  m_EndVerticalOffset: -0.576
+--- !u!114 &849942446949277193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6963600267383598947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bb6b867a41448888c1cd4f99643ad71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SensorName: AwarenessFrontSideDownForward
+  m_DetectableTags: []
+  m_RaysPerDirection: 9
+  m_MaxRayDegrees: 90
+  m_SphereCastRadius: 0.1
+  m_RayLength: 20
+  m_RayLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967291
+  m_ObservationStacks: 3
+  m_AlternatingRayOrder: 1
+  m_UseBatchedRaycasts: 0
+  rayHitColor: {r: 1, g: 0, b: 0, a: 1}
+  rayMissColor: {r: 1, g: 1, b: 1, a: 1}
+  m_StartVerticalOffset: -0.575
+  m_EndVerticalOffset: -4
 --- !u!1 &7452058193348885876
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,7 +312,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2839622617975808819}
   - component: {fileID: 3559095405007085052}
-  - component: {fileID: 1982791821152115825}
   m_Layer: 0
   m_Name: LeftSide
   m_TagString: Untagged
@@ -351,49 +363,13 @@ MonoBehaviour:
   m_RayLayerMask:
     serializedVersion: 2
     m_Bits: 4294967241
-  m_ObservationStacks: 1
+  m_ObservationStacks: 2
   m_AlternatingRayOrder: 0
   m_UseBatchedRaycasts: 1
   rayHitColor: {r: 1, g: 0, b: 0, a: 1}
   rayMissColor: {r: 1, g: 1, b: 1, a: 1}
   m_StartVerticalOffset: 0
   m_EndVerticalOffset: -3
---- !u!114 &1982791821152115825
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7452058193348885876}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bb6b867a41448888c1cd4f99643ad71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SensorName: AwarenessLeftSideUp
-  m_DetectableTags:
-  - wall
-  - target
-  - ground
-  - agent
-  - obsticle
-  - environment
-  - food
-  - poison
-  m_RaysPerDirection: 2
-  m_MaxRayDegrees: 70
-  m_SphereCastRadius: 0.1
-  m_RayLength: 5
-  m_RayLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967241
-  m_ObservationStacks: 1
-  m_AlternatingRayOrder: 0
-  m_UseBatchedRaycasts: 1
-  rayHitColor: {r: 1, g: 0, b: 0, a: 1}
-  rayMissColor: {r: 1, g: 1, b: 1, a: 1}
-  m_StartVerticalOffset: 0
-  m_EndVerticalOffset: 10
 --- !u!1 &8240250598673151569
 GameObject:
   m_ObjectHideFlags: 0
@@ -404,7 +380,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4534687178607894074}
   - component: {fileID: 5722978480727620060}
-  - component: {fileID: 7779188485208044210}
   m_Layer: 0
   m_Name: RightSide
   m_TagString: Untagged
@@ -456,46 +431,10 @@ MonoBehaviour:
   m_RayLayerMask:
     serializedVersion: 2
     m_Bits: 4294967241
-  m_ObservationStacks: 1
+  m_ObservationStacks: 2
   m_AlternatingRayOrder: 0
   m_UseBatchedRaycasts: 1
   rayHitColor: {r: 1, g: 0, b: 0, a: 1}
   rayMissColor: {r: 1, g: 1, b: 1, a: 1}
   m_StartVerticalOffset: 0
   m_EndVerticalOffset: -3
---- !u!114 &7779188485208044210
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8240250598673151569}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bb6b867a41448888c1cd4f99643ad71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SensorName: AwarenessRightSideUp
-  m_DetectableTags:
-  - wall
-  - target
-  - ground
-  - agent
-  - obsticle
-  - environment
-  - food
-  - poison
-  m_RaysPerDirection: 2
-  m_MaxRayDegrees: 70
-  m_SphereCastRadius: 0.1
-  m_RayLength: 5
-  m_RayLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967241
-  m_ObservationStacks: 1
-  m_AlternatingRayOrder: 0
-  m_UseBatchedRaycasts: 1
-  rayHitColor: {r: 1, g: 0, b: 0, a: 1}
-  rayMissColor: {r: 1, g: 1, b: 1, a: 1}
-  m_StartVerticalOffset: 0
-  m_EndVerticalOffset: 10

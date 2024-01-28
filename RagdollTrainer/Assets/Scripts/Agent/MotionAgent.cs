@@ -15,13 +15,11 @@ namespace Unity.MLAgentsExamples
         [Header("Refs")]
         public ObjectContactTrigger m_AwarenessContact;
         public GameObject m_Awareness;
-        public GameObject m_Vision;
         public GameObject m_OrientCube;
         public GameObject m_BodyCapsule;
 
         [Header("Positioning")]
         public float m_AwarenessOffsetY = 1.575f;
-        public float m_VisionOffsetY = 1.458f;
         public float m_OrientCubeOffsetY = 1f;
 
         [Header("Training Settings")]
@@ -29,6 +27,8 @@ namespace Unity.MLAgentsExamples
         public bool m_RandomStartingRotation = true;
         [Tooltip("Typically set to true for training. Leaving false will make the agent retain memory between episodes.")]
         public bool m_ResetOnEpisodeBegin = true;
+        [Tooltip("Should we penalize the agent for walking backwards, true then bring the pain.")]
+        public bool m_ReversePenality = true;
         [Tooltip("The minimum amount of cumulative reward required to continue the episode.")]
         public float m_RewardThreshold = -1000f;
         public float m_MinVelocity = -2.3f;
@@ -77,9 +77,6 @@ namespace Unity.MLAgentsExamples
             _Position = new Vector3(m_Awareness.transform.position.x, m_AwarenessOffsetY, m_Awareness.transform.position.z);
             m_Awareness.transform.SetPositionAndRotation(_Position, Quaternion.identity);
 
-            _Position = new Vector3(m_Vision.transform.position.x, m_VisionOffsetY, m_Vision.transform.position.z);
-            m_Vision.transform.SetPositionAndRotation(_Position, Quaternion.identity);
-
             _Position = new Vector3(m_OrientCube.transform.position.x, m_OrientCubeOffsetY, m_OrientCube.transform.position.z);
             m_OrientCube.transform.SetPositionAndRotation(_Position, Quaternion.identity);
 
@@ -115,7 +112,6 @@ namespace Unity.MLAgentsExamples
             sensor.AddObservation(Quaternion.FromToRotation(transform.forward, _Direction));
             sensor.AddObservation(Quaternion.FromToRotation(transform.forward, _Rotation));
             sensor.AddObservation(m_Awareness.transform.InverseTransformDirection(_Direction));
-            sensor.AddObservation(m_Vision.transform.InverseTransformDirection(_Direction));
             sensor.AddObservation(m_OrientCube.transform.InverseTransformDirection(_Direction));
             sensor.AddObservation(m_AwarenessContact.touchingGround);
             sensor.AddObservation(m_AwarenessContact.touchingWall);
@@ -137,6 +133,11 @@ namespace Unity.MLAgentsExamples
 
             ++_ActionCount;
             AddReward(-1f / MaxStep);
+
+            if (m_ReversePenality && _Velocity < 0)
+            {
+                AddReward(-1f / MaxStep);
+            }
 
             var continuousActions = actionBuffers.ContinuousActions;
             var i = -1;
