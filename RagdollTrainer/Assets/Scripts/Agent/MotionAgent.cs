@@ -120,8 +120,6 @@ namespace Unity.MLAgentsExamples
             sensor.AddObservation(transform.InverseTransformDirection(_Direction));
             sensor.AddObservation(Vector3.Distance(transform.localPosition, Vector3.zero));
             sensor.AddObservation(Quaternion.FromToRotation(transform.forward, _Direction));
-            sensor.AddObservation(m_Awareness.transform.InverseTransformDirection(_Direction));
-            sensor.AddObservation(m_OrientCube.transform.InverseTransformDirection(_Direction));
             sensor.AddObservation(m_AwarenessContact.touchingGround);
             sensor.AddObservation(m_AwarenessContact.touchingWall);
             sensor.AddObservation(m_AwarenessContact.touchingTarget);
@@ -137,8 +135,8 @@ namespace Unity.MLAgentsExamples
                 var targetDistanceReward = 1f / (Vector3.Distance(transform.position, m_Target.position) + 0.01f);
                 var targetFacingReward = Mathf.InverseLerp(0, 180, Quaternion.Angle(transform.rotation, m_Target.rotation));
 
-                Debug.Log(0.9f * targetDistanceReward + " :: " + 0.8f * targetFacingReward);
-                AddReward(0.9f * targetDistanceReward + 0.8f * targetFacingReward);
+                Debug.Log(0.8f * targetDistanceReward + " :: " + 0.1f * targetFacingReward);
+                AddReward(0.8f * targetDistanceReward + 0.1f * targetFacingReward);
             }
         }
 

@@ -9,6 +9,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 760045986818082667, guid: d7d560a00045a6f4abc98777891b6e18, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 760045986818082667, guid: d7d560a00045a6f4abc98777891b6e18, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -50,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2790538730198849856, guid: d7d560a00045a6f4abc98777891b6e18, type: 3}
       propertyPath: m_Name
-      value: OrientCube Variant
+      value: OrientCubeMotion
       objectReference: {fileID: 0}
     - target: {fileID: 3608371702882366175, guid: d7d560a00045a6f4abc98777891b6e18, type: 3}
       propertyPath: m_MaxRayDegrees

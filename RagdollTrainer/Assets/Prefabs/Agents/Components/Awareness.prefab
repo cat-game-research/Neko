@@ -140,7 +140,7 @@ MonoBehaviour:
   m_RayLayerMask:
     serializedVersion: 2
     m_Bits: 4294967241
-  m_ObservationStacks: 2
+  m_ObservationStacks: 1
   m_AlternatingRayOrder: 0
   m_UseBatchedRaycasts: 1
   rayHitColor: {r: 1, g: 0, b: 0, a: 1}
@@ -211,7 +211,7 @@ MonoBehaviour:
   m_RayLayerMask:
     serializedVersion: 2
     m_Bits: 4294967241
-  m_ObservationStacks: 2
+  m_ObservationStacks: 1
   m_AlternatingRayOrder: 0
   m_UseBatchedRaycasts: 1
   rayHitColor: {r: 1, g: 0, b: 0, a: 1}
@@ -232,14 +232,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SensorName: AwarenessFrontSideUp
   m_DetectableTags: []
-  m_RaysPerDirection: 9
+  m_RaysPerDirection: 7
   m_MaxRayDegrees: 90
-  m_SphereCastRadius: 0.1
+  m_SphereCastRadius: 0.25
   m_RayLength: 20
   m_RayLayerMask:
     serializedVersion: 2
     m_Bits: 4294967291
-  m_ObservationStacks: 3
+  m_ObservationStacks: 1
   m_AlternatingRayOrder: 1
   m_UseBatchedRaycasts: 0
   rayHitColor: {r: 1, g: 0, b: 0, a: 1}
@@ -260,14 +260,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SensorName: AwarenessFrontSideForward
   m_DetectableTags: []
-  m_RaysPerDirection: 9
+  m_RaysPerDirection: 7
   m_MaxRayDegrees: 90
-  m_SphereCastRadius: 0.1
+  m_SphereCastRadius: 0.25
   m_RayLength: 20
   m_RayLayerMask:
     serializedVersion: 2
     m_Bits: 4294967291
-  m_ObservationStacks: 3
+  m_ObservationStacks: 1
   m_AlternatingRayOrder: 1
   m_UseBatchedRaycasts: 0
   rayHitColor: {r: 1, g: 0, b: 0, a: 1}
@@ -288,14 +288,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SensorName: AwarenessFrontSideDownForward
   m_DetectableTags: []
-  m_RaysPerDirection: 9
+  m_RaysPerDirection: 7
   m_MaxRayDegrees: 90
-  m_SphereCastRadius: 0.1
+  m_SphereCastRadius: 0.25
   m_RayLength: 20
   m_RayLayerMask:
     serializedVersion: 2
     m_Bits: 4294967291
-  m_ObservationStacks: 3
+  m_ObservationStacks: 1
   m_AlternatingRayOrder: 1
   m_UseBatchedRaycasts: 0
   rayHitColor: {r: 1, g: 0, b: 0, a: 1}
@@ -363,7 +363,7 @@ MonoBehaviour:
   m_RayLayerMask:
     serializedVersion: 2
     m_Bits: 4294967241
-  m_ObservationStacks: 2
+  m_ObservationStacks: 1
   m_AlternatingRayOrder: 0
   m_UseBatchedRaycasts: 1
   rayHitColor: {r: 1, g: 0, b: 0, a: 1}
@@ -431,7 +431,7 @@ MonoBehaviour:
   m_RayLayerMask:
     serializedVersion: 2
     m_Bits: 4294967241
-  m_ObservationStacks: 2
+  m_ObservationStacks: 1
   m_AlternatingRayOrder: 0
   m_UseBatchedRaycasts: 1
   rayHitColor: {r: 1, g: 0, b: 0, a: 1}

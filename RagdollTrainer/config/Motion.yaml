@@ -23,10 +23,10 @@ behaviors:
         strength: 0.1
         gamma: 0.995
         network_settings:
-          hidden_units: 256
+          hidden_units: 128
           learning_rate: 0.0001
-    keep_checkpoints: 20
+    keep_checkpoints: 10
     checkpoint_interval: 1000000
-    max_steps: 20000000
+    max_steps: 10000000
     time_horizon: 1000
-    summary_freq: 25000
+    summary_freq: 100000
