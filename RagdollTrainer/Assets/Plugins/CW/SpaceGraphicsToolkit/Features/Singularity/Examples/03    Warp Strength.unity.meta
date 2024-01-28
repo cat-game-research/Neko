@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 08857a259dd27e0479c827395f60b343
+timeCreated: 1477183420
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Singularity/Examples/03   
+    Warp Strength.unity
+  uploadId: 616447

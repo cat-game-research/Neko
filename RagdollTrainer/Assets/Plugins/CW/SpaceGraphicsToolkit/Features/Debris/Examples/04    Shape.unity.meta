@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 9591d77003f86734bb612d64dd9cd111
+timeCreated: 1477183420
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Debris/Examples/04   
+    Shape.unity
+  uploadId: 616447

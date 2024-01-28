@@ -1,0 +1,25 @@
+fileFormatVersion: 2
+guid: cae7d61c0922b8a44aa9e55b1b9eca49
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _MainTex: {instanceID: 0}
+  - _BumpMap: {fileID: 2800000, guid: c07fddd59e113bb4bb8fe794e94197d7, type: 3}
+  - _HeightMap: {instanceID: 0}
+  - _DetailMaskMap: {instanceID: 0}
+  - _NoiseTex: {fileID: 2800000, guid: dbd9de8d81aaa9548a0700e01ce931f9, type: 2}
+  - _DetailMapR: {instanceID: 0}
+  - _DetailMapG: {instanceID: 0}
+  - _NightTex: {instanceID: 0}
+  - _WaterTexture: {instanceID: 0}
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Spacetime/Required/Shaders/Spacetime_Additive.shader
+  uploadId: 616447

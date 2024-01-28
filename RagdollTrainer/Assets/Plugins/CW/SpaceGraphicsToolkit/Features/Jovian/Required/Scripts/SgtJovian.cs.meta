@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 3ab8d0037e014284ca8099008b3aab72
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - sourceMaterial: {fileID: 2100000, guid: 0431a35714c0f4e4aa796f2558a42474, type: 2}
+  - mainTex: {instanceID: 0}
+  - flowTex: {instanceID: 0}
+  - mesh: {fileID: 4300000, guid: 662157716ef2b6840841e610138115a4, type: 3}
+  - model: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Jovian/Required/Scripts/SgtJovian.cs
+  uploadId: 616447

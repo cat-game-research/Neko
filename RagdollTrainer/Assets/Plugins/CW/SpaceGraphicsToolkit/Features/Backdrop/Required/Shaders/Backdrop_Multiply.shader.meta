@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 256e20f1519555b4d8a90e6db8378a8b
+timeCreated: 1526031828
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Backdrop/Required/Shaders/Backdrop_Multiply.shader
+  uploadId: 616447

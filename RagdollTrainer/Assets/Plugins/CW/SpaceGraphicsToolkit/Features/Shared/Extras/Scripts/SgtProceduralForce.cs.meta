@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: fbb47ff81f6f1c34cbcd4892f0e89b71
+timeCreated: 1522031877
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Shared/Extras/Scripts/SgtProceduralForce.cs
+  uploadId: 616447

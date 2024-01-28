@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f19787444fb4f854b8cba3524f920e14
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Singularity/Examples/Materials/BlackHole.mat
+  uploadId: 616447

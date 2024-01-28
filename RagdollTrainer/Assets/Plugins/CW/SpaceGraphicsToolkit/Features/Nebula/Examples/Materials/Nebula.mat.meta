@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5be0115e20cab7d4b8fff09410df09a1
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Nebula/Examples/Materials/Nebula.mat
+  uploadId: 616447

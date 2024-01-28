@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: cbc54fd5b7c70c64f905a7bcadc9c7df
+timeCreated: 1477183420
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Planet/Examples/11   
+    Atmosphere.unity
+  uploadId: 616447

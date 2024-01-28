@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 2592602f1e074c740b30d384af94984c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - sourceMaterial: {fileID: 2100000, guid: b95e06fdefc79954db22d490f3925067, type: 2}
+  - mainTex: {instanceID: 0}
+  - model: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Starfield/Required/Scripts/SgtStarfieldInfinite.cs
+  uploadId: 616447

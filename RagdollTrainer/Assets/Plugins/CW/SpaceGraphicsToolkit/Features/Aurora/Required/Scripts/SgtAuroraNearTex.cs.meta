@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: c2023d90df27be442907f90b03c6cc3b
+timeCreated: 1527481932
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Aurora/Required/Scripts/SgtAuroraNearTex.cs
+  uploadId: 616447

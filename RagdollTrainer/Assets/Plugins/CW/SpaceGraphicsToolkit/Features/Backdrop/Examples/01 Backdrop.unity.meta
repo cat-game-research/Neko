@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: c49caf0f9226c244c8cf52f60fdfbdb0
+timeCreated: 1477183420
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Backdrop/Examples/01
+    Backdrop.unity
+  uploadId: 616447

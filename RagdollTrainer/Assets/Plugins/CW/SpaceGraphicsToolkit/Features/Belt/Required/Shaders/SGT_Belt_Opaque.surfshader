@@ -1,0 +1,63 @@
+﻿BEGIN_PROPERTIES
+	[Header(LIGHTING)]
+	[Toggle(_SGT_LIGHTING)] _SGT_Lighting ("	Enable", Float) = 0
+	_SGT_AmbientColor("	Ambient Color", Color) = (0,0,0)
+	[NoScaleOffset] _SGT_LightingTex("	Lighting Tex", 2D) = "white" {}
+END_PROPERTIES
+
+BEGIN_DEFINES
+	#pragma shader_feature_local _SGT_LIGHTING
+END_DEFINES
+
+BEGIN_CBUFFER
+	float3    _SGT_AmbientColor;
+	sampler2D _SGT_LightingTex;
+END_CBUFFER
+
+BEGIN_CODE
+	float3 SGT_GetOutside(float3 ray, float3 rayD)
+	{
+		float B = dot(ray, rayD);
+		float C = dot(ray, ray) - 1.0f;
+		float D = B * B - C;
+		return ray + rayD * max(-B - sqrt(max(D, 0.0f)), 0.0f);
+	}
+
+	void SurfaceFunction(inout Surface o, inout ShaderData d)
+	{
+		#if __SGT_BELT
+			float4 finalColor = d.blackboard.finalColor;
+			float4 main       = d.blackboard.finalColor;
+
+			finalColor *= d.vertexColor;
+
+			#if __SGT_OUTPUT
+				#if _SGT_LIGHTING
+					finalColor.rgb *= _SGT_AmbientColor;
+
+					float3 lighting = 0.0f;
+
+					for (int i = 0; i < _SGT_LightCount; i++)
+					{
+						float3 normal = SGT_GetOutside(d.texcoord1.xyz, normalize(d.texcoord2.xyz));
+						float3 lightv = mul(UNITY_MATRIX_V, _SGT_LightPosition[i]).xyz;
+						float  theta  = dot(normal, normalize(lightv - d.texcoord3.xyz)) * 0.5f + 0.5f;
+
+						lighting += tex2D(_SGT_LightingTex, theta) * _SGT_LightColor[i];
+					}
+
+					finalColor.xyz += lighting * main.rgb * SGT_ShadowColor(d.worldSpacePosition);
+				#else
+					finalColor = SGT_ModifyUnlitOutput(finalColor);
+				#endif
+
+				if (finalColor.a < 0.5f)
+				{
+					finalColor.a = 0.0f; discard;
+				}
+
+				SGT_OutputWithoutAlpha(o, finalColor);
+			#endif
+		#endif
+	}
+END_CODE

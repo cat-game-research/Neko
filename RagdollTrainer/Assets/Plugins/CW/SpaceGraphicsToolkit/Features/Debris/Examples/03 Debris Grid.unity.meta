@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: fb44e3fe5edf3f743beb2dcab06a5003
+timeCreated: 1477183420
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Debris/Examples/03 Debris
+    Grid.unity
+  uploadId: 616447

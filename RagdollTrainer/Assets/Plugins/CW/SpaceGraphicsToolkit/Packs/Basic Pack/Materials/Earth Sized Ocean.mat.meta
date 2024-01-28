@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 4cd66a2dde24013468dcf348c99ad476
+timeCreated: 1535698856
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/Basic Pack/Materials/Earth
+    Sized Ocean.mat
+  uploadId: 616447

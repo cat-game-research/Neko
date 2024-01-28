@@ -1,0 +1,215 @@
+﻿BEGIN_PROPERTIES
+	[KeywordEnum(UV, World Space XZ)] _Coord ("Coord", Float) = 0
+	_Tiling ("Tiling", Float) = 1
+	_WarpVector ("Warp Vector", Vector) = (0 , -1, 0)
+
+	[Header(BASE COLOR)]
+	_BaseColor ("	Color", Color) = (0.5, 0.5, 0.5, 0.5)
+	_BaseBrightness ("	Brightness", Float) = 0.5
+	[NoScaleOffset] _BaseTex ("	Albedo (RGB)", 2D) = "white" {}
+
+	[Header(PROXIMITY COLOR)]
+	_ProxRange ("	Range", Float) = 1
+	_ProxSharpness ("	Sharpness", Float) = 1
+	_ProxColor ("	Color", Color) = (0, 1, 0, 0.5)
+	_ProxBrightness ("	Brightness", Float) = 0.01
+	[NoScaleOffset] _ProxTex ("	Albedo (RGB)", 2D) = "white" {}
+
+	[Header(WARP COLOR)]
+	_WarpSharpness ("	Sharpness", Float) = 1
+	_WarpColor ("	Color", Color) = (0, 0, 1, 0.5)
+	_WarpBrightness ("	Brightness", Float) = 0.01
+	[NoScaleOffset] _WarpTex ("	Albedo (RGB)", 2D) = "white" {}
+END_PROPERTIES
+
+BEGIN_DEFINES
+	#define __SGT_SPACETIME 1
+	#pragma shader_feature_local _COORD_UV _COORD_WORLD_SPACE_XZ
+
+	#define SGT_MAX_GAUSSIAN_WELLS 16
+	#define SGT_MAX_RIPPLE_WELLS 16
+	#define SGT_MAX_TWIST_WELLS 16
+	#define SGT_MAX_PINCH_WELLS 16
+END_DEFINES
+
+BEGIN_CBUFFER
+	float  _Tiling;
+	float  _Offset;
+	float3 _WarpVector;
+
+	sampler2D _BaseTex;
+	float4    _BaseColor;
+	float     _BaseBrightness;
+	
+	sampler2D _ProxTex;
+	float     _ProxRange;
+	float     _ProxSharpness;
+	float4    _ProxColor;
+	float     _ProxBrightness;
+	float     _ProxWarpFade;
+
+	sampler2D _WarpTex;
+	float     _WarpSharpness;
+	float     _WarpPinchPower;
+	float4    _WarpColor;
+	float     _WarpBrightness;
+
+	int       _Gau;
+	float4    _GauPos[SGT_MAX_GAUSSIAN_WELLS]; // xyz = position, w = radius
+	float4    _GauStr[SGT_MAX_GAUSSIAN_WELLS]; // x = strength, y = opacity
+
+	int       _Rip;
+	float4    _RipPos[SGT_MAX_RIPPLE_WELLS]; // xyz = position, w = radius
+	float4    _RipStr[SGT_MAX_RIPPLE_WELLS]; // x = strength, y = opacity
+	float4    _RipDat[SGT_MAX_RIPPLE_WELLS]; // x = frequency, y = offset
+
+	int       _Twi;
+	float4    _TwiPos[SGT_MAX_TWIST_WELLS]; // xyz = position, w = radius
+	float4    _TwiStr[SGT_MAX_TWIST_WELLS]; // x = strength, y = opacity
+	float4    _TwiDat[SGT_MAX_TWIST_WELLS]; // x = frequency, y = hole size, z = hole power, w = offset
+	float4x4  _TwiMat[SGT_MAX_TWIST_WELLS]; // world to local space matrix of the well
+
+	int       _Pin;
+	float4    _PinPos[SGT_MAX_PINCH_WELLS]; // xyz = position, w = radius
+	float4    _PinStr[SGT_MAX_PINCH_WELLS]; // x = strength, y = opacity
+END_CBUFFER
+
+BEGIN_BLACKBOARD
+   float4 originalWPos;
+   float4 modifiedWPos;
+   float4 finalColor;
+END_BLACKBOARD
+
+BEGIN_CODE
+	void SGT_UpdateGaussian(inout float4 modifiedWPos, inout float warpStr, inout float proxStr, float4 originalWPos, float4 wellPos, float4 wellStr)
+	{
+		float3 vec    = wellPos.xyz - originalWPos.xyz;
+		float  dist   = length(vec) / wellPos.w;
+		float  weight = smoothstep(1.0f, 0.0f, saturate(dist));
+
+		proxStr = min(proxStr, dist / _ProxRange);
+		warpStr = max(warpStr, weight * wellStr.y);
+
+		modifiedWPos.xyz += weight * wellStr.x * _WarpVector;
+	}
+
+	void SGT_UpdateRipple(inout float4 modifiedWPos, inout float warpStr, inout float proxStr, float4 originalWPos, float4 wellPos, float4 wellStr, float4 wellDat)
+	{
+		float3 vec       = wellPos.xyz - originalWPos.xyz;
+		float  dist      = length(vec) / wellPos.w;
+		float  weight    = 1.0f - saturate(dist);
+		float  amplitude = sin(weight * wellDat.x + wellDat.y) * 0.5f + 0.5f;
+
+		proxStr = min(proxStr, dist / _ProxRange);
+		warpStr = max(warpStr, weight * amplitude * wellStr.y);
+
+		modifiedWPos.xyz += weight * amplitude * wellStr.x * _WarpVector;
+	}
+
+	void SGT_UpdateTwist(inout float4 modifiedWPos, inout float warpStr, inout float proxStr, float4 originalWPos, float4 wellPos, float4 wellStr, float4 wellDat, float4 wellLocalPos)
+	{
+		float3 vec        = wellPos.xyz - originalWPos.xyz;
+		float  dist       = length(vec) / wellPos.w;
+		float  distance01 = saturate(dist);
+		float  weight     = 1.0f - distance01;
+		float  offset     = dist > 0.0f ? atan2(wellLocalPos.x, wellLocalPos.z) : 0.0f;
+		float  amplitude  = sin(distance01 * wellDat.x + offset * 2.0f) * 0.5f + 0.5f;
+		float  skew       = saturate(distance01 - wellDat.y / (1.0f - wellDat.y));
+		float  hole       = 1.0f - pow(1.0f - skew, wellDat.z);
+
+		proxStr = min(proxStr, dist / _ProxRange);
+		warpStr = max(warpStr, weight * hole * amplitude * wellStr.y);
+
+		modifiedWPos.xyz += weight * hole * amplitude * wellStr.x * _WarpVector;
+	}
+
+	void SGT_UpdatePinch(inout float4 modifiedWPos, inout float warpStr, inout float proxStr, float4 originalWPos, float4 wellPos, float4 wellStr)
+	{
+		float3 vec    = wellPos.xyz - originalWPos.xyz;
+		float  dist   = length(vec) / wellPos.w;
+		float  weight = smoothstep(1.0f, 0.0f, saturate(dist));
+
+		proxStr = min(proxStr, dist / _ProxRange);
+		warpStr = max(warpStr, weight * wellStr.y);
+
+		float invPow = 1.0f - pow(1.0f - weight, wellStr.x);
+
+		modifiedWPos.xyz += vec * invPow;
+	}
+
+	float4 SGT_UpdateWells(float4 originalWPos, inout float warpStr, inout float proxStr)
+	{
+		float4 modifiedWPos = originalWPos;
+
+		for (int g = 0; g < _Gau; g++)
+		{
+			SGT_UpdateGaussian(modifiedWPos, warpStr, proxStr, originalWPos, _GauPos[g], _GauStr[g]);
+		}
+
+		for (int r = 0; r < _Rip; r++)
+		{
+			SGT_UpdateRipple(modifiedWPos, warpStr, proxStr, originalWPos, _RipPos[r], _RipStr[r], _RipDat[r]);
+		}
+
+		for (int t = 0; t < _Twi; t++)
+		{
+			SGT_UpdateTwist(modifiedWPos, warpStr, proxStr, originalWPos, _TwiPos[t], _TwiStr[t], _TwiDat[t], mul(_TwiMat[t], originalWPos));
+		}
+
+		for (int p = 0; p < _Pin; p++)
+		{
+			SGT_UpdatePinch(modifiedWPos, warpStr, proxStr, originalWPos, _PinPos[p], _PinStr[p]);
+		}
+
+		return modifiedWPos;
+	}
+
+	float4 SGT_UpdateWells(float4 originalWPos)
+	{
+		float warpStr = 0.0f;
+		float proxStr = 1.0f;
+
+		return SGT_UpdateWells(originalWPos, warpStr, proxStr);
+	}
+
+	void ModifyVertex(inout VertexData v, inout ExtraV2F e)
+	{
+		#if __SGT_MATRIX
+			float4 originalWPos = SGT_O2W(v.vertex);
+			float  warpStr      = 0.0f;
+			float  proxStr      = 1.0f;
+			float4 modifiedWPos = SGT_UpdateWells(originalWPos, warpStr, proxStr);
+
+			v.vertex = SGT_W2O(modifiedWPos);
+
+			e.extraV2F0.xyz = originalWPos.xyz;
+			e.extraV2F1.x   = proxStr;
+			e.extraV2F1.y   = 1.0f - warpStr;
+
+			e.blackboard.originalWPos = originalWPos;
+			e.blackboard.modifiedWPos = modifiedWPos;
+		#endif
+	}
+
+	void SurfaceFunction(inout Surface o, inout ShaderData d)
+	{
+		float proxStr = 1.0f - pow(d.extraV2F1.x, _ProxSharpness);
+		float warpStr = 1.0f - pow(d.extraV2F1.y, _WarpSharpness);
+
+		#if _COORD_UV
+			float2 coord = d.texcoord0.xy * _Tiling;
+		#elif _COORD_WORLD_SPACE_XZ
+			float2 coord = d.extraV2F0.xz * _Tiling;
+		#endif
+
+		float4 baseColor = _BaseColor * tex2D(_BaseTex, coord); baseColor.xyz *= _BaseBrightness;
+		float4 proxColor = _ProxColor * tex2D(_ProxTex, coord); proxColor.xyz *= _ProxBrightness;
+		float4 warpColor = _WarpColor * tex2D(_WarpTex, coord); warpColor.xyz *= _WarpBrightness;
+
+		d.blackboard.finalColor = baseColor;
+
+		d.blackboard.finalColor = lerp(d.blackboard.finalColor, proxColor, proxStr);
+
+		d.blackboard.finalColor = lerp(d.blackboard.finalColor, warpColor, warpStr);
+	}
+END_CODE

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 6199b223ce0b4a642a87a400ee6c1eef
+timeCreated: 1477183420
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Starfield/Examples/06   
+    PowerRGB.unity
+  uploadId: 616447

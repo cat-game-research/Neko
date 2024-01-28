@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 8ccaeb4885b3b914899768004d27a990
+timeCreated: 1477183420
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Starfield/Examples/36
+    Pulse.unity
+  uploadId: 616447

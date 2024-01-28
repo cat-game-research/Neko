@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 0de83c0c735f6cc488e462ee94b5f234
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 101
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Universe/Required/Scripts/SgtFloatingWarpSmoothstep.cs
+  uploadId: 616447

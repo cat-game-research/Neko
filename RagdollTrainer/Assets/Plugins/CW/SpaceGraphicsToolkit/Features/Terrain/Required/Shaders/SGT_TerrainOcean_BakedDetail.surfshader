@@ -1,0 +1,52 @@
+﻿BEGIN_PROPERTIES
+	[Header(BAKED DETAIL)]
+	[Toggle(_BAKEDDETAIL_ON)] _HasBakedDetail("	Enabled", Float) = 0
+	_BakedDetailFadeRange("	Fade Range", Float) = 1000.0
+	_BakedDetailFadeBound("	Fade Bound", Float) = 1000.0
+	_BakedDetailScale("	Strength", Range(0,5)) = 1
+	[NoScaleOffset][Normal]_BakedDetailMap("	Normal", 2D) = "bump" {}
+END_PROPERTIES
+
+BEGIN_DEFINES
+	#pragma shader_feature_local _BAKEDDETAIL_ON
+END_DEFINES
+
+BEGIN_CBUFFER
+	float _BakedDetailFadeRange;
+	float _BakedDetailFadeBound;
+	float _BakedDetailScale;
+END_CBUFFER
+
+BEGIN_CODE
+	sampler2D _BakedDetailMap;
+
+	void SurfaceFunction(inout Surface o, inout ShaderData d)
+	{
+		#if __SGT_TERRAINOCEAN
+			#if _BAKEDDETAIL_ON
+				#if 0%STACKIDX% == 0
+					float4 coords     = d.texcoord0 * _BakedDetailTilingAMul;
+					float  max_height = _BakedDetailTilingA;
+				#elif 0%STACKIDX% == 1
+					float4 coords     = d.texcoord1;
+					float  max_height = _BakedDetailTilingB;
+				#elif 0%STACKIDX% == 2
+					float4 coords     = d.texcoord2;
+					float  max_height = _BakedDetailTilingC;
+				#endif
+
+				coords.x *= 2.0f;
+
+				float polar = d.extraV2F0.w;
+				float noise = (sample_noise(coords, polar) - 0.5f) * 15.0f;
+				float fade  = saturate(d.blackboard.worldDistance / _BakedDetailFadeRange);
+				
+				fade *= saturate((_BakedDetailFadeBound - d.blackboard.worldDistance) / _BakedDetailFadeBound);
+
+				coords *= 64.0f;
+
+				SGT_ContributeDetail(o, _BakedDetailMap, coords, polar, max_height, noise, _BakedDetailScale * fade);
+			#endif
+		#endif
+	}
+END_CODE

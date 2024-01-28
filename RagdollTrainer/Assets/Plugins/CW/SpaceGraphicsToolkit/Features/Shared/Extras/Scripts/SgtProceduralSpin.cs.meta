@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 21928fd6b0e42544c87f4ed713f97b0b
+timeCreated: 1522031877
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Shared/Extras/Scripts/SgtProceduralSpin.cs
+  uploadId: 616447

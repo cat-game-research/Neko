@@ -1,0 +1,52 @@
+﻿BEGIN_OPTIONS
+	Stackable "False"
+	Alpha "Blend"
+	Tags { "Queue" = "Transparent-1" }
+END_OPTIONS
+
+BEGIN_PROPERTIES
+	[Header(TRANSPARENCY)]
+	[KeywordEnum(Off, Vertical, Depth)] _Alpha ("	Mode", Float) = 0
+	_OpacityRange("	Range", Float) = 1000.0
+	_OpacityPower("	Power", Range(1.0, 10.0)) = 2.0
+	_OpacityDepthScale("	Depth Scale", Float) = 0.1
+	_OpacityFresnel("	Fresnel", Float) = 0.1
+END_PROPERTIES
+
+BEGIN_DEFINES
+	#pragma shader_feature_local _ALPHA_OFF _ALPHA_VERTICAL _ALPHA_DEPTH
+END_DEFINES
+
+BEGIN_CBUFFER
+	float _OpacityRange;
+	float _OpacityPower;
+	float _OpacityDepthScale;
+	float _OpacityFresnel;
+END_CBUFFER
+
+BEGIN_CODE
+	void SurfaceFunction(inout Surface o, inout ShaderData d)
+	{
+		#if __SGT_TERRAINOCEAN
+			#if _ALPHA_OFF
+				o.Alpha = 1.0f;
+			#else
+				#if _ALPHA_VERTICAL
+					float dist = d.texcoord3.x;
+				#elif _ALPHA_DEPTH
+					float3 depthPos  = GetWorldPositionFromDepthBuffer(d.screenUV, d.worldSpaceViewDir);
+					float  depthDist = distance(depthPos, _WorldSpaceCameraPos);
+
+					float dist = depthDist - d.blackboard.worldDistance;
+
+					dist = lerp(dist, d.texcoord3.x, saturate((depthDist * _OpacityDepthScale - d.texcoord3.x) / d.texcoord3.x));
+				#endif
+
+				float deep = 1.0f - pow(1.0f - saturate(dist / _OpacityRange), _OpacityPower);
+				float fren = 1.0f - dot(d.worldSpaceViewDir, d.worldSpaceNormal);
+
+				o.Alpha = saturate(deep + fren * _OpacityFresnel);
+			#endif
+		#endif
+	}
+END_CODE

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: eea2333a66a3dd4448789f9b3d2f0d5d
+timeCreated: 1527598512
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Lightning/Required/Shaders/Lightning.shader
+  uploadId: 616447

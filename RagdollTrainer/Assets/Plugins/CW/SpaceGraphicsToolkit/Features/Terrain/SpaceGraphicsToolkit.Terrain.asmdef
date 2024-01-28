@@ -1,0 +1,26 @@
+{
+    "name": "SpaceGraphicsToolkit.Terrain",
+    "references": [
+        "Unity.Burst",
+        "Unity.Mathematics",
+        "SpaceGraphicsToolkit",
+        "CW.Common"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "__BURST__"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.unity.burst",
+            "expression": "",
+            "define": "__BURST__"
+        }
+    ],
+    "noEngineReferences": false
+}

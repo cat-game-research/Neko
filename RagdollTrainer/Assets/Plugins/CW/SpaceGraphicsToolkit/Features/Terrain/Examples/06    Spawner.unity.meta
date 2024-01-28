@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 4271d86882c28e24380682fb4311a3be
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Terrain/Examples/06   
+    Spawner.unity
+  uploadId: 616447

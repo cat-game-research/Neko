@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Ring + Scattering + Detail
+  m_Shader: {fileID: 4800000, guid: 15e2baabe916168449b0a6e806047670, type: 3}
+  m_ShaderKeywords: _SGT_DETAIL _SGT_DETAIL_ALPHA _SGT_LIGHTING _SGT_SCATTERING
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _DetailTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NearTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SGT_DetailTex:
+        m_Texture: {fileID: 2800000, guid: 15d997d25239b1742b4cfd507136910a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SGT_LightingTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SGT_MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SGT_NearTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _CW_DisableFog: 0
+    - _DetailTwist: 0
+    - _DetailTwistBias: 0
+    - _NearScale: 1
+    - _SGT_Brightness: 1
+    - _SGT_Detail: 2
+    - _SGT_DetailTwist: 0
+    - _SGT_DetailTwistBias: 0
+    - _SGT_Lighting: 1
+    - _SGT_Near: 0
+    - _SGT_NearRange: 1
+    - _SGT_NearRangeRecip: 1
+    - _SGT_NearScale: 1
+    - _SGT_Scattering: 1
+    - _SGT_ScatteringMie: 34.09
+    - _SGT_ScatteringStrength: 7.7
+    - _SGT_Tiling: 5
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _DetailOffset: {r: 0, g: 0, b: 0, a: 1}
+    - _DetailScale: {r: 1, g: 1, b: 1, a: 1}
+    - _SGT_AmbientColor: {r: 0, g: 0, b: 0, a: 0}
+    - _SGT_Color: {r: 0.9811321, g: 0.9811321, b: 0.9811321, a: 1}
+    - _SGT_DetailDistance: {r: 1, g: 1, b: 0, a: 0}
+    - _SGT_DetailOffset: {r: 0, g: 0, b: 0, a: 1}
+    - _SGT_DetailSpeed: {r: 0, g: 0.01, b: 0, a: 0}
+    - _SGT_DetailTiling: {r: 50, g: 125, b: 0, a: 0}
+    - _SGT_ScatteringStrengths: {r: 7.7, g: 0, b: 0, a: 0}
+    - _SGT_ScatteringTerms: {r: 34.09, g: 1, b: 1, a: 1}

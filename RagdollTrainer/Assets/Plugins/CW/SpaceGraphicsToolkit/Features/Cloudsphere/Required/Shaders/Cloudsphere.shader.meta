@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: dafa8efc61b2adb4bb0eada9ced6cc91
+timeCreated: 1527482692
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Cloudsphere/Required/Shaders/Cloudsphere.shader
+  uploadId: 616447

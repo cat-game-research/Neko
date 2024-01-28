@@ -1,0 +1,68 @@
+﻿BEGIN_OPTIONS
+	Workflow "Unlit"
+END_OPTIONS
+
+BEGIN_DEFINES
+	#define __SGT_BELT 1
+END_DEFINES
+
+BEGIN_CBUFFER
+	sampler2D _SGT_MainTex; // Auto
+	float4    _SGT_Color; // Auto
+	float     _SGT_Brightness; // Auto
+	float     _SGT_Scale; // Auto
+	float     _SGT_Age; // Auto
+	float     _SGT_CameraRollAngle; // Auto
+END_CBUFFER
+
+BEGIN_BLACKBOARD
+	float4 finalColor;
+END_BLACKBOARD
+
+BEGIN_CODE
+	float2 SGT_Rotate(float2 v, float a)
+	{
+		float s = sin(a);
+		float c = cos(a);
+		return float2(c * v.x - s * v.y, s * v.x + c * v.y);
+	}
+
+	void ModifyVertex(inout VertexData v, inout ExtraV2F e)
+	{
+		#if __SGT_MATRIX
+			float orbitAngle    = v.vertex.x + v.vertex.z * _SGT_Age;
+			float orbitDistance = v.vertex.y;
+			float angle         = _SGT_CameraRollAngle + (v.tangent.x + v.tangent.y * _SGT_Age) * 3.141592654f;
+			float radius        = v.texcoord1.x * _SGT_Scale;
+
+			v.vertex.x = sin(orbitAngle) * orbitDistance;
+			v.vertex.y = v.texcoord1.y;
+			v.vertex.z = cos(orbitAngle) * orbitDistance;
+			v.vertex.w = 1.0f;
+
+			v.normal.xy = SGT_Rotate(v.normal.xy, angle);
+
+			float4 vertexMV = SGT_O2V(v.vertex);
+			float4 cornerMV = vertexMV;
+
+			cornerMV.xyz += v.normal * radius;
+
+			v.vertex    = SGT_V2O(cornerMV);
+			v.vertexColor = v.vertexColor * _SGT_Color;
+			v.texcoord1.xyz = -vertexMV.xyz / radius;
+			v.texcoord2.xyz = cornerMV.xyz;
+			v.texcoord3.xyz = vertexMV.xyz;
+		#endif
+	}
+
+	void SurfaceFunction(inout Surface o, inout ShaderData d)
+	{
+		float4 main = tex2D(_SGT_MainTex, d.texcoord0.xy);
+
+		float4 finalColor = main;
+
+		finalColor.rgb *= _SGT_Brightness;
+
+		d.blackboard.finalColor = finalColor * d.vertexColor;
+	}
+END_CODE

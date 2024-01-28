@@ -1,0 +1,76 @@
+﻿BEGIN_OPTIONS
+	Stackable "True"
+END_OPTIONS
+
+BEGIN_PROPERTIES
+	[Header(DETAIL)]
+	[Toggle(_DETAIL_ON)] _HasDetail ("	Enabled", Float) = 0
+	_DetailTiling("	Tiling", Float) = 10
+	_DetailFadeRange("	Fade Range", Float) = 1000.0
+	_DetailFadeBound("	Fade Bound", Float) = 1000.0
+	_DetailScaleR("	Strength R", Range(0,5)) = 1
+	_DetailScaleG("	Strength G", Range(0,5)) = 1
+	_DetailScaleB("	Strength B", Range(0,5)) = 1
+	_DetailScaleA("	Strength A", Range(0,5)) = 1
+END_PROPERTIES
+
+BEGIN_DEFINES
+	#pragma shader_feature_local _DETAIL_ON
+END_DEFINES
+
+BEGIN_CBUFFER
+	float _DetailTiling;
+	float _DetailFadeRange;
+	float _DetailFadeBound;
+	float _DetailScaleR;
+	float _DetailScaleG;
+	float _DetailScaleB;
+	float _DetailScaleA;
+END_CBUFFER
+
+BEGIN_CODE
+	void SurfaceFunction(inout Surface o, inout ShaderData d)
+	{
+		#if __SGT_PLANET_BASE
+			#if _DETAIL_ON
+				float4 coords     = d.extraV2F1 * _DetailTiling;
+				float  max_height = _DetailTiling;
+				float  polar      = d.extraV2F0.x;
+				float  noise      = sample_noise(coords / 64.0f, polar) - 0.5f;
+				float  fade       = saturate(d.blackboard.worldDistance / _DetailFadeRange);
+
+				fade *= saturate((_DetailFadeBound - d.blackboard.worldDistance) / _DetailFadeBound);
+
+				#if _DETAIL_ALBEDO
+					#if _DETAIL_R
+						ContributeDetailA(o, TEXTURE2D_ARGS(_AlbedoMapR, sampler_linear_repeat), coords, polar, max_height, noise, d.blackboard.detailMask.r * _DetailScaleR * fade);
+					#endif
+					#if _DETAIL_G
+						ContributeDetailA(o, TEXTURE2D_ARGS(_AlbedoMapG, sampler_linear_repeat), coords, polar, max_height, noise, d.blackboard.detailMask.g * _DetailScaleG * fade);
+					#endif
+					#if _DETAIL_B
+						ContributeDetailA(o, TEXTURE2D_ARGS(_AlbedoMapB, sampler_linear_repeat), coords, polar, max_height, noise, d.blackboard.detailMask.b * _DetailScaleB * fade);
+					#endif
+					#if _DETAIL_A
+						ContributeDetailA(o, TEXTURE2D_ARGS(_AlbedoMapA, sampler_linear_repeat), coords, polar, max_height, noise, d.blackboard.detailMask.a * _DetailScaleA * fade);
+					#endif
+				#endif
+
+				#if _DETAIL_NORMAL
+					#if _DETAIL_R
+						ContributeDetailN(o, TEXTURE2D_ARGS(_NormalMapR, sampler_linear_repeat), coords, polar, max_height, noise, d.blackboard.detailMask.r * _DetailScaleR * fade);
+					#endif
+					#if _DETAIL_G
+						ContributeDetailN(o, TEXTURE2D_ARGS(_NormalMapG, sampler_linear_repeat), coords, polar, max_height, noise, d.blackboard.detailMask.g * _DetailScaleG * fade);
+					#endif
+					#if _DETAIL_B
+						ContributeDetailN(o, TEXTURE2D_ARGS(_NormalMapB, sampler_linear_repeat), coords, polar, max_height, noise, d.blackboard.detailMask.b * _DetailScaleB * fade);
+					#endif
+					#if _DETAIL_A
+						ContributeDetailN(o, TEXTURE2D_ARGS(_NormalMapA, sampler_linear_repeat), coords, polar, max_height, noise, d.blackboard.detailMask.a * _DetailScaleA * fade);
+					#endif
+				#endif
+			#endif
+		#endif
+	}
+END_CODE

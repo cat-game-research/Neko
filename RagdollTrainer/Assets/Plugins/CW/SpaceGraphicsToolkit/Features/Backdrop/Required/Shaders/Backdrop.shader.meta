@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: d6f45f92cf881204fb5fae8dd70c5555
+timeCreated: 1526031828
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Backdrop/Required/Shaders/Backdrop.shader
+  uploadId: 616447

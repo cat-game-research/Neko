@@ -1,0 +1,33 @@
+﻿BEGIN_OPTIONS
+	Alpha "Add"
+END_OPTIONS
+
+BEGIN_PROPERTIES
+	[Header(POWER RGB)]
+	[Toggle(_SGT_POWER_RGB)] _SGT_PowerRgb ("	Enable", Float) = 0
+END_PROPERTIES
+
+BEGIN_DEFINES
+	#pragma shader_feature_local _SGT_POWER_RGB
+END_DEFINES
+
+BEGIN_CODE
+	void SurfaceFunction(inout Surface o, inout ShaderData d)
+	{
+		#if __SGT_BELT
+			float4 finalColor = d.blackboard.finalColor;
+
+			#if _SGT_POWER_RGB
+				finalColor.rgb = pow(finalColor.rgb, float3(1.0f, 1.0f, 1.0f) + (1.0f - d.vertexColor.rgb) * 10.0f);
+			#else
+				finalColor *= d.vertexColor;
+			#endif
+
+			#if __SGT_OUTPUT
+				finalColor = SGT_ModifyUnlitOutput(finalColor);
+
+				SGT_OutputWithoutAlpha(o, finalColor);
+			#endif
+		#endif
+	}
+END_CODE

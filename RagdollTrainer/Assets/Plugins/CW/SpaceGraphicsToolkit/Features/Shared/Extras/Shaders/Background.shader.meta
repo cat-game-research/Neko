@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 03e5507c2e5f9e84d80b016802c075d7
+timeCreated: 1526031828
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Shared/Extras/Shaders/Background.shader
+  uploadId: 616447

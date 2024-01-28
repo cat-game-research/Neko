@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 258d0d1319a498d46aeabc61f572f79d
+timeCreated: 1522310771
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Billboard/Examples/Materials/Billboard
+    Overlay.mat
+  uploadId: 616447

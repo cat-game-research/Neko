@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 1cd8ad3539f3c9f47be6b9c1eef4f70f
+timeCreated: 1477183420
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Planet/Examples/04      
+    Secondary.unity
+  uploadId: 616447

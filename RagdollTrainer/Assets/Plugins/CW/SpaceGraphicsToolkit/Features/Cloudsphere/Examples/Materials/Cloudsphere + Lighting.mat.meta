@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: dcbe2c5320a3e4344bc46b493c054285
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Cloudsphere/Examples/Materials/Cloudsphere
+    + Lighting.mat
+  uploadId: 616447

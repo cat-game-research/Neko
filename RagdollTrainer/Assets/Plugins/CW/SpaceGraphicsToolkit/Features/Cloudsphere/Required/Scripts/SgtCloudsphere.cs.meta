@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: aacb11b170425fe4cbc5edf718b80ea5
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - sourceMaterial: {fileID: 2100000, guid: fbfb4f12f69b22d40aab714e4eb0f6ed, type: 2}
+  - mainTex: {instanceID: 0}
+  - mesh: {fileID: 4300000, guid: 662157716ef2b6840841e610138115a4, type: 3}
+  - model: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Cloudsphere/Required/Scripts/SgtCloudsphere.cs
+  uploadId: 616447

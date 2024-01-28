@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 314fcb5200759ac448fa3f8979ca2d10
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Shared/Required/Documentation.html
+  uploadId: 616447

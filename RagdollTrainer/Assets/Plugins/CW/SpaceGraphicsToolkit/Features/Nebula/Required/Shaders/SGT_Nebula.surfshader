@@ -1,0 +1,118 @@
+BEGIN_OPTIONS
+	Workflow "Unlit"
+	Alpha "Add"
+END_OPTIONS
+
+BEGIN_PASS("Forward")
+	Cull Front
+END_PASS
+
+BEGIN_PROPERTIES
+	_SGT_Tint ("Tint", Color) = (1, 1, 1, 1)
+	_SGT_ColorShift("Color Shift", Range(0,6.2831853)) = 0
+	
+	[Header(TEXTURE)]
+	[NoScaleOffset] _SGT_Texture ("	Texture", 2D) = "black" {}
+	_SGT_TextureScale ("	Scale", Range(0.1, 1.5)) = 1.0
+	_SGT_TextureBlend ("	Blend", Vector) = (0.1, 6.0, 0.0, 0.0)
+	_SGT_TextureJitter ("	Jitter", Float) = 0.1
+	
+	[Header(RIM)]
+	_SGT_RimMin ("	Min", Vector) = (10.0, 10.0, 10.0)
+	_SGT_RimMax ("	Max", Vector) = (5.0, 5.0, 5.0)
+	
+	[Header(NEAR FADE)]
+	[Toggle(_SGT_NEAR)] _SGT_Near ("	Enable", Float) = 0
+	_SGT_NearRangeRecip("	Near Range Recip", Float) = 1
+	[NoScaleOffset]_SGT_NearTex("	Near Tex (A)", 2D) = "white" {}
+END_PROPERTIES
+
+BEGIN_DEFINES
+	#pragma shader_feature_local _SGT_NEAR
+END_DEFINES
+
+BEGIN_CODE
+	float3 _SGT_Tint;
+	float  _SGT_ColorShift;
+	
+	// TEXTURE
+	sampler2D _SGT_Texture;
+	float     _SGT_TextureScale;
+	float2    _SGT_TextureBlend;
+	float     _SGT_TextureJitter;
+	
+	// RIM
+	float3 _SGT_RimMin;
+	float3 _SGT_RimMax;
+	
+	// NEAR FADE
+	sampler2D _SGT_NearTex;
+	float     _SGT_NearRangeRecip;
+	
+	float3 ShiftColor(float3 color, float shift)
+	{
+		float3 m = float3(cos(shift), -sin(shift) * 0.57735f, 0.0f);
+		m = float3(m.xy, -m.y) + (1.0f - m.x) * 0.33333f;
+		return mul(float3x3(m, m.zxy, m.yzx), color);
+	}
+	
+	float4 ExtractTexture(float2 uv, float z, float offset)
+	{
+		if (z < 0.0f)
+		{
+			uv.x = -uv.x;
+			offset *= 3.0f;
+		}
+		
+		uv.x += sin(offset) * _SGT_TextureJitter;
+		uv.y += cos(offset) * _SGT_TextureJitter;
+		
+		return tex2D(_SGT_Texture, uv);
+	}
+	
+	void ModifyVertex(inout VertexData v, inout ExtraV2F e)
+	{
+		#if __SGT_MATRIX
+			float4 wpos = SGT_O2W(v.vertex);
+			float3 wcam = _WorldSpaceCameraPos;
+
+			v.texcoord2.xyz = wpos.xyz - wcam;
+		#endif
+	}
+	
+	void SurfaceFunction(inout Surface o, ShaderData d)
+	{
+		float3 normal  = normalize(d.localSpacePosition);
+		float3 coords  = (normal * _SGT_TextureScale) * 0.5f + 0.5f;
+		float4 texX    = ExtractTexture(coords.yz, normal.x, 103.0f);
+		float4 texY    = ExtractTexture(coords.zx, normal.y, 127.0f);
+		float4 texZ    = ExtractTexture(coords.xy, normal.z, 139.0f);
+		float3 weights = pow(saturate(abs(d.localSpaceNormal) - _SGT_TextureBlend.x), _SGT_TextureBlend.y);
+		
+		weights /= weights.x + weights.y + weights.z;
+		
+		float4 finalColor = texX * weights.x + texY * weights.y + texZ * weights.z;
+		
+		finalColor.rgb = ShiftColor(finalColor.rgb, _SGT_ColorShift);
+		
+		float3 refl = -d.worldSpaceViewDir;
+		float  rdot = saturate(dot(d.worldSpaceNormal, refl));
+		
+		float shape2 = saturate(dot(finalColor.rgb, float3(0.2126f, 0.7152f, 0.0722f)));
+		finalColor.rgb *= pow(rdot, lerp(_SGT_RimMin, _SGT_RimMax, shape2));
+		
+		finalColor.rgb *= _SGT_Tint.rgb;
+		
+		#if _SGT_NEAR
+			float2 near01 = length(d.texcoord2.xyz) * _SGT_NearRangeRecip;
+			float  near = tex2D(_SGT_NearTex, near01).a;
+			finalColor *= near;
+		#endif
+		
+		#if __SGT_OUTPUT
+			SGT_OutputWithoutAlpha(o, SGT_ModifyUnlitOutput(finalColor));
+		#endif
+	}
+
+END_CODE
+

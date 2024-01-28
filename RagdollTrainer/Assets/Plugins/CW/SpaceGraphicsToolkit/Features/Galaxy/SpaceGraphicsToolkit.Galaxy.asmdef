@@ -1,0 +1,26 @@
+{
+    "name": "SpaceGraphicsToolkit.Galaxy",
+    "rootNamespace": "",
+    "references": [
+        "Unity.Mathematics",
+        "SpaceGraphicsToolkit",
+        "CW.Common"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "__MATHEMATICS__"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.unity.mathematics",
+            "expression": "",
+            "define": "__MATHEMATICS__"
+        }
+    ],
+    "noEngineReferences": false
+}

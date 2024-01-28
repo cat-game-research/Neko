@@ -1,0 +1,175 @@
+﻿BEGIN_OPTIONS
+	Workflow "Unlit"
+	Alpha "Blend"
+END_OPTIONS
+
+BEGIN_PASS("All")
+	Cull Front
+END_PASS
+
+BEGIN_PROPERTIES
+	[NoScaleOffset] _SGT_DepthTex("Depth Tex", 2D) = "white" {}
+	[NoScaleOffset] _SGT_NoiseTex("Noise Tex (A)", 3D) = "white" {}
+
+	[Header(LIGHTING)]
+	[Toggle(_SGT_LIGHTING)] _SGT_Lighting ("	Enable", Float) = 0
+	_SGT_AmbientColor("	Ambient Color", Color) = (0,0,0)
+	[NoScaleOffset]_SGT_LightingTex("	Lighting Tex", 2D) = "white" {}
+
+	[Header(LIGHTING SCATTERING)]
+	[Toggle(_SGT_SCATTERING)] _SGT_Scattering ("	Enable", Float) = 0
+	_SGT_ScatteringTerms("	Scattering Terms", Vector) = (10, 1, 1, 1)
+	_SGT_ScatteringStrengths("	Scattering Strengths", Vector) = (1, 0, 0, 0)
+
+	_SGT_ScatteringStrength("	Scattering Strength", Float) = 1
+	[NoScaleOffset] _SGT_ScatteringTex("	Scattering Tex", 2D) = "white" {}
+
+	[Header(FLOW)]
+	[Toggle(_SGT_FLOW)] _SGT_Flow ("	Enable", Float) = 0
+	_SGT_FlowSpeed("	Flow Speed", Float) = 1
+	_SGT_FlowStrength("	Flow Strength", Float) = 1
+	_SGT_FlowNoiseTiling("	Flow Noise Tiling", Float) = 1
+END_PROPERTIES
+
+BEGIN_DEFINES
+	#pragma shader_feature_local _SGT_FLOW
+	#pragma shader_feature_local _SGT_LIGHTING
+	#pragma shader_feature_local _SGT_SCATTERING
+END_DEFINES
+
+BEGIN_CBUFFER
+	sampler2D   _SGT_DepthTex;
+	sampler3D   _SGT_NoiseTex;
+	samplerCUBE _SGT_MainTex; // Auto
+	float4      _SGT_Color; // Auto
+	float       _SGT_Brightness; // Auto
+	float       _SGT_Sky; // Auto
+	float4x4    _SGT_WorldToLocal; // Auto
+	float4x4    _SGT_LocalToWorld; // Auto
+
+	// Lighting
+	sampler2D _SGT_LightingTex;
+	float3    _SGT_AmbientColor;
+
+	// Scattering
+	sampler2D _SGT_ScatteringTex;
+	float4    _SGT_ScatteringTerms;
+	float4    _SGT_ScatteringStrengths;
+
+	// Flow
+	samplerCUBE _SGT_FlowTex;
+	float       _SGT_FlowSpeed;
+	float       _SGT_FlowStrength;
+	float       _SGT_FlowNoiseTiling;
+END_CBUFFER
+
+BEGIN_CODE
+	float SGT_GetOutsideDistance(float3 ray, float3 rayD)
+	{
+		float B = dot(ray, rayD);
+		float C = dot(ray, ray) - 1.0f;
+		float D = B * B - C;
+		return max(-B - sqrt(max(D, 0.0f)), 0.0f);
+	}
+
+	float3 SGT_GetNear(float3 far)
+	{
+		float3 wcam = _WorldSpaceCameraPos;
+		float3 near = mul(_SGT_WorldToLocal, float4(wcam, 1.0f)).xyz;
+		float3 dir  = normalize(far - near);
+
+		return near + dir * SGT_GetOutsideDistance(near, dir);
+	}
+
+	float3x3 SGT_RotMat(float t)
+	{
+		float c = cos(t);
+		float s = sin(t);
+		return float3x3(c, 0, s, 0, 1, 0, -s, 0, c);
+	}
+
+	float4 SGT_GetColor(float3 p)
+	{
+		#if _SGT_FLOW
+			float4 flow  = texCUBE(_SGT_FlowTex, p) - 0.5f;
+			float  noise = tex3D(_SGT_NoiseTex, p * _SGT_FlowNoiseTiling).a;
+
+			float timeA = frac(_Time.x * _SGT_FlowSpeed + noise);
+			float timeB = frac(timeA + 0.5f);
+			float blend = abs(timeA * 2.0f - 1.0f);
+
+			float3 vecA = mul(SGT_RotMat(flow.x * timeA * _SGT_FlowStrength), p);
+			float3 vecB = mul(SGT_RotMat(flow.x * timeB * _SGT_FlowStrength), p);
+
+			return lerp(texCUBE(_SGT_MainTex, vecA), texCUBE(_SGT_MainTex, vecB), blend);
+		#else
+			return texCUBE(_SGT_MainTex, p);
+		#endif
+	}
+
+	void ModifyVertex(inout VertexData v, inout ExtraV2F e)
+	{
+		#if __SGT_MATRIX
+			float4 wpos = SGT_O2W(v.vertex);
+			float3 far  = mul(_SGT_WorldToLocal, wpos).xyz;
+			float3 near = SGT_GetNear(far);
+
+			v.texcoord0.x    = length(near - far);
+			v.texcoord1.xyz  = float3(-near.x, near.yz);
+			v.texcoord2.xyzw = mul(_SGT_LocalToWorld, float4(near, wpos.w));
+			v.texcoord3.xyz  = near;
+		#endif
+	}
+
+	void SurfaceFunction(inout Surface o, inout ShaderData d)
+	{
+		#if __SGT_OUTPUT
+			float  depth = tex2D(_SGT_DepthTex, d.texcoord0.xx).w; depth = saturate(depth + (1.0f - depth) * _SGT_Sky);
+			float4 main  = _SGT_Color * depth;
+			float3 wcam  = _WorldSpaceCameraPos;
+			float3 wnorm = normalize(d.texcoord3.xyz);
+
+			main.xyz *= SGT_GetColor(d.texcoord1.xyz).xyz * _SGT_Brightness;
+
+			float4 finalColor = main;
+
+			#if __SGT_LIGHTANDSHADOW
+				#if _SGT_LIGHTING
+					finalColor.rgb *= _SGT_AmbientColor;
+
+					float4 lighting   = 0.0f;
+					float4 scattering = 0.0f;
+
+					for (int i = 0; i < _SGT_LightCount; i++)
+					{
+						float theta = dot(wnorm, _SGT_LightDirection[i]) * 0.5f + 0.5f;
+
+						lighting += tex2D(_SGT_LightingTex, theta) * main * _SGT_LightColor[i];
+
+						#if _SGT_SCATTERING
+							float3 worldViewDir  = normalize(d.worldSpacePosition - wcam);
+							float3 worldLightDir = normalize(_SGT_LightPosition[i].xyz - wcam);
+							float  angle         = dot(worldViewDir, worldLightDir) * 0.5f + 0.5f;
+							float  phase         = SGT_ScatteringPhase(angle, _SGT_ScatteringTerms, _SGT_ScatteringStrengths);
+
+							scattering += tex2D(_SGT_ScatteringTex, theta) * _SGT_LightColor[i] * phase;
+						#endif
+					}
+
+					#if _SGT_SCATTERING
+						scattering *= 1.0f - finalColor.a; // Only scatter into semi-transparent areas
+						scattering *= main;
+						lighting.xyz += scattering.xyz;
+					#endif
+
+					finalColor += lighting * SGT_ShadowColor(d.texcoord2.xyz);
+					finalColor.a = saturate(finalColor.a);
+				#else
+					finalColor = SGT_ModifyUnlitOutput(finalColor);
+				#endif
+			#endif
+
+			SGT_OutputWithAlpha(o, finalColor);
+		#endif
+	}
+END_CODE

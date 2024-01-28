@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b2c61f3373ed5124188b3dd0c777e70f
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Shared/Examples/Materials/BackgroundBillboard6.mat
+  uploadId: 616447

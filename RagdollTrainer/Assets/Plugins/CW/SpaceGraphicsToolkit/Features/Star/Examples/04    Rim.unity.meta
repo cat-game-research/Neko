@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 44d399e589c067c40b42823b8b12fc9e
+timeCreated: 1477183420
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Star/Examples/04   
+    Rim.unity
+  uploadId: 616447

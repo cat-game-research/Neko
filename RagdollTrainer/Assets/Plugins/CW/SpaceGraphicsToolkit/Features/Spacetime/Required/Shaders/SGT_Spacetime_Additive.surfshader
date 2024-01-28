@@ -1,0 +1,21 @@
+﻿BEGIN_OPTIONS
+	Workflow "Unlit"
+	Alpha "Add"
+END_OPTIONS
+
+BEGIN_PASS("All")
+    Cull Off
+END_PASS
+
+BEGIN_CODE
+	void SurfaceFunction(inout Surface o, inout ShaderData d)
+	{
+		#if __SGT_SPACETIME
+			d.blackboard.finalColor.xyz *= d.blackboard.finalColor.w;
+
+			#if __SGT_OUTPUT
+				SGT_OutputWithoutAlpha(o, SGT_ModifyUnlitOutput(d.blackboard.finalColor));
+			#endif
+		#endif
+	}
+END_CODE

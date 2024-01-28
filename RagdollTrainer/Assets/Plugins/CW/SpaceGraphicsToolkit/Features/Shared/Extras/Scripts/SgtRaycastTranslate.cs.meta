@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: be7b2592e6382c141ab523c93673d6d3
+timeCreated: 1526027124
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Shared/Extras/Scripts/SgtRaycastTranslate.cs
+  uploadId: 616447

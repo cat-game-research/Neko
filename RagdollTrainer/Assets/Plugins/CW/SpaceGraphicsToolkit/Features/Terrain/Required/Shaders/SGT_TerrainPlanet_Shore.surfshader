@@ -1,0 +1,73 @@
+﻿BEGIN_OPTIONS
+	Stackable "False"
+END_OPTIONS
+
+BEGIN_PROPERTIES
+	[Header(SHORE)]
+	[Toggle(_SHORE_ON)] _HasShore("	Enabled", Float) = 0
+	[NoScaleOffset]_ShoreMask("	Mask (A)", 2D) = "white" {}
+	[NoScaleOffset]_ShoreAlbedo("	Albedo (RGB)", 2D) = "white" {}
+	[KeywordEnum(A , B, C)] _Shore_Detail ("	Detail", Float) = 0
+	_ShoreRange("	Range", Float) = 10.0
+	_ShoreNoiseTiling("	Noise Tiling", Float) = 100.0
+END_PROPERTIES
+
+BEGIN_DEFINES
+	#pragma shader_feature_local _SHORE_ON
+	#pragma shader_feature_local _SHORE_DETAIL_A _SHORE_DETAIL_B _SHORE_DETAIL_C
+END_DEFINES
+
+BEGIN_CBUFFER
+	float _ShoreRange;
+	float _ShoreHeight;
+	float _ShoreNoiseTiling;
+END_CBUFFER
+
+BEGIN_CODE
+	SAMPLER(sampler_ShoreMask);
+		TEXTURE2D(_ShoreMask);
+
+		TEXTURE2D(_ShoreAlbedo);
+
+	void SurfaceFunction(inout Surface o, inout ShaderData d)
+	{
+		#if __SGT_PLANET_BASE
+			#if _SHORE_ON
+				float shore = saturate((_ShoreHeight - d.texcoord3.x + _ShoreRange) / _ShoreRange);
+
+				// Mask
+				shore *= SAMPLE_TEXTURE2D(_ShoreMask, sampler_ShoreMask, d.texcoord0.xy).w;
+
+				// Noise
+				//shore *= sample_noise(d.texcoord0 * _ShoreNoiseTiling, d.extraV2F0.w).x;
+
+				#if _SHORE_DETAIL_A
+					float  max_height = _BakedDetailTilingA;
+					float  noise      = d.blackboard.noiseA;
+					float4 coords     = d.blackboard.coordsA;
+				#elif _SHORE_DETAIL_B
+					float  max_height = _BakedDetailTilingB;
+					float  noise      = d.blackboard.noiseB;
+					float4 coords     = d.blackboard.coordsB;
+				#elif _SHORE_DETAIL_C
+					float  max_height = _BakedDetailTilingC;
+					float  noise      = d.blackboard.noiseC;
+					float4 coords     = d.blackboard.coordsC;
+				#endif
+
+				coords     *= _ShoreNoiseTiling;
+				max_height *= _ShoreNoiseTiling;
+
+				//coords.x *= 2.0f;
+
+				float  polar      = d.extraV2F0.x;
+				float  cur_height = polar * max_height + noise;
+				float3 detail     = sample_spherical(TEXTURE2D_ARGS(_ShoreAlbedo, sampler_linear_repeat), coords, cur_height, max_height).xyz;
+
+				//float3 albedo = SAMPLE_TEXTURE2D(_ShoreAlbedo, sampler_ShoreAlbedo, coord);
+
+				o.Albedo = lerp(o.Albedo, detail, shore);
+			#endif
+		#endif
+	}
+END_CODE

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: a9f5c95e2ff141140b1f76004cdc7ce2
+timeCreated: 1528859534
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Thruster/Examples/Materials/Thruster.mat
+  uploadId: 616447

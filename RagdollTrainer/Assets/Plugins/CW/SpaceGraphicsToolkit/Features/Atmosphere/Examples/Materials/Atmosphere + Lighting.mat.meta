@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: bbd7144f043e44e4eb813916203e857a
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Atmosphere/Examples/Materials/Atmosphere
+    + Lighting.mat
+  uploadId: 616447

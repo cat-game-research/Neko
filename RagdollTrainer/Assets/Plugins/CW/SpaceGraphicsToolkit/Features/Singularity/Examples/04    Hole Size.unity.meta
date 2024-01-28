@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: b871fc9692c334d44829e0b185eb7e10
+timeCreated: 1477183420
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Singularity/Examples/04   
+    Hole Size.unity
+  uploadId: 616447

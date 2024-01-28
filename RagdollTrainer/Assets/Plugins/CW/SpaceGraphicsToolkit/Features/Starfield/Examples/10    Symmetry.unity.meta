@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 80653148d41549542b28e0672411c157
+timeCreated: 1477183420
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Starfield/Examples/10   
+    Symmetry.unity
+  uploadId: 616447

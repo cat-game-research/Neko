@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 32b2d4a51f5c29544b2b53a289b33574
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/Basic Pack/Materials/Earth
+    Sized Atmosphere.mat
+  uploadId: 616447

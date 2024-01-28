@@ -1,0 +1,78 @@
+﻿BEGIN_OPTIONS
+	GrabPass { "_Grab" }
+	Workflow "Unlit"
+	Alpha "Blend"
+END_OPTIONS
+
+BEGIN_PASS("All")
+	Cull Front
+END_PASS
+
+BEGIN_CBUFFER
+	float4 _SGT_WorldPosition; // Auto
+
+	float  _SGT_PinchPower; // Auto
+	float  _SGT_PinchScale; // Auto
+	float  _SGT_HoleSize; // Auto
+	float  _SGT_HolePower; // Auto
+	float4 _SGT_HoleColor; // Auto
+	float  _SGT_TintPower; // Auto
+	float4 _SGT_TintColor; // Auto
+	float  _SGT_FadePower; // Auto
+END_CBUFFER
+
+BEGIN_CODE
+	float4 SGT_ComputeScreenPosALL(float4 p)
+	{
+		#if _HDRP
+			return ComputeScreenPos(p, _ProjectionParams.x);
+		#else
+			return ComputeScreenPos(p);
+		#endif
+	}
+
+	void ModifyVertex(inout VertexData v, inout ExtraV2F e)
+	{
+		#if __SGT_MATRIX
+			float4 projPos = SGT_W2P(_SGT_WorldPosition);
+
+			e.extraV2F0 = SGT_ComputeScreenPosALL(projPos);
+		#endif
+	}
+
+	void SurfaceFunction(inout Surface o, ShaderData d)
+	{
+		float2 screen = d.screenUV;
+		float2 center = d.extraV2F0.xy / d.extraV2F0.w;
+		screen *= _ScreenParams.xy;
+		center *= _ScreenParams.xy;
+
+		float  edge  = pow(-d.tangentSpaceViewDir.z, -_SGT_PinchPower);
+		float2 delta = center - screen;
+
+		screen = screen + normalize(delta) * (length(delta) * _SGT_PinchScale / edge);
+		screen /= _ScreenParams.xy;
+
+		// Mirror edges
+		float2 relative = screen - 0.5f;
+		screen -= sign(relative) * max(0.0f, abs(relative) - 0.5f) * 2.0f;
+
+		/// Scene color
+		float3 finalAlbedo = GetSceneColor(screen);
+
+		// Hole color
+		float hole = saturate(pow(edge - _SGT_HoleSize, -_SGT_HolePower));
+		finalAlbedo = lerp(finalAlbedo, _SGT_HoleColor.xyz, hole * _SGT_HoleColor.a);
+
+		// Tint color
+		float tint = saturate(pow(edge - _SGT_HoleSize, -_SGT_TintPower));
+		finalAlbedo = lerp(finalAlbedo, finalAlbedo * _SGT_TintColor.xyz, tint * _SGT_TintColor.a);
+
+		// Fade edges
+		float finalAlpha = saturate(1.0f - pow(length(d.tangentSpaceViewDir.xy), _SGT_FadePower));
+
+		#if __SGT_OUTPUT
+			SGT_OutputWithAlpha(o, float4(finalAlbedo, finalAlpha));
+		#endif
+	}
+END_CODE

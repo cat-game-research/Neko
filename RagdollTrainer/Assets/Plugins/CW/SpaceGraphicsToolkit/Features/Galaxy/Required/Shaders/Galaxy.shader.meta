@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: bad8e8212c14bde4bb367681e26353ae
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _SGT_BaseTexture: {instanceID: 0}
+  - _SGT_StarsMask: {instanceID: 0}
+  - _SGT_StarsTexture: {instanceID: 0}
+  - _SGT_DustTexture: {instanceID: 0}
+  - _SGT_NearTex: {fileID: 2800000, guid: 8dc4cc7f1a12fbc45adb1892e4fc1dd5, type: 3}
+  nonModifiableTextures: []
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Galaxy/Required/Shaders/Galaxy.shader
+  uploadId: 616447

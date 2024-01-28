@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: d7ef8d80693c04945a3267cf2c5551d3
+timeCreated: 1477183420
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Lightning/Examples/01
+    Lightning Spawner.unity
+  uploadId: 616447

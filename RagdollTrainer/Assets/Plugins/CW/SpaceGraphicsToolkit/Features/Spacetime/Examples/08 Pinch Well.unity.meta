@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 4b34179eb6ab1bb439926dd494c10f67
+timeCreated: 1477183420
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Spacetime/Examples/08
+    Pinch Well.unity
+  uploadId: 616447

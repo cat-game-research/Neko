@@ -1,0 +1,181 @@
+BEGIN_OPTIONS
+	Workflow "Unlit"
+	Alpha "Add"
+END_OPTIONS
+
+BEGIN_PASS("Forward")
+	Cull Front
+END_PASS
+
+BEGIN_PROPERTIES
+	_SGT_Tint ("Tint", Color) = (1, 1, 1, 1)
+	_SGT_ColorShift("Color Shift", Range(0,6.2831853)) = 0
+	
+	[Header(RIM)]
+	_SGT_RimMin ("	Min", Float) = 3.0
+	_SGT_RimMax ("	Max", Float) = 3.0
+	
+	[Header(BASE)]
+	[NoScaleOffset] _SGT_BaseTexture ("	Texture", 2D) = "black" {}
+	_SGT_BaseScale ("	Scale", Range(0.1, 1.5)) = 1.0
+	_SGT_BaseBlend ("	Blend", Vector) = (0.1, 6.0, 0.0, 0.0)
+	
+	[Header(STARS)]
+	[Toggle(_SGT_STARS)] _HasStars ("	Enabled", Float) = 0
+	[NoScaleOffset] _SGT_StarsMask ("	Mask (A)", 2D) = "black" {}
+	[NoScaleOffset] _SGT_StarsTexture ("	Texture", 2D) = "gray" {}
+	_SGT_StarsTiling ("	Tiling", Float) = 5.0
+	_SGT_StarsBias ("	Bias", Float) = 1.0
+	_SGT_StarsStrength ("	Strength", Float) = 1.0
+	
+	[Header(DUST)]
+	[Toggle(_SGT_DUST)] _HasDust ("	Enabled", Float) = 0
+	[NoScaleOffset] _SGT_DustTexture ("	Texture (A)", 2D) = "gray" {}
+	_SGT_DustTiling ("	Tiling", Float) = 5.0
+	_SGT_DustScale ("	Scale", Float) = 2.0
+	_SGT_DustTwist ("	Twist", Float) = 2.0
+	_SGT_DustBias ("	Bias", Float) = 0.1
+	_SGT_DustAlphaOffset ("	Alpha Offset", Float) = 1.02
+	_SGT_DustAlphaPower ("	Alpha Power", Float) = 50
+	_SGT_DustColor ("	Color", Color) = (1, 0.8, 0.8, 1)
+	_SGT_DustColorPower ("	Color Power", Float) = 2.0
+	
+	[Header(NEAR FADE)]
+	[Toggle(_SGT_NEAR)] _SGT_Near ("	Enable", Float) = 0
+	_SGT_NearRangeRecip("	Near Range Recip", Float) = 1
+	[NoScaleOffset]_SGT_NearTex("	Near Tex (A)", 2D) = "white" {}
+END_PROPERTIES
+
+BEGIN_DEFINES
+	#pragma shader_feature_local _SGT_STARS
+	#pragma shader_feature_local _SGT_DUST
+	#pragma shader_feature_local _SGT_NEAR
+END_DEFINES
+
+BEGIN_CODE
+	float3 _SGT_Tint;
+	float  _SGT_ColorShift;
+	
+	sampler2D _SGT_BaseTexture;
+	float     _SGT_BaseScale;
+	float2    _SGT_BaseBlend;
+	
+	float _SGT_RimMin;
+	float _SGT_RimMax;
+	
+	// STARS
+	sampler2D _SGT_StarsMask;
+	sampler2D _SGT_StarsTexture;
+	float     _SGT_StarsTiling;
+	float     _SGT_StarsBias;
+	float     _SGT_StarsStrength;
+	
+	// DUST
+	sampler2D _SGT_DustTexture;
+	float     _SGT_DustTiling;
+	float     _SGT_DustScale;
+	float     _SGT_DustTwist;
+	float     _SGT_DustBias;
+	float     _SGT_DustAlphaOffset;
+	float     _SGT_DustAlphaPower;
+	float3    _SGT_DustColor;
+	float     _SGT_DustColorPower;
+	
+	// NEAR FADE
+	sampler2D _SGT_NearTex;
+	float     _SGT_NearRangeRecip;
+	
+	float3 ShiftColor(float3 color, float shift)
+	{
+		float3 m = float3(cos(shift), -sin(shift) * 0.57735f, 0.0f);
+		m = float3(m.xy, -m.y) + (1.0f - m.x) * 0.33333f;
+		return mul(float3x3(m, m.zxy, m.yzx), color);
+	}
+	
+	void ContributeNoise(inout float4 color, float2 pos)
+	{
+		float  d      = length(pos);
+		float2 det    = pos * _SGT_DustTiling / (d * 2);
+		float  z      = log(pow(d, _SGT_DustScale));
+		float  a      = atan2(pos.y, pos.x) / 6.2831853f;
+		float2 uv     = float2(z, a - z * _SGT_DustTwist) * _SGT_DustTiling;
+		float  detail = tex2Dgrad(_SGT_DustTexture, uv, ddx(det), ddy(det)).w;
+		
+		detail = pow(detail, _SGT_DustBias);
+		
+		// Alpha
+		float dustAlpha = pow(saturate(_SGT_DustAlphaOffset - d), _SGT_DustAlphaPower);
+		
+		detail = lerp(1.0f, detail, 1.0f - dustAlpha);
+		
+		// Color
+		float  dustBlend = pow(saturate(1.0f - d), _SGT_DustColorPower);
+		float3 dustColor = lerp(0.0f, _SGT_DustColor, dustBlend);
+		
+		color.xyz *= lerp(dustColor, 1.0f, detail);
+	}
+	
+	void ModifyVertex(inout VertexData v, inout ExtraV2F e)
+	{
+		#if __SGT_MATRIX
+			float4 wpos = SGT_O2W(v.vertex);
+			float3 wcam = _WorldSpaceCameraPos;
+
+			v.texcoord2.xyz = wpos.xyz - wcam;
+			
+			v.texcoord1.xyz = SGT_W2O(float4(wcam, 1.0f)).xyz;
+		#endif
+	}
+	
+	void SurfaceFunction(inout Surface o, ShaderData d)
+	{
+		float3 warp = normalize(d.localSpacePosition);
+		
+		float3 coords = (warp * _SGT_BaseScale) * 0.5f + 0.5f;
+		
+		float4 texX = 0.0f;
+		float4 texY = tex2D(_SGT_BaseTexture, coords.zx);
+		float4 texZ = 0.0f;
+		
+		#if _SGT_STARS
+			float mask  = tex2D(_SGT_StarsMask, coords.zx).w;
+			float stars = tex2D(_SGT_StarsTexture, coords.zx * _SGT_StarsTiling).w;
+			
+			texY.rgb += pow(stars, _SGT_StarsBias) * mask * _SGT_StarsStrength;
+		#endif
+		
+		float2 pos = coords.xz - 0.5f;
+		
+		#if _SGT_DUST
+			ContributeNoise(texY, pos);
+		#endif
+		
+		float3 weights = pow(saturate(abs(d.localSpaceNormal) - _SGT_BaseBlend.x), _SGT_BaseBlend.y);
+		
+		weights /= weights.x + weights.y + weights.z;
+		
+		float4 finalColor = texX * weights.x + texY * weights.y + texZ * weights.z;
+		
+		finalColor.rgb = ShiftColor(finalColor.rgb, _SGT_ColorShift);
+		
+		float3 refl = -d.worldSpaceViewDir;
+		float  rdot = saturate(dot(d.worldSpaceNormal, refl));
+		
+		float shape2 = saturate(dot(finalColor.rgb, float3(0.2126f, 0.7152f, 0.0722f)));
+		finalColor.rgb *= 1.0f - pow(1.0f - rdot, lerp(_SGT_RimMin, _SGT_RimMax, shape2));
+		
+		finalColor.rgb *= _SGT_Tint.rgb;
+		
+		#if _SGT_NEAR
+			float2 near01 = length(d.texcoord2.xyz) * _SGT_NearRangeRecip;
+			float  near = tex2D(_SGT_NearTex, near01).a;
+			finalColor *= near;
+		#endif
+		
+		#if __SGT_OUTPUT
+			SGT_OutputWithoutAlpha(o, SGT_ModifyUnlitOutput(finalColor));
+		#endif
+	}
+
+END_CODE
+

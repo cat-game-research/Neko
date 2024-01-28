@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: cb603c91dc5dfb24a9efae6b812e03e3
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Starfield/Examples/Materials/Starfield
+    Infinite + Near Fade + Far Fade.mat
+  uploadId: 616447

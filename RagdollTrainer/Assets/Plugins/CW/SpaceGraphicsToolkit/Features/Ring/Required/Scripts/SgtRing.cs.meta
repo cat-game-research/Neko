@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: fabe3b733557b474082f4aa8fe29b128
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - sourceMaterial: {fileID: 2100000, guid: b76bf7ead01cc724bbd8f97ddb087d6a, type: 2}
+  - mainTex: {instanceID: 0}
+  - foregroundModel: {instanceID: 0}
+  - backgroundModel: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Ring/Required/Scripts/SgtRing.cs
+  uploadId: 616447

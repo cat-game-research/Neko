@@ -1,0 +1,76 @@
+﻿BEGIN_OPTIONS
+	Stackable "False"
+	Alpha "Blend"
+END_OPTIONS
+
+BEGIN_PROPERTIES
+	[Header(SHORE)]
+	_ShoreFadeRange("	Fade Range", Float) = 10.0
+	[NoScaleOffset]_ShoreMask("	Mask (A)", 2D) = "white" {}
+
+	[Header(WAVES)]
+	[Toggle(_WAVES_ON)] _HasWaves("	Enabled", Float) = 0
+
+	[Space]
+
+	[KeywordEnum(Additive, Alpha)] _Waves ("	Blend", Float) = 0
+	[NoScaleOffset]_WavesTex("	Opacity", 2D) = "white" {}
+	_WavesColor("	Color", Color) = (1, 1, 1, 1)
+	_WavesRange("	Range", Float) = 5.0
+	_WavesInterval("	Interval", Float) = 10.0
+	_WavesSpeed("	Speed", Float) = 1.0
+	_WavesNoiseTiling("	Noise Tiling", Float) = 100.0
+END_PROPERTIES
+
+BEGIN_DEFINES
+	#pragma shader_feature_local _WAVES_ON
+	#pragma shader_feature_local _WAVES_ADDITIVE _WAVES_ALPHA
+END_DEFINES
+
+BEGIN_CBUFFER
+	float _ShoreFadeRange;
+
+	sampler2D _WavesTex;
+	float4    _WavesColor;
+	float     _WavesRange;
+	float     _WavesInterval;
+	float     _WavesSpeed;
+	float     _WavesNoiseTiling;
+END_CBUFFER
+
+BEGIN_CODE
+	TEXTURE2D(_ShoreMask);
+	SAMPLER(sampler_ShoreMask);
+
+	void SurfaceFunction(inout Surface o, inout ShaderData d)
+	{
+		#if __SGT_TERRAINOCEAN
+			float shore = saturate(d.texcoord3.x / _ShoreFadeRange);
+
+			o.Alpha *= saturate(shore * shore * (3.0 - 2.0f * shore));
+
+			#if _WAVES_ON
+				float waveTile = d.texcoord3.x / _WavesInterval + _WavesSpeed * _Time.x;
+				float waveOpac = 1.0f - saturate(d.texcoord3.x / _WavesRange);
+
+				float wave = tex2D(_WavesTex, float2(waveOpac, waveTile)).a;
+
+				wave *= waveOpac;
+
+				// Mask
+				wave *= SAMPLE_TEXTURE2D(_ShoreMask, sampler_ShoreMask, d.texcoord0.xy).w;
+
+				// Noise
+				wave *= sample_noise(d.texcoord0 * _WavesNoiseTiling, d.extraV2F0.w).x;
+				//wave *= sample_noise(d.texcoord1, d.extraV2F0.w);
+				//wave *= sample_noise(d.texcoord2, d.extraV2F0.w);
+
+				#if _WAVES_ADDITIVE
+					o.Albedo += wave * _WavesColor.w;
+				#elif _WAVES_ALPHA
+					o.Albedo = lerp(o.Albedo, _WavesColor.xyz, wave * _WavesColor.w);
+				#endif
+			#endif
+		#endif
+	}
+END_CODE

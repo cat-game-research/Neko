@@ -1,0 +1,2252 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!29 &1
+OcclusionCullingSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_OcclusionBakeSettings:
+    smallestOccluder: 5
+    smallestHole: 0.25
+    backfaceThreshold: 100
+  m_SceneGUID: 00000000000000000000000000000000
+  m_OcclusionCullingData: {fileID: 0}
+--- !u!104 &2
+RenderSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 9
+  m_Fog: 0
+  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_FogMode: 3
+  m_FogDensity: 0.01
+  m_LinearFogStart: 0
+  m_LinearFogEnd: 300
+  m_AmbientSkyColor: {r: 0, g: 0, b: 0, a: 1}
+  m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
+  m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
+  m_AmbientIntensity: 1
+  m_AmbientMode: 3
+  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
+  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_HaloStrength: 0.5
+  m_FlareStrength: 1
+  m_FlareFadeSpeed: 3
+  m_HaloTexture: {fileID: 0}
+  m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
+  m_DefaultReflectionMode: 0
+  m_DefaultReflectionResolution: 128
+  m_ReflectionBounces: 1
+  m_ReflectionIntensity: 0
+  m_CustomReflection: {fileID: 0}
+  m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 0}
+  m_UseRadianceAmbientProbe: 0
+--- !u!157 &3
+LightmapSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 11
+  m_GIWorkflowMode: 1
+  m_GISettings:
+    serializedVersion: 2
+    m_BounceScale: 1
+    m_IndirectOutputScale: 1
+    m_AlbedoBoost: 1
+    m_EnvironmentLightingMode: 0
+    m_EnableBakedLightmaps: 1
+    m_EnableRealtimeLightmaps: 1
+  m_LightmapEditorSettings:
+    serializedVersion: 12
+    m_Resolution: 2
+    m_BakeResolution: 40
+    m_AtlasSize: 1024
+    m_AO: 0
+    m_AOMaxDistance: 1
+    m_CompAOExponent: 1
+    m_CompAOExponentDirect: 0
+    m_ExtractAmbientOcclusion: 0
+    m_Padding: 2
+    m_LightmapParameters: {fileID: 0}
+    m_LightmapsBakeMode: 1
+    m_TextureCompression: 1
+    m_FinalGather: 0
+    m_FinalGatherFiltering: 1
+    m_FinalGatherRayCount: 256
+    m_ReflectionCompression: 2
+    m_MixedBakeMode: 1
+    m_BakeBackend: 0
+    m_PVRSampling: 1
+    m_PVRDirectSampleCount: 32
+    m_PVRSampleCount: 500
+    m_PVRBounces: 2
+    m_PVREnvironmentSampleCount: 500
+    m_PVREnvironmentReferencePointCount: 2048
+    m_PVRFilteringMode: 2
+    m_PVRDenoiserTypeDirect: 0
+    m_PVRDenoiserTypeIndirect: 0
+    m_PVRDenoiserTypeAO: 0
+    m_PVRFilterTypeDirect: 0
+    m_PVRFilterTypeIndirect: 0
+    m_PVRFilterTypeAO: 0
+    m_PVREnvironmentMIS: 0
+    m_PVRCulling: 1
+    m_PVRFilteringGaussRadiusDirect: 1
+    m_PVRFilteringGaussRadiusIndirect: 5
+    m_PVRFilteringGaussRadiusAO: 2
+    m_PVRFilteringAtrousPositionSigmaDirect: 0.5
+    m_PVRFilteringAtrousPositionSigmaIndirect: 2
+    m_PVRFilteringAtrousPositionSigmaAO: 1
+    m_ExportTrainingData: 0
+    m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
+  m_LightingDataAsset: {fileID: 0}
+  m_UseShadowmask: 0
+--- !u!196 &4
+NavMeshSettings:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_BuildSettings:
+    serializedVersion: 2
+    agentTypeID: 0
+    agentRadius: 0.5
+    agentHeight: 2
+    agentSlope: 45
+    agentClimb: 0.4
+    ledgeDropHeight: 0
+    maxJumpAcrossDistance: 0
+    minRegionArea: 2
+    manualCellSize: 0
+    cellSize: 0.16666667
+    manualTileSize: 0
+    tileSize: 256
+    accuratePlacement: 0
+    debug:
+      m_Flags: 0
+  m_NavMeshData: {fileID: 0}
+--- !u!1 &473908203
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 473908204}
+  - component: {fileID: 473908205}
+  m_Layer: 0
+  m_Name: Starfield Box
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &473908204
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 473908203}
+  m_LocalRotation: {x: 0.2854945, y: 0.3639536, z: -0.11825568, w: 0.8786617}
+  m_LocalPosition: {x: 0, y: 200, z: 2444}
+  m_LocalScale: {x: 1000, y: 1000, z: 1000.00024}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &473908205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 473908203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fa5690a6093585489994b17e09be910, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sourceMaterial: {fileID: 2100000, guid: 1be6c89abc6403d4f985ef806db3428b, type: 2}
+  color: {r: 1, g: 1, b: 1, a: 1}
+  brightness: 1
+  mainTex: {fileID: 2800000, guid: 21e254ab4724da1429576c9e045ce231, type: 3}
+  atlas:
+    layout: 0
+    layoutColumns: 1
+    layoutRows: 1
+    layoutRects: []
+  clampSizeMin: 0
+  softness: 0
+  soft: 0
+  stretch: 0
+  stretchVector: {x: 0, y: 0, z: 0}
+  stretchScale: 1
+  stretchLimit: 10000
+  model: {fileID: 0}
+  seed: -672818649
+  extents: {x: 1, y: 1, z: 1}
+  offset: 0
+  starCount: 200
+  starColors:
+    serializedVersion: 2
+    key0: {r: 1, g: 0.39215687, b: 0.39215687, a: 1}
+    key1: {r: 0.39215687, g: 1, b: 0.39215687, a: 1}
+    key2: {r: 0.39215687, g: 0.39215687, b: 1, a: 0}
+    key3: {r: 1, g: 1, b: 0, a: 0}
+    key4: {r: 0.39215687, g: 1, b: 1, a: 0}
+    key5: {r: 1, g: 0.39215687, b: 1, a: 0}
+    key6: {r: 1, g: 1, b: 1, a: 0}
+    key7: {r: 0.36078432, g: 0.36078432, b: 0.36078432, a: 0}
+    ctime0: 0
+    ctime1: 7710
+    ctime2: 15227
+    ctime3: 24479
+    ctime4: 31611
+    ctime5: 39707
+    ctime6: 51272
+    ctime7: 65535
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 8
+    m_NumAlphaKeys: 2
+  starRadiusMin: 0.05
+  starRadiusMax: 0.05
+  starRadiusBias: 1
+  starPulseMax: 1
+--- !u!1 &644321574
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 644321578}
+  - component: {fileID: 644321577}
+  - component: {fileID: 644321576}
+  - component: {fileID: 644321575}
+  m_Layer: 0
+  m_Name: SgtStarfieldModel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &644321575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 644321574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 611df3cc591e511469579a189f64f2e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent: {fileID: 1743740711}
+  cachedMeshFilter: {fileID: 644321577}
+  cachedMeshRenderer: {fileID: 644321576}
+--- !u!23 &644321576
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 644321574}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &644321577
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 644321574}
+  m_Mesh: {fileID: 0}
+--- !u!4 &644321578
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 644321574}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1743740712}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1111901649
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1111901660}
+  - component: {fileID: 1111901659}
+  - component: {fileID: 1111901656}
+  - component: {fileID: 1111901655}
+  - component: {fileID: 1111901654}
+  - component: {fileID: 1111901653}
+  m_Layer: 0
+  m_Name: Main Camera
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1111901653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111901649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4b10b371ec680446a133d018740b57e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listen: 1
+  damping: 10
+  target: {fileID: 0}
+  targetRotation: 0
+  targetDamping: 1
+  speedMin: 1
+  speedMax: 1
+  speedRange: 100
+  speedWheel: 0.1
+  horizontalControls:
+    FingerCount: 2
+    FingerInvert: 1
+    FingerGesture: 0
+    FingerSensitivity: 1
+    KeyNegative: 97
+    KeyPositive: 100
+    KeyNegativeAlt: 276
+    KeyPositiveAlt: 275
+    KeySensitivity: 100
+  depthControls:
+    FingerCount: 2
+    FingerInvert: 1
+    FingerGesture: 0
+    FingerSensitivity: 1
+    KeyNegative: 115
+    KeyPositive: 119
+    KeyNegativeAlt: 274
+    KeyPositiveAlt: 273
+    KeySensitivity: 100
+  verticalControls:
+    FingerCount: 3
+    FingerInvert: 1
+    FingerGesture: 0
+    FingerSensitivity: 1
+    KeyNegative: 102
+    KeyPositive: 114
+    KeyNegativeAlt: 0
+    KeyPositiveAlt: 0
+    KeySensitivity: 100
+--- !u!114 &1111901654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111901649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f6d5316b170fe34e886c05572b3006e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listen: 1
+  damping: 10
+  sensitivity: 1
+  pitchControls:
+    FingerCount: 1
+    FingerInvert: 1
+    FingerGesture: 1
+    FingerSensitivity: -0.1
+    KeyNegative: 0
+    KeyPositive: 0
+    KeyNegativeAlt: 0
+    KeyPositiveAlt: 0
+    KeySensitivity: 45
+  yawControls:
+    FingerCount: 1
+    FingerInvert: 1
+    FingerGesture: 0
+    FingerSensitivity: 0.1
+    KeyNegative: 0
+    KeyPositive: 0
+    KeyNegativeAlt: 0
+    KeyPositiveAlt: 0
+    KeySensitivity: 45
+  rollControls:
+    FingerCount: 2
+    FingerInvert: 1
+    FingerGesture: 2
+    FingerSensitivity: -75
+    KeyNegative: 101
+    KeyPositive: 113
+    KeyNegativeAlt: 0
+    KeyPositiveAlt: 0
+    KeySensitivity: 45
+--- !u!114 &1111901655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111901649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 087722501b66af446ace1a9e53e5c05f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rollAngle: 0
+  rollQuaternion: {x: 0, y: 0, z: 0, w: 1}
+  rollMatrix:
+    e00: 1
+    e01: 0
+    e02: 0
+    e03: 0
+    e10: 0
+    e11: 1
+    e12: 0
+    e13: 0
+    e20: 0
+    e21: 0
+    e22: 1
+    e23: 0
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 1
+--- !u!81 &1111901656
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111901649}
+  m_Enabled: 1
+--- !u!20 &1111901659
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111901649}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.1
+  far clip plane: 100000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!4 &1111901660
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111901649}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1743740710
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1743740712}
+  - component: {fileID: 1743740711}
+  m_Layer: 0
+  m_Name: Starfield Box (Editable Copy)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1743740711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1743740710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b826ef84503a084e84eb953360da66c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sourceMaterial: {fileID: 2100000, guid: 1be6c89abc6403d4f985ef806db3428b, type: 2}
+  color: {r: 1, g: 1, b: 1, a: 1}
+  brightness: 1
+  mainTex: {fileID: 2800000, guid: 21e254ab4724da1429576c9e045ce231, type: 3}
+  atlas:
+    layout: 0
+    layoutColumns: 1
+    layoutRows: 1
+    layoutRects:
+    - serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+  clampSizeMin: 0
+  softness: 0
+  soft: 0
+  stretch: 0
+  stretchVector: {x: 0, y: 0, z: 0}
+  stretchScale: 1
+  stretchLimit: 10000
+  model: {fileID: 644321575}
+  stars:
+  - Variant: 1282087405
+    Color: {r: 1, g: 0.94085443, b: 1, a: 1}
+    Radius: 0.01
+    Angle: -159.02286
+    Position: {x: -0.38, y: 0.64, z: 0.64}
+    PulseSpeed: 0.020021321
+    PulseRange: 0.5647754
+    PulseOffset: 0.9018655
+  - Variant: -939311235
+    Color: {r: 0.98326844, g: 0.98326844, b: 0.98326844, a: 1}
+    Radius: 0.01
+    Angle: 150.21768
+    Position: {x: 0.66, y: -0.21, z: -0.26691067}
+    PulseSpeed: 0.62527245
+    PulseRange: 0.2789022
+    PulseOffset: 0.0715921
+  - Variant: -2080446815
+    Color: {r: 0.48922175, g: 1, b: 0.8403126, a: 1}
+    Radius: 0.01
+    Angle: -169.50354
+    Position: {x: -0.14, y: 0.34, z: 0.44}
+    PulseSpeed: 0.16537036
+    PulseRange: 0.52665406
+    PulseOffset: 0.2332851
+  - Variant: -1997172756
+    Color: {r: 0.6235018, g: 0.6235018, b: 0.6235018, a: 1}
+    Radius: 0.01
+    Angle: -23.261642
+    Position: {x: 0.46, y: -0.05, z: -0.02}
+    PulseSpeed: 0.08141912
+    PulseRange: 0.79870534
+    PulseOffset: 0.37235203
+  - Variant: -1119580563
+    Color: {r: 1, g: 0.99377096, b: 1, a: 1}
+    Radius: 0.01
+    Angle: -61.82567
+    Position: {x: -0.09, y: 0.31, z: 0.44828793}
+    PulseSpeed: 0.8038002
+    PulseRange: 0.9626317
+    PulseOffset: 0.025644306
+  - Variant: -211591427
+    Color: {r: 0.82697153, g: 0.5651853, b: 1, a: 1}
+    Radius: 0.01
+    Angle: 27.531326
+    Position: {x: -0.04, y: 0.31, z: 0.4563646}
+    PulseSpeed: 0.44869465
+    PulseRange: 0.58630997
+    PulseOffset: 0.03334785
+  - Variant: -1510123392
+    Color: {r: 0.6288005, g: 0.7633563, b: 1, a: 1}
+    Radius: 0.01
+    Angle: 135.76474
+    Position: {x: 0.08, y: 0.25, z: 0.36400625}
+    PulseSpeed: 0.5159263
+    PulseRange: 0.9518087
+    PulseOffset: 0.39659017
+  - Variant: 1256337098
+    Color: {r: 0.46919417, g: 0.46919417, b: 0.46919417, a: 1}
+    Radius: 0.05
+    Angle: 66.44574
+    Position: {x: -0.6336899, y: -0.21720588, z: -0.6201224}
+    PulseSpeed: 0.81472695
+    PulseRange: 0.810153
+    PulseOffset: 0.28905395
+  - Variant: -522089720
+    Color: {r: 0.8106535, g: 0.8106535, b: 0.8106535, a: 1}
+    Radius: 0.05
+    Angle: 84.53314
+    Position: {x: 0.15977132, y: 0.9488895, z: 0.37123272}
+    PulseSpeed: 0.48441726
+    PulseRange: 0.91030276
+    PulseOffset: 0.38608545
+  - Variant: 748395296
+    Color: {r: 0.39215687, g: 0.72590435, b: 0.6662525, a: 1}
+    Radius: 0.05
+    Angle: 173.50696
+    Position: {x: 0.2595913, y: 0.84571695, z: 0.76617193}
+    PulseSpeed: 0.31664112
+    PulseRange: 0.37939554
+    PulseOffset: 0.7674588
+  - Variant: 1513442675
+    Color: {r: 0.39215687, g: 0.8227174, b: 0.5694395, a: 1}
+    Radius: 0.05
+    Angle: 92.88378
+    Position: {x: -0.559357, y: 0.006058097, z: -0.22591436}
+    PulseSpeed: 0.8765261
+    PulseRange: 0.37855226
+    PulseOffset: 0.21999446
+  - Variant: -1731085571
+    Color: {r: 0.9808598, g: 0.41129702, b: 0.39215687, a: 1}
+    Radius: 0.05
+    Angle: 71.265686
+    Position: {x: 0.8511156, y: 0.8264413, z: -0.4035734}
+    PulseSpeed: 0.6444432
+    PulseRange: 0.4208992
+    PulseOffset: 0.45475227
+  - Variant: 1368391145
+    Color: {r: 0.39215687, g: 0.6947412, b: 0.6974157, a: 1}
+    Radius: 0.05
+    Angle: -51.560318
+    Position: {x: 0.8036592, y: 0.8456923, z: -0.7405927}
+    PulseSpeed: 0.15825011
+    PulseRange: 0.22312215
+    PulseOffset: 0.6402336
+  - Variant: 1438146801
+    Color: {r: 0.9717169, g: 0.9717169, b: 0.046530247, a: 1}
+    Radius: 0.05
+    Angle: 173.45108
+    Position: {x: -0.8507563, y: -0.029079795, z: 0.68592405}
+    PulseSpeed: 0.39783412
+    PulseRange: 0.33593944
+    PulseOffset: 0.54004544
+  - Variant: -1554801497
+    Color: {r: 0.5737229, g: 1, b: 0.70129454, a: 1}
+    Radius: 0.05
+    Angle: -110.93188
+    Position: {x: 0.63773906, y: -0.711962, z: 0.7468021}
+    PulseSpeed: 0.3451518
+    PulseRange: 0.8627087
+    PulseOffset: 0.58460563
+  - Variant: -1409091846
+    Color: {r: 0.52655125, g: 0.8656056, b: 0.39215687, a: 1}
+    Radius: 0.05
+    Angle: -23.689255
+    Position: {x: -0.74715257, y: -0.19645059, z: -0.37230027}
+    PulseSpeed: 0.65027577
+    PulseRange: 0.5537179
+    PulseOffset: 0.15837361
+  - Variant: 602092212
+    Color: {r: 1, g: 0.46158034, b: 1, a: 1}
+    Radius: 0.05
+    Angle: -160.29065
+    Position: {x: 0.9934237, y: 0.17037451, z: 0.8677975}
+    PulseSpeed: 0.16084577
+    PulseRange: 0.40715545
+    PulseOffset: 0.18767479
+  - Variant: 4180114
+    Color: {r: 0.8664937, g: 0.52566314, b: 0.39215687, a: 1}
+    Radius: 0.05
+    Angle: 70.00415
+    Position: {x: -0.6782279, y: 0.6815896, z: -0.07009947}
+    PulseSpeed: 0.39648873
+    PulseRange: 0.26705733
+    PulseOffset: 0.12473978
+  - Variant: 1431317156
+    Color: {r: 1, g: 0.44939882, b: 1, a: 1}
+    Radius: 0.05
+    Angle: 55.82037
+    Position: {x: -0.01206696, y: -0.89405394, z: -0.16708267}
+    PulseSpeed: 0.35794607
+    PulseRange: 0.9785005
+    PulseOffset: 0.7069413
+  - Variant: 1279121895
+    Color: {r: 0.7300453, g: 1, b: 0.44411904, a: 1}
+    Radius: 0.05
+    Angle: 49.370193
+    Position: {x: 0.30365068, y: 0.6561084, z: 0.69998956}
+    PulseSpeed: 0.10413791
+    PulseRange: 0.98742163
+    PulseOffset: 0.4426071
+  - Variant: 1927512041
+    Color: {r: 0.44610572, g: 0.44610572, b: 0.44610572, a: 1}
+    Radius: 0.05
+    Angle: -61.181854
+    Position: {x: -0.9248047, y: -0.5587015, z: -0.09357655}
+    PulseSpeed: 0.20443693
+    PulseRange: 0.257072
+    PulseOffset: 0.111083046
+  - Variant: -571953528
+    Color: {r: 1, g: 0.81268954, b: 1, a: 1}
+    Radius: 0.05
+    Angle: 0.14442444
+    Position: {x: 0.82490265, y: 0.64176536, z: 0.9781208}
+    PulseSpeed: 0.61021155
+    PulseRange: 0.46551841
+    PulseOffset: 0.594991
+  - Variant: -6877745
+    Color: {r: 0.79688907, g: 0.79688907, b: 0.3341503, a: 1}
+    Radius: 0.05
+    Angle: 147.15353
+    Position: {x: 0.2547619, y: -0.34273422, z: 0.44736534}
+    PulseSpeed: 0.24934867
+    PulseRange: 0.41586798
+    PulseOffset: 0.46458012
+  - Variant: -1840340353
+    Color: {r: 1, g: 0.98897433, b: 1, a: 1}
+    Radius: 0.05
+    Angle: 103.83578
+    Position: {x: -0.2690364, y: 0.98232555, z: 0.8955338}
+    PulseSpeed: 0.62415665
+    PulseRange: 0.25817934
+    PulseOffset: 0.69258744
+  - Variant: 1077471381
+    Color: {r: 0.4180861, g: 0.4180861, b: 0.9573422, a: 1}
+    Radius: 0.05
+    Angle: 33.674103
+    Position: {x: 0.37853307, y: -0.032848477, z: 0.7428186}
+    PulseSpeed: 0.9536444
+    PulseRange: 0.61905235
+    PulseOffset: 0.87189496
+  - Variant: -1243657858
+    Color: {r: 0.49321735, g: 0.49321735, b: 0.49321735, a: 1}
+    Radius: 0.05
+    Angle: 171.34576
+    Position: {x: -0.841794, y: -0.58328956, z: 0.66319966}
+    PulseSpeed: 0.39881557
+    PulseRange: 0.6891858
+    PulseOffset: 0.034190778
+  - Variant: -2018850192
+    Color: {r: 0.754503, g: 0.754503, b: 0.754503, a: 1}
+    Radius: 0.05
+    Angle: 38.75528
+    Position: {x: 0.2284329, y: -0.12797272, z: -0.70371246}
+    PulseSpeed: 0.10016562
+    PulseRange: 0.20753339
+    PulseOffset: 0.27213338
+  - Variant: 1539551236
+    Color: {r: 1, g: 0.9676652, b: 1, a: 1}
+    Radius: 0.05
+    Angle: -143.62793
+    Position: {x: 0.5730896, y: 0.1294111, z: -0.47632015}
+    PulseSpeed: 0.8395424
+    PulseRange: 0.9284762
+    PulseOffset: 0.07589758
+  - Variant: 899708970
+    Color: {r: 0.39215687, g: 0.85848016, b: 0.5336767, a: 1}
+    Radius: 0.05
+    Angle: -6.904373
+    Position: {x: 0.048677564, y: -0.43946618, z: 0.30599448}
+    PulseSpeed: 0.9456457
+    PulseRange: 0.16535677
+    PulseOffset: 0.22884622
+  - Variant: 563410674
+    Color: {r: 0.39215687, g: 0.7574061, b: 0.6347507, a: 1}
+    Radius: 0.05
+    Angle: 57.613796
+    Position: {x: -0.11324513, y: -0.37142408, z: 0.14122188}
+    PulseSpeed: 0.47343463
+    PulseRange: 0.115405574
+    PulseOffset: 0.76184964
+  - Variant: 677269609
+    Color: {r: 0.39215687, g: 0.7188701, b: 0.6732868, a: 1}
+    Radius: 0.05
+    Angle: -121.31305
+    Position: {x: -0.6864716, y: 0.6516869, z: -0.41925633}
+    PulseSpeed: 0.70837384
+    PulseRange: 0.85060537
+    PulseOffset: 0.16676582
+  - Variant: -933403620
+    Color: {r: 0.39215687, g: 0.5507873, b: 0.84136957, a: 1}
+    Radius: 0.05
+    Angle: -89.587524
+    Position: {x: 0.84535336, y: -0.5374396, z: -0.5028685}
+    PulseSpeed: 0.38974422
+    PulseRange: 0.008816601
+    PulseOffset: 0.4958685
+  - Variant: 1629640622
+    Color: {r: 0.41669157, g: 0.41669157, b: 0.95963645, a: 1}
+    Radius: 0.05
+    Angle: 92.856476
+    Position: {x: -0.3369311, y: -0.5163963, z: -0.8609879}
+    PulseSpeed: 0.56840664
+    PulseRange: 0.89299464
+    PulseOffset: 0.9244783
+  - Variant: 1371419176
+    Color: {r: 0.4647826, g: 0.4647826, b: 0.4647826, a: 1}
+    Radius: 0.05
+    Angle: -96.466064
+    Position: {x: -0.25338322, y: 0.15550244, z: 0.015790582}
+    PulseSpeed: 0.39101368
+    PulseRange: 0.8519912
+    PulseOffset: 0.17311276
+  - Variant: -725528443
+    Color: {r: 0.61581737, g: 0.77633953, b: 1, a: 1}
+    Radius: 0.05
+    Angle: -127.57479
+    Position: {x: -0.94571424, y: -0.31346554, z: -0.365049}
+    PulseSpeed: 0.62758964
+    PulseRange: 0.9255948
+    PulseOffset: 0.69556946
+  - Variant: -885980757
+    Color: {r: 0.76825184, g: 0.76825184, b: 0.76825184, a: 1}
+    Radius: 0.05
+    Angle: 132.0888
+    Position: {x: -0.9735737, y: 0.7507229, z: -0.6727283}
+    PulseSpeed: 0.68655604
+    PulseRange: 0.86303484
+    PulseOffset: 0.15857078
+  - Variant: -600130764
+    Color: {r: 0.580868, g: 1, b: 0.6895397, a: 1}
+    Radius: 0.05
+    Angle: -0.32043457
+    Position: {x: 0.53273535, y: 0.31646678, z: 0.19055748}
+    PulseSpeed: 0.8323715
+    PulseRange: 0.3351895
+    PulseOffset: 0.59935766
+  - Variant: -235351712
+    Color: {r: 1, g: 0.42739245, b: 1, a: 1}
+    Radius: 0.05
+    Angle: -66.81595
+    Position: {x: -0.040389776, y: -0.855705, z: 0.33888575}
+    PulseSpeed: 0.7040475
+    PulseRange: 0.15167703
+    PulseOffset: 0.77261007
+  - Variant: 492474168
+    Color: {r: 0.80785036, g: 0.80785036, b: 0.31611723, a: 1}
+    Radius: 0.05
+    Angle: -33.32173
+    Position: {x: -0.24332893, y: 0.98109365, z: -0.62609863}
+    PulseSpeed: 0.2672569
+    PulseRange: 0.26321152
+    PulseOffset: 0.4600008
+  - Variant: 1148101140
+    Color: {r: 0.8264149, g: 0.56574196, b: 0.39215687, a: 1}
+    Radius: 0.05
+    Angle: 3.8697815
+    Position: {x: -0.17311203, y: 0.78382075, z: 0.9089377}
+    PulseSpeed: 0.711487
+    PulseRange: 0.89039075
+    PulseOffset: 0.8153378
+  - Variant: -1662844294
+    Color: {r: 0.87778634, g: 0.87778634, b: 0.87778634, a: 1}
+    Radius: 0.05
+    Angle: 123.920105
+    Position: {x: 0.19824421, y: 0.99941516, z: -0.26987445}
+    PulseSpeed: 0.9202608
+    PulseRange: 0.81059635
+    PulseOffset: 0.730038
+  - Variant: -130188073
+    Color: {r: 0.39215687, g: 0.78823763, b: 0.60391927, a: 1}
+    Radius: 0.05
+    Angle: 152.04434
+    Position: {x: -0.13531435, y: 0.923074, z: 0.29441327}
+    PulseSpeed: 0.19892624
+    PulseRange: 0.5147291
+    PulseOffset: 0.5882333
+  - Variant: 1852886725
+    Color: {r: 0.6398579, g: 0.6398579, b: 0.6398579, a: 1}
+    Radius: 0.05
+    Angle: 79.93927
+    Position: {x: 0.0857625, y: -0.5078826, z: -0.016868472}
+    PulseSpeed: 0.2968823
+    PulseRange: 0.6045999
+    PulseOffset: 0.30648687
+  - Variant: -564496226
+    Color: {r: 0.6555238, g: 0.6555238, b: 0.56671894, a: 1}
+    Radius: 0.05
+    Angle: -19.539719
+    Position: {x: 0.92068076, y: -0.313331, z: -0.9705045}
+    PulseSpeed: 0.7097973
+    PulseRange: 0.67089874
+    PulseOffset: 0.61125296
+  - Variant: 1052056469
+    Color: {r: 0.87504655, g: 0.87504655, b: 0.87504655, a: 1}
+    Radius: 0.05
+    Angle: -46.41519
+    Position: {x: 0.7502217, y: -0.45080888, z: -0.82360566}
+    PulseSpeed: 0.85412884
+    PulseRange: 0.3697467
+    PulseOffset: 0.34778598
+  - Variant: -1536796486
+    Color: {r: 1, g: 0.53566, b: 1, a: 1}
+    Radius: 0.05
+    Angle: -67.51465
+    Position: {x: 0.46970516, y: 0.12844336, z: 0.44083878}
+    PulseSpeed: 0.8273705
+    PulseRange: 0.8528801
+    PulseOffset: 0.34022477
+  - Variant: -1951586294
+    Color: {r: 0.5645165, g: 1, b: 0.7164406, a: 1}
+    Radius: 0.05
+    Angle: -31.296768
+    Position: {x: 0.59762055, y: 0.19602072, z: -0.79014325}
+    PulseSpeed: 0.5192489
+    PulseRange: 0.5368338
+    PulseOffset: 0.43936127
+  - Variant: 1845646230
+    Color: {r: 1, g: 0.92408097, b: 1, a: 1}
+    Radius: 0.05
+    Angle: -178.2873
+    Position: {x: 0.15207255, y: 0.56595397, z: 0.12734652}
+    PulseSpeed: 0.23109904
+    PulseRange: 0.22673419
+    PulseOffset: 0.3414499
+  - Variant: -682144444
+    Color: {r: 0.6833391, g: 0.7088177, b: 0.39215687, a: 1}
+    Radius: 0.05
+    Angle: 162.33496
+    Position: {x: -0.8329625, y: -0.64639544, z: 0.3217158}
+    PulseSpeed: 0.4106266
+    PulseRange: 0.6726399
+    PulseOffset: 0.87530816
+  - Variant: -201212052
+    Color: {r: 1, g: 0.5019905, b: 1, a: 1}
+    Radius: 0.05
+    Angle: 23.654877
+    Position: {x: 0.7870064, y: 0.12756705, z: 0.114019275}
+    PulseSpeed: 0.82159793
+    PulseRange: 0.4119287
+    PulseOffset: 0.8470813
+  - Variant: -442162483
+    Color: {r: 0.97050333, g: 0.97050333, b: 0.97050333, a: 1}
+    Radius: 0.05
+    Angle: -9.70816
+    Position: {x: 0.58773565, y: -0.6060297, z: -0.6261959}
+    PulseSpeed: 0.76710415
+    PulseRange: 0.47331327
+    PulseOffset: 0.8610022
+  - Variant: -905609230
+    Color: {r: 0.9584559, g: 0.9584559, b: 0.9584559, a: 1}
+    Radius: 0.05
+    Angle: 150.03427
+    Position: {x: -0.3568095, y: 0.69573045, z: -0.9801166}
+    PulseSpeed: 0.3803609
+    PulseRange: 0.13852312
+    PulseOffset: 0.40745538
+  - Variant: -2140813705
+    Color: {r: 0.39215687, g: 0.449237, b: 0.94291985, a: 1}
+    Radius: 0.05
+    Angle: -179.48346
+    Position: {x: 0.5890422, y: 0.4054945, z: -0.7992389}
+    PulseSpeed: 0.86745024
+    PulseRange: 0.061704285
+    PulseOffset: 0.10254754
+  - Variant: -640890490
+    Color: {r: 0.85232395, g: 0.5398329, b: 0.39215687, a: 1}
+    Radius: 0.05
+    Angle: 165.156
+    Position: {x: -0.5525565, y: 0.21148074, z: 0.5733618}
+    PulseSpeed: 0.25336233
+    PulseRange: 0.45410508
+    PulseOffset: 0.32801357
+  - Variant: 929748504
+    Color: {r: 1, g: 0.5573288, b: 1, a: 1}
+    Radius: 0.05
+    Angle: -30.228088
+    Position: {x: -0.6738297, y: -0.21249998, z: -0.68743277}
+    PulseSpeed: 0.8636738
+    PulseRange: 0.88575876
+    PulseOffset: 0.5196368
+  - Variant: -1826373037
+    Color: {r: 0.49598706, g: 0.8961698, b: 0.39215687, a: 1}
+    Radius: 0.05
+    Angle: 167.73611
+    Position: {x: 0.09562886, y: 0.01273942, z: 0.09806955}
+    PulseSpeed: 0.04109085
+    PulseRange: 0.43869406
+    PulseOffset: 0.15068258
+  - Variant: 1004113017
+    Color: {r: 0.39215687, g: 0.74324346, b: 0.64891344, a: 1}
+    Radius: 0.05
+    Angle: 170.17914
+    Position: {x: -0.32265437, y: -0.020347834, z: 0.58533406}
+    PulseSpeed: 0.5615024
+    PulseRange: 0.613406
+    PulseOffset: 0.10945405
+  - Variant: 892940588
+    Color: {r: 1, g: 0.4968307, b: 1, a: 1}
+    Radius: 0.05
+    Angle: 176.7041
+    Position: {x: -0.122816205, y: 0.686172, z: 0.31947988}
+    PulseSpeed: 0.59127206
+    PulseRange: 0.6075837
+    PulseOffset: 0.5298951
+  - Variant: 1262975607
+    Color: {r: 1, g: 0.54328924, b: 1, a: 1}
+    Radius: 0.05
+    Angle: -110.53125
+    Position: {x: -0.6580961, y: 0.3074432, z: -0.48225486}
+    PulseSpeed: 0.49341673
+    PulseRange: 0.024271611
+    PulseOffset: 0.74892575
+  - Variant: 1034061018
+    Color: {r: 1, g: 0.5180269, b: 1, a: 1}
+    Radius: 0.05
+    Angle: 68.047554
+    Position: {x: -0.78191555, y: -0.7178745, z: -0.33774865}
+    PulseSpeed: 0.1861396
+    PulseRange: 0.07853354
+    PulseOffset: 0.15086831
+  - Variant: -1772753705
+    Color: {r: 0.41957915, g: 1, b: 0.9548859, a: 1}
+    Radius: 0.05
+    Angle: -118.695526
+    Position: {x: -0.58675265, y: 0.122739315, z: -0.5624621}
+    PulseSpeed: 0.10853566
+    PulseRange: 0.75284433
+    PulseOffset: 0.5789105
+  - Variant: -1556593312
+    Color: {r: 1, g: 0.86390525, b: 1, a: 1}
+    Radius: 0.05
+    Angle: 4.438202
+    Position: {x: 0.43548152, y: 0.31049627, z: -0.44485867}
+    PulseSpeed: 0.6851147
+    PulseRange: 0.5951925
+    PulseOffset: 0.60732955
+  - Variant: 1184852644
+    Color: {r: 0.5110716, g: 1, b: 0.804366, a: 1}
+    Radius: 0.05
+    Angle: 57.733746
+    Position: {x: 0.8646368, y: -0.18307364, z: -0.34453785}
+    PulseSpeed: 0.88014126
+    PulseRange: 0.72581595
+    PulseOffset: 0.32419196
+  - Variant: -1451863282
+    Color: {r: 1, g: 0.7939123, b: 1, a: 1}
+    Radius: 0.05
+    Angle: -131.77203
+    Position: {x: -0.54545236, y: 0.43549487, z: -0.21874309}
+    PulseSpeed: 0.22233
+    PulseRange: 0.21106508
+    PulseOffset: 0.80864024
+  - Variant: -1242090584
+    Color: {r: 1, g: 0.85151184, b: 1, a: 1}
+    Radius: 0.05
+    Angle: -143.20978
+    Position: {x: 0.9540719, y: 0.13191283, z: -0.37156332}
+    PulseSpeed: 0.74134475
+    PulseRange: 0.16324426
+    PulseOffset: 0.5732805
+  - Variant: -1817032573
+    Color: {r: 1, g: 0.6577655, b: 1, a: 1}
+    Radius: 0.05
+    Angle: 7.3904266
+    Position: {x: -0.18090785, y: -0.6147165, z: -0.50536036}
+    PulseSpeed: 0.02242017
+    PulseRange: 0.5858548
+    PulseOffset: 0.23176005
+  - Variant: -270600876
+    Color: {r: 0.9905559, g: 0.40160102, b: 1, a: 1}
+    Radius: 0.05
+    Angle: 80.88207
+    Position: {x: 0.6426425, y: 0.03747034, z: -0.09901607}
+    PulseSpeed: 0.45102185
+    PulseRange: 0.6173871
+    PulseOffset: 0.71850806
+  - Variant: -1696554199
+    Color: {r: 1, g: 0.69822824, b: 1, a: 1}
+    Radius: 0.05
+    Angle: -157.4863
+    Position: {x: -0.50997156, y: -0.45903862, z: 0.6598425}
+    PulseSpeed: 0.41281122
+    PulseRange: 0.1402011
+    PulseOffset: 0.30477765
+  - Variant: -1551764670
+    Color: {r: 0.786072, g: 0.6060848, b: 1, a: 1}
+    Radius: 0.05
+    Angle: -14.290955
+    Position: {x: -0.65523505, y: -0.3487056, z: 0.86870265}
+    PulseSpeed: 0.44079155
+    PulseRange: 0.89801633
+    PulseOffset: 0.07123316
+  - Variant: 987186167
+    Color: {r: 0.49661636, g: 0.49661636, b: 0.49661636, a: 1}
+    Radius: 0.05
+    Angle: -41.176086
+    Position: {x: -0.96123314, y: 0.24735701, z: 0.5910847}
+    PulseSpeed: 0.32428387
+    PulseRange: 0.05138839
+    PulseOffset: 0.5689221
+  - Variant: 663636128
+    Color: {r: 0.39681163, g: 0.99534523, b: 1, a: 1}
+    Radius: 0.05
+    Angle: -125.75294
+    Position: {x: -0.81562686, y: -0.27544373, z: -0.01655829}
+    PulseSpeed: 0.9864366
+    PulseRange: 0.89227235
+    PulseOffset: 0.357353
+  - Variant: 639023172
+    Color: {r: 0.39215687, g: 0.5354717, b: 0.85668516, a: 1}
+    Radius: 0.05
+    Angle: 110.35161
+    Position: {x: 0.68363714, y: 0.77910805, z: 0.7562392}
+    PulseSpeed: 0.33922175
+    PulseRange: 0.7465213
+    PulseOffset: 0.027595524
+  - Variant: 310773101
+    Color: {r: 0.9873872, g: 0.9873872, b: 0.9873872, a: 1}
+    Radius: 0.05
+    Angle: 58.567726
+    Position: {x: 0.23483574, y: -0.18272555, z: 0.98343205}
+    PulseSpeed: 0.9647287
+    PulseRange: 0.28839448
+    PulseOffset: 0.7618562
+  - Variant: -805205338
+    Color: {r: 0.8034117, g: 1, b: 0.32341936, a: 1}
+    Radius: 0.05
+    Angle: 77.12359
+    Position: {x: -0.050544858, y: -0.22744632, z: 0.8310056}
+    PulseSpeed: 0.35732678
+    PulseRange: 0.34680775
+    PulseOffset: 0.8951669
+  - Variant: -1558272212
+    Color: {r: 0.70771885, g: 0.684438, b: 0.39215687, a: 1}
+    Radius: 0.05
+    Angle: -62.58557
+    Position: {x: 0.44003984, y: 0.31786495, z: -0.5033841}
+    PulseSpeed: 0.18987098
+    PulseRange: 0.31000093
+    PulseOffset: 0.7394646
+  - Variant: 1987436054
+    Color: {r: 0.9295374, g: 0.46261948, b: 1, a: 1}
+    Radius: 0.05
+    Angle: -74.95532
+    Position: {x: -0.2084409, y: 0.94750524, z: 0.4576102}
+    PulseSpeed: 0.3799315
+    PulseRange: 0.05724264
+    PulseOffset: 0.6404932
+  - Variant: 1872646184
+    Color: {r: 0.56553346, g: 0.56553346, b: 0.7147676, a: 1}
+    Radius: 0.05
+    Angle: 52.75488
+    Position: {x: 0.6191323, y: -0.55301255, z: 0.71248794}
+    PulseSpeed: 0.87224495
+    PulseRange: 0.36899367
+    PulseOffset: 0.06227637
+  - Variant: -451349755
+    Color: {r: 1, g: 0.41773495, b: 1, a: 1}
+    Radius: 0.05
+    Angle: 0.5770111
+    Position: {x: -0.5557444, y: 0.48872373, z: 0.80061996}
+    PulseSpeed: 0.36579362
+    PulseRange: 0.23137513
+    PulseOffset: 0.4827103
+  - Variant: -2096235060
+    Color: {r: 0.3908955, g: 0.3908955, b: 0.3908955, a: 1}
+    Radius: 0.05
+    Angle: -1.7655182
+    Position: {x: -0.23677957, y: -0.14355457, z: 0.6044059}
+    PulseSpeed: 0.70280915
+    PulseRange: 0.62357074
+    PulseOffset: 0.7026643
+  - Variant: -682949114
+    Color: {r: 0.66761774, g: 1, b: 0.5468224, a: 1}
+    Radius: 0.05
+    Angle: -153.3646
+    Position: {x: -0.61826897, y: -0.20737469, z: -0.90298533}
+    PulseSpeed: 0.14858831
+    PulseRange: 0.022334458
+    PulseOffset: 0.21504357
+  - Variant: -966800220
+    Color: {r: 0.7877302, g: 0.6044266, b: 1, a: 1}
+    Radius: 0.05
+    Angle: -137.26147
+    Position: {x: -0.7254882, y: -0.47572023, z: 0.49639508}
+    PulseSpeed: 0.9152082
+    PulseRange: 0.89104486
+    PulseOffset: 0.03735817
+  - Variant: 258566076
+    Color: {r: 0.5039379, g: 0.5039379, b: 0.5039379, a: 1}
+    Radius: 0.05
+    Angle: 16.822968
+    Position: {x: 0.27898666, y: 0.28114337, z: 0.37128732}
+    PulseSpeed: 0.6485266
+    PulseRange: 0.3341408
+    PulseOffset: 0.19907668
+  - Variant: 1938259127
+    Color: {r: 1, g: 0.91708183, b: 1, a: 1}
+    Radius: 0.05
+    Angle: -74.316315
+    Position: {x: -0.27904803, y: -0.055695415, z: -0.12196696}
+    PulseSpeed: 0.85745513
+    PulseRange: 0.8816824
+    PulseOffset: 0.67756957
+  - Variant: -1299502071
+    Color: {r: 1, g: 0.6162931, b: 1, a: 1}
+    Radius: 0.05
+    Angle: -2.9921265
+    Position: {x: 0.06955135, y: -0.8650905, z: -0.34136832}
+    PulseSpeed: 0.8998163
+    PulseRange: 0.5122753
+    PulseOffset: 0.271341
+  - Variant: 1629476200
+    Color: {r: 0.4054953, g: 0.4054953, b: 0.97805613, a: 1}
+    Radius: 0.05
+    Angle: 171.65259
+    Position: {x: 0.6770147, y: 0.973917, z: -0.47745287}
+    PulseSpeed: 0.33574858
+    PulseRange: 0.32630923
+    PulseOffset: 0.54024
+  - Variant: -1126417040
+    Color: {r: 0.46338615, g: 0.9287707, b: 1, a: 1}
+    Radius: 0.05
+    Angle: 103.122696
+    Position: {x: 0.8814626, y: -0.9311943, z: 0.2130841}
+    PulseSpeed: 0.53111655
+    PulseRange: 0.88879657
+    PulseOffset: 0.98698497
+  - Variant: 1711398735
+    Color: {r: 1, g: 0.9682467, b: 1, a: 1}
+    Radius: 0.05
+    Angle: 150.95651
+    Position: {x: -0.14675057, y: 0.72934055, z: 0.29158717}
+    PulseSpeed: 0.83827806
+    PulseRange: 0.19584695
+    PulseOffset: 0.7339137
+  - Variant: -1120616169
+    Color: {r: 0.73077625, g: 0.66138065, b: 0.39215687, a: 1}
+    Radius: 0.05
+    Angle: -133.11383
+    Position: {x: -0.72526956, y: 0.4558459, z: 0.3057997}
+    PulseSpeed: 0.7203476
+    PulseRange: 0.5633568
+    PulseOffset: 0.57300574
+  - Variant: 1449271433
+    Color: {r: 0.7215034, g: 1, b: 0.45817184, a: 1}
+    Radius: 0.05
+    Angle: -8.538284
+    Position: {x: 0.6766114, y: 0.6349685, z: 0.78227806}
+    PulseSpeed: 0.7889688
+    PulseRange: 0.7660644
+    PulseOffset: 0.5767649
+  - Variant: 1471159818
+    Color: {r: 0.84024954, g: 0.5519073, b: 0.39215687, a: 1}
+    Radius: 0.05
+    Angle: -47.340973
+    Position: {x: 0.6451793, y: 0.54603505, z: 0.8826264}
+    PulseSpeed: 0.32294324
+    PulseRange: 0.5609887
+    PulseOffset: 0.4895032
+  - Variant: -1961398290
+    Color: {r: 0.39215687, g: 0.4278978, b: 0.964259, a: 1}
+    Radius: 0.05
+    Angle: 50.031685
+    Position: {x: -0.64315724, y: 0.54620624, z: 0.07843721}
+    PulseSpeed: 0.6428068
+    PulseRange: 0.92427707
+    PulseOffset: 0.7237322
+  - Variant: 1365627662
+    Color: {r: 0.39215687, g: 0.9796564, b: 0.41250044, a: 1}
+    Radius: 0.05
+    Angle: 163.62415
+    Position: {x: -0.14140451, y: -0.5021896, z: 0.21244061}
+    PulseSpeed: 0.65742046
+    PulseRange: 0.058661945
+    PulseOffset: 0.009935857
+  - Variant: 1803519757
+    Color: {r: 0.8849048, g: 1, b: 0.18935016, a: 1}
+    Radius: 0.05
+    Angle: 79.17172
+    Position: {x: 0.8010186, y: -0.22721851, z: -0.6866362}
+    PulseSpeed: 0.46473175
+    PulseRange: 0.90167
+    PulseOffset: 0.30173174
+  - Variant: 790367339
+    Color: {r: 0.80404764, g: 0.80404764, b: 0.80404764, a: 1}
+    Radius: 0.05
+    Angle: -173.17767
+    Position: {x: 0.68999934, y: 0.28643018, z: -0.6146865}
+    PulseSpeed: 0.048808463
+    PulseRange: 0.60679287
+    PulseOffset: 0.8610631
+  - Variant: -1056795724
+    Color: {r: 0.66085964, g: 0.66085964, b: 0.5579406, a: 1}
+    Radius: 0.05
+    Angle: 101.08031
+    Position: {x: 0.80891085, y: -0.9666114, z: -0.3116938}
+    PulseSpeed: 0.6917271
+    PulseRange: 0.6773804
+    PulseOffset: 0.68635064
+  - Variant: 2068669674
+    Color: {r: 0.89792323, g: 0.89792323, b: 0.89792323, a: 1}
+    Radius: 0.05
+    Angle: 82.00616
+    Position: {x: -0.6976094, y: 0.78705513, z: -0.09135783}
+    PulseSpeed: 0.048495896
+    PulseRange: 0.6914354
+    PulseOffset: 0.7777089
+  - Variant: 390366990
+    Color: {r: 0.8902902, g: 0.5018667, b: 1, a: 1}
+    Radius: 0.05
+    Angle: -161.52097
+    Position: {x: 0.64712155, y: 0.39623186, z: -0.51214314}
+    PulseSpeed: 0.720725
+    PulseRange: 0.42952067
+    PulseOffset: 0.55379444
+  - Variant: -2108280960
+    Color: {r: 0.39215687, g: 0.62689984, b: 0.765257, a: 1}
+    Radius: 0.05
+    Angle: 1.8471375
+    Position: {x: -0.9910221, y: -0.96411395, z: -0.6872089}
+    PulseSpeed: 0.5514757
+    PulseRange: 0.29971388
+    PulseOffset: 0.9774108
+  - Variant: -669543188
+    Color: {r: 0.5167415, g: 0.8754153, b: 1, a: 1}
+    Radius: 0.05
+    Angle: 56.336815
+    Position: {x: -0.96358824, y: -0.6447412, z: -0.14153516}
+    PulseSpeed: 0.07618714
+    PulseRange: 0.997769
+    PulseOffset: 0.9658252
+  - Variant: -148540361
+    Color: {r: 1, g: 0.89756715, b: 1, a: 1}
+    Radius: 0.05
+    Angle: 98.4735
+    Position: {x: 0.9695668, y: 0.6171956, z: 0.52902627}
+    PulseSpeed: 0.14029576
+    PulseRange: 0.53666705
+    PulseOffset: 0.48710316
+  - Variant: 591299949
+    Color: {r: 0.7365259, g: 0.7365259, b: 0.7365259, a: 1}
+    Radius: 0.05
+    Angle: -101.343994
+    Position: {x: 0.77291894, y: 0.726748, z: 0.3862658}
+    PulseSpeed: 0.0053035025
+    PulseRange: 0.30440727
+    PulseOffset: 0.9570539
+  - Variant: -1554131413
+    Color: {r: 0.9656573, g: 1, b: 0.056499317, a: 1}
+    Radius: 0.05
+    Angle: 177.7219
+    Position: {x: 0.5767092, y: -0.19147861, z: 0.8410547}
+    PulseSpeed: 0.6837385
+    PulseRange: 0.26346126
+    PulseOffset: 0.8036916
+  - Variant: 978133605
+    Color: {r: 0.8417173, g: 0.5504396, b: 1, a: 1}
+    Radius: 0.05
+    Angle: 60.99871
+    Position: {x: 0.038558364, y: 0.20272887, z: 0.8117045}
+    PulseSpeed: 0.36433092
+    PulseRange: 0.30517116
+    PulseOffset: 0.6643345
+  - Variant: -309713518
+    Color: {r: 0.39215687, g: 0.68134284, b: 0.710814, a: 1}
+    Radius: 0.05
+    Angle: 43.59137
+    Position: {x: -0.7589855, y: -0.51631355, z: 0.21326387}
+    PulseSpeed: 0.08522297
+    PulseRange: 0.3323448
+    PulseOffset: 0.117790714
+  - Variant: -51978526
+    Color: {r: 0.50180143, g: 0.50180143, b: 0.50180143, a: 1}
+    Radius: 0.05
+    Angle: 101.25098
+    Position: {x: -0.75927234, y: 0.3387508, z: -0.059829235}
+    PulseSpeed: 0.04539371
+    PulseRange: 0.50136644
+    PulseOffset: 0.26186612
+  - Variant: 935950188
+    Color: {r: 0.42417532, g: 0.9679816, b: 1, a: 1}
+    Radius: 0.05
+    Angle: 153.5417
+    Position: {x: -0.9188421, y: -0.8746786, z: 0.21530187}
+    PulseSpeed: 0.94827306
+    PulseRange: 0.05474866
+    PulseOffset: 0.9520383
+  - Variant: 898311234
+    Color: {r: 0.46996567, g: 0.46996567, b: 0.871992, a: 1}
+    Radius: 0.05
+    Angle: 84.22522
+    Position: {x: 0.9965155, y: -0.48279256, z: 0.34006974}
+    PulseSpeed: 0.8407836
+    PulseRange: 0.80942357
+    PulseOffset: 0.7199902
+  - Variant: -1896868324
+    Color: {r: 0.73581505, g: 0.6563418, b: 0.39215687, a: 1}
+    Radius: 0.05
+    Angle: 10.274078
+    Position: {x: -0.44343364, y: -0.716238, z: -0.27298075}
+    PulseSpeed: 0.61105245
+    PulseRange: 0.8982651
+    PulseOffset: 0.9335929
+  - Variant: 268748768
+    Color: {r: 0.8240196, g: 0.5681373, b: 0.39215687, a: 1}
+    Radius: 0.05
+    Angle: 49.659744
+    Position: {x: -0.19506323, y: 0.83564246, z: -0.35006917}
+    PulseSpeed: 0.3580852
+    PulseRange: 0.27832583
+    PulseOffset: 0.5048495
+  - Variant: -70085381
+    Color: {r: 0.39215687, g: 0.4180277, b: 0.9741292, a: 1}
+    Radius: 0.05
+    Angle: -138.20895
+    Position: {x: -0.9411459, y: -0.4384014, z: 0.31549212}
+    PulseSpeed: 0.15447249
+    PulseRange: 0.83666956
+    PulseOffset: 0.27136603
+  - Variant: 1824957806
+    Color: {r: 1, g: 0.5875052, b: 1, a: 1}
+    Radius: 0.05
+    Angle: 64.70325
+    Position: {x: 0.35990855, y: -0.88107646, z: 0.5960741}
+    PulseSpeed: 0.7026445
+    PulseRange: 0.22503272
+    PulseOffset: 0.35308483
+  - Variant: 1047636665
+    Color: {r: 0.52750444, g: 0.52750444, b: 0.52750444, a: 1}
+    Radius: 0.05
+    Angle: 31.234756
+    Position: {x: -0.6421282, y: -0.93554115, z: 0.05124259}
+    PulseSpeed: 0.06471027
+    PulseRange: 0.27841523
+    PulseOffset: 0.4500876
+  - Variant: -251565913
+    Color: {r: 0.66883373, g: 0.72332317, b: 1, a: 1}
+    Radius: 0.05
+    Angle: 117.33703
+    Position: {x: 0.9297023, y: -0.68822825, z: 0.6163032}
+    PulseSpeed: 0.21319738
+    PulseRange: 0.3150058
+    PulseOffset: 0.9681597
+  - Variant: -331960071
+    Color: {r: 1, g: 0.41198304, b: 1, a: 1}
+    Radius: 0.05
+    Angle: -67.91759
+    Position: {x: -0.63760734, y: 0.07680333, z: -0.5364528}
+    PulseSpeed: 0.8082236
+    PulseRange: 0.38194185
+    PulseOffset: 0.53168255
+  - Variant: 1566576545
+    Color: {r: 0.738874, g: 0.6532829, b: 1, a: 1}
+    Radius: 0.05
+    Angle: -7.197876
+    Position: {x: 0.8303261, y: 0.6203284, z: -0.6391978}
+    PulseSpeed: 0.5596935
+    PulseRange: 0.01997614
+    PulseOffset: 0.24952272
+  - Variant: 618836821
+    Color: {r: 1, g: 0.54342806, b: 1, a: 1}
+    Radius: 0.05
+    Angle: -129.0903
+    Position: {x: -0.63347125, y: 0.7525871, z: -0.4581383}
+    PulseSpeed: 0.035757665
+    PulseRange: 0.2855957
+    PulseOffset: 0.92330897
+  - Variant: -2146994994
+    Color: {r: 0.56398815, g: 0.56398815, b: 0.71730983, a: 1}
+    Radius: 0.05
+    Angle: -32.863815
+    Position: {x: 0.53635955, y: -0.44145054, z: 0.9012065}
+    PulseSpeed: 0.44813663
+    PulseRange: 0.6331107
+    PulseOffset: 0.071285255
+  - Variant: -706749424
+    Color: {r: 0.9677088, g: 0.42444804, b: 0.39215687, a: 1}
+    Radius: 0.05
+    Angle: -128.67316
+    Position: {x: -0.9942343, y: -0.14890754, z: -0.005009055}
+    PulseSpeed: 0.39441723
+    PulseRange: 0.95048106
+    PulseOffset: 0.63095397
+  - Variant: 1378836781
+    Color: {r: 0.39215687, g: 0.39618248, b: 0.9959744, a: 1}
+    Radius: 0.05
+    Angle: 14.212341
+    Position: {x: 0.944468, y: 0.89868474, z: 0.8494506}
+    PulseSpeed: 0.45399815
+    PulseRange: 0.420206
+    PulseOffset: 0.15829982
+  - Variant: -180549751
+    Color: {r: 0.3992014, g: 1, b: 0.98841053, a: 1}
+    Radius: 0.05
+    Angle: 103.33285
+    Position: {x: -0.163885, y: 0.7303064, z: 0.6918144}
+    PulseSpeed: 0.06535841
+    PulseRange: 0.055395015
+    PulseOffset: 0.45242137
+  - Variant: 1639900837
+    Color: {r: 0.9447899, g: 0.44736695, b: 1, a: 1}
+    Radius: 0.05
+    Angle: -148.05875
+    Position: {x: 0.9431838, y: 0.12579, z: -0.7599509}
+    PulseSpeed: 0.12261702
+    PulseRange: 0.82794476
+    PulseOffset: 0.85284674
+  - Variant: 179133890
+    Color: {r: 0.85223716, g: 1, b: 0.24309368, a: 1}
+    Radius: 0.05
+    Angle: -143.05438
+    Position: {x: -0.11388004, y: -0.9020469, z: -0.82216}
+    PulseSpeed: 0.92415
+    PulseRange: 0.63918513
+    PulseOffset: 0.9326378
+  - Variant: -338436384
+    Color: {r: 0.761288, g: 1, b: 0.39271972, a: 1}
+    Radius: 0.05
+    Angle: -75.52429
+    Position: {x: -0.5271797, y: -0.05031836, z: 0.6871058}
+    PulseSpeed: 0.18098857
+    PulseRange: 0.0874126
+    PulseOffset: 0.73002285
+  - Variant: 901870231
+    Color: {r: 0.48867357, g: 0.48867357, b: 0.8412144, a: 1}
+    Radius: 0.05
+    Angle: 108.3396
+    Position: {x: 0.96612334, y: 0.3792841, z: -0.48535877}
+    PulseSpeed: 0.7263145
+    PulseRange: 0.89752376
+    PulseOffset: 0.24087134
+  - Variant: 675705806
+    Color: {r: 0.6737473, g: 1, b: 0.5367383, a: 1}
+    Radius: 0.05
+    Angle: 10.774902
+    Position: {x: 0.39134833, y: -0.2898289, z: -0.5514006}
+    PulseSpeed: 0.016376855
+    PulseRange: 0.9992758
+    PulseOffset: 0.90417445
+  - Variant: 323480212
+    Color: {r: 0.8748994, g: 1, b: 0.20581068, a: 1}
+    Radius: 0.05
+    Angle: 29.008041
+    Position: {x: 0.21047413, y: 0.74897444, z: 0.2663543}
+    PulseSpeed: 0.0888697
+    PulseRange: 0.08548439
+    PulseOffset: 0.49117333
+  - Variant: 1834504646
+    Color: {r: 0.5379509, g: 0.5379509, b: 0.5379509, a: 1}
+    Radius: 0.05
+    Angle: 129.1397
+    Position: {x: -0.5405349, y: -0.5292311, z: 0.46727154}
+    PulseSpeed: 0.778901
+    PulseRange: 0.84153926
+    PulseOffset: 0.42176372
+  - Variant: 981100123
+    Color: {r: 0.64668727, g: 0.74546957, b: 0.39215687, a: 1}
+    Radius: 0.05
+    Angle: 14.740921
+    Position: {x: 0.15531671, y: 0.09964621, z: -0.85947907}
+    PulseSpeed: 0.861809
+    PulseRange: 0.21222082
+    PulseOffset: 0.7900584
+  - Variant: -211698863
+    Color: {r: 0.9346798, g: 0.9346798, b: 0.9346798, a: 1}
+    Radius: 0.05
+    Angle: 62.610348
+    Position: {x: -0.20328128, y: -0.7293074, z: -0.55059695}
+    PulseSpeed: 0.14405169
+    PulseRange: 0.8450974
+    PulseOffset: 0.86513424
+  - Variant: 1678484820
+    Color: {r: 1, g: 0.49055833, b: 1, a: 1}
+    Radius: 0.05
+    Angle: 32.979126
+    Position: {x: 0.5744707, y: 0.36204192, z: -0.7622876}
+    PulseSpeed: 0.8622725
+    PulseRange: 0.347078
+    PulseOffset: 0.77369964
+  - Variant: 1733276465
+    Color: {r: 0.92125034, g: 0.4709065, b: 0.39215687, a: 1}
+    Radius: 0.05
+    Angle: -135.8212
+    Position: {x: 0.0060065985, y: -0.41806257, z: -0.38258296}
+    PulseSpeed: 0.9008156
+    PulseRange: 0.474397
+    PulseOffset: 0.039998416
+  - Variant: 190157865
+    Color: {r: 1, g: 0.52515996, b: 1, a: 1}
+    Radius: 0.05
+    Angle: -22.082886
+    Position: {x: -0.3597144, y: -0.83419967, z: 0.35042045}
+    PulseSpeed: 0.9056294
+    PulseRange: 0.16312851
+    PulseOffset: 0.8241756
+  - Variant: 517521077
+    Color: {r: 0.39215687, g: 0.99962723, b: 0.39252964, a: 1}
+    Radius: 0.05
+    Angle: -137.4393
+    Position: {x: -0.8105645, y: -0.45161688, z: -0.48742616}
+    PulseSpeed: 0.633375
+    PulseRange: 0.054604776
+    PulseOffset: 0.47709185
+  - Variant: 1442331317
+    Color: {r: 0.4260617, g: 0.9660952, b: 0.39215687, a: 1}
+    Radius: 0.05
+    Angle: -50.995117
+    Position: {x: 0.5036338, y: -0.9450948, z: 0.07431638}
+    PulseSpeed: 0.1196927
+    PulseRange: 0.84063697
+    PulseOffset: 0.9022703
+  - Variant: -265729104
+    Color: {r: 1, g: 0.7788769, b: 1, a: 1}
+    Radius: 0.05
+    Angle: -18.091934
+    Position: {x: -0.61551434, y: 0.89692116, z: -0.2697345}
+    PulseSpeed: 0.8693718
+    PulseRange: 0.06924523
+    PulseOffset: 0.3833056
+  - Variant: 1844411532
+    Color: {r: 0.8629341, g: 0.8629341, b: 0.22549558, a: 1}
+    Radius: 0.05
+    Angle: 56.19674
+    Position: {x: -0.37354767, y: 0.27529237, z: 0.9772115}
+    PulseSpeed: 0.73274535
+    PulseRange: 0.38319165
+    PulseOffset: 0.3116621
+  - Variant: 696274409
+    Color: {r: 0.517277, g: 0.517277, b: 0.517277, a: 1}
+    Radius: 0.05
+    Angle: -29.255676
+    Position: {x: 0.1842016, y: 0.67091477, z: 0.97560596}
+    PulseSpeed: 0.624695
+    PulseRange: 0.113994494
+    PulseOffset: 0.870363
+  - Variant: -1096210645
+    Color: {r: 0.6999594, g: 0.6999594, b: 0.4936152, a: 1}
+    Radius: 0.05
+    Angle: 72.26356
+    Position: {x: 0.5667772, y: 0.8485254, z: 0.32947943}
+    PulseSpeed: 0.61952466
+    PulseRange: 0.51342124
+    PulseOffset: 0.67311674
+  - Variant: 392505764
+    Color: {r: 0.54083824, g: 1, b: 0.7553952, a: 1}
+    Radius: 0.05
+    Angle: 86.94146
+    Position: {x: 0.6544452, y: 0.8917377, z: 0.17314065}
+    PulseSpeed: 0.5770417
+    PulseRange: 0.43146092
+    PulseOffset: 0.27461508
+  - Variant: -6973785
+    Color: {r: 0.39215687, g: 0.5029459, b: 0.88921094, a: 1}
+    Radius: 0.05
+    Angle: -100.85629
+    Position: {x: 0.9543283, y: -0.3609146, z: -0.39427316}
+    PulseSpeed: 0.8066323
+    PulseRange: 0.1275573
+    PulseOffset: 0.4818092
+  - Variant: 1888994557
+    Color: {r: 0.72066754, g: 0.67148936, b: 1, a: 1}
+    Radius: 0.05
+    Angle: 113.786255
+    Position: {x: 0.17584252, y: 0.2710862, z: -0.976722}
+    PulseSpeed: 0.9288355
+    PulseRange: 0.8209553
+    PulseOffset: 0.7099311
+  - Variant: 1933853407
+    Color: {r: 0.39215687, g: 0.4115733, b: 0.98058355, a: 1}
+    Radius: 0.05
+    Angle: -5.2430267
+    Position: {x: 0.0011194944, y: -0.48192197, z: -0.5203738}
+    PulseSpeed: 0.89196277
+    PulseRange: 0.51727754
+    PulseOffset: 0.13236238
+  - Variant: 258362209
+    Color: {r: 0.5714646, g: 0.5714646, b: 0.5714646, a: 1}
+    Radius: 0.05
+    Angle: -26.013336
+    Position: {x: 0.2850885, y: 0.9191911, z: 0.09765434}
+    PulseSpeed: 0.86066103
+    PulseRange: 0.57261294
+    PulseOffset: 0.54003924
+  - Variant: 2017970745
+    Color: {r: 0.7572205, g: 0.63493633, b: 0.39215687, a: 1}
+    Radius: 0.05
+    Angle: -139.3569
+    Position: {x: -0.74962544, y: -0.47132576, z: -0.7250508}
+    PulseSpeed: 0.24669567
+    PulseRange: 0.26269427
+    PulseOffset: 0.85190785
+  - Variant: 256525134
+    Color: {r: 0.8990123, g: 0.8990123, b: 0.16614103, a: 1}
+    Radius: 0.05
+    Angle: 152.04294
+    Position: {x: -0.22693336, y: 0.4631304, z: -0.50670123}
+    PulseSpeed: 0.7093343
+    PulseRange: 0.035422686
+    PulseOffset: 0.15076293
+  - Variant: -862328923
+    Color: {r: 0.5396881, g: 0.5396881, b: 0.75728726, a: 1}
+    Radius: 0.05
+    Angle: 30.388504
+    Position: {x: -0.59425765, y: 0.82757616, z: -0.62571454}
+    PulseSpeed: 0.22008827
+    PulseRange: 0.14273883
+    PulseOffset: 0.9216596
+  - Variant: 1973106228
+    Color: {r: 0.6596055, g: 0.7325514, b: 0.39215687, a: 1}
+    Radius: 0.05
+    Angle: 112.09303
+    Position: {x: 0.62191224, y: -0.24830377, z: 0.509415}
+    PulseSpeed: 0.25208548
+    PulseRange: 0.2391198
+    PulseOffset: 0.15841211
+  - Variant: -717667873
+    Color: {r: 0.39215687, g: 0.5328759, b: 0.85928094, a: 1}
+    Radius: 0.05
+    Angle: 51.592903
+    Position: {x: -0.8058963, y: -0.884732, z: -0.9769727}
+    PulseSpeed: 0.17299546
+    PulseRange: 0.040087346
+    PulseOffset: 0.85085654
+  - Variant: 1784079776
+    Color: {r: 0.86258745, g: 0.86258745, b: 0.86258745, a: 1}
+    Radius: 0.05
+    Angle: 91.55362
+    Position: {x: -0.31176412, y: 0.30615065, z: -0.4745453}
+    PulseSpeed: 0.097165
+    PulseRange: 0.4529038
+    PulseOffset: 0.9570905
+  - Variant: 697199602
+    Color: {r: 0.742478, g: 0.742478, b: 0.742478, a: 1}
+    Radius: 0.05
+    Angle: -80.45038
+    Position: {x: 0.33794138, y: -0.6213968, z: -0.25796765}
+    PulseSpeed: 0.870523
+    PulseRange: 0.6853208
+    PulseOffset: 0.06297601
+  - Variant: -1897728591
+    Color: {r: 0.53942144, g: 0.8527354, b: 0.39215687, a: 1}
+    Radius: 0.05
+    Angle: 95.496124
+    Position: {x: 0.38203806, y: 0.42589208, z: 0.7079668}
+    PulseSpeed: 0.39991766
+    PulseRange: 0.5636049
+    PulseOffset: 0.82244885
+  - Variant: -581131875
+    Color: {r: 0.48367804, g: 0.90847886, b: 0.39215687, a: 1}
+    Radius: 0.05
+    Angle: -168.66953
+    Position: {x: 0.23771918, y: -0.67532825, z: -0.8850882}
+    PulseSpeed: 0.043360952
+    PulseRange: 0.15549172
+    PulseOffset: 0.63899785
+  - Variant: 1948991479
+    Color: {r: 0.4065829, g: 0.4065829, b: 0.97626686, a: 1}
+    Radius: 0.05
+    Angle: 104.60623
+    Position: {x: 0.9626999, y: -0.576783, z: 0.03876674}
+    PulseSpeed: 0.9933585
+    PulseRange: 0.7773707
+    PulseOffset: 0.98964846
+  - Variant: 1157906422
+    Color: {r: 0.9960378, g: 0.9960378, b: 0.9960378, a: 1}
+    Radius: 0.05
+    Angle: -101.713135
+    Position: {x: 0.5351723, y: 0.27321264, z: 0.688041}
+    PulseSpeed: 0.72030133
+    PulseRange: 0.9630226
+    PulseOffset: 0.53960127
+  - Variant: 2004262972
+    Color: {r: 1, g: 0.52652234, b: 1, a: 1}
+    Radius: 0.05
+    Angle: 25.69838
+    Position: {x: 0.9814086, y: 0.14616859, z: 0.13719106}
+    PulseSpeed: 0.22378936
+    PulseRange: 0.031016592
+    PulseOffset: 0.09792055
+  - Variant: 1338952681
+    Color: {r: 0.98917776, g: 1, b: 0.017804328, a: 1}
+    Radius: 0.05
+    Angle: 106.03862
+    Position: {x: 0.32105893, y: -0.836797, z: -0.86584306}
+    PulseSpeed: 0.25314763
+    PulseRange: 0.39317423
+    PulseOffset: 0.10934509
+  - Variant: 26142417
+    Color: {r: 0.8702075, g: 0.8702075, b: 0.21352965, a: 1}
+    Radius: 0.05
+    Angle: 165.22955
+    Position: {x: -0.16880834, y: -0.5652308, z: 0.47788164}
+    PulseSpeed: 0.06149376
+    PulseRange: 0.59038347
+    PulseOffset: 0.5298498
+  - Variant: 1026475375
+    Color: {r: 1, g: 0.9609543, b: 1, a: 1}
+    Radius: 0.05
+    Angle: 23.429916
+    Position: {x: -0.31413424, y: 0.94959784, z: -0.06838095}
+    PulseSpeed: 0.91527843
+    PulseRange: 0.94595146
+    PulseOffset: 0.1452445
+  - Variant: 329609219
+    Color: {r: 0.91464317, g: 0.91464317, b: 0.14042574, a: 1}
+    Radius: 0.05
+    Angle: -46.01935
+    Position: {x: -0.8997359, y: 0.2112881, z: 0.5051782}
+    PulseSpeed: 0.76041985
+    PulseRange: 0.6022884
+    PulseOffset: 0.16626729
+  - Variant: -1440666894
+    Color: {r: 1, g: 0.4592037, b: 1, a: 1}
+    Radius: 0.05
+    Angle: 91.88226
+    Position: {x: 0.7047441, y: 0.95554423, z: 0.06094742}
+    PulseSpeed: 0.89069355
+    PulseRange: 0.58296484
+    PulseOffset: 0.6801078
+  - Variant: 342599263
+    Color: {r: 0.41669422, g: 0.9754627, b: 0.39215687, a: 1}
+    Radius: 0.05
+    Angle: -35.371918
+    Position: {x: -0.93655145, y: 0.43561384, z: -0.46892226}
+    PulseSpeed: 0.46811122
+    PulseRange: 0.7232658
+    PulseOffset: 0.19380358
+  - Variant: 1646796283
+    Color: {r: 0.53405, g: 0.8581069, b: 1, a: 1}
+    Radius: 0.05
+    Angle: -130.85278
+    Position: {x: -0.011263132, y: 0.63935685, z: -0.056142688}
+    PulseSpeed: 0.4248814
+    PulseRange: 0.090707906
+    PulseOffset: 0.27938762
+  - Variant: 1979375591
+    Color: {r: 0.39215687, g: 0.6991602, b: 0.6929967, a: 1}
+    Radius: 0.05
+    Angle: 179.78812
+    Position: {x: -0.1575836, y: 0.57972217, z: 0.18971634}
+    PulseSpeed: 0.72590524
+    PulseRange: 0.3037311
+    PulseOffset: 0.31617084
+  - Variant: 892224323
+    Color: {r: 0.97914946, g: 0.97914946, b: 0.034302533, a: 1}
+    Radius: 0.05
+    Angle: -96.170746
+    Position: {x: 0.036163688, y: 0.5634112, z: 0.9196949}
+    PulseSpeed: 0.7329249
+    PulseRange: 0.13536169
+    PulseOffset: 0.93285763
+  - Variant: 604158587
+    Color: {r: 0.7451585, g: 0.6469984, b: 0.39215687, a: 1}
+    Radius: 0.05
+    Angle: -55.88374
+    Position: {x: -0.5054102, y: -0.15286362, z: -0.5267069}
+    PulseSpeed: 0.49729985
+    PulseRange: 0.40205318
+    PulseOffset: 0.2867737
+  - Variant: -565067689
+    Color: {r: 0.67053413, g: 0.67053413, b: 0.5420245, a: 1}
+    Radius: 0.05
+    Angle: -53.014072
+    Position: {x: -0.6271969, y: -0.039816737, z: 0.14575207}
+    PulseSpeed: 0.25083926
+    PulseRange: 0.63984686
+    PulseOffset: 0.27539685
+  - Variant: 1324911228
+    Color: {r: 0.39215687, g: 0.6761134, b: 0.7160435, a: 1}
+    Radius: 0.05
+    Angle: -93.56574
+    Position: {x: 0.8412695, y: -0.16932929, z: 0.6456711}
+    PulseSpeed: 0.48577005
+    PulseRange: 0.50420636
+    PulseOffset: 0.24236289
+  - Variant: 2059054016
+    Color: {r: 1, g: 0.86308444, b: 1, a: 1}
+    Radius: 0.05
+    Angle: -128.50076
+    Position: {x: 0.21237576, y: -0.26361024, z: 0.031122565}
+    PulseSpeed: 0.3534799
+    PulseRange: 0.30387047
+    PulseOffset: 0.69666666
+  - Variant: 1771790916
+    Color: {r: 0.8504269, g: 0.5417299, b: 0.39215687, a: 1}
+    Radius: 0.05
+    Angle: -49.82689
+    Position: {x: 0.81910515, y: -0.53156406, z: -0.21481097}
+    PulseSpeed: 0.43413836
+    PulseRange: 0.83109367
+    PulseOffset: 0.027912144
+  - Variant: 747607961
+    Color: {r: 0.7932251, g: 0.5989318, b: 0.39215687, a: 1}
+    Radius: 0.05
+    Angle: -150.46857
+    Position: {x: 0.7876632, y: 0.4893095, z: -0.5724592}
+    PulseSpeed: 0.66919214
+    PulseRange: 0.1726078
+    PulseOffset: 0.7206313
+  - Variant: 1954386501
+    Color: {r: 0.78173363, g: 1, b: 0.35908335, a: 1}
+    Radius: 0.05
+    Angle: 59.053997
+    Position: {x: 0.4425599, y: 0.42932078, z: -0.17728555}
+    PulseSpeed: 0.7862346
+    PulseRange: 0.7210079
+    PulseOffset: 0.6727547
+  - Variant: -1587276299
+    Color: {r: 0.6081298, g: 0.7840271, b: 0.39215687, a: 1}
+    Radius: 0.05
+    Angle: -24.918
+    Position: {x: -0.07873523, y: -0.15897429, z: 0.22835088}
+    PulseSpeed: 0.825807
+    PulseRange: 0.021301987
+    PulseOffset: 0.24418965
+  - Variant: -1696476926
+    Color: {r: 1, g: 0.6929056, b: 1, a: 1}
+    Radius: 0.05
+    Angle: 167.28653
+    Position: {x: -0.7974539, y: 0.055211782, z: 0.13586581}
+    PulseSpeed: 0.23688915
+    PulseRange: 0.9470109
+    PulseOffset: 0.82956934
+  - Variant: 555716353
+    Color: {r: 1, g: 0.72011554, b: 1, a: 1}
+    Radius: 0.05
+    Angle: -91.57324
+    Position: {x: 0.6623328, y: 0.22328031, z: -0.9210286}
+    PulseSpeed: 0.32270172
+    PulseRange: 0.706893
+    PulseOffset: 0.31674173
+  - Variant: -627878442
+    Color: {r: 0.8783448, g: 0.8783448, b: 0.8783448, a: 1}
+    Radius: 0.05
+    Angle: 99.05942
+    Position: {x: 0.69491816, y: -0.83993673, z: 0.08384526}
+    PulseSpeed: 0.23007074
+    PulseRange: 0.75792754
+    PulseOffset: 0.09750523
+  - Variant: 739270388
+    Color: {r: 0.9575904, g: 0.9575904, b: 0.9575904, a: 1}
+    Radius: 0.05
+    Angle: -156.41013
+    Position: {x: -0.6896919, y: 0.35635778, z: -0.9125514}
+    PulseSpeed: 0.309943
+    PulseRange: 0.48876566
+    PulseOffset: 0.08236981
+  - Variant: -1158744233
+    Color: {r: 0.62999517, g: 0.62999517, b: 0.6087176, a: 1}
+    Radius: 0.05
+    Angle: 145.59027
+    Position: {x: -0.8635385, y: 0.039787173, z: -0.68576276}
+    PulseSpeed: 0.91798294
+    PulseRange: 0.16519786
+    PulseOffset: 0.91484296
+  - Variant: -591238443
+    Color: {r: 0.8236655, g: 0.8236655, b: 0.8236655, a: 1}
+    Radius: 0.05
+    Angle: -135.68964
+    Position: {x: -0.65082693, y: 0.49863216, z: 0.75175726}
+    PulseSpeed: 0.7071689
+    PulseRange: 0.3391414
+    PulseOffset: 0.6604994
+  - Variant: 1919229193
+    Color: {r: 1, g: 0.7962564, b: 1, a: 1}
+    Radius: 0.05
+    Angle: -134.14127
+    Position: {x: -0.28209484, y: -0.43746823, z: 0.3213136}
+    PulseSpeed: 0.21376792
+    PulseRange: 0.44097382
+    PulseOffset: 0.484271
+  - Variant: 305469428
+    Color: {r: 1, g: 0.8324734, b: 1, a: 1}
+    Radius: 0.05
+    Angle: 17.884308
+    Position: {x: -0.5553391, y: 0.7741306, z: 0.26816374}
+    PulseSpeed: 0.36878195
+    PulseRange: 0.0749842
+    PulseOffset: 0.07173336
+  - Variant: -837399515
+    Color: {r: 0.6839482, g: 0.6839482, b: 0.51995623, a: 1}
+    Radius: 0.05
+    Angle: 66.87717
+    Position: {x: -0.48516548, y: -0.68676305, z: 0.908674}
+    PulseSpeed: 0.16805913
+    PulseRange: 0.2748038
+    PulseOffset: 0.46259445
+  - Variant: -1070102073
+    Color: {r: 1, g: 0.7869004, b: 1, a: 1}
+    Radius: 0.05
+    Angle: -112.66296
+    Position: {x: 0.26729652, y: 0.13052142, z: 0.7612902}
+    PulseSpeed: 0.7311086
+    PulseRange: 0.85826683
+    PulseOffset: 0.63062376
+  - Variant: -1513511121
+    Color: {r: 0.40493518, g: 0.9872217, b: 0.39215687, a: 1}
+    Radius: 0.05
+    Angle: 59.49817
+    Position: {x: 0.91590583, y: -0.5943012, z: 0.30382368}
+    PulseSpeed: 0.6062662
+    PulseRange: 0.39758462
+    PulseOffset: 0.73604244
+  - Variant: 582936599
+    Color: {r: 0.39215687, g: 0.6251335, b: 0.7670233, a: 1}
+    Radius: 0.05
+    Angle: -94.2269
+    Position: {x: -0.9666312, y: 0.7850938, z: -0.92769957}
+    PulseSpeed: 0.9912567
+    PulseRange: 0.579541
+    PulseOffset: 0.25136712
+  - Variant: -1570330052
+    Color: {r: 0.6615346, g: 0.6615346, b: 0.55683017, a: 1}
+    Radius: 0.05
+    Angle: -55.26537
+    Position: {x: -0.23080766, y: -0.19921815, z: -0.8363335}
+    PulseSpeed: 0.26359716
+    PulseRange: 0.9046837
+    PulseOffset: 0.5657485
+  - Variant: 1550230576
+    Color: {r: 0.41994563, g: 0.41994563, b: 0.954283, a: 1}
+    Radius: 0.05
+    Angle: 28.52478
+    Position: {x: 0.87139964, y: 0.34261033, z: 0.42876607}
+    PulseSpeed: 0.7967205
+    PulseRange: 0.21673372
+    PulseOffset: 0.1721629
+  - Variant: 1831780140
+    Color: {r: 0.82651603, g: 0.82651603, b: 0.28540915, a: 1}
+    Radius: 0.05
+    Angle: -33.355453
+    Position: {x: -0.9189136, y: -0.69708717, z: 0.7274003}
+    PulseSpeed: 0.25076273
+    PulseRange: 0.037646774
+    PulseOffset: 0.3390856
+  - Variant: -1063751661
+    Color: {r: 0.39215687, g: 0.7344359, b: 0.6577209, a: 1}
+    Radius: 0.05
+    Angle: 97.895905
+    Position: {x: -0.830801, y: 0.93701565, z: -0.6264241}
+    PulseSpeed: 0.57973737
+    PulseRange: 0.053631313
+    PulseOffset: 0.5903141
+  - Variant: -2023784520
+    Color: {r: 0.93744814, g: 1, b: 0.10290794, a: 1}
+    Radius: 0.05
+    Angle: -73.39307
+    Position: {x: -0.70554805, y: -0.31019533, z: -0.71631217}
+    PulseSpeed: 0.012945773
+    PulseRange: 0.031394247
+    PulseOffset: 0.86992145
+  - Variant: -2118955441
+    Color: {r: 0.7743243, g: 1, b: 0.37127286, a: 1}
+    Radius: 0.05
+    Angle: -23.062592
+    Position: {x: 0.3687081, y: -0.42226732, z: 0.7048336}
+    PulseSpeed: 0.49283296
+    PulseRange: 0.14670052
+    PulseOffset: 0.6495653
+  - Variant: 286669901
+    Color: {r: 0.8954811, g: 0.49667576, b: 0.39215687, a: 1}
+    Radius: 0.05
+    Angle: 99.87825
+    Position: {x: -0.4055444, y: -0.56446886, z: -0.3788759}
+    PulseSpeed: 0.28477862
+    PulseRange: 0.568919
+    PulseOffset: 0.34864357
+  - Variant: -1726207677
+    Color: {r: 0.88458425, g: 0.88458425, b: 0.88458425, a: 1}
+    Radius: 0.05
+    Angle: -61.810516
+    Position: {x: -0.020904422, y: -0.7605361, z: 0.8449204}
+    PulseSpeed: 0.99509025
+    PulseRange: 0.9656632
+    PulseOffset: 0.25700346
+  - Variant: -1940674060
+    Color: {r: 0.39215687, g: 0.65313303, b: 0.7390238, a: 1}
+    Radius: 0.05
+    Angle: 147.83997
+    Position: {x: 0.1315893, y: 0.5715278, z: 0.95323014}
+    PulseSpeed: 0.8317604
+    PulseRange: 0.050607093
+    PulseOffset: 0.8871709
+  - Variant: -1635683976
+    Color: {r: 0.90670586, g: 0.48545098, b: 1, a: 1}
+    Radius: 0.05
+    Angle: 57.3079
+    Position: {x: -0.4411198, y: 0.5154999, z: 0.28386018}
+    PulseSpeed: 0.8683599
+    PulseRange: 0.40815085
+    PulseOffset: 0.3778326
+  - Variant: -1203898831
+    Color: {r: 0.89788055, g: 0.49427634, b: 1, a: 1}
+    Radius: 0.05
+    Angle: 92.251335
+    Position: {x: -0.67512274, y: 0.54187936, z: -0.12676036}
+    PulseSpeed: 0.22562721
+    PulseRange: 0.53745943
+    PulseOffset: 0.59620315
+  - Variant: -321554734
+    Color: {r: 0.84994346, g: 0.84994346, b: 0.24686724, a: 1}
+    Radius: 0.05
+    Angle: 42.647278
+    Position: {x: -0.5525849, y: -0.84001124, z: -0.4417466}
+    PulseSpeed: 0.9549674
+    PulseRange: 0.15822841
+    PulseOffset: 0.8351927
+  - Variant: 72555042
+    Color: {r: 0.7367965, g: 0.7367965, b: 0.7367965, a: 1}
+    Radius: 0.05
+    Angle: 32.138336
+    Position: {x: -0.8065593, y: 0.5790138, z: -0.98317325}
+    PulseSpeed: 0.7440571
+    PulseRange: 0.32817414
+    PulseOffset: 0.18652762
+  - Variant: -1848175861
+    Color: {r: 0.9625305, g: 0.9625305, b: 0.061643362, a: 1}
+    Radius: 0.05
+    Angle: -141.88824
+    Position: {x: -0.16096532, y: -0.8756995, z: -0.8942609}
+    PulseSpeed: 0.94346917
+    PulseRange: 0.15972008
+    PulseOffset: 0.7885003
+  - Variant: -752578860
+    Color: {r: 1, g: 0.9815053, b: 1, a: 1}
+    Radius: 0.05
+    Angle: 133.14893
+    Position: {x: 0.3322415, y: 0.21785772, z: 0.9770644}
+    PulseSpeed: 0.9328288
+    PulseRange: 0.42004842
+    PulseOffset: 0.4031288
+  - Variant: -1865136604
+    Color: {r: 0.82172346, g: 0.5704334, b: 0.39215687, a: 1}
+    Radius: 0.05
+    Angle: 105.98102
+    Position: {x: -0.5085342, y: -0.7212398, z: 0.36802503}
+    PulseSpeed: 0.36864558
+    PulseRange: 0.60795385
+    PulseOffset: 0.318872
+--- !u!4 &1743740712
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1743740710}
+  m_LocalRotation: {x: 0.2854945, y: 0.3639536, z: -0.11825568, w: 0.8786617}
+  m_LocalPosition: {x: 0, y: 200, z: 2444}
+  m_LocalScale: {x: 1000, y: 1000, z: 1000.00024}
+  m_Children:
+  - {fileID: 644321578}
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2009460224
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 114457744909205792, guid: c698df1f09e04af499e9fa4ebadf23d5,
+        type: 3}
+      propertyPath: m_Text
+      value: "This shows you how the star data of a starfield can be manually modified.
+        This is done by finding the <color=#0FF>SgtStarfield___</color> component,
+        opening its context menu (the <color=#0FF>\u22EE</color> button), and selecting
+        the <color=#0FF>Make Editable Copy</color> option. This will create a new
+        GameObject with the <color=#0FF>SgtStarfieldCustom</color> component, and
+        copy all procedural star data into the <color=#0FF>Stars</color> list, allowing
+        you to manually modify them. Keep in mind if you modify this list from code,
+        then you must manually call the <color=#0FF>DirtyMesh()</color> method after.\r\n\r\nQ/E
+        = Roll     WASD/Arrows/Pinch = Move     Click/Touch + Drag = Look"
+      objectReference: {fileID: 0}
+    - target: {fileID: 224356063559649096, guid: c698df1f09e04af499e9fa4ebadf23d5,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224494468789392064, guid: c698df1f09e04af499e9fa4ebadf23d5,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224494468789392064, guid: c698df1f09e04af499e9fa4ebadf23d5,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224494468789392064, guid: c698df1f09e04af499e9fa4ebadf23d5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224494468789392064, guid: c698df1f09e04af499e9fa4ebadf23d5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224494468789392064, guid: c698df1f09e04af499e9fa4ebadf23d5,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224494468789392064, guid: c698df1f09e04af499e9fa4ebadf23d5,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c698df1f09e04af499e9fa4ebadf23d5, type: 3}

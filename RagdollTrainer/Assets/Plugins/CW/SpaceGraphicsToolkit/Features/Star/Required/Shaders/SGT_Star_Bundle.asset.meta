@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 83395c6bcb747f142be80612b59b1b07
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Star/Required/Shaders/SGT_Star_Bundle.asset
+  uploadId: 616447

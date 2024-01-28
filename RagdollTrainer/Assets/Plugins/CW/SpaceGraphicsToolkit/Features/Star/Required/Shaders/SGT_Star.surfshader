@@ -1,0 +1,112 @@
+﻿BEGIN_OPTIONS
+	Workflow "Unlit"
+END_OPTIONS
+
+BEGIN_PROPERTIES
+	_Color("Color", Color) = (1,1,1,1)
+	_Brightness("Brightness", Float) = 1.0
+	_MainWarp("Noise Warp", Float) = 0.005
+	[NoScaleOffset]_MainTex("Texture (RGB)", 2D) = "white" {}
+
+	[Header(RIM)]
+	_RimColor("	Color", Color) = (1,1,1,1)
+	_RimPower("	Power", Float) = 2.0
+
+	[Header(NOISE)]
+	_NoiseColor("	Channels", Color) = (1,1,1,1)
+	_NoiseStrength("	Strength", Float) = 0.1
+	_NoiseTile("	Tile", Float) = 1.0
+	_NoiseSpeed("	Speed", Float) = 10.0
+	_NoiseOctaves("	Octaves", Range(1,6)) = 6
+
+	[Header(FLOW)]
+	_FlowStrength("	Strength", Float) = 1.0
+	[NoScaleOffset]_FlowTex("	Texture (A)", 2D) = "black" {}
+
+	[Header(SUNSPOTS)]
+	_SunspotsColor("	Color", Color) = (1,1,1,1)
+	_SunspotsStrength("	Strength", Float) = 1.0
+	_SunspotsWarp("	Noise Warp", Float) = 0.005
+	[NoScaleOffset]_SunspotsTex("	Texture (A)", 2D) = "gray" {}
+
+	[Header(OTHER)]
+	[NoScaleOffset]_NoiseTex("	Noise Texture (RG)", 3D) = "black" {}
+END_PROPERTIES
+
+BEGIN_CBUFFER
+	float3    _Color;
+	float     _Brightness;
+	sampler2D _MainTex;
+	float     _MainWarp;
+
+	float3 _RimColor;
+	float  _RimPower;
+
+	sampler3D _NoiseTex;
+	float4    _NoiseTex_TexelSize;
+	float3    _NoiseColor;
+	float     _NoiseStrength;
+	float     _NoiseTile;
+	float     _NoiseSpeed;
+	int       _NoiseOctaves;
+
+	sampler2D _FlowTex;
+	float     _FlowStrength;
+
+	sampler2D _SunspotsTex;
+	float3    _SunspotsColor;
+	float     _SunspotsWarp;
+	float     _SunspotsStrength;
+END_CBUFFER
+
+BEGIN_CODE
+	float Noise4D(float4 p)
+	{
+		const float3 noiseStep = float3(23, 29, 31);
+
+		float4 i     = floor(p);
+		float4 f     = smoothstep(0.0, 1.0, frac(p));
+		float3 pixel = i.xyz + f.xyz + i.w * noiseStep;
+		float3 grad  = p.xyz / _NoiseTex_TexelSize.w;
+		float4 noise = tex3Dgrad(_NoiseTex, (pixel + 0.5) / _NoiseTex_TexelSize.w, ddx(grad), ddy(grad));
+
+		return lerp(noise.x, noise.y, f.w);
+	}
+
+	void SurfaceFunction(inout Surface o, inout ShaderData d)
+	{
+		// Fbm noise
+		float  str   = 1.0f;
+		float  off   = tex2D(_FlowTex, d.texcoord0.xy).a * _FlowStrength;
+		float4 pos   = float4(d.localSpacePosition * _NoiseTile, off);
+		float  noise = 0.0f;
+
+		for (int j = 0; j < _NoiseOctaves; j++)
+		{
+			pos.w += _Time.x * _NoiseSpeed;
+			noise += (Noise4D(pos) - 0.5f) * str;
+			str   /= 2.0f;
+			pos   *= 2.0f;
+		}
+
+		// Make the base color the main tex * rim gradient
+		float nfDot = abs(dot(d.worldSpaceNormal, d.worldSpaceViewDir));
+		float rim = 1.0f - pow(1.0f - nfDot, _RimPower);
+
+		float2 mt_uv = d.texcoord0.xy; mt_uv.x += noise * _MainWarp;
+		float3 finalAlbedo = lerp(_RimColor, _Color, rim) * tex2D(_MainTex, mt_uv).xyz * _Brightness;
+
+		// Mix in noise
+		finalAlbedo += _NoiseColor * _NoiseStrength * noise;
+
+		// Sunspots
+		float2 ss_uv = d.texcoord0.xy; ss_uv.x += noise * _SunspotsWarp;
+		finalAlbedo += (tex2D(_SunspotsTex, ss_uv).a - 0.5f) * _SunspotsColor * _SunspotsStrength;
+
+		float4 finalColor = float4(finalAlbedo, 1.0f);
+
+		#if __SGT_OUTPUT
+			SGT_OutputWithoutAlpha(o, SGT_ModifyUnlitOutput(finalColor));
+		#endif
+	}
+END_CODE

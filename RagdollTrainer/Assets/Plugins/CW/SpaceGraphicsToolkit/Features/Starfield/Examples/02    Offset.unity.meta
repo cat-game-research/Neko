@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: bb52d511cafe92b469549f9795b9a340
+timeCreated: 1477183420
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Starfield/Examples/02   
+    Offset.unity
+  uploadId: 616447

@@ -1,0 +1,27 @@
+﻿BEGIN_OPTIONS
+	Workflow "Unlit"
+	Alpha "Blend"
+END_OPTIONS
+
+BEGIN_PASS("All")
+	Cull Back
+	Offset -0.01, -0.01
+	Blend DstColor Zero, One One
+END_PASS
+
+BEGIN_PROPERTIES
+	_SGT_AmbientColor("Ambient Color", Color) = (0,0,0)
+END_PROPERTIES
+
+BEGIN_CBUFFER
+	float3 _SGT_AmbientColor;
+END_CBUFFER
+
+BEGIN_CODE
+	void SurfaceFunction(inout Surface o, inout ShaderData d)
+	{
+		#if __SGT_LIGHTANDSHADOW
+			o.Albedo = lerp(_SGT_AmbientColor, float3(1.0f, 1.0f, 1.0f), SGT_ShadowColor(d.worldSpacePosition).xyz);
+		#endif
+	}
+END_CODE

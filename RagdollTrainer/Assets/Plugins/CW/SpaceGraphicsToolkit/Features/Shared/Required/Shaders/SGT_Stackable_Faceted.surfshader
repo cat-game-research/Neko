@@ -1,0 +1,28 @@
+﻿BEGIN_PROPERTIES
+	[Header(FACETED)]
+	[Toggle(_FACETED_ON)] _HasFaceted ("	Enabled", Float) = 0
+	_FlatShadingBlend("	Flat Amount", Range(0,3)) = 0.9
+END_PROPERTIES
+
+BEGIN_CBUFFER
+	half _FlatShadingBlend;
+END_CBUFFER
+
+BEGIN_DEFINES
+	#pragma shader_feature_local _ _FACETED_ON
+END_DEFINES
+
+BEGIN_CODE
+	void SurfaceFunction(inout Surface o, inout ShaderData d)
+	{
+	#if _FACETED_ON
+		// lets just affect the TBN data, so we flat shade the original polygons, not the normal map
+		float3 dx = ddx(d.worldSpacePosition);
+		float3 dy = ddy(d.worldSpacePosition);
+		float3 worldNormal = normalize(cross(dy, dx));
+		worldNormal = lerp(d.worldSpaceNormal, worldNormal, _FlatShadingBlend);
+		d.worldSpaceNormal = worldNormal;
+		d.TBNMatrix[2] = worldNormal;
+	#endif
+	}
+END_CODE

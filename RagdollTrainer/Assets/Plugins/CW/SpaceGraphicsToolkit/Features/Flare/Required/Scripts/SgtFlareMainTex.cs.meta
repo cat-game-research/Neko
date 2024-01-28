@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: d91ca362837d5a4479a1f2aed66df832
+timeCreated: 1527577778
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Flare/Required/Scripts/SgtFlareMainTex.cs
+  uploadId: 616447
