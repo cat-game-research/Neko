@@ -207,6 +207,11 @@ namespace Unity.MLAgentsExamples
 
         public override void OnActionReceived(ActionBuffers actionBuffers)
         {
+            if (GetCumulativeReward() < m_RewardThreshold)
+            {
+                EndEpisode();
+            }
+
             var bpDict = m_JdController.bodyPartsDict;
             var continuousActions = actionBuffers.ContinuousActions;
             var i = -1;
@@ -237,11 +242,6 @@ namespace Unity.MLAgentsExamples
             bpDict[forearmL].SetJointStrength(continuousActions[++i]);
             bpDict[armR].SetJointStrength(continuousActions[++i]);
             bpDict[forearmR].SetJointStrength(continuousActions[++i]);
-
-            if (GetCumulativeReward() < m_RewardThreshold)
-            {
-                EndEpisode();
-            }
         }
 
         public Vector3 GetAvgVelocity()

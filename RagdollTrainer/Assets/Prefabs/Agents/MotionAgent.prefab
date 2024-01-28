@@ -55,6 +55,8 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 10000
+  m_UseBodyCapsule: 1
+  m_AwarenessContact: {fileID: 2597571233015351087}
   m_Awareness: {fileID: 4137051407020257844}
   m_Vision: {fileID: 475080419209110949}
   m_OrientCube: {fileID: 7387634184855899303}
@@ -62,7 +64,11 @@ MonoBehaviour:
   m_AwarenessOffsetY: 1.575
   m_VisionOffsetY: 1.458
   m_OrientCubeOffsetY: 1
+  m_RandomStartingRotation: 1
+  m_ResetOnEpisodeBegin: 1
   m_RewardThreshold: -1000
+  m_MinVelocity: -2.3
+  m_MaxVelocity: 4.6
 --- !u!114 &8988802571648806154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,7 +82,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 249
+    VectorObservationSize: 47
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 4
@@ -106,9 +112,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DecisionPeriod: 5
+  DecisionPeriod: 6
   DecisionStep: 0
-  TakeActionsBetweenDecisions: 0
+  TakeActionsBetweenDecisions: 1
 --- !u!1001 &4340809098769979839
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -166,6 +172,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 395cf97da30c624429ab70b89fb4d43d, type: 3}
+--- !u!114 &2597571233015351087 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1743398446461656720, guid: 395cf97da30c624429ab70b89fb4d43d, type: 3}
+  m_PrefabInstance: {fileID: 4340809098769979839}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4137051407020257844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba429dc7adf5b7a46a6b48326f403c78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4137051407020257844 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 384042599420210059, guid: 395cf97da30c624429ab70b89fb4d43d, type: 3}
@@ -257,7 +274,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4722599813287138285, guid: f2a13c64e5b0d8941aa2fe35316aaf1c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5999997
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 4722599813287138285, guid: f2a13c64e5b0d8941aa2fe35316aaf1c, type: 3}
       propertyPath: m_LocalPosition.z

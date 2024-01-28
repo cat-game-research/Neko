@@ -2,21 +2,35 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Terrain Ocean (11)
   m_Shader: {fileID: 4800000, guid: f7e867e638ebca24db1dedb16a1457aa, type: 3}
-  m_ShaderKeywords: SGT_A _ALPHA_VERTICAL _BAKEDDETAIL _BAKEDDETAIL_ON _BAKEDDETAIL_ON_DEF_1
-    _DETAIL _DETAIL_R _NORMALMAP _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A _TRANSPARENCY_ON
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - _ALPHA_VERTICAL
+  - _BAKEDDETAIL_ON
+  - _BAKEDDETAIL_ON_DEF_1
+  - _WAVES_ADDITIVE
+  m_InvalidKeywords:
+  - SGT_A
+  - _BAKEDDETAIL
+  - _DETAIL
+  - _DETAIL_R
+  - _NORMALMAP
+  - _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+  - _TRANSPARENCY_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -168,6 +182,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _ShoreMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _WaterBumpMap:
         m_Texture: {fileID: 2800000, guid: a4a96292a1acf604cb1aa94a20081081, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -188,8 +206,16 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _WavesTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - _Alpha: 1
+    - _BakedDetailFadeBound: 1000
+    - _BakedDetailFadeBound_Ext_1: 1000
+    - _BakedDetailFadeBound_Ext_2: 1000
     - _BakedDetailFadeRange: 1000
     - _BakedDetailFadeRange_Ext_1: 0
     - _BakedDetailFadeRange_Ext_2: 0
@@ -209,6 +235,7 @@ Material:
     - _BakedDetailScale_Ext_1: 0.25
     - _BakedDetailScale_Ext_2: 0.25
     - _BumpScale: 0.28
+    - _CW_DisableFog: 0
     - _Cutoff: 0.5
     - _DeepPower: 5
     - _DeepRange: 45
@@ -286,6 +313,7 @@ Material:
     - _WaterSmoothness: 1
     - _WaterTiling: 1000
     - _WaveRefraction: 1
+    - _Waves: 0
     - _WavesInterval: 10
     - _WavesNoiseTiling: 100
     - _WavesRange: 5
@@ -297,3 +325,6 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _NightDirection: {r: 0, g: 0, b: 1, a: 1}
     - _WaterColor: {r: 1, g: 1, b: 1, a: 1}
+    - _WavesColor: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
