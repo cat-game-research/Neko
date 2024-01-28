@@ -21,20 +21,20 @@ namespace Unity.MLAgentsExamples
 
         void Awake()
         {
-            if (!m_RunOnAwake)
-            {
-                return;
-            }
-
             if (m_ParentGroup == null)
             {
                 m_ParentGroup = gameObject;
             }
 
-            SpawnPrefabs();
+            if (!m_RunOnAwake)
+            {
+                return;
+            }
+
+            SpawnAllBasePrefabs();
         }
 
-        private void SpawnPrefabs()
+        private void SpawnAllBasePrefabs()
         {
             for (int k = 0; k < m_BasePrefab.Length; k++)
             {
