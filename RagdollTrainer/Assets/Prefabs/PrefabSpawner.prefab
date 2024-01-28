@@ -80,9 +80,9 @@ MonoBehaviour:
   m_ParentGroup: {fileID: 5953268177755152970}
   m_BasePrefab:
   - {fileID: 7370140648595448830, guid: 4315e9c335412064493e04ba3e658086, type: 3}
-  m_XCount: 10
-  m_ZCount: 10
+  m_XCount: 1
+  m_ZCount: 1
   m_WidthX: 20
   m_WidthZ: 20
-  m_OffsetX: -90
-  m_OffsetZ: -90
+  m_OffsetX: -10
+  m_OffsetZ: -10

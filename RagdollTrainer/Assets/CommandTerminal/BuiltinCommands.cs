@@ -6,8 +6,8 @@ namespace CommandTerminal
 {
     public static class BuiltinCommands
     {
-        [RegisterCommand(Help = "Does nothing")]
-        static void CommandNoop(CommandArg[] args) { }
+        /*[RegisterCommand(Help = "Does nothing")]
+        static void CommandNoop(CommandArg[] args) { }*/
 
         [RegisterCommand(Help = "Clears the Command Console", MaxArgCount = 0)]
         static void CommandClear(CommandArg[] args) {
@@ -39,7 +39,7 @@ namespace CommandTerminal
             }
         }
 
-        [RegisterCommand(Help = "Times the execution of a Command", MinArgCount = 1)]
+        /*[RegisterCommand(Help = "Times the execution of a Command", MinArgCount = 1)]
         static void CommandTime(CommandArg[] args) {
             var sw = new Stopwatch();
             sw.Start();
@@ -48,14 +48,14 @@ namespace CommandTerminal
 
             sw.Stop();
             Terminal.Log("Time: {0}ms", (double)sw.ElapsedTicks / 10000);
-        }
+        }*/
 
         [RegisterCommand(Help = "Outputs message")]
         static void CommandPrint(CommandArg[] args) {
             Terminal.Log(JoinArguments(args));
         }
 
-    #if DEBUG
+    /*#if DEBUG
         [RegisterCommand(Help = "Outputs the StackTrace of the previous message", MaxArgCount = 0)]
         static void CommandTrace(CommandArg[] args) {
             int log_count = Terminal.Buffer.Logs.Count;
@@ -73,7 +73,7 @@ namespace CommandTerminal
                 Terminal.Log(log_item.stack_trace);
             }
         }
-    #endif
+    #endif*/
 
         [RegisterCommand(Help = "Quits running Application", MaxArgCount = 0)]
         static void CommandQuit(CommandArg[] args) {
