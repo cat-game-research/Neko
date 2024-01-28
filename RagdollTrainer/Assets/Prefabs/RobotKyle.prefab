@@ -198,7 +198,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: 0e35094ff8439f545bc21ebd60fbb901, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: 7399e2bb95ab1504c87a335a4defec84, type: 3}
   m_InferenceDevice: 2
   m_BehaviorType: 0
   m_BehaviorName: Walker
