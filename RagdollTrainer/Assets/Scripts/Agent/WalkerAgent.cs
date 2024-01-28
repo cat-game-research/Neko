@@ -45,9 +45,9 @@ namespace Unity.MLAgentsExamples
         [SerializeField] Stabilizer spineStabilizer;
 
         [Header("Walk Speed")]
-        [Range(0.1f, 4)][SerializeField] float m_TargetWalkingSpeed = 2;
-        float m_minWalkingSpeed = 0.1f;
-        float m_maxWalkingSpeed = 4;
+        [Range(0.8f, 4.6f)][SerializeField] float m_TargetWalkingSpeed = 1.8f;
+        float m_minWalkingSpeed = 0.8f;
+        float m_maxWalkingSpeed = 4.6f;
 
         [HideInInspector] public Vector3 m_AvgVelocity = Vector3.zero;
         [HideInInspector] public Vector3 m_AvgPosition = Vector3.zero;
@@ -80,7 +80,7 @@ namespace Unity.MLAgentsExamples
 
         public override void Initialize()
         {
-            ++AGENT_ID;
+            AGENT_ID++;
             m_OrientationCube = GetComponentInChildren<OrientationCubeController>();
             m_JdController = GetComponent<JointDriveController>();
 
@@ -229,7 +229,6 @@ namespace Unity.MLAgentsExamples
             bpDict[forearmR].SetJointTargetRotation(continuousActions[++i], 0, 0);
             bpDict[head].SetJointTargetRotation(continuousActions[++i], continuousActions[++i], 0);
 
-            //update joint strength settings
             bpDict[spine].SetJointStrength(continuousActions[++i]);
             bpDict[head].SetJointStrength(continuousActions[++i]);
             bpDict[thighL].SetJointStrength(continuousActions[++i]);

@@ -123,13 +123,14 @@ MonoBehaviour:
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 1024
-  m_RayDown: 1.25
-  m_SpawnX: {x: -2, y: 2}
-  m_SpawnY: {x: 1, y: 1}
-  m_SpawnZ: {x: -2, y: 2}
+  m_RayDown: 1
+  m_SpawnX: {x: -9, y: 9}
+  m_SpawnY: {x: 0.5, y: 1.5}
+  m_SpawnZ: {x: -9, y: 9}
   m_RespawnIfTouched: 1
   m_LocalRespawn: 0
   m_SpawnOnlyOnGround: 1
+  m_RandomizeOnStart: 1
   m_RespawnTime: 60
   m_MinRespawnTime: 30
   m_MaxRespawnTime: 60

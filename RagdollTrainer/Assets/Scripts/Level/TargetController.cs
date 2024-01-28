@@ -24,6 +24,7 @@ namespace Unity.MLAgentsExamples
         public bool m_RespawnIfTouched = true;
         public bool m_LocalRespawn = false;
         public bool m_SpawnOnlyOnGround = true;
+        public bool m_RandomizeOnStart = true;
 
         [Header("Target Respawn Timer")]
         [Tooltip("This is the default timer used to make the target respawn. Randomize Respawn Time will override this value. Be careful when setting this value to low or high.")]
@@ -40,7 +41,7 @@ namespace Unity.MLAgentsExamples
 
         private void Start()
         {
-            ResetTarget();
+            ResetTarget(m_RandomizeOnStart);
         }
 
         private void Update()
@@ -48,7 +49,7 @@ namespace Unity.MLAgentsExamples
             _Timer -= Time.deltaTime;
             if (_Timer <= 0)
             {
-                ResetTarget();
+                ResetTarget(true);
             }
         }
 
@@ -60,10 +61,13 @@ namespace Unity.MLAgentsExamples
             }
         }
 
-        private void ResetTarget()
+        private void ResetTarget(bool randomize)
         {
-            MoveTargetToRandomPosition();
-            _Timer = m_RandomizeRespawnTime ? Random.Range(m_MinRespawnTime, m_MaxRespawnTime) : m_RespawnTime;
+            if (randomize)
+            {
+                MoveTargetToRandomPosition();
+                _Timer = m_RandomizeRespawnTime ? Random.Range(m_MinRespawnTime, m_MaxRespawnTime) : m_RespawnTime;
+            }
         }
 
         public void MoveTargetToRandomPosition()
@@ -112,10 +116,8 @@ namespace Unity.MLAgentsExamples
             if (col.transform.CompareTag(k_Agent) ||
                 col.transform.CompareTag(k_Wall))
             {
-                if (m_RespawnIfTouched)
-                {
-                    ResetTarget();
-                }
+                Debug.Log("--target-enter--");
+                RespawnIfTouched();
             }
         }
 
@@ -124,10 +126,8 @@ namespace Unity.MLAgentsExamples
             if (col.transform.CompareTag(k_Agent) ||
                col.transform.CompareTag(k_Wall))
             {
-                if (m_RespawnIfTouched)
-                {
-                    ResetTarget();
-                }
+                Debug.Log("--target:-stay--");
+                RespawnIfTouched();
             }
         }
 
@@ -136,10 +136,16 @@ namespace Unity.MLAgentsExamples
             if (col.transform.CompareTag(k_Agent) ||
                col.transform.CompareTag(k_Wall))
             {
-                if (m_RespawnIfTouched)
-                {
-                    ResetTarget();
-                }
+                Debug.Log("--target-exit--");
+                RespawnIfTouched();
+            }
+        }
+
+        private void RespawnIfTouched()
+        {
+            if (m_RespawnIfTouched)
+            {
+                ResetTarget(true);
             }
         }
     }
