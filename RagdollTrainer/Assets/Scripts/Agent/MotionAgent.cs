@@ -13,6 +13,7 @@ namespace Unity.MLAgentsExamples
         public GameObject m_Awareness;
         public GameObject m_Vision;
         public GameObject m_OrientCube;
+        public GameObject m_BodyCapsule;
 
         [Header("Positioning")]
         public float m_AwarenessOffsetY = 1f;

@@ -2,21 +2,36 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Obsidian Planet
   m_Shader: {fileID: 4800000, guid: 768a73c8cfe57ab46943868314e13a32, type: 3}
-  m_ShaderKeywords: SGT_A _BAKEDDETAIL _BAKEDDETAIL_DEF_1 _BAKEDDETAIL_ON _BAKEDDETAIL_ON_DEF_1
-    _BAKEDDETAIL_ON_DEF_2 _DETAIL _DETAIL_NORMAL _DETAIL_R _NORMALMAP _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - _BAKEDDETAIL_ON
+  - _BAKEDDETAIL_ON_DEF_1
+  - _BAKEDDETAIL_ON_DEF_2
+  - _DETAIL_NORMAL
+  - _DETAIL_R
+  - _SHORE_DETAIL_A
+  m_InvalidKeywords:
+  - SGT_A
+  - _BAKEDDETAIL
+  - _BAKEDDETAIL_DEF_1
+  - _DETAIL
+  - _NORMALMAP
+  - _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -216,6 +231,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - _AlbedoShift: 0
     - _BakedDetailFadeBound: 100000
@@ -256,6 +272,7 @@ Material:
     - _DetailTilingA: 500
     - _DetailTilingB: 500
     - _DstBlend: 0
+    - _FlatShadingBlend: 0.9
     - _GlossMapScale: 0
     - _Glossiness: 0.27
     - _GlossyReflections: 1
@@ -269,12 +286,14 @@ Material:
     - _HasDetailG: 0
     - _HasDetailNormal: 1
     - _HasDetailR: 1
+    - _HasFaceted: 0
     - _HasNight: 0
     - _HasShore: 0
     - _HasWater: 0
     - _IceOverWater: 0
     - _Metallic: 1
     - _Mode: 0
+    - _NightBrightness: 1
     - _NightOffset: 0
     - _NightSharpness: 1
     - _OcclusionStrength: 1
@@ -310,3 +329,5 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _NightDirection: {r: 0, g: 0, b: 1, a: 1}
     - _WaterColor: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1

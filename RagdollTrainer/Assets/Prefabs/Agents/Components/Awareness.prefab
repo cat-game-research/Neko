@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bb6b867a41448888c1cd4f99643ad71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SensorName: AwarenessBackSideDown
+  m_SensorName: AwarenessBackSideUp
   m_DetectableTags:
   - wall
   - target
@@ -221,7 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bb6b867a41448888c1cd4f99643ad71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SensorName: AwarenessFrontSideDown
+  m_SensorName: AwarenessFrontSideUp
   m_DetectableTags:
   - wall
   - target
@@ -326,7 +326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bb6b867a41448888c1cd4f99643ad71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SensorName: AwarenessLeftSideDown
+  m_SensorName: AwarenessLeftSideUp
   m_DetectableTags:
   - wall
   - target
@@ -431,7 +431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bb6b867a41448888c1cd4f99643ad71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SensorName: AwarenessRightSideDown
+  m_SensorName: AwarenessRightSideUp
   m_DetectableTags:
   - wall
   - target
