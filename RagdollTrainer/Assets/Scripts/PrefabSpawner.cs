@@ -31,6 +31,11 @@ namespace Unity.MLAgentsExamples
                 m_ParentGroup = gameObject;
             }
 
+            SpawnPrefabs();
+        }
+
+        private void SpawnPrefabs()
+        {
             for (int k = 0; k < m_BasePrefab.Length; k++)
             {
                 for (int i = 0; i < m_XCount; i++)
