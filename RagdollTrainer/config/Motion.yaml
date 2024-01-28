@@ -2,8 +2,8 @@ behaviors:
   Motion:
     trainer_type: ppo
     hyperparameters:
-      batch_size: 8192
-      buffer_size: 81920
+      batch_size: 4096
+      buffer_size: 40960
       learning_rate: 0.0003
       beta: 0.005
       epsilon: 0.2
@@ -13,7 +13,7 @@ behaviors:
     network_settings:
       normalize: true
       hidden_units: 512
-      num_layers: 5
+      num_layers: 3
       vis_encode_type: simple
     reward_signals:
       extrinsic:
@@ -28,5 +28,5 @@ behaviors:
     keep_checkpoints: 20
     checkpoint_interval: 1000000
     max_steps: 20000000
-    time_horizon: 2500
+    time_horizon: 1000
     summary_freq: 250000

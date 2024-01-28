@@ -69,6 +69,10 @@ MonoBehaviour:
   m_RewardThreshold: -1000
   m_MinVelocity: -2.3
   m_MaxVelocity: 4.6
+  m_StrafeScale: 0.2
+  m_ForwardScale: 1
+  m_VelocityScale: 5
+  m_RotateScale: 250
 --- !u!114 &8988802571648806154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,7 +86,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 47
+    VectorObservationSize: 42
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 4

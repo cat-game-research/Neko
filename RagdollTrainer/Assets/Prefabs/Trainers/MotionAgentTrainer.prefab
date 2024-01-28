@@ -635,10 +635,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ColumnSpawner
       objectReference: {fileID: 0}
-    - target: {fileID: 729151186524499181, guid: 195221c350fd38f438c15fd3a994d596, type: 3}
-      propertyPath: m_NumberOfColumns
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6454891782943071020, guid: 195221c350fd38f438c15fd3a994d596, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

@@ -295,27 +295,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8124863109156880590, guid: 3e31189860901cf4885675c0308ad4ea, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.946826
+      value: 0.85719514
       objectReference: {fileID: 0}
     - target: {fileID: 8124863109156880590, guid: 3e31189860901cf4885675c0308ad4ea, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.10528335
+      value: 0.41808194
       objectReference: {fileID: 0}
     - target: {fileID: 8124863109156880590, guid: 3e31189860901cf4885675c0308ad4ea, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.3021707
+      value: 0.27027252
       objectReference: {fileID: 0}
     - target: {fileID: 8124863109156880590, guid: 3e31189860901cf4885675c0308ad4ea, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0336002
+      value: -0.1318207
       objectReference: {fileID: 0}
     - target: {fileID: 8124863109156880590, guid: 3e31189860901cf4885675c0308ad4ea, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 12.69
+      value: 52
       objectReference: {fileID: 0}
     - target: {fileID: 8124863109156880590, guid: 3e31189860901cf4885675c0308ad4ea, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 35.4
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 8124863109156880590, guid: 3e31189860901cf4885675c0308ad4ea, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -431,10 +431,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2570026590891329045, guid: d5ae7e86a25282041a3478764844594b, type: 3}
-      propertyPath: 'm_BasePrefab.Array.data[0]'
-      value: 
-      objectReference: {fileID: 7370140648595448830, guid: 65113c93ea9a13946a4bd6407764c94b, type: 3}
     - target: {fileID: 6093055303679104388, guid: d5ae7e86a25282041a3478764844594b, type: 3}
       propertyPath: m_Name
       value: PrefabSpawner
