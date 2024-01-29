@@ -204,7 +204,7 @@ MonoBehaviour:
   - environment
   - food
   - poison
-  m_RaysPerDirection: 2
+  m_RaysPerDirection: 5
   m_MaxRayDegrees: 70
   m_SphereCastRadius: 0.1
   m_RayLength: 5
@@ -273,7 +273,7 @@ MonoBehaviour:
   rayHitColor: {r: 1, g: 0, b: 0, a: 1}
   rayMissColor: {r: 1, g: 1, b: 1, a: 1}
   m_StartVerticalOffset: -0.575
-  m_EndVerticalOffset: -0.576
+  m_EndVerticalOffset: -0.575
 --- !u!114 &849942446949277193
 MonoBehaviour:
   m_ObjectHideFlags: 0

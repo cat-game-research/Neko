@@ -133,10 +133,12 @@ namespace Unity.MLAgentsExamples
             if (m_EarlyTraining && m_Target != null)
             {
                 var targetDistanceReward = 1f / (Vector3.Distance(transform.position, m_Target.position) + 0.01f);
-                var targetFacingReward = Mathf.InverseLerp(0, 180, Quaternion.Angle(transform.rotation, m_Target.rotation));
+                //var targetFacingReward = Mathf.InverseLerp(0, 180, Quaternion.Angle(transform.rotation, m_Target.rotation));
+                var targetFacingReward = Vector3.Dot(transform.forward, m_Target.forward) + 1;
 
-                Debug.Log(0.8f * targetDistanceReward + " :: " + 0.1f * targetFacingReward);
                 AddReward(0.8f * targetDistanceReward + 0.1f * targetFacingReward);
+
+                Debug.Log(0.8f * targetDistanceReward + " :: " + 0.1f * targetFacingReward + " [" + GetCumulativeReward() + "]");
             }
         }
 
