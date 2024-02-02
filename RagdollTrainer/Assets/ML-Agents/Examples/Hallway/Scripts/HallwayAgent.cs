@@ -12,88 +12,105 @@ public class HallwayAgent : Agent
     public GameObject symbolXGoal;
     public GameObject symbolO;
     public GameObject symbolX;
-    public bool useVectorObs;
+    public float m_RewardAmount = 1f;
+    public float m_PenalityAmount = -0.5f;
+    public float m_StepPenalityAmount = -4f;
+    public float m_WallPenalityAmount = -4f;
+    public float m_MinRewardThreshold = -0.25f;
     Rigidbody m_AgentRb;
-    Material m_GroundMaterial;
-    Renderer m_GroundRenderer;
-    HallwaySettings m_HallwaySettings;
     int m_Selection;
     StatsRecorder m_statsRecorder;
 
+    Vector3 _Direction = Vector3.zero;
+    Vector3 _Rotation = Vector3.zero;
+
     public override void Initialize()
     {
-        m_HallwaySettings = FindObjectOfType<HallwaySettings>();
         m_AgentRb = GetComponent<Rigidbody>();
-        m_GroundRenderer = ground.GetComponent<Renderer>();
-        m_GroundMaterial = m_GroundRenderer.material;
         m_statsRecorder = Academy.Instance.StatsRecorder;
+        m_statsRecorder.Add("Goal/Correct", 0, StatAggregationMethod.Sum);
+        m_statsRecorder.Add("Goal/Wrong", 0, StatAggregationMethod.Sum);
+        m_statsRecorder.Add("Goal/Total", 0, StatAggregationMethod.Sum);
     }
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        if (useVectorObs)
-        {
-            sensor.AddObservation(StepCount / (float)MaxStep);
-        }
-    }
-
-    IEnumerator GoalScoredSwapGroundMaterial(Material mat, float time)
-    {
-        m_GroundRenderer.material = mat;
-        yield return new WaitForSeconds(time);
-        m_GroundRenderer.material = m_GroundMaterial;
+        sensor.AddObservation(StepCount / (float)MaxStep);
+        sensor.AddObservation(_Direction);
+        sensor.AddObservation(_Rotation);
+        sensor.AddObservation(m_AgentRb.velocity);
+        sensor.AddObservation(m_AgentRb.angularVelocity);
+        sensor.AddObservation(GetCumulativeReward());
+        sensor.AddObservation(GetCumulativeReward() / StepCount);
     }
 
     public void MoveAgent(ActionSegment<int> act)
     {
-        var dirToGo = Vector3.zero;
-        var rotateDir = Vector3.zero;
+        _Direction = Vector3.zero;
+        _Rotation = Vector3.zero;
 
         var action = act[0];
         switch (action)
         {
             case 1:
-                dirToGo = transform.forward * 1f;
+                _Direction = transform.forward * 1f;
                 break;
             case 2:
-                dirToGo = transform.forward * -1f;
+                _Direction = transform.forward * -1f;
                 break;
             case 3:
-                rotateDir = transform.up * 1f;
+                _Rotation = transform.up * 1f;
                 break;
             case 4:
-                rotateDir = transform.up * -1f;
+                _Rotation = transform.up * -1f;
                 break;
         }
-        transform.Rotate(rotateDir, Time.deltaTime * 150f);
-        m_AgentRb.AddForce(dirToGo * m_HallwaySettings.agentRunSpeed, ForceMode.VelocityChange);
+        transform.Rotate(_Rotation, Time.deltaTime * 150f);
+        m_AgentRb.AddForce(_Direction * 1.5f, ForceMode.VelocityChange);
     }
 
     public override void OnActionReceived(ActionBuffers actionBuffers)
 
     {
-        AddReward(-1f / MaxStep);
+        if (GetCumulativeReward() < m_MinRewardThreshold)
+        {
+            EndEpisode();
+        }
+
+        AddReward(m_StepPenalityAmount / MaxStep);
         MoveAgent(actionBuffers.DiscreteActions);
     }
 
     void OnCollisionEnter(Collision col)
     {
+        if (col.gameObject.CompareTag("wall"))
+        {
+            AddReward(m_WallPenalityAmount / MaxStep);
+        }
         if (col.gameObject.CompareTag("symbol_O_Goal") || col.gameObject.CompareTag("symbol_X_Goal"))
         {
             if ((m_Selection == 0 && col.gameObject.CompareTag("symbol_O_Goal")) ||
                 (m_Selection == 1 && col.gameObject.CompareTag("symbol_X_Goal")))
             {
-                SetReward(1f);
-                StartCoroutine(GoalScoredSwapGroundMaterial(m_HallwaySettings.goalScoredMaterial, 0.5f));
+                SetReward(m_RewardAmount);
                 m_statsRecorder.Add("Goal/Correct", 1, StatAggregationMethod.Sum);
+                m_statsRecorder.Add("Goal/Total", 1, StatAggregationMethod.Sum);
             }
             else
             {
-                SetReward(-0.1f);
-                StartCoroutine(GoalScoredSwapGroundMaterial(m_HallwaySettings.failMaterial, 0.5f));
+                SetReward(m_PenalityAmount);
                 m_statsRecorder.Add("Goal/Wrong", 1, StatAggregationMethod.Sum);
+                m_statsRecorder.Add("Goal/Total", 1, StatAggregationMethod.Sum);
             }
             EndEpisode();
+        }
+    }
+
+    private void OnCollisionStay(Collision col)
+    {
+        if (col.gameObject.CompareTag("wall"))
+        {
+            AddReward(m_WallPenalityAmount / MaxStep);
         }
     }
 

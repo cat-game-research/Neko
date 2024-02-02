@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ColumnsGroup: {fileID: 959251808870770487}
   m_WallColumnPrefab: {fileID: 1764450238102495910, guid: f8b9fdc76707082409573967fa3baac7, type: 3}
-  m_NumberOfColumns: 0
+  m_NumberOfColumns: 4
   m_GroundRadius: 10
   m_EnvironmentLayer:
     serializedVersion: 2
