@@ -357,10 +357,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8352492221517028112, guid: f08f72ebbaa02764c828776dbaa3424d, type: 3}
-      propertyPath: field of view
-      value: 80
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -475,10 +471,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: '@UI'
       objectReference: {fileID: 0}
-    - target: {fileID: 8601771399382154738, guid: de2ca72205e76104ba688f6b94083f61, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -589,34 +581,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2570026590891329045, guid: d5ae7e86a25282041a3478764844594b, type: 3}
-      propertyPath: m_WidthX
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2570026590891329045, guid: d5ae7e86a25282041a3478764844594b, type: 3}
-      propertyPath: m_WidthZ
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2570026590891329045, guid: d5ae7e86a25282041a3478764844594b, type: 3}
-      propertyPath: m_XCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2570026590891329045, guid: d5ae7e86a25282041a3478764844594b, type: 3}
-      propertyPath: m_ZCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2570026590891329045, guid: d5ae7e86a25282041a3478764844594b, type: 3}
-      propertyPath: m_OffsetX
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2570026590891329045, guid: d5ae7e86a25282041a3478764844594b, type: 3}
-      propertyPath: m_OffsetZ
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2570026590891329045, guid: d5ae7e86a25282041a3478764844594b, type: 3}
-      propertyPath: 'm_BasePrefab.Array.data[0]'
-      value: 
-      objectReference: {fileID: 7214733444821346789, guid: 4719c03f189f9934d903777c917f8464, type: 3}
     - target: {fileID: 6093055303679104388, guid: d5ae7e86a25282041a3478764844594b, type: 3}
       propertyPath: m_Name
       value: PrefabSpawner
