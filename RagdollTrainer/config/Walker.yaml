@@ -15,9 +15,6 @@
           hidden_units: 256
           num_layers: 3
           vis_encode_type: simple
-          memory:
-            sequence_length: 1000
-            memory_size: 256
         reward_signals:
           extrinsic:
             gamma: 0.995
@@ -32,4 +29,4 @@
         checkpoint_interval: 1000000
         max_steps: 20000000
         time_horizon: 1000
-        summary_freq: 20000
+        summary_freq: 50000
