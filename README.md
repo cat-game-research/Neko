@@ -16,7 +16,7 @@ git clone https://github.com/cat-game-research/NekoCatGame.git
 
 Alternatively, you can download the zip file of the repository and extract it.
 
-Next, open Unity Hub and click on the "Add" button. Browse to the folder where you cloned or extracted the repository and select it. You should see the project appear in the Unity Hub window. Click on it to open it in Unity.
+Next, open Unity Hub and click on the "Add" button. Browse to the folder where you cloned or extracted the repository and navigate into the directory named `NekoCatGame`. You should see the project appear in the Unity Hub window. Click on it to open it in Unity.
 
 ## Usage
 
