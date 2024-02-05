@@ -2,7 +2,7 @@
 
 Neko Cat Game is a 3D simulation game that aims to create realistic and interactive cat behaviors using machine learning and physics-based animation. The game is still in development and currently features some ragdoll robot biped walkers roaming around a scene.
 
-![Screenshot of the game]
+![ConceptScreenshotA](res/concept_screenshot_a.jpg?raw=true "Concept Screenshot A")
 
 ## Installation
 
