@@ -25,7 +25,7 @@ namespace Unity.MLAgentsExamples
         public bool touchingTarget;
 
         //Check tags for the gameObject
-        const string k_Ground = "ground"; // Tag of ground object.
+        const string k_Ground = "ground";
         const string k_Wall = "wall";
         const string k_Target = "target";
 

@@ -148,8 +148,8 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 10000
-  m_ResetOnEpisodeBegin: 0
-  earlyTraining: 0
+  m_ResetOnEpisodeBegin: 1
+  earlyTraining: 1
   m_RewardThreshold: -1000
   targetT: {fileID: 0}
   targetController: {fileID: 0}
@@ -1804,7 +1804,7 @@ MonoBehaviour:
   m_RayLength: 20
   m_RayLayerMask:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 1491
   m_ObservationStacks: 1
   m_AlternatingRayOrder: 1
   m_UseBatchedRaycasts: 0

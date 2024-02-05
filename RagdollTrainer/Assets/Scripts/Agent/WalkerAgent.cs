@@ -158,7 +158,7 @@ namespace Unity.MLAgentsExamples
             AddReward(footSpacingReward);
 
             var cubeForward = m_OrientationCube.transform.forward;
-            var lookAtTargetReward = Vector3.Dot(head.forward, cubeForward) + 1;
+            var lookAtTargetReward = 0.1f * (Vector3.Dot(head.forward, cubeForward) + 1);
             var matchSpeedReward = GetMatchingVelocityReward(cubeForward * TargetWalkingSpeed, GetAvgVelocity());
 
             //*Important* Forces movement towards target (penalize stationary swinging)
@@ -168,7 +168,7 @@ namespace Unity.MLAgentsExamples
                 if (matchSpeedReward > 0) matchSpeedReward = GetMatchingVelocityReward(cubeForward * TargetWalkingSpeed, m_AvgVelocity);
             }
 
-            AddReward(matchSpeedReward + 0.1f * lookAtTargetReward);
+            AddReward(matchSpeedReward + lookAtTargetReward);
         }
 
         public void CollectObservationBodyPart(BodyPart bp, VectorSensor sensor)

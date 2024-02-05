@@ -116,7 +116,6 @@ namespace Unity.MLAgentsExamples
             if (col.transform.CompareTag(k_Agent) ||
                 col.transform.CompareTag(k_Wall))
             {
-                Debug.Log("--target-enter--");
                 RespawnIfTouched();
             }
         }
@@ -126,7 +125,6 @@ namespace Unity.MLAgentsExamples
             if (col.transform.CompareTag(k_Agent) ||
                col.transform.CompareTag(k_Wall))
             {
-                Debug.Log("--target:-stay--");
                 RespawnIfTouched();
             }
         }
@@ -136,7 +134,7 @@ namespace Unity.MLAgentsExamples
             if (col.transform.CompareTag(k_Agent) ||
                col.transform.CompareTag(k_Wall))
             {
-                Debug.Log("--target-exit--");
+
                 RespawnIfTouched();
             }
         }
