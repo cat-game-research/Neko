@@ -166,7 +166,7 @@ MonoBehaviour:
   forearmL: {fileID: 4160746228201455430}
   armR: {fileID: 4160746227511132493}
   forearmR: {fileID: 4160746228541967692}
-  m_stabilizerTorque: 4000
+  m_stabilizerTorque: 3500
   hipsStabilizer: {fileID: 4160746227938044729}
   spineStabilizer: {fileID: 4160746227784443462}
   m_TargetWalkingSpeed: 2
@@ -198,7 +198,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: 2c5f54a09c1cfd84db6764de62072db2, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: cffc0cc29bb760347997a17b80085e72, type: 3}
   m_InferenceDevice: 2
   m_BehaviorType: 0
   m_BehaviorName: Walker
