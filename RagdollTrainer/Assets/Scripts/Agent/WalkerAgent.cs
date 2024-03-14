@@ -39,7 +39,7 @@ namespace Unity.MLAgentsExamples
         [SerializeField] Transform forearmR;
 
         [Header("Stabilizer")]
-        [Range(1000, 4000)][SerializeField] float m_stabilizerTorque = 4000f;
+        [Range(0, 4000)][SerializeField] float m_stabilizerTorque = 4000f;
         float m_minStabilizerTorque = 1000;
         float m_maxStabilizerTorque = 4000;
         [SerializeField] Stabilizer hipsStabilizer;

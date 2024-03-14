@@ -18,6 +18,9 @@ TagManager:
   - symbol_X_Goal
   - symbol_O_Goal
   - symbol_X
+  - objective
+  - friend
+  - enemy
   layers:
   - Default
   - TransparentFX

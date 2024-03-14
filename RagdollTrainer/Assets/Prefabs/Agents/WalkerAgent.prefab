@@ -130,6 +130,7 @@ Transform:
   - {fileID: 4160746227244513966}
   - {fileID: 4160746227957015835}
   - {fileID: 410093189039141369}
+  - {fileID: 796716256718921245}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6587238005534549697
@@ -147,7 +148,7 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 10000
+  MaxStep: 4096
   m_ResetOnEpisodeBegin: 1
   earlyTraining: 1
   m_RewardThreshold: -1000
@@ -166,7 +167,7 @@ MonoBehaviour:
   forearmL: {fileID: 4160746228201455430}
   armR: {fileID: 4160746227511132493}
   forearmR: {fileID: 4160746228541967692}
-  m_stabilizerTorque: 3500
+  m_stabilizerTorque: 0
   hipsStabilizer: {fileID: 4160746227938044729}
   spineStabilizer: {fileID: 4160746227784443462}
   m_TargetWalkingSpeed: 2
@@ -198,9 +199,9 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: cffc0cc29bb760347997a17b80085e72, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: 51d16340a2d547e4c8cac5d219f2f6f9, type: 3}
   m_InferenceDevice: 2
-  m_BehaviorType: 0
+  m_BehaviorType: 2
   m_BehaviorName: Walker
   TeamId: 0
   m_UseChildSensors: 1
@@ -3356,7 +3357,7 @@ Transform:
   m_GameObject: {fileID: 4865303176801702408}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1, y: 1.6, z: -1.667}
+  m_LocalPosition: {x: 1, y: 1.6, z: -1.6669998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3456,6 +3457,172 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.1, y: 0.24, z: 0.06}
   m_Center: {x: 0.01, y: 0.07, z: 0.04}
+--- !u!1 &8344866994810440959
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 796716256718921245}
+  - component: {fileID: 2300135575478199030}
+  - component: {fileID: 4858514636308814093}
+  - component: {fileID: 7468600006667466380}
+  m_Layer: 0
+  m_Name: Vision
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &796716256718921245
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8344866994810440959}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4160746226523773137}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2300135575478199030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8344866994810440959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bb6b867a41448888c1cd4f99643ad71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SensorName: RayPerceptionSensorCenter
+  m_DetectableTags:
+  - agent
+  - target
+  - ground
+  - wall
+  - obsticle
+  - food
+  - poison
+  - environment
+  - focus
+  - symbol_O
+  - symbol_X_Goal
+  - symbol_O_Goal
+  - symbol_X
+  - objective
+  - friend
+  - enemy
+  m_RaysPerDirection: 3
+  m_MaxRayDegrees: 80
+  m_SphereCastRadius: 0.25
+  m_RayLength: 20
+  m_RayLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967243
+  m_ObservationStacks: 1
+  m_AlternatingRayOrder: 1
+  m_UseBatchedRaycasts: 1
+  rayHitColor: {r: 1, g: 0, b: 0, a: 1}
+  rayMissColor: {r: 1, g: 1, b: 1, a: 1}
+  m_StartVerticalOffset: 0.5
+  m_EndVerticalOffset: -1
+--- !u!114 &4858514636308814093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8344866994810440959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bb6b867a41448888c1cd4f99643ad71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SensorName: RayPerceptionSensorLower
+  m_DetectableTags:
+  - agent
+  - target
+  - ground
+  - wall
+  - obsticle
+  - food
+  - poison
+  - environment
+  - focus
+  - symbol_O
+  - symbol_X_Goal
+  - symbol_O_Goal
+  - symbol_X
+  - objective
+  - friend
+  - enemy
+  m_RaysPerDirection: 3
+  m_MaxRayDegrees: 80
+  m_SphereCastRadius: 0.25
+  m_RayLength: 20
+  m_RayLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967243
+  m_ObservationStacks: 1
+  m_AlternatingRayOrder: 1
+  m_UseBatchedRaycasts: 1
+  rayHitColor: {r: 1, g: 0, b: 0, a: 1}
+  rayMissColor: {r: 1, g: 1, b: 1, a: 1}
+  m_StartVerticalOffset: 0.5
+  m_EndVerticalOffset: -9
+--- !u!114 &7468600006667466380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8344866994810440959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bb6b867a41448888c1cd4f99643ad71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SensorName: RayPerceptionSensorUpper
+  m_DetectableTags:
+  - agent
+  - target
+  - ground
+  - wall
+  - obsticle
+  - food
+  - poison
+  - environment
+  - focus
+  - symbol_O
+  - symbol_X_Goal
+  - symbol_O_Goal
+  - symbol_X
+  - objective
+  - friend
+  - enemy
+  m_RaysPerDirection: 3
+  m_MaxRayDegrees: 80
+  m_SphereCastRadius: 0.25
+  m_RayLength: 20
+  m_RayLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967243
+  m_ObservationStacks: 1
+  m_AlternatingRayOrder: 1
+  m_UseBatchedRaycasts: 1
+  rayHitColor: {r: 1, g: 0, b: 0, a: 1}
+  rayMissColor: {r: 1, g: 1, b: 1, a: 1}
+  m_StartVerticalOffset: 0.5
+  m_EndVerticalOffset: 9
 --- !u!1 &8607924246995210435
 GameObject:
   m_ObjectHideFlags: 0
