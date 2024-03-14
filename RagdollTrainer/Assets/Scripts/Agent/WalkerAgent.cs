@@ -21,6 +21,7 @@ namespace Unity.MLAgentsExamples
         [Header("Target Goal")]
         [SerializeField] Transform targetT;
         [SerializeField] TargetController targetController;
+        float _StartingTargetDistance = 0;
 
         [Header("Body Parts")]
         [SerializeField] Transform hips;
@@ -105,6 +106,7 @@ namespace Unity.MLAgentsExamples
             {
                 targetT = GetRandomTransform(-1000, 1000, -1000, 1000, 1);
             }
+            _StartingTargetDistance = GetTargetDistance();
 
             if (randomizeWalkSpeed)
             {
@@ -130,6 +132,7 @@ namespace Unity.MLAgentsExamples
             }
 
             targetController.MoveTargetToRandomPosition();
+            _StartingTargetDistance = GetTargetDistance();
 
             foreach (var bodyPart in m_JdController.bodyPartsDict.Values)
             {
@@ -158,8 +161,9 @@ namespace Unity.MLAgentsExamples
             AddReward(footSpacingReward);
 
             var cubeForward = m_OrientationCube.transform.forward;
-            var lookAtTargetReward = 0.1f * (Vector3.Dot(head.forward, cubeForward) + 1);
+            var lookAtTargetReward = Vector3.Dot(head.forward, cubeForward) + 1;
             var matchSpeedReward = GetMatchingVelocityReward(cubeForward * TargetWalkingSpeed, GetAvgVelocity());
+            var targetDistanceReward = GetTargetDistanceReward();
 
             //*Important* Forces movement towards target (penalize stationary swinging)
             if (earlyTraining)
@@ -168,7 +172,7 @@ namespace Unity.MLAgentsExamples
                 if (matchSpeedReward > 0) matchSpeedReward = GetMatchingVelocityReward(cubeForward * TargetWalkingSpeed, m_AvgVelocity);
             }
 
-            AddReward(matchSpeedReward + lookAtTargetReward);
+            AddReward((0.5f * targetDistanceReward) + (0.5f * matchSpeedReward) + (0.1f * lookAtTargetReward));
         }
 
         public void CollectObservationBodyPart(BodyPart bp, VectorSensor sensor)
@@ -287,6 +291,23 @@ namespace Unity.MLAgentsExamples
             }
 
             return Mathf.Pow(1 - Mathf.Pow(velDeltaMagnitude / TargetWalkingSpeed, 2), 2);
+        }
+
+        public float GetTargetDistanceReward()
+        {
+            var distance = Mathf.Clamp(GetTargetDistance(), 0, _StartingTargetDistance);
+
+            if (_StartingTargetDistance == 0)
+            {
+                _StartingTargetDistance = 0.01f;
+            }
+
+            return Mathf.Pow(1 - Mathf.Pow(distance / _StartingTargetDistance, 2), 2);
+        }
+
+        private float GetTargetDistance()
+        {
+            return Vector3.Distance(m_OrientationCube.transform.position, targetT.position);
         }
     }
 }
