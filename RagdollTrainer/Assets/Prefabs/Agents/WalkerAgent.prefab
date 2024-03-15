@@ -167,7 +167,7 @@ MonoBehaviour:
   forearmL: {fileID: 4160746228201455430}
   armR: {fileID: 4160746227511132493}
   forearmR: {fileID: 4160746228541967692}
-  m_stabilizerTorque: 0
+  m_stabilizerTorque: 4000
   hipsStabilizer: {fileID: 4160746227938044729}
   spineStabilizer: {fileID: 4160746227784443462}
   m_TargetWalkingSpeed: 2

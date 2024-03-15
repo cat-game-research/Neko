@@ -8,7 +8,7 @@
           beta: 0.005
           epsilon: 0.2
           lambd: 0.95
-          num_epoch: 5
+          num_epoch: 6
           learning_rate_schedule: linear
         network_settings:
           normalize: true
@@ -16,7 +16,7 @@
           num_layers: 3
           vis_encode_type: simple
           memory:
-            sequence_length: 1000
+            sequence_length: 4096
             memory_size: 256
         reward_signals:
           extrinsic:
@@ -31,5 +31,5 @@
         keep_checkpoints: 10
         checkpoint_interval: 1000000
         max_steps: 20000000
-        time_horizon: 1000
+        time_horizon: 4096
         summary_freq: 50000

@@ -50,7 +50,7 @@ behaviors:
           deterministic: false
         learning_rate: 0.0003
         encoding_size: null
-    init_path: results\WalkerBeta1.b0a-020m\Walker\checkpoint.pt
+    init_path: null
     keep_checkpoints: 10
     even_checkpoints: false
     max_steps: 20000000
@@ -82,10 +82,10 @@ engine_settings:
 environment_parameters: null
 checkpoint_settings:
   run_id: WalkerBeta1.b0a-040m
-  initialize_from: WalkerBeta1.b0a-020m
+  initialize_from: null
   load_model: false
-  resume: false
-  force: true
+  resume: true
+  force: false
   train_model: false
   inference: false
   results_dir: results
