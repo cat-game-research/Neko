@@ -52,12 +52,12 @@ namespace Unity.MLAgentsExamples
         {
             if (col.transform.CompareTag(k_Ground))
             {
-                agent.AddReward(groundContactPenalty);
+                agent.AddReward(groundContactPenalty * Time.fixedDeltaTime);
             }
 
             if (col.transform.CompareTag(k_Wall))
             {
-                agent.AddReward(wallContactPenalty);
+                agent.AddReward(wallContactPenalty * Time.fixedDeltaTime);
             }
         }
 

@@ -153,27 +153,29 @@ namespace Unity.MLAgentsExamples
 
         void FixedUpdate()
         {
-            //TODO Motion agent needs to define targetT rather then Walker agent
             m_OrientationCube.UpdateOrientation(hips, targetT);
 
+            // Encourage foot spacing
             var footSpacingReward = Vector3.Dot(footR.position - footL.position, footL.right);
-            if (footSpacingReward > 0.1f) footSpacingReward = 0.1f;
-            AddReward(footSpacingReward);
+            AddReward(Mathf.Clamp(footSpacingReward, -0.1f, 0.1f));
 
+            // Encourage looking at the target and moving towards it
             var cubeForward = m_OrientationCube.transform.forward;
             var lookAtTargetReward = Vector3.Dot(head.forward, cubeForward) + 1;
             var matchSpeedReward = GetMatchingVelocityReward(cubeForward * TargetWalkingSpeed, GetAvgVelocity());
             var targetDistanceReward = GetTargetDistanceReward();
 
-            //*Important* Forces movement towards target (penalize stationary swinging)
-            if (earlyTraining)
+            // Penalize sitting by reducing reward when avg velocity is low
+            const float movementThreshold = 0.1f; // Define a threshold for movement
+            if (m_AvgVelocity.magnitude < movementThreshold)
             {
-                matchSpeedReward = Vector3.Dot(m_AvgVelocity, cubeForward);
-                if (matchSpeedReward > 0) matchSpeedReward = GetMatchingVelocityReward(cubeForward * TargetWalkingSpeed, m_AvgVelocity);
+                AddReward(-0.5f); // Penalize lack of movement
             }
 
+            // Combine rewards
             AddReward((0.5f * targetDistanceReward) + (0.5f * matchSpeedReward) + (0.1f * lookAtTargetReward));
         }
+
 
         public void CollectObservationBodyPart(BodyPart bp, VectorSensor sensor)
         {

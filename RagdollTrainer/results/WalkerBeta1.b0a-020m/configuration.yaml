@@ -77,7 +77,7 @@ engine_settings:
   time_scale: 1.0
   target_frame_rate: -1
   capture_frame_rate: 60
-  no_graphics: true
+  no_graphics: false
   no_graphics_monitor: false
 environment_parameters: null
 checkpoint_settings:
