@@ -975,6 +975,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7370140648595448817}
     m_Modifications:
+    - target: {fileID: 410093189039141369, guid: 40e8585610ed6364d9b59e5d9c1b8165, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 410093189039141369, guid: 40e8585610ed6364d9b59e5d9c1b8165, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.6669998
+      objectReference: {fileID: 0}
     - target: {fileID: 4160746226523773102, guid: 40e8585610ed6364d9b59e5d9c1b8165, type: 3}
       propertyPath: m_Name
       value: RobotKyle (0)
@@ -1131,14 +1139,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7370140648595448817}
     m_Modifications:
-    - target: {fileID: 410093189039141369, guid: 40e8585610ed6364d9b59e5d9c1b8165, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.0000001
-      objectReference: {fileID: 0}
-    - target: {fileID: 410093189039141369, guid: 40e8585610ed6364d9b59e5d9c1b8165, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1.6669999
-      objectReference: {fileID: 0}
     - target: {fileID: 4160746226523773102, guid: 40e8585610ed6364d9b59e5d9c1b8165, type: 3}
       propertyPath: m_Name
       value: RobotKyle (3)
@@ -1286,14 +1286,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7370140648595448817}
     m_Modifications:
-    - target: {fileID: 410093189039141369, guid: 40e8585610ed6364d9b59e5d9c1b8165, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 410093189039141369, guid: 40e8585610ed6364d9b59e5d9c1b8165, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1.6669998
-      objectReference: {fileID: 0}
     - target: {fileID: 4160746226523773102, guid: 40e8585610ed6364d9b59e5d9c1b8165, type: 3}
       propertyPath: m_Name
       value: RobotKyle (1)

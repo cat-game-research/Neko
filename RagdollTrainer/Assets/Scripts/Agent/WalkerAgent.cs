@@ -50,6 +50,9 @@ namespace Unity.MLAgentsExamples
         float m_minWalkingSpeed = 0.8f;
         float m_maxWalkingSpeed = 4.6f;
 
+        [Header("Movement")]
+        [Range(0.01f, 1f)][SerializeField] float m_MovementThreshold = 0.2f;
+
         [HideInInspector] public Vector3 m_AvgVelocity = Vector3.zero;
         [HideInInspector] public Vector3 m_AvgPosition = Vector3.zero;
 
@@ -166,8 +169,7 @@ namespace Unity.MLAgentsExamples
             var targetDistanceReward = GetTargetDistanceReward();
 
             // Penalize sitting by reducing reward when avg velocity is low
-            const float movementThreshold = 0.1f; // Define a threshold for movement
-            if (m_AvgVelocity.magnitude < movementThreshold)
+            if (m_AvgVelocity.magnitude < m_MovementThreshold)
             {
                 AddReward(-0.5f); // Penalize lack of movement
             }
