@@ -157,7 +157,7 @@ namespace Unity.MLAgentsExamples
 
             // Encourage foot spacing
             var footSpacingReward = Vector3.Dot(footR.position - footL.position, footL.right);
-            AddReward(Mathf.Clamp(footSpacingReward, -0.1f, 0.1f));
+            AddReward(Mathf.Clamp(footSpacingReward, -0.5f, 0.1f));
 
             // Encourage looking at the target and moving towards it
             var cubeForward = m_OrientationCube.transform.forward;

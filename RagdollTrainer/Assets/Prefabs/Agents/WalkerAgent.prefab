@@ -443,6 +443,7 @@ MonoBehaviour:
   targetReward: 1
   groundContactPenalty: -1
   wallContactPenalty: -1
+  m_RewardScaleFactor: 2
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
@@ -650,6 +651,7 @@ MonoBehaviour:
   targetReward: 1
   groundContactPenalty: -1
   wallContactPenalty: -1
+  m_RewardScaleFactor: 2
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
@@ -1051,6 +1053,7 @@ MonoBehaviour:
   targetReward: 1
   groundContactPenalty: -1
   wallContactPenalty: -1
+  m_RewardScaleFactor: 2
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
@@ -1258,6 +1261,7 @@ MonoBehaviour:
   targetReward: 1
   groundContactPenalty: -1
   wallContactPenalty: -1
+  m_RewardScaleFactor: 2
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
@@ -1505,6 +1509,7 @@ MonoBehaviour:
   targetReward: 1
   groundContactPenalty: -1
   wallContactPenalty: -1
+  m_RewardScaleFactor: 2
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
@@ -1643,6 +1648,7 @@ MonoBehaviour:
   targetReward: 1
   groundContactPenalty: -1
   wallContactPenalty: -1
+  m_RewardScaleFactor: 2
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
@@ -2017,6 +2023,7 @@ MonoBehaviour:
   targetReward: 1
   groundContactPenalty: -1
   wallContactPenalty: -1
+  m_RewardScaleFactor: 2
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
@@ -2224,6 +2231,7 @@ MonoBehaviour:
   targetReward: 1
   groundContactPenalty: -1
   wallContactPenalty: -1
+  m_RewardScaleFactor: 2
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
@@ -2431,6 +2439,7 @@ MonoBehaviour:
   targetReward: 1
   groundContactPenalty: -1
   wallContactPenalty: -1
+  m_RewardScaleFactor: 2
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
@@ -2646,6 +2655,7 @@ MonoBehaviour:
   targetReward: 1
   groundContactPenalty: 0
   wallContactPenalty: -1
+  m_RewardScaleFactor: 2
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
@@ -2906,6 +2916,7 @@ MonoBehaviour:
   targetReward: 1
   groundContactPenalty: -1
   wallContactPenalty: -1
+  m_RewardScaleFactor: 2
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
@@ -3090,6 +3101,7 @@ MonoBehaviour:
   targetReward: 1
   groundContactPenalty: 0
   wallContactPenalty: -1
+  m_RewardScaleFactor: 2
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
@@ -3297,6 +3309,7 @@ MonoBehaviour:
   targetReward: 1
   groundContactPenalty: -1
   wallContactPenalty: -1
+  m_RewardScaleFactor: 2
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0

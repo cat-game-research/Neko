@@ -85,7 +85,7 @@ checkpoint_settings:
   initialize_from: WalkerBeta1.b0a-020m
   load_model: false
   resume: false
-  force: false
+  force: true
   train_model: false
   inference: false
   results_dir: results

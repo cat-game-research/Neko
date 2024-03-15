@@ -18,6 +18,7 @@ namespace Unity.MLAgentsExamples
         // Penalty amount (ex: -1)
         public float groundContactPenalty = -1;
         public float wallContactPenalty = -1;
+        public int m_RewardScaleFactor = 3;
 
         //Contact with the gameObject for observation
         public bool touchingGround;
@@ -52,12 +53,12 @@ namespace Unity.MLAgentsExamples
         {
             if (col.transform.CompareTag(k_Ground))
             {
-                agent.AddReward(groundContactPenalty * Time.fixedDeltaTime);
+                agent.AddReward(groundContactPenalty * m_RewardScaleFactor * Time.fixedDeltaTime);
             }
 
             if (col.transform.CompareTag(k_Wall))
             {
-                agent.AddReward(wallContactPenalty * Time.fixedDeltaTime);
+                agent.AddReward(wallContactPenalty * m_RewardScaleFactor * Time.fixedDeltaTime);
             }
         }
 
