@@ -63,7 +63,7 @@ env_settings:
   env_path: Builds\server_windows_x64\RagdollTrainer.exe
   env_args: null
   base_port: 5005
-  num_envs: 2
+  num_envs: 3
   num_areas: 1
   timeout_wait: 60
   seed: -1
