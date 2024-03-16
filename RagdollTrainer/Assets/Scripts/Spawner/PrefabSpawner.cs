@@ -75,15 +75,15 @@ namespace Unity.MLAgentsExamples
 
         public void SpawnSingle()
         {
-            GameObject prefab = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Prefabs/WalkerAgentTrainer.prefab", typeof(GameObject));
-            if (prefab != null)
-            {
-                InstantiatePrefab(prefab);
-            }
-            else
-            {
-                Debug.LogError($"Prefab '{name}' could not be found.");
-            }
+            //GameObject prefab = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Prefabs/WalkerAgentTrainer.prefab", typeof(GameObject));
+            //if (prefab != null)
+            //{
+            //    InstantiatePrefab(prefab);
+            //}
+            //else
+            //{
+            //    Debug.LogError($"Prefab '{name}' could not be found.");
+            //}
         }
 
         public GameObject InstantiatePrefab(GameObject prefab)
