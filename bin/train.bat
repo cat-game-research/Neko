@@ -5,9 +5,15 @@ set ROOT=%BIN%..\
 set RAGDOLL_TRAINER=RagdollTrainer
 
 set MODE=%1
+set NUM_ENVS=%2
 set MODE_ARG=
 
+if "%NUM_ENVS%"=="" (
+    set NUM_ENVS=1
+)
+
 if "%MODE%"=="" goto display_help
+if "%MODE%"=="help" goto display_help
 if "%MODE%"=="--help" goto display_help
 
 if "%MODE%"=="create" (
@@ -38,7 +44,7 @@ call :return_to_original_dir
 goto eof
 
 :display_help
-echo Usage: train.bat [--help] [mode]
+echo Usage: train.bat [--help] [mode] [num-envs]
 echo.
 echo Options:
 echo --help   - Display this help message.
@@ -48,6 +54,8 @@ echo create   - Start a new training run.
 echo resume   - Resume a previous training run.
 echo force    - Force start a new training run and overwrite any existing data.
 echo delete   - Delete the training results directory.
+echo.
+echo num-envs - Optional. Specify the number of environments. Default is 1.
 echo.
 goto eof
 
@@ -67,7 +75,7 @@ if not exist "%RESULTS_DIR%" (
     echo Warning: No previous training results found. Starting a new training run...
     set MODE_ARG=
 )
-set ML_AGENTS_CMD=mlagents-learn config\Kyle-b0a.yaml --run-id=KyleBeta2.b0a-020m --time-scale 1 --quality-level 5 --env=Builds\server_windows_x64\RagdollTrainer.exe --num-envs=4 --no-graphics %MODE_ARG%
+set ML_AGENTS_CMD=mlagents-learn config\Kyle-b0a.yaml --run-id=KyleBeta2.b0a-020m --time-scale 1 --quality-level 5 --env=Builds\server_windows_x64\RagdollTrainer.exe --num-envs=%NUM_ENVS% --no-graphics %MODE_ARG%
 echo %ML_AGENTS_CMD%
 call %ML_AGENTS_CMD%
 if %ERRORLEVEL% neq 0 (
@@ -75,7 +83,6 @@ if %ERRORLEVEL% neq 0 (
     exit /b %ERRORLEVEL%
 )
 goto :eof
-
 
 :deactivate_conda
 rem call conda deactivate
@@ -97,4 +104,4 @@ if exist "%RESULTS_DIR%" (
 goto :eof
 
 :eof
-exit /b 1
+exit /b 0
