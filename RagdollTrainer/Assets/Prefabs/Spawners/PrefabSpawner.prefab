@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c93c1172693449741896873c1a49c838, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RunOnAwake: 0
+  m_RunOnAwake: 1
   m_ParentGroup: {fileID: 5953268177755152970}
   m_BasePrefab:
   - {fileID: 7370140648595448830, guid: 4315e9c335412064493e04ba3e658086, type: 3}

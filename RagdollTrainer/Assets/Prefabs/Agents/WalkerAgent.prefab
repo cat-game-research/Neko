@@ -200,7 +200,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: bbb83b8b88981e745b9d82a3b13b4307, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: 048e92e9e640e3b4ea26778b3b9d52a1, type: 3}
   m_InferenceDevice: 2
   m_BehaviorType: 0
   m_BehaviorName: Kyle
