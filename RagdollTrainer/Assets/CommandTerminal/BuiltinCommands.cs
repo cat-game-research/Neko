@@ -17,17 +17,6 @@ namespace CommandTerminal
                     // TODO: Implement listing logic here
                     Terminal.Log("Listing all models...");
                     break;
-                case "copy":
-                    if (args.Length < 3)
-                    {
-                        Terminal.Shell.IssueErrorMessage("Copy mode requires 'from' and 'to' filepaths.");
-                        return;
-                    }
-                    string fromPath = args[1].String;
-                    string toPath = args[2].String;
-                    // TODO: Implement copy logic here
-                    Terminal.Log($"Copying model from {fromPath} to {toPath}...");
-                    break;
                 default:
                     Terminal.Shell.IssueErrorMessage($"Unknown mode '{mode}' for the Model command.");
                     break;
