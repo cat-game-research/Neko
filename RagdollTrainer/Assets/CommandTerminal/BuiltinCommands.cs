@@ -1,11 +1,50 @@
 using System.Text;
 using System.Diagnostics;
 using UnityEngine;
+using Unity.MLAgentsExamples;
 
 namespace CommandTerminal
 {
     public static class BuiltinCommands
     {
+        [RegisterCommand(Help = "Spawns a prefab by name", MinArgCount = 1, MaxArgCount = 2)]
+        static void CommandPrefabSpawner(CommandArg[] args)
+        {
+            var spawner = Object.FindFirstObjectByType<PrefabSpawner>();
+            if (spawner != null)
+            {
+                string mode = args[0].String.ToLower();
+                switch (mode)
+                {
+                    case "list":
+                        Terminal.Log("Listing prefabs...");
+                        foreach (var name in spawner.ListPrefabs())
+                        {
+                            Terminal.Log(name);
+                        }
+                        break;
+                    case "spawn":
+                        Terminal.Log("Spawning prefab...");
+                        //string prefabName = args[1].String;
+                        spawner.m_XCount = 1;
+                        spawner.m_ZCount = 1;
+                        spawner.m_WidthX = 20f;
+                        spawner.m_WidthZ = 20f;
+                        spawner.m_OffsetX = -10f;
+                        spawner.m_OffsetZ = -10f;
+                        spawner.SpawnSingle();
+                        break;
+                    default:
+                        Terminal.Shell.IssueErrorMessage($"Unknown mode '{mode}' for the Model command.");
+                        break;
+                }
+            }
+            else
+            {
+                Terminal.Log("PrefabSpawner component not found in the scene.");
+            }
+        }
+
         [RegisterCommand(Help = "Lists models or copies a model from one path to another", MinArgCount = 1, MaxArgCount = 3)]
         static void CommandModel(CommandArg[] args)
         {
