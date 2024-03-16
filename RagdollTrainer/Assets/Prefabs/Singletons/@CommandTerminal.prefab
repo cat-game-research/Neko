@@ -47,9 +47,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHeight: 1
   SmallTerminalRatio: 0.33
-  ToggleSpeed: 800
-  ToggleHotkey: '`'
-  ToggleFullHotkey: '#`'
+  ToggleSpeed: 100000
+  ToggleHotkey: '#`'
+  ToggleFullHotkey: '`'
   BufferSize: 1024
   ConsoleFont: {fileID: 12800000, guid: 57fc555d351bef04c9ac16ca634d08a2, type: 3}
   InputCaret: '>'

@@ -2,13 +2,13 @@
       Kyle:
         trainer_type: ppo
         hyperparameters:
-          batch_size: 10000
-          buffer_size: 100000
+          batch_size: 4096
+          buffer_size: 40960
           learning_rate: 0.0003
           beta: 0.005
           epsilon: 0.2
           lambd: 0.95
-          num_epoch: 10
+          num_epoch: 5
           learning_rate_schedule: linear
         network_settings:
           normalize: true
@@ -16,7 +16,7 @@
           num_layers: 3
           vis_encode_type: simple
           memory:
-            sequence_length: 10000
+            sequence_length: 4096
             memory_size: 256
         reward_signals:
           extrinsic:
@@ -28,8 +28,8 @@
             network_settings:
               hidden_units: 256
               learning_rate: 0.0001
-        keep_checkpoints: 10
+        keep_checkpoints: 20
         checkpoint_interval: 1000000
         max_steps: 20000000
-        time_horizon: 10000
+        time_horizon: 4096
         summary_freq: 50000

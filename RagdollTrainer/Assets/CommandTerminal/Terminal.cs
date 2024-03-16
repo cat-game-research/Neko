@@ -23,13 +23,13 @@ namespace CommandTerminal
         [Range(0, 1)]
         float SmallTerminalRatio = 0.33f;
 
-        [Range(100, 1000)]
+        [Range(100, 100000)]
         [SerializeField]
-        float ToggleSpeed = 360;
+        float ToggleSpeed = 100000;
 
-        [SerializeField] string ToggleHotkey      = "`";
-        [SerializeField] string ToggleFullHotkey  = "#`";
-        [SerializeField] int BufferSize           = 512;
+        [SerializeField] string ToggleHotkey      = "#`";
+        [SerializeField] string ToggleFullHotkey  = "`";
+        [SerializeField] int BufferSize           = 1024;
 
         [Header("Input")]
         [SerializeField] Font ConsoleFont;
