@@ -24,11 +24,29 @@ namespace Unity.MLAgentsExamples
         public bool touchingGround;
         public bool touchingWall;
         public bool touchingTarget;
+        public bool touchingAgent;
+        public bool touchingObstacle;
+        public bool touchingFood;
+        public bool touchingPoison;
+        public bool touchingEnvironment;
+        public bool touchingFocus;
+        public bool touchingObjective;
+        public bool touchingFriend;
+        public bool touchingEnemy;
 
         //Check tags for the gameObject
         const string k_Ground = "ground";
         const string k_Wall = "wall";
         const string k_Target = "target";
+        const string k_Agent = "agent";
+        const string k_Obstacle = "obstacle";
+        const string k_Food = "food";
+        const string k_Poison = "poison";
+        const string k_Environment = "environment";
+        const string k_Focus = "focus";
+        const string k_Objective = "objective";
+        const string k_Friend = "friend";
+        const string k_Enemy = "enemy";
 
         void OnCollisionEnter(Collision col)
         {
@@ -36,16 +54,50 @@ namespace Unity.MLAgentsExamples
             {
                 touchingGround = true;
             }
-
             if (col.transform.CompareTag(k_Wall))
             {
                 touchingWall = true;
             }
-
             if (col.transform.CompareTag(k_Target))
             {
                 touchingTarget = true;
                 agent.AddReward(targetReward);
+            }
+            if (col.transform.CompareTag(k_Agent))
+            {
+                touchingAgent = true;
+            }
+            if (col.transform.CompareTag(k_Obstacle))
+            {
+                touchingObstacle = true;
+            }
+            if (col.transform.CompareTag(k_Food))
+            {
+                touchingFood = true;
+            }
+            if (col.transform.CompareTag(k_Poison))
+            {
+                touchingPoison = true;
+            }
+            if (col.transform.CompareTag(k_Environment))
+            {
+                touchingEnvironment = true;
+            }
+            if (col.transform.CompareTag(k_Focus))
+            {
+                touchingFocus = true;
+            }
+            if (col.transform.CompareTag(k_Objective))
+            {
+                touchingObjective = true;
+            }
+            if (col.transform.CompareTag(k_Friend))
+            {
+                touchingFriend = true;
+            }
+            if (col.transform.CompareTag(k_Enemy))
+            {
+                touchingEnemy = true;
             }
         }
 
@@ -68,15 +120,49 @@ namespace Unity.MLAgentsExamples
             {
                 touchingGround = false;
             }
-
             if (col.transform.CompareTag(k_Wall))
             {
                 touchingWall = false;
             }
-
             if (col.transform.CompareTag(k_Target))
             {
                 touchingTarget = false;
+            }
+            if (col.transform.CompareTag(k_Agent))
+            {
+                touchingAgent = false;
+            }
+            if (col.transform.CompareTag(k_Obstacle))
+            {
+                touchingObstacle = false;
+            }
+            if (col.transform.CompareTag(k_Food))
+            {
+                touchingFood = false;
+            }
+            if (col.transform.CompareTag(k_Poison))
+            {
+                touchingPoison = false;
+            }
+            if (col.transform.CompareTag(k_Environment))
+            {
+                touchingEnvironment = false;
+            }
+            if (col.transform.CompareTag(k_Focus))
+            {
+                touchingFocus = false;
+            }
+            if (col.transform.CompareTag(k_Objective))
+            {
+                touchingObjective = false;
+            }
+            if (col.transform.CompareTag(k_Friend))
+            {
+                touchingFriend = false;
+            }
+            if (col.transform.CompareTag(k_Enemy))
+            {
+                touchingEnemy = false;
             }
         }
     }

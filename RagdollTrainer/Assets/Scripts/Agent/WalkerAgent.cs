@@ -183,6 +183,16 @@ namespace Unity.MLAgentsExamples
         {
             sensor.AddObservation(bp.objectContact.touchingGround);
             sensor.AddObservation(bp.objectContact.touchingWall);
+            sensor.AddObservation(bp.objectContact.touchingTarget);
+            sensor.AddObservation(bp.objectContact.touchingAgent);
+            sensor.AddObservation(bp.objectContact.touchingObstacle);
+            sensor.AddObservation(bp.objectContact.touchingFood);
+            sensor.AddObservation(bp.objectContact.touchingPoison);
+            sensor.AddObservation(bp.objectContact.touchingEnvironment);
+            sensor.AddObservation(bp.objectContact.touchingFocus);
+            sensor.AddObservation(bp.objectContact.touchingObjective);
+            sensor.AddObservation(bp.objectContact.touchingFriend);
+            sensor.AddObservation(bp.objectContact.touchingEnemy);
             sensor.AddObservation(m_OrientationCube.transform.InverseTransformDirection(bp.rb.velocity));
             sensor.AddObservation(m_OrientationCube.transform.InverseTransformDirection(bp.rb.angularVelocity));
             sensor.AddObservation(m_OrientationCube.transform.InverseTransformDirection(bp.rb.position - hips.position));

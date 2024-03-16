@@ -148,7 +148,7 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 4096
+  MaxStep: 10000
   m_ResetOnEpisodeBegin: 1
   earlyTraining: 1
   m_RewardThreshold: -1000
@@ -191,7 +191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 225
+    VectorObservationSize: 355
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 35
@@ -200,7 +200,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: 81070c4d069b0ac44984c467c6d1e946, type: 3}
+  m_Model: {fileID: 0}
   m_InferenceDevice: 2
   m_BehaviorType: 0
   m_BehaviorName: Kyle
@@ -448,6 +448,15 @@ MonoBehaviour:
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
+  touchingAgent: 0
+  touchingObstacle: 0
+  touchingFood: 0
+  touchingPoison: 0
+  touchingEnvironment: 0
+  touchingFocus: 0
+  touchingObjective: 0
+  touchingFriend: 0
+  touchingEnemy: 0
 --- !u!1 &4160746226922518204
 GameObject:
   m_ObjectHideFlags: 0
@@ -656,6 +665,15 @@ MonoBehaviour:
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
+  touchingAgent: 0
+  touchingObstacle: 0
+  touchingFood: 0
+  touchingPoison: 0
+  touchingEnvironment: 0
+  touchingFocus: 0
+  touchingObjective: 0
+  touchingFriend: 0
+  touchingEnemy: 0
 --- !u!1 &4160746226950853671
 GameObject:
   m_ObjectHideFlags: 0
@@ -698,7 +716,7 @@ GameObject:
   - component: {fileID: 4160746226969920777}
   m_Layer: 0
   m_Name: Armature
-  m_TagString: Untagged
+  m_TagString: agent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -731,7 +749,7 @@ GameObject:
   - component: {fileID: 4160746227244514001}
   m_Layer: 0
   m_Name: Robot2
-  m_TagString: Untagged
+  m_TagString: agent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1058,6 +1076,15 @@ MonoBehaviour:
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
+  touchingAgent: 0
+  touchingObstacle: 0
+  touchingFood: 0
+  touchingPoison: 0
+  touchingEnvironment: 0
+  touchingFocus: 0
+  touchingObjective: 0
+  touchingFriend: 0
+  touchingEnemy: 0
 --- !u!1 &4160746227511132486
 GameObject:
   m_ObjectHideFlags: 0
@@ -1266,6 +1293,15 @@ MonoBehaviour:
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
+  touchingAgent: 0
+  touchingObstacle: 0
+  touchingFood: 0
+  touchingPoison: 0
+  touchingEnvironment: 0
+  touchingFocus: 0
+  touchingObjective: 0
+  touchingFriend: 0
+  touchingEnemy: 0
 --- !u!1 &4160746227784443463
 GameObject:
   m_ObjectHideFlags: 0
@@ -1514,6 +1550,15 @@ MonoBehaviour:
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
+  touchingAgent: 0
+  touchingObstacle: 0
+  touchingFood: 0
+  touchingPoison: 0
+  touchingEnvironment: 0
+  touchingFocus: 0
+  touchingObjective: 0
+  touchingFriend: 0
+  touchingEnemy: 0
 --- !u!1 &4160746227924081507
 GameObject:
   m_ObjectHideFlags: 0
@@ -1653,6 +1698,15 @@ MonoBehaviour:
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
+  touchingAgent: 0
+  touchingObstacle: 0
+  touchingFood: 0
+  touchingPoison: 0
+  touchingEnvironment: 0
+  touchingFocus: 0
+  touchingObjective: 0
+  touchingFriend: 0
+  touchingEnemy: 0
 --- !u!114 &4160746227938044729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1705,7 +1759,7 @@ GameObject:
   - component: {fileID: 4160746227957015834}
   m_Layer: 0
   m_Name: OrientCube
-  m_TagString: Untagged
+  m_TagString: agent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2028,6 +2082,15 @@ MonoBehaviour:
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
+  touchingAgent: 0
+  touchingObstacle: 0
+  touchingFood: 0
+  touchingPoison: 0
+  touchingEnvironment: 0
+  touchingFocus: 0
+  touchingObjective: 0
+  touchingFriend: 0
+  touchingEnemy: 0
 --- !u!1 &4160746228133586291
 GameObject:
   m_ObjectHideFlags: 0
@@ -2236,6 +2299,15 @@ MonoBehaviour:
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
+  touchingAgent: 0
+  touchingObstacle: 0
+  touchingFood: 0
+  touchingPoison: 0
+  touchingEnvironment: 0
+  touchingFocus: 0
+  touchingObjective: 0
+  touchingFriend: 0
+  touchingEnemy: 0
 --- !u!1 &4160746228201455431
 GameObject:
   m_ObjectHideFlags: 0
@@ -2444,6 +2516,15 @@ MonoBehaviour:
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
+  touchingAgent: 0
+  touchingObstacle: 0
+  touchingFood: 0
+  touchingPoison: 0
+  touchingEnvironment: 0
+  touchingFocus: 0
+  touchingObjective: 0
+  touchingFriend: 0
+  touchingEnemy: 0
 --- !u!1 &4160746228226355998
 GameObject:
   m_ObjectHideFlags: 0
@@ -2660,6 +2741,15 @@ MonoBehaviour:
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
+  touchingAgent: 0
+  touchingObstacle: 0
+  touchingFood: 0
+  touchingPoison: 0
+  touchingEnvironment: 0
+  touchingFocus: 0
+  touchingObjective: 0
+  touchingFriend: 0
+  touchingEnemy: 0
 --- !u!1 &4160746228294631035
 GameObject:
   m_ObjectHideFlags: 0
@@ -2921,6 +3011,15 @@ MonoBehaviour:
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
+  touchingAgent: 0
+  touchingObstacle: 0
+  touchingFood: 0
+  touchingPoison: 0
+  touchingEnvironment: 0
+  touchingFocus: 0
+  touchingObjective: 0
+  touchingFriend: 0
+  touchingEnemy: 0
 --- !u!1 &4160746228423350413
 GameObject:
   m_ObjectHideFlags: 0
@@ -3106,6 +3205,15 @@ MonoBehaviour:
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
+  touchingAgent: 0
+  touchingObstacle: 0
+  touchingFood: 0
+  touchingPoison: 0
+  touchingEnvironment: 0
+  touchingFocus: 0
+  touchingObjective: 0
+  touchingFriend: 0
+  touchingEnemy: 0
 --- !u!1 &4160746228541967693
 GameObject:
   m_ObjectHideFlags: 0
@@ -3314,6 +3422,15 @@ MonoBehaviour:
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
+  touchingAgent: 0
+  touchingObstacle: 0
+  touchingFood: 0
+  touchingPoison: 0
+  touchingEnvironment: 0
+  touchingFocus: 0
+  touchingObjective: 0
+  touchingFriend: 0
+  touchingEnemy: 0
 --- !u!1 &4160746228597344736
 GameObject:
   m_ObjectHideFlags: 0
@@ -3357,7 +3474,7 @@ GameObject:
   - component: {fileID: 469960815628747078}
   m_Layer: 0
   m_Name: Virtual Camera
-  m_TagString: Untagged
+  m_TagString: camera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3371,7 +3488,7 @@ Transform:
   m_GameObject: {fileID: 4865303176801702408}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1, y: 1.6, z: -1.6670008}
+  m_LocalPosition: {x: 1, y: 1.6, z: -1.6669998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3485,7 +3602,7 @@ GameObject:
   - component: {fileID: 7468600006667466380}
   m_Layer: 0
   m_Name: Vision
-  m_TagString: Untagged
+  m_TagString: agent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3523,15 +3640,11 @@ MonoBehaviour:
   - target
   - ground
   - wall
-  - obsticle
+  - obstacle
   - food
   - poison
   - environment
   - focus
-  - symbol_O
-  - symbol_X_Goal
-  - symbol_O_Goal
-  - symbol_X
   - objective
   - friend
   - enemy
@@ -3542,7 +3655,7 @@ MonoBehaviour:
   m_RayLayerMask:
     serializedVersion: 2
     m_Bits: 4294967243
-  m_ObservationStacks: 1
+  m_ObservationStacks: 3
   m_AlternatingRayOrder: 1
   m_UseBatchedRaycasts: 1
   rayHitColor: {r: 1, g: 0, b: 0, a: 1}
@@ -3567,15 +3680,11 @@ MonoBehaviour:
   - target
   - ground
   - wall
-  - obsticle
+  - obstacle
   - food
   - poison
   - environment
   - focus
-  - symbol_O
-  - symbol_X_Goal
-  - symbol_O_Goal
-  - symbol_X
   - objective
   - friend
   - enemy
@@ -3586,7 +3695,7 @@ MonoBehaviour:
   m_RayLayerMask:
     serializedVersion: 2
     m_Bits: 4294967243
-  m_ObservationStacks: 1
+  m_ObservationStacks: 3
   m_AlternatingRayOrder: 1
   m_UseBatchedRaycasts: 1
   rayHitColor: {r: 1, g: 0, b: 0, a: 1}
@@ -3611,15 +3720,11 @@ MonoBehaviour:
   - target
   - ground
   - wall
-  - obsticle
+  - obstacle
   - food
   - poison
   - environment
   - focus
-  - symbol_O
-  - symbol_X_Goal
-  - symbol_O_Goal
-  - symbol_X
   - objective
   - friend
   - enemy
@@ -3630,7 +3735,7 @@ MonoBehaviour:
   m_RayLayerMask:
     serializedVersion: 2
     m_Bits: 4294967243
-  m_ObservationStacks: 1
+  m_ObservationStacks: 3
   m_AlternatingRayOrder: 1
   m_UseBatchedRaycasts: 1
   rayHitColor: {r: 1, g: 0, b: 0, a: 1}

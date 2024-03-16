@@ -9,18 +9,15 @@ TagManager:
   - target
   - ground
   - wall
-  - obsticle
+  - obstacle
   - food
   - poison
   - environment
   - focus
-  - symbol_O
-  - symbol_X_Goal
-  - symbol_O_Goal
-  - symbol_X
   - objective
   - friend
   - enemy
+  - camera
   layers:
   - Default
   - TransparentFX

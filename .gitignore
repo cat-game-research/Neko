@@ -92,3 +92,5 @@ RagdollTrainer/Assets/ML-Agents/Timers/StartMenu_timers.json.meta
 RagdollTrainer/Assets/Prefabs/Agents/Trainers/WalkerAgentTrainer.prefab
 bin/ml-agents/
 /RagdollTrainer/Builds/server_windows_x64/RagdollTrainer_Data/ML-Agents/Timers
+/RagdollTrainer/Assets/ML-Agents/Timers
+/RagdollTrainer/Builds/windows_x64/RagdollTrainer_BurstDebugInformation_DoNotShip
