@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 993487c149692894aadd71bbd157082f
+timeCreated: 1477183420
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Atmosphere/Examples/01
+    Corona.unity
+  uploadId: 616447

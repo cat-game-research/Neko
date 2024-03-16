@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: f79970888a88fa848ac3eb72de7a3a24
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Terrain/SpaceGraphicsToolkit.Terrain.asmdef
+  uploadId: 616447

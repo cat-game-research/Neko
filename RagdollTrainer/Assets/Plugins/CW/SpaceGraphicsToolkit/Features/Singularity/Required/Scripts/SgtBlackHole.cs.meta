@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: d952ed16bb7ced0408be1e4afa48bac1
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - sourceMaterial: {fileID: 2100000, guid: f19787444fb4f854b8cba3524f920e14, type: 2}
+  - mesh: {fileID: 4300000, guid: 662157716ef2b6840841e610138115a4, type: 3}
+  - model: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Singularity/Required/Scripts/SgtBlackHole.cs
+  uploadId: 616447

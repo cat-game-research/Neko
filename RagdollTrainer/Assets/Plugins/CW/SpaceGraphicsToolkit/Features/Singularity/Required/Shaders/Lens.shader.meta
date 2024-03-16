@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: fd80b3f31eb10b949bc50c9bc167f7c1
+timeCreated: 1527589922
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Singularity/Required/Shaders/Lens.shader
+  uploadId: 616447

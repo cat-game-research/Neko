@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3192136d18f4ca1498ad81fb10fecd24
+timeCreated: 1467860707
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Ring/Examples/Textures/Ring1_Shadow.asset
+  uploadId: 616447

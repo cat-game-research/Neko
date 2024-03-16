@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: bbcb9cbca512d8c4580a4ccc088ef332
+timeCreated: 1527683256
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Shapes/Required/Scripts/SgtShapeSphere.cs
+  uploadId: 616447

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 36ee40f8e522550489c7db60e19b066b
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Prominence/Examples/Materials/Prominence.mat
+  uploadId: 616447

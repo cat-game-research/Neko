@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: e03daf78512717d4d9ae81688e0841fe
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: ed1b96e11e9064957833ce8c01da6f92, type: 3}
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Terrain/Required/Shaders/SGT_TerrainPlanet_BakedDetail.surfshader
+  uploadId: 616447

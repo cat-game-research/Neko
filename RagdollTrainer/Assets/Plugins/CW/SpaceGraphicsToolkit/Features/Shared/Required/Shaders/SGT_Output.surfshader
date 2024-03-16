@@ -1,0 +1,37 @@
+﻿BEGIN_OPTIONS
+	Stackable "False"
+END_OPTIONS
+
+BEGIN_DEFINES
+	#define __SGT_OUTPUT 1
+END_DEFINES
+
+BEGIN_CODE
+	float4 SGT_ModifyUnlitOutput(float4 finalColor)
+	{
+		#if _HDRP
+			finalColor.xyz *= 25000.0f;
+		#endif
+		return finalColor;
+	}
+
+	void SGT_OutputWithoutAlpha(inout Surface o, float4 finalColor)
+	{
+		#if _HDRP
+			o.Emission = finalColor.xyz;
+			o.Albedo   = 0.0f;
+		#elif _URP
+			o.Emission = finalColor.xyz;
+			o.Albedo   = finalColor.xyz;
+		#else
+			o.Albedo = finalColor.xyz;
+		#endif
+	}
+
+	void SGT_OutputWithAlpha(inout Surface o, float4 finalColor)
+	{
+		SGT_OutputWithoutAlpha(o, finalColor);
+
+		o.Alpha = finalColor.w;
+	}
+END_CODE

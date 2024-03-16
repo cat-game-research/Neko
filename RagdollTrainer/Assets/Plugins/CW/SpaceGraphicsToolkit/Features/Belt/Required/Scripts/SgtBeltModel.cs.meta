@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: fb8363b3989c25a4685aacb5bad9cb2a
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Belt/Required/Scripts/SgtBeltModel.cs
+  uploadId: 616447

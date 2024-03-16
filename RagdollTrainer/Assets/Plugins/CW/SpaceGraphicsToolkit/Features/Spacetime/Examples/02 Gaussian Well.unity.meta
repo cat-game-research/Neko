@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: bbdc65c54bad1c2409bca9374d2f1c6e
+timeCreated: 1477183420
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Spacetime/Examples/02
+    Gaussian Well.unity
+  uploadId: 616447

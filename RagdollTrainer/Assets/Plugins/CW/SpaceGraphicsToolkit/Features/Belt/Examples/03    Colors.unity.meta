@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 9538e1f96b42c594c8a1f460c3c36ac3
+timeCreated: 1477183420
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Belt/Examples/03   
+    Colors.unity
+  uploadId: 616447

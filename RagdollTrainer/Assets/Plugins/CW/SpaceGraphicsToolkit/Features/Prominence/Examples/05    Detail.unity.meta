@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 613ba881d4c4acf42ba208f4d51f30a7
+timeCreated: 1477183420
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Prominence/Examples/05   
+    Detail.unity
+  uploadId: 616447

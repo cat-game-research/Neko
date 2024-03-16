@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 74dfc2bc31576ed4e8f25e71bede41b6
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Prominence/Examples/Materials/Prominence
+    + Fade Edge + Clip Near + Distort + Detail.mat
+  uploadId: 616447

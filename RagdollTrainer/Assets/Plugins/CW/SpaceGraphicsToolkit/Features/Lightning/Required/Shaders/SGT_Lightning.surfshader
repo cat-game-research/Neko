@@ -1,0 +1,52 @@
+﻿BEGIN_OPTIONS
+	Workflow "Unlit"
+	Alpha "Add"
+END_OPTIONS
+
+BEGIN_PASS("All")
+	Cull Off
+END_PASS
+
+BEGIN_PROPERTIES
+	[NoScaleOffset] _SGT_MainTex ("Opacity (R) Start Fade (G) End Fade (B)", 2D) = "white" {}
+	_SGT_Color ("Tint", Color) = (1,1,1,1)
+	_SGT_Brightness ("Brightness", Float) = 1.0
+	_SGT_Age("Age", Float) = 0
+	_SGT_Scale("Scale", Vector) = (0,0,0,0)
+	_SGT_Offset("Offset", Vector) = (0,0,0,0)
+END_PROPERTIES
+
+BEGIN_CBUFFER
+	sampler2D _SGT_MainTex;
+	float4    _SGT_Color;
+	float     _SGT_Brightness;
+	float     _SGT_Age;
+	float2    _SGT_Scale;
+	float2    _SGT_Offset;
+END_CBUFFER
+
+BEGIN_CODE
+	void ModifyVertex(inout VertexData v, inout ExtraV2F e)
+	{
+		v.texcoord0.xy = v.texcoord0.xy * _SGT_Scale + _SGT_Offset;
+	}
+
+	void SurfaceFunction(inout Surface o, inout ShaderData d)
+	{
+		float4 mainTex  = tex2D(_SGT_MainTex, d.texcoord0.xy);
+		float  mainMin  = mainTex.g;
+		float  mainMax  = mainTex.b;
+		float  mainRng  = mainMax - mainMin;
+		float  progress = saturate((_SGT_Age - mainMin) / mainRng); // 0..1
+
+		progress = 1.0f - abs(progress * 2.0f - 1.0f);
+
+		float4 finalColor = saturate(_SGT_Color * mainTex.r * progress);
+
+		finalColor.xyz *= _SGT_Brightness;
+
+		#if __SGT_OUTPUT
+			SGT_OutputWithAlpha(o, SGT_ModifyUnlitOutput(finalColor));
+		#endif
+	}
+END_CODE

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 5ba5f870beae8474d96c704ef8b4cb92
+timeCreated: 1477183420
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Shared/Examples/03 Camera
+    Controls.unity
+  uploadId: 616447

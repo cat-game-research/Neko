@@ -1,0 +1,31 @@
+{
+    "name": "SpaceGraphicsToolkit",
+    "references": [
+        "Unity.Burst",
+        "Unity.Mathematics",
+        "Unity.InputSystem",
+        "Unity.RenderPipelines.Core.Runtime",
+        "Unity.RenderPipelines.HighDefinition.Runtime",
+        "CW.Common"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.render-pipelines.high-definition",
+            "expression": "",
+            "define": "__HDRP__"
+        },
+        {
+            "name": "com.unity.burst",
+            "expression": "",
+            "define": "__BURST__"
+        }
+    ],
+    "noEngineReferences": false
+}

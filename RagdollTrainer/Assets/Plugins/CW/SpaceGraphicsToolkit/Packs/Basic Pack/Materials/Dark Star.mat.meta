@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 827a7354ef289994980ed8d60fdeb782
+timeCreated: 1498186635
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/Basic Pack/Materials/Dark
+    Star.mat
+  uploadId: 616447

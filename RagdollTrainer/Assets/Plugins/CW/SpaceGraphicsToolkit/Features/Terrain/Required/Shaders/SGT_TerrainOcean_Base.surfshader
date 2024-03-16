@@ -1,0 +1,105 @@
+﻿BEGIN_OPTIONS
+	Stackable "False"
+END_OPTIONS
+
+BEGIN_PROPERTIES
+	_Color("Color", Color) = (1,1,1,1)
+	_Metallic("Metallic", Range(0,1)) = 0
+	_Smoothness("Smoothness", Range(0,1)) = 1
+	_Emission("Emission", Range(0,1)) = 0
+	[NoScaleOffset]_NoiseTex("Noise", 2D) = "white" {}
+END_PROPERTIES
+
+BEGIN_DEFINES
+	#define __SGT_TERRAINOCEAN 1
+END_DEFINES
+
+BEGIN_CBUFFER
+	float3   _Color;
+	float    _Radius;
+	float4x4 _WorldToLocal;
+
+	float _Metallic;
+	float _Smoothness;
+	float _Emission;
+
+	float _BakedDetailTilingA;
+	float _BakedDetailTilingAMul;
+	float _BakedDetailTilingB;
+	float _BakedDetailTilingC;
+END_CBUFFER
+
+BEGIN_BLACKBOARD
+	float worldDistance;
+END_BLACKBOARD
+
+BEGIN_CODE
+	TEXTURE2D(_NormalMap);
+	SAMPLER(sampler_NormalMap);
+
+	sampler2D _NoiseTex;
+
+	float4 sample_grad(sampler2D s, float4 uv, bool pole, float4 gx, float4 gy)
+	{
+		float2 uv2 = pole ? uv.xy : uv.zw;
+		float2 gx2 = pole ? gx.xy : gx.zw;
+		float2 gy2 = pole ? gy.xy : gy.zw;
+
+		return tex2Dgrad(s, uv2, gx2, gy2);
+	}
+
+	float4 sample_spherical(sampler2D s, float4 uv, float cur_height, int max_height)
+	{
+		float div_height = max_height * 0.5f;
+		float this_index = floor(cur_height);
+		float next_index = this_index + 1.0f;
+
+		float4 uvA     = uv + sin(float4(1.0f, 2.0f, 1.0f, 2.0f) * this_index);
+		float4 uvB     = uv + sin(float4(1.0f, 2.0f, 1.0f, 2.0f) * next_index);
+		float4 gradX   = ddx(uv);
+		float4 gradY   = ddy(uv);
+		float4 sampleA = sample_grad(s, uvA, this_index < div_height, gradX, gradY);
+		float4 sampleB = sample_grad(s, uvB, next_index < div_height, gradX, gradY);
+
+		return lerp(sampleA, sampleB, cur_height - this_index);
+	}
+
+	float sample_noise(float4 coords, float polar)
+	{
+		float tex1 = tex2D(_NoiseTex, coords.xy).a;
+		float tex2 = tex2D(_NoiseTex, coords.zw).a;
+
+		return lerp(tex1, tex2, polar);
+	}
+
+	half3 CombineNormals(half3 n1, half3 n2)
+	{
+		return normalize(half3(n1.xy + n2.xy, n1.z*n2.z));
+	}
+
+	void SGT_ContributeDetail(inout Surface o, sampler2D samp, float4 coords, float polar, float max_height, float noise, float weight)
+	{
+		float  cur_height = polar * max_height + noise;
+		float3 detail     = UnpackScaleNormal(sample_spherical(samp, coords, cur_height, max_height), weight);
+
+		o.Normal = CombineNormals(o.Normal, detail);
+	}
+
+	void ModifyVertex(inout VertexData v, inout ExtraV2F d)
+	{
+		#if __SGT_MATRIX
+			d.extraV2F0.w   = abs(v.texcoord0.y - 0.5f) * 2.0f; // Polar
+			d.extraV2F0.xyz = SGT_O2V(v.vertex).xyz;
+		#endif
+	}
+
+	void SurfaceFunction(inout Surface o, inout ShaderData d)
+	{
+		o.Albedo     = _Color;
+		o.Metallic   = _Metallic;
+		o.Smoothness = _Smoothness;
+		o.Emission   = o.Albedo * _Emission;
+
+		d.blackboard.worldDistance = distance(_WorldSpaceCameraPos, d.worldSpacePosition);
+	}
+END_CODE

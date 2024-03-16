@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: c18609747f7bd4c42956d174ce25d168
+timeCreated: 1522031877
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Shared/Required/Scripts/SgtLightPointer.cs
+  uploadId: 616447

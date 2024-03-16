@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 2fc2c32f7dba13a4e9b2810d93949b94
+timeCreated: 1477183420
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Starfield/Examples/08   
+    Layering.unity
+  uploadId: 616447

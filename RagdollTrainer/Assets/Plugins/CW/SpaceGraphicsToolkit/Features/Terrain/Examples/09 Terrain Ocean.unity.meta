@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f68fef7c38407c9409c4bc3e42f58f86
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Terrain/Examples/09
+    Terrain Ocean.unity
+  uploadId: 616447

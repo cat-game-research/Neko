@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 5465388a6d4461a4d8c7ecc27d3b3a9a
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: ed1b96e11e9064957833ce8c01da6f92, type: 3}
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Starfield/Required/Shaders/SGT_Starfield.surfshader
+  uploadId: 616447

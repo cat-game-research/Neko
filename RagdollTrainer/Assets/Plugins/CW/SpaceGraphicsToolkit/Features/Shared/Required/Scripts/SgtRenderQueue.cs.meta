@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 3a6b625c488126f47a25874035c1be86
+timeCreated: 1526026197
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Shared/Required/Scripts/SgtRenderQueue.cs
+  uploadId: 616447

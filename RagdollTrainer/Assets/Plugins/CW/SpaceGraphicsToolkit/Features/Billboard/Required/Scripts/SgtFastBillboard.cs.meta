@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 937767596bdc31a429b0c7a2621da345
+timeCreated: 1522031877
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Billboard/Required/Scripts/SgtFastBillboard.cs
+  uploadId: 616447

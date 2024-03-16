@@ -1,0 +1,91 @@
+﻿BEGIN_OPTIONS
+	Workflow "Unlit"
+	Alpha "Add"
+END_OPTIONS
+
+BEGIN_PASS("All")
+	Cull Off
+END_PASS
+
+BEGIN_PROPERTIES
+	[NoScaleOffset] _SGT_MainTex("Main Tex", 2D) = "white" {}
+
+	[Header(NEAR FADE)]
+	[Toggle(_SGT_NEAR)] _SGT_Near ("	Enable", Float) = 0
+	_SGT_NearRangeRecip("	Near Range Recip", Float) = 1
+	[NoScaleOffset] _SGT_NearTex("	Near Tex", 2D) = "white" {}
+
+	[Header(ANIMATION)]
+	[Toggle(_SGT_ANIM)] _SGT_Anim ("	Enable", Float) = 0
+	_SGT_AnimSpeed("	Anim Speed", Float) = 30
+END_PROPERTIES
+
+BEGIN_DEFINES
+	#pragma shader_feature_local _SGT_NEAR
+	#pragma shader_feature_local _SGT_ANIM
+END_DEFINES
+
+BEGIN_CBUFFER
+	float4 _SGT_Color; // Auto
+	float  _SGT_Brightness; // Auto
+
+	sampler2D _SGT_MainTex;
+	float     _SGT_RadiusMin; // Auto
+	float     _SGT_RadiusSize; // Auto
+
+	sampler2D _SGT_NearTex;
+	float     _SGT_NearRangeRecip;
+
+	float _SGT_AnimSpeed;
+END_CBUFFER
+
+BEGIN_CODE
+	void ModifyVertex(inout VertexData v, inout ExtraV2F e)
+	{
+		#if __SGT_MATRIX
+			float3 wcam = _WorldSpaceCameraPos;
+
+			#if _SGT_ANIM
+				float angle = v.texcoord0.z + _Time.x * _SGT_AnimSpeed;
+
+				v.vertex.x += sin(angle) * v.texcoord0.w;
+				v.vertex.z += cos(angle) * v.texcoord0.w;
+			#endif
+
+			v.vertex.xyz = normalize(v.vertex.xyz) * (_SGT_RadiusMin + v.texcoord0.y * _SGT_RadiusSize);
+
+			// Clamp to 0..1
+			v.texcoord0.y = saturate(v.texcoord0.y * 10.0f);
+
+			#if _SGT_NEAR
+				float4 wpos = SGT_O2W(v.vertex);
+
+				v.texcoord1.xyz = wpos.xyz - wcam;
+			#endif
+		#endif
+	}
+
+	void SurfaceFunction(inout Surface o, inout ShaderData d)
+	{
+		float4 finalColor = tex2D(_SGT_MainTex, d.texcoord0.xy);
+		
+		finalColor += d.vertexColor * finalColor.a;
+
+		finalColor *= _SGT_Color * d.vertexColor.a;
+
+		finalColor.rgb *= _SGT_Brightness;
+
+		#if _SGT_NEAR
+			float2 near01 = length(d.texcoord1.xyz) * _SGT_NearRangeRecip;
+			float  near   = tex2D(_SGT_NearTex, near01).a;
+
+			finalColor *= near;
+		#endif
+
+		#if __SGT_OUTPUT
+			finalColor = SGT_ModifyUnlitOutput(finalColor);
+
+			SGT_OutputWithAlpha(o, finalColor);
+		#endif
+	}
+END_CODE

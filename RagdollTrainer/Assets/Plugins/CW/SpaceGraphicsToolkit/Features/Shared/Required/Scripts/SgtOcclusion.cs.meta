@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: c5a0c209ebc92bc4aa748fba9b74dc47
+timeCreated: 1527578014
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Shared/Required/Scripts/SgtOcclusion.cs
+  uploadId: 616447

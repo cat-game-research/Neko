@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 047898a57683e4243b8ca3554c4cc99b
+timeCreated: 1477183420
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Backdrop/Examples/05   
+    Pulse.unity
+  uploadId: 616447

@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 0f2e5335b07476244862effadc97d649
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - mesh: {fileID: 4300000, guid: 662157716ef2b6840841e610138115a4, type: 3}
+  - meshCollider: {instanceID: 0}
+  - material: {fileID: 2100000, guid: f90e6fa24596acd41b71b58851f92556, type: 2}
+  - sharedMaterial: {instanceID: 0}
+  executionOrder: 1100
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Planet/Required/Scripts/SgtPlanet.cs
+  uploadId: 616447

@@ -1,0 +1,39 @@
+﻿BEGIN_OPTIONS
+	Workflow "Unlit"
+	Alpha "Add"
+END_OPTIONS
+
+BEGIN_PASS("All")
+	Blend One [_SGT_DstBlend]
+	Cull Off
+	ZTest [_SGT_ZTest]
+END_PASS
+
+BEGIN_PROPERTIES
+	_SGT_Color("Color", Color) = (1, 1, 1, 1)
+	_SGT_Brightness("Brightness", Float) = 1
+	[Enum(One,1,OneMinusSrcColor,6)] _SGT_DstBlend("DstBlend", Float) = 1 // 1 = One
+	[Enum(LEqual,4,Always,8)] _SGT_ZTest("ZTest", Float) = 4 // 4 = LEqual
+	[NoScaleOffset] _SGT_MainTex("Main Tex", 2D) = "white" {}
+END_PROPERTIES
+
+BEGIN_CBUFFER
+	sampler2D _SGT_MainTex;
+	float4    _SGT_Color;
+	float     _SGT_Brightness;
+END_CBUFFER
+
+BEGIN_CODE
+	void SurfaceFunction(inout Surface o, inout ShaderData d)
+	{
+		float4 finalColor = _SGT_Color;
+
+		finalColor.rgb *= _SGT_Brightness * finalColor.a;
+
+		finalColor *= tex2D(_SGT_MainTex, d.texcoord0.xy);
+
+		#if __SGT_OUTPUT
+			SGT_OutputWithAlpha(o, SGT_ModifyUnlitOutput(finalColor));
+		#endif
+	}
+END_CODE

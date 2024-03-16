@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 8c5fc6cc6f028564daf12969e63c47a5
+timeCreated: 1527481932
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Aurora/Required/Scripts/SgtAuroraMainTex.cs
+  uploadId: 616447

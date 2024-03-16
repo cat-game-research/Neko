@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 8536a3fbb66f45d489b07451dc60650a
+timeCreated: 1477183420
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Galaxy/Examples/01 Galaxy.unity
+  uploadId: 616447

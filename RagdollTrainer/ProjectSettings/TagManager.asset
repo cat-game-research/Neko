@@ -9,6 +9,15 @@ TagManager:
   - target
   - ground
   - wall
+  - obstacle
+  - food
+  - poison
+  - environment
+  - focus
+  - objective
+  - friend
+  - enemy
+  - camera
   layers:
   - Default
   - TransparentFX
@@ -18,9 +27,9 @@ TagManager:
   - UI
   - wall
   - target
+  - environment
   - 
-  - 
-  - 
+  - ground
   - 
   - 
   - 

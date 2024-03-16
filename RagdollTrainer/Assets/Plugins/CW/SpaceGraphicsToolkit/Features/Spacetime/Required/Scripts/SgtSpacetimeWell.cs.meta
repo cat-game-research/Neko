@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: d236e3125c4e7064a856d4bc21e385b5
+timeCreated: 1527683597
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Spacetime/Required/Scripts/SgtSpacetimeWell.cs
+  uploadId: 616447

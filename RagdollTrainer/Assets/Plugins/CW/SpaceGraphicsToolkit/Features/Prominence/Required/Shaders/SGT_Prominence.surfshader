@@ -1,0 +1,119 @@
+﻿BEGIN_OPTIONS
+	Workflow "Unlit"
+	Alpha "Add"
+END_OPTIONS
+
+BEGIN_PASS("All")
+	Cull Off
+END_PASS
+
+BEGIN_PROPERTIES
+	[Header(FADE EDGE)]
+	[Toggle(_SGT_FADE_EDGE)] _SGT_FadeEdge ("	Enable", Float) = 0
+	_SGT_FadePower("	Fade Power", Float) = 1
+
+	[Header(CLIP NEAR)]
+	[Toggle(_SGT_CLIP_NEAR)] _SGT_ClipNear ("	Enable", Float) = 0
+	_SGT_ClipPower("	Clip Power", Float) = 1
+
+	[Header(DISTORT)]
+	[Toggle(_SGT_DISTORT)] _SGT_Distort ("	Enable", Float) = 0
+	_SGT_DistortScale("	Distort Scale (XY)", Vector) = (0.1, 5, 0, 0)
+	_SGT_DistortSpeed("	Distort Speed (XY)", Vector) = (1, 0.1, 0, 0)
+	_SGT_DistortStrength("	Distort Strength", Float) = 0.1
+	[NoScaleOffset] _SGT_DistortTex("	Distort Tex (A)", 2D) = "white" {}
+
+	[Header(DETAIL)]
+	[Toggle(_SGT_DETAIL)] _SGT_Detail ("	Enable", Float) = 0
+	_SGT_DetailScale("	Detail Scale (XY)", Vector) = (3, 50, 0, 0)
+	_SGT_DetailSpeed("	Detail Speed (XY)", Vector) = (5, 1, 0, 0)
+	_SGT_DetailStrength("	Detail Strength", Float) = 1.0
+	[NoScaleOffset] _SGT_DetailTex("	Detail Tex (A)", 2D) = "white" {}
+END_PROPERTIES
+
+BEGIN_DEFINES
+	#pragma shader_feature_local _SGT_FADE_EDGE
+	#pragma shader_feature_local _SGT_CLIP_NEAR
+	#pragma shader_feature_local _SGT_DISTORT
+	#pragma shader_feature_local _SGT_DETAIL
+END_DEFINES
+
+BEGIN_CBUFFER
+	sampler2D _SGT_MainTex; // Auto
+	float4    _SGT_Color; // Auto
+	float     _SGT_Brightness; // Auto
+	float3    _SGT_WorldPosition; // Auto
+
+	float _SGT_FadePower;
+
+	float _SGT_ClipPower;
+
+	sampler2D _SGT_DistortTex;
+	float2    _SGT_DistortScale;
+	float2    _SGT_DistortSpeed;
+	float     _SGT_DistortStrength;
+
+	sampler2D _SGT_DetailTex;
+	float2    _SGT_DetailScale;
+	float2    _SGT_DetailSpeed;
+	float     _SGT_DetailStrength;
+END_CBUFFER
+
+BEGIN_CODE
+	void ModifyVertex(inout VertexData v, inout ExtraV2F e)
+	{
+		#if __SGT_MATRIX
+			float3 wcam = _WorldSpaceCameraPos;
+			float4 wpos = SGT_O2W(v.vertex);
+
+			v.texcoord0.z = v.texcoord1.x;
+
+			#if _SGT_FADE_EDGE
+				float3 cam2vertM = normalize(wcam - wpos.xyz);
+				float3 normalM   = normalize(mul((float3x3)UNITY_MATRIX_M, v.normal));
+
+				v.texcoord0.w = pow(abs(dot(cam2vertM, normalM)), _SGT_FadePower);
+			#endif
+
+			#if _SGT_CLIP_NEAR
+				v.texcoord1.xyz = normalize(_SGT_WorldPosition - wpos.xyz);
+				v.texcoord2.xyz = normalize(_SGT_WorldPosition - wcam);
+			#endif
+		#endif
+	}
+
+	void SurfaceFunction(inout Surface o, inout ShaderData d)
+	{
+		float  scaledDist = d.texcoord0.x;
+		float  scaledEdge = d.texcoord0.y / d.texcoord0.z;
+		float2 uv         = float2(scaledDist, scaledEdge);
+
+		#if _SGT_DISTORT
+			float distort = tex2D(_SGT_DistortTex, uv * _SGT_DistortScale - _SGT_DistortSpeed * _Time.x).a - 0.5f;
+			uv.y += distort * _SGT_DistortStrength * uv.x;
+		#endif
+
+		float4 finalColor = tex2D(_SGT_MainTex, uv) * _SGT_Color;
+
+		finalColor.xyz *= _SGT_Brightness;
+
+		#if _SGT_DETAIL
+			float detail = tex2D(_SGT_DetailTex, uv * _SGT_DetailScale - _SGT_DetailSpeed * _Time.x).a - 0.5f;
+			finalColor.rgb += saturate(detail * _SGT_DetailStrength) * finalColor.rgb;
+		#endif
+
+		#if _SGT_FADE_EDGE
+			finalColor *= d.texcoord0.w;
+		#endif
+
+		#if _SGT_CLIP_NEAR
+			float fadeNear = saturate(dot(d.texcoord1.xyz, d.texcoord2.xyz));
+
+			finalColor *= pow(1.0f - fadeNear, _SGT_ClipPower);
+		#endif
+
+		#if __SGT_OUTPUT
+			SGT_OutputWithAlpha(o, SGT_ModifyUnlitOutput(finalColor));
+		#endif
+	}
+END_CODE

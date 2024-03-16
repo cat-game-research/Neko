@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 0879295d2b233f243838d4fe720c1337
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _CubeTex: {instanceID: 0}
+  - _FlowTex: {instanceID: 0}
+  - _NoiseTex: {fileID: 11700000, guid: 5ef5dc22158dd364399c5c3d307c0085, type: 2}
+  - _DepthTex: {instanceID: 0}
+  - _LightingTex: {instanceID: 0}
+  - _ScatteringTex: {instanceID: 0}
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Jovian/Required/Shaders/Jovian.shader
+  uploadId: 616447

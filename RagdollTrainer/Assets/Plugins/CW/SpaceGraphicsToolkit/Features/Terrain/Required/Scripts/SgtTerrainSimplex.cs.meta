@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 62eda6f251e370f4b9d586faae231123
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Terrain/Required/Scripts/SgtTerrainSimplex.cs
+  uploadId: 616447

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: fd037eae49f61bc49bdac1450b339b00
+timeCreated: 1477183420
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Cloudsphere/Examples/01
+    Cloudsphere.unity
+  uploadId: 616447

@@ -1,0 +1,41 @@
+﻿BEGIN_OPTIONS
+	Stackable "False"
+END_OPTIONS
+
+BEGIN_PROPERTIES
+	[Header(NIGHT)]
+	[Toggle(_NIGHT)] _HasNight ("	Enabled", Float) = 0
+	_NightSharpness("	Sharpness", Range(1,200)) = 1
+	_NightBrightness("	Brightness", Range(1,200)) = 1
+	_NightOffset("	Offset", Range(-1,2)) = 0
+	[HideInEditor]_NightDirection("	Direction", Vector) = (0,0,1)
+	[NoScaleOffset]_NightTex("	Texture (RGB)", 2D) = "black" {}
+END_PROPERTIES
+
+BEGIN_DEFINES
+   #pragma shader_feature_local _NIGHT
+END_DEFINES
+
+BEGIN_CBUFFER
+	float  _NightSharpness;
+	float  _NightBrightness;
+	float  _NightOffset;
+	float3 _NightDirection;
+END_CBUFFER
+
+BEGIN_CODE
+	TEXTURE2D(_NightTex);
+	SAMPLER(sampler_NightTex);
+
+	void SurfaceFunction(inout Surface o, inout ShaderData d)
+	{
+		#if __SGT_PLANET_BASE
+			#if _NIGHT
+				float4 nightTex = SAMPLE_TEXTURE2D(_NightTex, sampler_NightTex, d.texcoord0);
+				float  darkness = pow(saturate(dot(d.worldSpaceNormal, _NightDirection) + _NightOffset), _NightSharpness);
+
+				o.Emission = nightTex * darkness * _NightBrightness;
+			#endif
+		#endif
+	}
+END_CODE

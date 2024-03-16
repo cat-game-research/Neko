@@ -1,0 +1,55 @@
+﻿BEGIN_OPTIONS
+	Workflow "Unlit"
+	Alpha "Blend"
+END_OPTIONS
+
+BEGIN_PASS("All")
+	Blend SrcAlpha OneMinusSrcAlpha, Zero One
+	Cull Front
+END_PASS
+
+BEGIN_CBUFFER
+	samplerCUBE _SGT_MainTex; // Auto
+
+	float _SGT_WarpOuter; // Auto
+	float _SGT_WarpStrength; // Auto
+	float _SGT_HoleSize; // Auto
+	float _SGT_HoleEdge; // Auto
+	float _SGT_FadeOuter; // Auto
+END_CBUFFER
+
+BEGIN_CODE
+	float3 SGT_AxisAngle(float3 p, float3 axis, float angle)
+	{
+		float3 c = cos(angle); return p * c + cross(axis, p) * sin(angle) + axis * dot(p, axis) * (1.0f - c);
+	}
+
+	void SurfaceFunction(inout Surface o, ShaderData d)
+	{
+		float3 refl = -d.worldSpaceViewDir;
+		float3 axis = cross(d.worldSpaceNormal, refl);
+		float  rdot = saturate(dot(d.worldSpaceNormal, refl));
+
+		float3 normal = SGT_AxisAngle(refl, axis, pow(rdot, _SGT_WarpOuter) * _SGT_WarpStrength);
+
+		float4 finalColor = texCUBE(_SGT_MainTex, normal);
+
+		#ifndef UNITY_COLORSPACE_GAMMA
+			#if _HDRP
+				finalColor.rgb = pow(finalColor.rgb, 1.5f); // Seems to match better?!
+			#else
+				finalColor.rgb = pow(finalColor.rgb, 2.2f); // Gamma correction
+			#endif
+		#endif
+
+		// Fade hole
+		finalColor.rgb *= saturate((_SGT_HoleSize - rdot) * _SGT_HoleEdge);
+
+		// Fade edge
+		finalColor.a *= saturate(1.0f - pow(saturate(1.0f - rdot), _SGT_FadeOuter));
+
+		// Don't use output
+		o.Albedo = finalColor.xyz;
+		o.Alpha  = finalColor.w;
+	}
+END_CODE

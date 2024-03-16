@@ -1,0 +1,187 @@
+﻿BEGIN_OPTIONS
+	Stackable "False"
+END_OPTIONS
+
+BEGIN_PROPERTIES
+	_Color("Color", Color) = (1,1,1,1)
+	_Metallic("Metallic", Range(0,1)) = 0
+	_GlossMapScale("Smoothness", Range(0,1)) = 1
+	_BumpScale("Normal Strength", Range(0,5)) = 1
+	_AlbedoShift("Albedo Shift", Range(0,6.2831853)) = 0
+
+	[NoScaleOffset]_MainTex("Albedo (RGB) Smoothness (A)", 2D) = "white" {}
+	[NoScaleOffset][Normal]_BumpMap("Normal", 2D) = "bump" {}
+	[NoScaleOffset]_HeightMap("Height (A)", 2D) = "white" {}
+
+	[Header(SHARED)]
+
+	[Toggle(_DETAIL_R)] _HasDetailR ("	Detail R", Float) = 0
+	[Toggle(_DETAIL_G)] _HasDetailG ("	Detail G", Float) = 0
+	[Toggle(_DETAIL_B)] _HasDetailB ("	Detail B", Float) = 0
+	[Toggle(_DETAIL_A)] _HasDetailA ("	Detail A", Float) = 0
+	[NoScaleOffset]_DetailMaskMap("	Detail Mask (RGBA)", 2D) = "white" {}
+	[NoScaleOffset]_NoiseTex("	Noise Texture (A)", 2D) = "black" {}
+
+	[Space]
+
+	[Toggle(_DETAIL_ALBEDO)] _HasDetailAlbedo ("	Albedo Enabled", Float) = 0
+	[NoScaleOffset]_AlbedoMapR("	Albedo R", 2D) = "gray" {}
+	[NoScaleOffset]_AlbedoMapG("	Albedo G", 2D) = "gray" {}
+	[NoScaleOffset]_AlbedoMapB("	Albedo B", 2D) = "gray" {}
+	[NoScaleOffset]_AlbedoMapA("	Albedo A", 2D) = "gray" {}
+
+	[Space]
+
+	[Toggle(_DETAIL_NORMAL)] _HasDetailNormal ("	Normal Enabled", Float) = 0
+	[NoScaleOffset][Normal]_NormalMapR("	Normal R", 2D) = "bump" {}
+	[NoScaleOffset][Normal]_NormalMapG("	Normal G", 2D) = "bump" {}
+	[NoScaleOffset][Normal]_NormalMapB("	Normal B", 2D) = "bump" {}
+	[NoScaleOffset][Normal]_NormalMapA("	Normal A", 2D) = "bump" {}
+END_PROPERTIES
+
+BEGIN_DEFINES
+	#define __SGT_PLANET_BASE 1
+	#pragma shader_feature_local _DETAIL_R
+	#pragma shader_feature_local _DETAIL_G
+	#pragma shader_feature_local _DETAIL_B
+	#pragma shader_feature_local _DETAIL_A
+	#pragma shader_feature_local _DETAIL_ALBEDO
+	#pragma shader_feature_local _DETAIL_NORMAL
+END_DEFINES
+
+BEGIN_CBUFFER
+	float4 _Color;
+	float  _Metallic;
+	float  _GlossMapScale;
+	float  _BumpScale;
+	float  _AlbedoShift;
+	
+	// Used by BakedTerrain
+	float _BakedDetailTilingA;
+	float _BakedDetailTilingAMul;
+	float _BakedDetailTilingB;
+	float _BakedDetailTilingC;
+END_CBUFFER
+
+BEGIN_BLACKBOARD
+	float4 detailMask;
+	float worldDistance;
+END_BLACKBOARD
+
+BEGIN_CODE
+	SAMPLER(sampler_MainTex);
+		TEXTURE2D(_MainTex);
+
+	SAMPLER(sampler_BumpMap);
+		TEXTURE2D(_BumpMap);
+
+	SAMPLER(sampler_DetailMaskMap);
+		TEXTURE2D(_DetailMaskMap);
+	
+	//SAMPLER(sampler_AlbedoMapR); // use sampler_linear_repeat
+		TEXTURE2D(_AlbedoMapR);
+		TEXTURE2D(_AlbedoMapG);
+		TEXTURE2D(_AlbedoMapB);
+		TEXTURE2D(_AlbedoMapA);
+	
+	//SAMPLER(sampler_NormalMapR); // use sampler_linear_repeat
+		TEXTURE2D(_NormalMapR);
+		TEXTURE2D(_NormalMapG);
+		TEXTURE2D(_NormalMapB);
+		TEXTURE2D(_NormalMapA);
+
+	SAMPLER(sampler_NoiseTex);
+		TEXTURE2D(_NoiseTex);
+
+	SAMPLER(sampler_linear_repeat);
+
+	float4 sample_grad(TEXTURE2D_PARAM(tex, samp), float4 uv, bool pole, float4 gx, float4 gy)
+	{
+		float2 uv2 = pole ? uv.xy : uv.zw;
+		float2 gx2 = pole ? gx.xy : gx.zw;
+		float2 gy2 = pole ? gy.xy : gy.zw;
+
+		return SAMPLE_TEXTURE2D_GRAD(tex, samp, uv2, gx2, gy2);
+	}
+
+	float4 sample_spherical(TEXTURE2D_PARAM(tex, samp), float4 uv, float cur_height, int max_height)
+	{
+		float div_height = max_height * 0.5f;
+		float this_index = floor(cur_height);
+		float next_index = this_index + 1.0f;
+
+		float4 uvA     = uv + sin(float4(1.0f, 2.0f, 1.0f, 2.0f) * this_index);
+		float4 uvB     = uv + sin(float4(1.0f, 2.0f, 1.0f, 2.0f) * next_index);
+		float4 gradX   = ddx(uv);
+		float4 gradY   = ddy(uv);
+		float4 sampleA = sample_grad(TEXTURE2D_ARGS(tex, samp), uvA, this_index < div_height, gradX, gradY);
+		float4 sampleB = sample_grad(TEXTURE2D_ARGS(tex, samp), uvB, next_index < div_height, gradX, gradY);
+
+		return lerp(sampleA, sampleB, cur_height - this_index);
+	}
+
+	float sample_noise(float4 coords, float polar)
+	{
+		float tex1 = SAMPLE_TEXTURE2D(_NoiseTex, sampler_NoiseTex, coords.xy).a;
+		float tex2 = SAMPLE_TEXTURE2D(_NoiseTex, sampler_NoiseTex, coords.zw).a;
+
+		return lerp(tex1, tex2, polar);
+	}
+
+	half3 CombineNormals(half3 n1, half3 n2)
+	{
+		return normalize(half3(n1.xy + n2.xy, n1.z*n2.z));
+	}
+
+	void ContributeDetailA(inout Surface o, TEXTURE2D_PARAM(tex, samp), float4 coords, float polar, float max_height, float noise, float weight)
+	{
+		float  cur_height = polar * max_height + noise;
+		float3 detail     = sample_spherical(TEXTURE2D_ARGS(tex, samp), coords, cur_height, max_height).xyz;
+
+		o.Albedo += (detail - 0.5f) * weight;
+	}
+
+	void ContributeDetailN(inout Surface o, TEXTURE2D_PARAM(tex, samp), float4 coords, float polar, float max_height, float noise, float weight)
+	{
+		float  cur_height = polar * max_height + noise * 4.0f;
+		float3 detail     = UnpackScaleNormal(sample_spherical(TEXTURE2D_ARGS(tex, samp), coords, cur_height, max_height), weight);
+
+		o.Normal = CombineNormals(o.Normal, detail);
+	}
+
+	void ModifyVertex(inout VertexData v, inout ExtraV2F d)
+	{
+		// Polar
+		d.extraV2F0.x = abs(v.texcoord0.y - 0.5f) * 2.0f;
+
+		// Equator + Pole detail UVs
+		float3 direction = normalize(v.vertex.xyz);
+
+		d.extraV2F1.x  = v.texcoord0.x * 2.0f;
+		d.extraV2F1.y  = v.texcoord0.y;
+		d.extraV2F1.z  = direction.x * -0.5f * sign(direction.y);
+		d.extraV2F1.w  = direction.z * 0.5f;
+	}
+
+	float3 ShiftColor(float3 color, float shift)
+	{
+		float3 m = float3(cos(shift), -sin(shift) * 0.57735f, 0.0f);
+		m = float3(m.xy, -m.y) + (1.0f - m.x) * 0.33333f;
+		return mul(float3x3(m, m.zxy, m.yzx), color);
+	}
+
+	void SurfaceFunction(inout Surface o, inout ShaderData d)
+	{
+		float4 texMain = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, d.texcoord0.xy);
+
+		o.Albedo     = ShiftColor(texMain.rgb, _AlbedoShift) * _Color.rgb;
+		o.Normal     = UnpackScaleNormal(SAMPLE_TEXTURE2D(_BumpMap, sampler_BumpMap, d.texcoord0.xy), _BumpScale);
+		o.Metallic   = _Metallic;
+		o.Smoothness = _GlossMapScale * texMain.a;
+		o.Occlusion  = 1.0f;
+		o.Alpha      = 1.0f;
+
+		d.blackboard.worldDistance = distance(_WorldSpaceCameraPos, d.worldSpacePosition);
+		d.blackboard.detailMask    = SAMPLE_TEXTURE2D(_DetailMaskMap, sampler_DetailMaskMap, d.texcoord0.xy);
+	}
+END_CODE

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 2dc45c616b7104d47a1c702da050d49e
+timeCreated: 1477183420
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Spacetime/Examples/06
+    Twist Well.unity
+  uploadId: 616447

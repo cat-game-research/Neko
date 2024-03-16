@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 915648f7ea0071544bb22051be336d14
+timeCreated: 1477183420
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/Basic Pack/Storm Planet.unity
+  uploadId: 616447

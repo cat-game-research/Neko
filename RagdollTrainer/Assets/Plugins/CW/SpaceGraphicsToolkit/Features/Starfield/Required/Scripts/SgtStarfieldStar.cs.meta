@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 38cec13f8e7cb4c42b605fa44906d7c6
+timeCreated: 1527683556
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Starfield/Required/Scripts/SgtStarfieldStar.cs
+  uploadId: 616447

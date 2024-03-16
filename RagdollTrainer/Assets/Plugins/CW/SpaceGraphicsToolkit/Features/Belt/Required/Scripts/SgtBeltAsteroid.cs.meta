@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: d26965bd41f176048abca7b54666dc9c
+timeCreated: 1527651831
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Belt/Required/Scripts/SgtBeltAsteroid.cs
+  uploadId: 616447

@@ -1,0 +1,13 @@
+﻿BEGIN_PASS("Forward")
+	Blend DstColor Zero, One OneMinusSrcAlpha
+END_PASS
+
+BEGIN_CODE
+	void SurfaceFunction(inout Surface o, inout ShaderData d)
+	{
+		#if __SGT_STARFIELD
+			o.Albedo   = 1.0f - saturate(d.blackboard.finalColor.rgb);
+			o.Emission = 0.0f;
+		#endif
+	}
+END_CODE

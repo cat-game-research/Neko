@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 1ca2925d355686447a011c4d5b6f7d9f
+timeCreated: 1477183420
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Billboard/Examples/01
+    Sprite Billboard Flare.unity
+  uploadId: 616447

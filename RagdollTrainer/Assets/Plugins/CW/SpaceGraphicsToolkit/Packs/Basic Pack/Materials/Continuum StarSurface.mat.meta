@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 49a739f2db4cb804684b7408245e3b8d
+timeCreated: 1498186635
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/Basic Pack/Materials/Continuum
+    StarSurface.mat
+  uploadId: 616447

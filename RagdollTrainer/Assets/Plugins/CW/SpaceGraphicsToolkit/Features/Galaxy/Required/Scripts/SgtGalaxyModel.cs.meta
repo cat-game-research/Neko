@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: ef9bf6fc62f537c4d8f1cab99e4eecde
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Galaxy/Required/Scripts/SgtGalaxyModel.cs
+  uploadId: 616447

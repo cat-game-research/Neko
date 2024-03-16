@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 62a3385fd4e9a6742b89e6e25f9989b5
+timeCreated: 1527482590
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Aurora/Required/Shaders/Aurora.shader
+  uploadId: 616447

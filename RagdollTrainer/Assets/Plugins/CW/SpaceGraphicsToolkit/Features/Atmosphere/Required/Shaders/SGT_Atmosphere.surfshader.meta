@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 4f7aec45680e2c34c8f8435ff6c69b44
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: ed1b96e11e9064957833ce8c01da6f92, type: 3}
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Atmosphere/Required/Shaders/SGT_Atmosphere.surfshader
+  uploadId: 616447

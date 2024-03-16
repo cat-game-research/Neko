@@ -1,0 +1,195 @@
+﻿BEGIN_OPTIONS
+	Workflow "Unlit"
+	Alpha "Add"
+END_OPTIONS
+
+BEGIN_PASS("Forward")
+	Blend One [_SGT_DstBlend], One OneMinusSrcAlpha
+END_PASS
+
+BEGIN_PROPERTIES
+	[Enum(One,1,OneMinusSrcColor,6)] _SGT_DstBlend("DstBlend", Float) = 1 // 1 = One
+	[KeywordEnum(View, Position)] _SGT_Align ("Align To", Float) = 0
+
+	[Header(POWER RGB)]
+	[Toggle(_SGT_POWER_RGB)] _SGT_PowerRgb ("	Enable", Float) = 0
+
+	[Header(NEAR FADE)]
+	[Toggle(_SGT_NEAR_FADE)] _SGT_NearFade ("	Enable", Float) = 0
+	_SGT_NearRangeRecip("	Near Range Recip", Float) = 1
+	[NoScaleOffset] _SGT_NearTex("	Near Tex", 2D) = "white" {}
+
+	[Header(FAR FADE)]
+	[Toggle(_SGT_FAR_FADE)] _SGT_FarFade ("	Enable", Float) = 0
+	_SGT_FarRadius("	Far Radius", Float) = 100
+	_SGT_FarRangeRecip("	Far Range Recip", Float) = 1
+	[NoScaleOffset] _SGT_FarTex("	Far Tex", 2D) = "white" {}
+
+	[Header(PULSE)]
+	[Toggle(_SGT_PULSE)] _SGT_Pulse ("	Enable", Float) = 0
+	_SGT_PulseMin("	Pulse Min", Range(0,1)) = 0.5
+	_SGT_PulseMax("	Pulse Max", Range(0,1)) = 1.0
+	_SGT_PulseSpeed("	Pulse Speed", Float) = 100.0
+END_PROPERTIES
+
+BEGIN_DEFINES
+	#pragma shader_feature_local _SGT_POWER_RGB
+	#pragma shader_feature_local _SGT_NEAR_FADE
+	#pragma shader_feature_local _SGT_FAR_FADE
+	#pragma shader_feature_local _SGT_PULSE
+	#pragma shader_feature_local _SGT_ALIGN_VIEW _SGT_ALIGN_POSITION
+	#pragma multi_compile_local _ _SGT_CLAMP_SIZE_MIN
+	#pragma multi_compile_local _ _SGT_SOFTNESS
+	#pragma multi_compile_local _ _SGT_STRETCH
+END_DEFINES
+
+BEGIN_CBUFFER
+	sampler2D _SGT_MainTex; // Auto
+	float4    _SGT_Color; // Auto
+	float     _SGT_Brightness; // Auto
+	float     _SGT_Scale; // Auto
+	float     _SGT_ScaleRecip; // Auto
+	float     _SGT_CameraRollAngle; // Auto
+	float3    _SGT_WrapSize; // Auto
+	float3    _SGT_WrapScale; // Auto
+
+	// Near Fade
+	sampler2D _SGT_NearTex;
+	float     _SGT_NearRangeRecip;
+
+	// Far Fade
+	sampler2D _SGT_FarTex;
+	float     _SGT_FarRadius;
+	float     _SGT_FarRangeRecip;
+
+	// Pulse
+	float _SGT_PulseMin;
+	float _SGT_PulseMax;
+	float _SGT_PulseSpeed;
+
+	// Clamp Size Min
+	float _SGT_ClampSizeMin; // Auto
+	float _SGT_ClampSizeScale; // Auto
+
+	// Softness
+	float _SGT_SoftParticlesFactor; // Auto
+
+	// Stretch
+	float3 _SGT_StretchDirection; // Auto
+	float3 _SGT_StretchVector; // Auto
+END_CBUFFER
+
+BEGIN_CODE
+	float2 SGT_Rotate(float2 v, float a)
+	{
+		float s = sin(a);
+		float c = cos(a);
+		return float2(c * v.x - s * v.y, s * v.x + c * v.y);
+	}
+
+	void ModifyVertex(inout VertexData v, inout ExtraV2F e)
+	{
+		#if __SGT_MATRIX
+			float3 wcam      = _WorldSpaceCameraPos;
+			float4 cameraO   = SGT_W2O(float4(wcam, 1.0f)) * _SGT_ScaleRecip;
+			float3 relativeO = v.vertex.xyz - cameraO.xyz;
+
+			v.vertex.xyz = cameraO.xyz + (frac(relativeO * _SGT_WrapScale + 0.5f) - 0.5f) * _SGT_WrapSize;
+
+			float size = v.texcoord1.x * _SGT_Scale;
+
+			#if _SGT_CLAMP_SIZE_MIN
+				float sizeMin = abs(SGT_O2V(v.vertex).z * (_SGT_ClampSizeMin / _ScreenParams.y * _SGT_ClampSizeScale));
+				float scale   = saturate(size / sizeMin);
+				v.vertexColor.w *= scale * scale; // Darken by shrunk amount
+				size /= scale;
+			#endif
+
+			float4 vertexM = SGT_O2W(v.vertex);
+			float3 eyeM    = normalize(vertexM.xyz - wcam);
+
+			#if _SGT_STRETCH
+				float3 up = cross(_SGT_StretchDirection, eyeM);
+
+				// Uncomment below if you want the stars to be stretched based on their size too
+				vertexM.xyz += _SGT_StretchVector * v.texcoord1.y; // * size;
+				vertexM.xyz += up * v.normal.y * size;
+
+				v.vertex        = SGT_W2O(vertexM);
+				v.texcoord1.xyz = SGT_W2V(vertexM).xyz;
+			#else
+				#if _SGT_PULSE
+					float pulseSpeed  = v.texcoord0.z % 1.0f;
+					float pulseOffset = floor(v.texcoord0.z) * 3.141592654f;
+					float pulseAngle  = pulseOffset + _Time.x * pulseSpeed * _SGT_PulseSpeed;
+					size *= lerp(_SGT_PulseMin, _SGT_PulseMax, sin(pulseAngle) * 0.5f + 0.5f);
+				#endif
+
+				float4 vertexMV = SGT_O2V(v.vertex);
+				float  angle    = v.normal.z * 3.141592654f;
+
+				#if _SGT_ALIGN_VIEW
+					angle += _SGT_CameraRollAngle;
+				#endif
+
+				v.normal.xy = SGT_Rotate(v.normal.xy, angle);
+
+				#if _SGT_ALIGN_VIEW
+					vertexMV.xy += v.normal.xy * size;
+				#elif _SGT_ALIGN_POSITION
+					float3 vecX = normalize(cross(eyeM, float3(0.0f, 1.0f, 0.0f)));
+					float3 vecY = normalize(cross(eyeM, vecX));
+					float3 vecM = (v.normal.x * vecX + v.normal.y * vecY) * size;
+
+					vertexMV.xyz += SGT_W2V(float4(vecM, 0.0f));
+				#endif
+
+				v.vertex = SGT_V2O(vertexMV);
+				v.texcoord1.xyz = vertexMV.xyz;
+			#endif
+
+			#if _SGT_SOFTNESS
+				v.texcoord1.w = -SGT_O2V(v.vertex).z;
+			#endif
+		#endif
+	}
+
+	void SurfaceFunction(inout Surface o, inout ShaderData d)
+	{
+		float  dist       = length(d.texcoord1.xyz);
+		float4 finalColor = tex2D(_SGT_MainTex, d.texcoord0.xy);
+
+		#if _SGT_POWER_RGB
+			finalColor.rgb = pow(finalColor.rgb, float3(1.0f, 1.0f, 1.0f) + (1.0f - d.vertexColor.rgb) * 10.0f);
+		#else
+			finalColor *= d.vertexColor;
+		#endif
+
+		finalColor.xyz *= _SGT_Brightness;
+
+		finalColor *= _SGT_Color;
+		finalColor *= saturate(finalColor.a);
+		finalColor *= d.vertexColor.a;
+
+		#if _SGT_NEAR_FADE
+			float2 near = dist * _SGT_NearRangeRecip;
+			finalColor *= tex2D(_SGT_NearTex, near);
+		#endif
+
+		#if _SGT_FAR_FADE
+			float2 far = (_SGT_FarRadius - dist) * _SGT_FarRangeRecip;
+			finalColor *= tex2D(_SGT_FarTex, far);
+		#endif
+
+		#if _SGT_SOFTNESS
+			float sceneZ = GetLinearEyeDepth(d.screenUV);
+			float partZ  = d.texcoord1.w;
+
+			finalColor *= saturate(_SGT_SoftParticlesFactor * (sceneZ - partZ));
+		#endif
+
+		#if __SGT_OUTPUT
+			SGT_OutputWithoutAlpha(o, SGT_ModifyUnlitOutput(finalColor));
+		#endif
+	}
+END_CODE

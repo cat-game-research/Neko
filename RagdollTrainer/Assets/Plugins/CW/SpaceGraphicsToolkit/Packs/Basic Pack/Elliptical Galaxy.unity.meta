@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 29950e718c5d86a43bff5eb206e542b2
+timeCreated: 1477183420
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/Basic Pack/Elliptical Galaxy.unity
+  uploadId: 616447

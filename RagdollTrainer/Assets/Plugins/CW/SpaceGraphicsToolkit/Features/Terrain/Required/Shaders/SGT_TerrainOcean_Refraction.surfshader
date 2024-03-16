@@ -1,0 +1,48 @@
+﻿BEGIN_OPTIONS
+	Stackable "False"
+	GrabPass { "_Grab" }
+	Alpha "Blend"
+	Tags { "Queue" = "Transparent-1" }
+END_OPTIONS
+
+BEGIN_PASS("All")
+	ZWrite On
+END_PASS
+
+BEGIN_PROPERTIES
+	[Header(REFRACTION)]
+	[Toggle(_REFRACTION_ON)] _HasRefraction("	Enabled", Float) = 0
+	_RefractionStrength("	Strength", Range(0.0, 2.0)) = 1.0
+END_PROPERTIES
+
+BEGIN_DEFINES
+	#pragma shader_feature_local _REFRACTION_ON
+END_DEFINES
+
+BEGIN_CBUFFER
+	float _RefractionStrength;
+END_CBUFFER
+
+BEGIN_CODE
+	void SurfaceFunction(inout Surface o, inout ShaderData d)
+	{
+		#if __SGT_TERRAINOCEAN
+			#if _REFRACTION_ON
+				float3 depthPos = GetWorldPositionFromDepthBuffer(d.screenUV, d.worldSpaceViewDir);
+				float  depthDist = distance(depthPos, _WorldSpaceCameraPos);
+
+				float  opticalDepth  = depthDist - d.blackboard.worldDistance;
+
+				float2 refStr    = (1.0f / d.blackboard.worldDistance);
+				float2 bentScrUV = d.screenUV + o.Normal.xy * refStr * _RefractionStrength;// * log(1.0f + depthDist) / _ScreenParams.xy;
+
+				// Opacity
+				float opacity = pow(1.0f - saturate(opticalDepth / _OpacityRange), _OpacityPower);
+				float3 albedo = GetSceneColor(bentScrUV);
+				o.Emission += albedo * (1.0f - o.Alpha);
+				o.Albedo *= o.Alpha;
+				o.Alpha = 1.0f;
+			#endif
+		#endif
+	}
+END_CODE

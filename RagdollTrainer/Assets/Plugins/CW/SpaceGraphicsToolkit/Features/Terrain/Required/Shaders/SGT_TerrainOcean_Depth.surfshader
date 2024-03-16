@@ -1,0 +1,34 @@
+﻿BEGIN_OPTIONS
+	Stackable "False"
+END_OPTIONS
+
+BEGIN_PROPERTIES
+	[Header(DEPTH COLOR)]
+	_DeepRange("	Range", Float) = 10000.0
+	_DeepPower("	Power", Range(1.0, 10.0)) = 2.0
+	_DeepColor("	Color", Color) = (0.0, 0.0, 1.0)
+END_PROPERTIES
+
+BEGIN_CBUFFER
+	float  _DeepRange;
+	float  _DeepPower;
+	float4 _DeepColor;
+END_CBUFFER
+
+BEGIN_CODE
+	#if __SGT_TERRAINOCEAN
+		float3 TintDepth(float3 color, ShaderData d)
+		{
+			float deep = pow(1.0f - saturate(d.texcoord3.x / _DeepRange), _DeepPower);
+
+			return lerp(color, _DeepColor, deep);
+		}
+	#endif
+
+	void SurfaceFunction(inout Surface o, inout ShaderData d)
+	{
+		#if __SGT_TERRAINOCEAN
+			o.Albedo = TintDepth(o.Albedo, d);
+		#endif
+	}
+END_CODE

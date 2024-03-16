@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: f7d5a6f7f23b0b841a56adc7713698c3
+timeCreated: 1535698856
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Planet/Examples/Materials/Planet
+    (03).mat
+  uploadId: 616447

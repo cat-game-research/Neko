@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: b5555fd5111f2b74b83ea74d97ffe4ba
+timeCreated: 1527583107
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Atmosphere/Required/Scripts/SgtAtmosphereLightingTex.cs
+  uploadId: 616447

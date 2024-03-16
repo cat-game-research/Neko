@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 252f200bfba537e42aae58bd8a096c03
+timeCreated: 1477183420
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Universe/Examples/02
+    Floating Object.unity
+  uploadId: 616447

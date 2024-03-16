@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: c4e2b81ca2140c244bac1be32d9cd649
+timeCreated: 1498186635
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Star/Examples/Materials/Star
+    (01).mat
+  uploadId: 616447

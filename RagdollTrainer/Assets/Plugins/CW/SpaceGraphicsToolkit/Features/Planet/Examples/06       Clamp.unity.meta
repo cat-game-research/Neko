@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 9c4d15e0a216aa1418b2ca07db6e963a
+timeCreated: 1477183420
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Planet/Examples/06      
+    Clamp.unity
+  uploadId: 616447

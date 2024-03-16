@@ -1,0 +1,205 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Galaxy
+  m_Shader: {fileID: 4800000, guid: bad8e8212c14bde4bb367681e26353ae, type: 3}
+  m_ShaderKeywords: _DETAIL _DUST _GLOW _SGT_DUST _SGT_NEAR _SGT_STARS _STARS
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: b75bce40a72beee48b83ec787a8dcb4d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NebulaTex:
+        m_Texture: {fileID: 2800000, guid: b75bce40a72beee48b83ec787a8dcb4d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NebulaTexA:
+        m_Texture: {fileID: 2800000, guid: b75bce40a72beee48b83ec787a8dcb4d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NebulaTexB:
+        m_Texture: {fileID: 2800000, guid: b133d9b760e3c5f4b9f3211ff76c4d7a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NebulaTexC:
+        m_Texture: {fileID: 2800000, guid: 0804757b3dc0ef449808b3f02b0622e9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NebulaTexX:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NebulaTexY:
+        m_Texture: {fileID: 2800000, guid: a666b816ebfeedf44b147902ba85b812, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NebulaTexZ:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SGT_BaseTexture:
+        m_Texture: {fileID: 2800000, guid: 4535ddc69c075cd478eb948c8b53c9c2, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SGT_DetailTexture:
+        m_Texture: {fileID: 2800000, guid: cf14934db40fa0a478f29c564bbd798f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SGT_DustTexture:
+        m_Texture: {fileID: 2800000, guid: 0f9984345ba545241bc16998256a1d70, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SGT_MaskTexture:
+        m_Texture: {fileID: 2800000, guid: 1646a9afc3b587e44aa99c8946614f65, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SGT_NearTex:
+        m_Texture: {fileID: 2800000, guid: 8dc4cc7f1a12fbc45adb1892e4fc1dd5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SGT_StarsMask:
+        m_Texture: {fileID: 2800000, guid: 1646a9afc3b587e44aa99c8946614f65, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SGT_StarsTexture:
+        m_Texture: {fileID: 2800000, guid: a128a3493f32d134bba2e799ff2c97d7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SGT_Texture:
+        m_Texture: {fileID: 2800000, guid: 4535ddc69c075cd478eb948c8b53c9c2, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SGT_TextureX:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SGT_TextureY:
+        m_Texture: {fileID: 2800000, guid: a666b816ebfeedf44b147902ba85b812, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SGT_TextureZ:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ShapeTex:
+        m_Texture: {fileID: 11700000, guid: f5ed7c9348ffda342bee93f46dd164c9, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _BumpScale: 1
+    - _CW_DisableFog: 0
+    - _Cutoff: 0.5
+    - _DefDist: 0.5
+    - _DefScale: 1
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _HasDetail: 1
+    - _HasDust: 1
+    - _HasGlow: 1
+    - _HasSpherical: 0
+    - _HasStars: 1
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _SGT_BaseScale: 1
+    - _SGT_ColorShift: 0
+    - _SGT_DetailBias: 0.84
+    - _SGT_DetailPower: 0.4
+    - _SGT_DetailStrength: 0.31
+    - _SGT_DetailTiling: 1
+    - _SGT_DetailTwist: 0.91
+    - _SGT_DustAlphaOffset: 1.02
+    - _SGT_DustAlphaPower: 50
+    - _SGT_DustBias: 0.94
+    - _SGT_DustColorPower: 5
+    - _SGT_DustPower: 0.16
+    - _SGT_DustScale: 0.2
+    - _SGT_DustTiling: 1
+    - _SGT_DustTwist: -1.02
+    - _SGT_GlowPower: 7
+    - _SGT_GlowStrength: 0.3
+    - _SGT_Near: 1
+    - _SGT_NearRangeRecip: 0.01
+    - _SGT_RimMax: 5
+    - _SGT_RimMin: 2
+    - _SGT_SphericalJitter: 0.1
+    - _SGT_StarsBias: 3.85
+    - _SGT_StarsStrength: 9.44
+    - _SGT_StarsTiling: 3.82
+    - _SGT_TextureJitter: 0.1
+    - _SGT_TextureScale: 1
+    - _ShapePowerMax: 1
+    - _ShapePowerMin: 2
+    - _ShapeScale: 0.5
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _TextureScale: 1
+    - _TextureWarp: 0
+    - _UVSec: 0
+    - _ZWrite: 1
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _SGT_BaseBlend: {r: 0.1, g: 6, b: 0, a: 0}
+    - _SGT_DustColor: {r: 1, g: 0.22844924, b: 0, a: 1}
+    - _SGT_DustColorBlend: {r: 1, g: 2, b: 0, a: 0}
+    - _SGT_DustFade: {r: 1.02, g: 50, b: 0, a: 0}
+    - _SGT_GlowColor: {r: 1, g: 0.7722794, b: 0.61960787, a: 1}
+    - _SGT_GlowWeights: {r: 0, g: 1, b: 0, a: 0}
+    - _SGT_RimMax: {r: 5, g: 5, b: 5, a: 1}
+    - _SGT_RimMin: {r: 10, g: 10, b: 10, a: 1}
+    - _SGT_TextureBlend: {r: 0.1, g: 6, b: 0, a: 0}
+    - _SGT_Tint: {r: 1, g: 1, b: 1, a: 1}
+    - _TextureBlend: {r: 0.1, g: 6, b: 0, a: 0}
+  m_BuildTextureStacks: []

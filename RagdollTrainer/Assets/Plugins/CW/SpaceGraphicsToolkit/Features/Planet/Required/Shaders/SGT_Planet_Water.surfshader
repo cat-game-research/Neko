@@ -1,0 +1,72 @@
+﻿BEGIN_OPTIONS
+	Stackable "False"
+END_OPTIONS
+
+BEGIN_PROPERTIES
+	[Header(WATER)]
+	[Toggle(_WATER)] _HasWater ("	Enabled", Float) = 0
+
+	_WaterTiling("	Tiling", Float) = 10
+	[HideInInspector][NoScaleOffset][Normal]_WaterTexture("	Texture (RG + BA)", 2D) = "bump" {}
+	_WaterMetallic("	Metallic", Range(0,1)) = 0
+	_WaterSmoothness("	Smoothness", Range(0,1)) = 1
+	_WaterEmission("	Emission", Range(0,1)) = 0
+	_WaterSharpness("	Coast Sharpness", Float) = 10
+END_PROPERTIES
+
+BEGIN_DEFINES
+	#pragma shader_feature_local _WATER
+END_DEFINES
+
+BEGIN_CBUFFER
+	float _WaterTiling;
+	float _WaterLevel;
+	float _WaterGradientScale;
+	float _WaterSharpness;
+	float _WaterMetallic;
+	float _WaterSmoothness;
+	float _WaterEmission;
+END_CBUFFER
+
+BEGIN_CODE
+	SAMPLER(sampler_HeightMap);
+		TEXTURE2D(_HeightMap);
+
+	SAMPLER(sampler_WaterGradient);
+		TEXTURE2D(_WaterGradient);
+		
+	SAMPLER(sampler_WaterTexture); // use sampler_linear_repeat
+		TEXTURE2D(_WaterTexture);
+
+	void SurfaceFunction(inout Surface o, inout ShaderData d)
+	{
+		#if __SGT_PLANET_BASE
+			#if _WATER
+				float  polar     = d.extraV2F0.x;
+				float4 coords    = d.extraV2F1 * _WaterTiling;
+				float4 heightMap = SAMPLE_TEXTURE2D(_HeightMap, sampler_HeightMap, d.texcoord0.xy);
+				float  water     = _WaterLevel - heightMap.a;
+
+				//water += (sample2(_WaterLevelMap, waterCoord, polar).a - 0.5f) * _WaterLevelScale;
+
+				float  waterDensity = saturate(water * _WaterSharpness);
+				float  waterColor   = saturate(water * _WaterGradientScale);
+				float4 waterAlbedo  = SAMPLE_TEXTURE2D(_WaterGradient, sampler_WaterGradient, float2(waterColor, waterColor));
+
+				float noise = (sample_noise(coords / 64.0f, polar) - 0.5f) * 15.0f;
+				float4 waterPix    = sample_spherical(TEXTURE2D_ARGS(_WaterTexture, sampler_WaterTexture), coords, polar + noise, _WaterTiling);
+				float3 waterNormal = UnpackNormal(waterPix);
+
+				o.Albedo     = lerp(o.Albedo, waterAlbedo, waterDensity);
+				o.Metallic   = lerp(o.Metallic, _WaterMetallic, waterDensity);
+				o.Smoothness = lerp(o.Smoothness, _WaterSmoothness, waterDensity);
+				o.Emission   = lerp(o.Emission, waterAlbedo * _WaterEmission, waterDensity);
+				o.Normal     = normalize(lerp(o.Normal, waterNormal, waterDensity));
+
+				#if _HDRP
+					o.Emission *= 25000.0f;
+				#endif
+			#endif
+		#endif
+	}
+END_CODE

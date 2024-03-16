@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 5d8603af209e42247b929c40e791675e
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _MainTex: {instanceID: 0}
+  - _OffsetTex: {fileID: 2800000, guid: a484a3f29ca8cdd41a943abceb199500, type: 3}
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Planet/Required/Shaders/Resources/PlanetWater.shader
+  uploadId: 616447

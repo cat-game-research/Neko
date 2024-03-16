@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 27f77dc3765f8a64d8a0106da04ab939
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: ed1b96e11e9064957833ce8c01da6f92, type: 3}
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/Shared/Required/Shaders/SGT_Output.surfshader
+  uploadId: 616447

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 44d516f38ee6e5d45bf45f620efe267f
+timeCreated: 1574246699
+licenseType: Store
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Packs/Basic Pack/Water Level.unity
+  uploadId: 616447

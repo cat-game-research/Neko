@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 6c799e2c1675d7942a65e09a01d69d91
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: ed1b96e11e9064957833ce8c01da6f92, type: 3}
+AssetOrigin:
+  serializedVersion: 1
+  productId: 4160
+  packageName: Space Graphics Toolkit
+  packageVersion: 4.1.5
+  assetPath: Assets/Plugins/CW/SpaceGraphicsToolkit/Features/LightAndShadow/Required/Shaders/SGT_ShadowLayer.surfshader
+  uploadId: 616447

@@ -1,0 +1,67 @@
+﻿BEGIN_OPTIONS
+	Stackable "False"
+END_OPTIONS
+
+BEGIN_DEFINES
+	#define __SGT_MATRIX 1
+END_DEFINES
+
+BEGIN_CODE
+	float4 SGT_O2W(float4 v)
+	{
+		v = mul(UNITY_MATRIX_M, v);
+		#if _HDRP
+			v.xyz = GetAbsolutePositionWS(v.xyz);
+		#endif
+		return v;
+	}
+	float4 SGT_W2O(float4 v)
+	{
+		#if _HDRP
+			v.xyz = GetCameraRelativePositionWS(v.xyz);
+		#endif
+		return mul(UNITY_MATRIX_I_M, v);
+	}
+
+	float4 SGT_O2V(float4 v)
+	{
+		#if _STANDARD
+			return float4(UnityObjectToViewPos(v.xyz), 1.0f);
+		#else
+			return float4(TransformWorldToView(TransformObjectToWorld(v.xyz)), 1.0f);
+		#endif
+	}
+	float4 SGT_V2O(float4 v)
+	{
+		return mul(mul(UNITY_MATRIX_I_M, UNITY_MATRIX_I_V), v);
+	}
+
+	float4 SGT_W2V(float4 v)
+	{
+		#if _STANDARD
+			return mul(UNITY_MATRIX_V, v);
+		#else
+			return float4(TransformWorldToView(v.xyz), 1.0f);
+		#endif
+	}
+	float4 SGT_V2M(float4 v)
+	{
+		v = mul(UNITY_MATRIX_I_V, v);
+		#if _HDRP
+			v.xyz = GetAbsolutePositionWS(v.xyz);
+		#endif
+		return v;
+	}
+
+	float4 SGT_W2P(float4 v)
+	{
+		#if _HDRP
+			v.xyz = GetCameraRelativePositionWS(v.xyz);
+		#endif
+		#if _STANDARD
+			return mul(UNITY_MATRIX_VP, v);
+		#else
+			return TransformWorldToHClip(v.xyz);
+		#endif
+	}
+END_CODE
