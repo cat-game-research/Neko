@@ -1,33 +1,100 @@
 @echo off
-
-:: Save the current directory
 set ORIGINAL_DIR=%CD%
-
-:: Set the directory where the train.bat file is located as the working directory
 set BIN=%~dp0
 set ROOT=%BIN%..\
+set RAGDOLL_TRAINER=RagdollTrainer
 
-:: Navigate to the NekoCatGame directory
+set MODE=%1
+set MODE_ARG=
+
+if "%MODE%"=="" goto display_help
+if "%MODE%"=="--help" goto display_help
+
+if "%MODE%"=="create" (
+    set MODE_ARG=
+) else if "%MODE%"=="resume" (
+    set MODE_ARG=--resume
+) else if "%MODE%"=="force" (
+    set MODE_ARG=--force
+) else if "%MODE%"=="delete" (
+    call :delete_results
+    goto eof
+) else (
+    echo Invalid mode argument provided. Exiting.
+    exit /b 1
+)
+
+echo Activating conda environment...
+call :activate_conda
+
+echo Starting training...
+call :run_training
+
+echo Deactivating conda environment...
+call :deactivate_conda
+
+echo Returning to original directory...
+call :return_to_original_dir
+goto eof
+
+:display_help
+echo Usage: train.bat [--help] [mode]
+echo.
+echo Options:
+echo --help   - Display this help message.
+echo.
+echo Modes:
+echo create   - Start a new training run.
+echo resume   - Resume a previous training run.
+echo force    - Force start a new training run and overwrite any existing data.
+echo delete   - Delete the training results directory.
+echo.
+goto eof
+
+:activate_conda
 cd /d %ROOT%
-
-:: Activate the NekoCatGame conda environment
 call conda activate NekoCatGame
 if %ERRORLEVEL% neq 0 (
     echo Failed to activate conda environment.
     exit /b %ERRORLEVEL%
 )
+goto :eof
 
-:: Run the mlagents-learn command with the specified parameters
-call mlagents-learn RagdollTrainer\config\Kyle-b0a.yaml --run-id=KyleBeta2.b0a-020m --time-scale 1 --quality-level 5 --env=RagdollTrainer\Builds\server_windows_x64\RagdollTrainer.exe --num-envs=4 --no-graphics
+:run_training
+cd /d %ROOT%\%RAGDOLL_TRAINER%
+set RESULTS_DIR=results\KyleBeta2.b0a-020m
+if not exist "%RESULTS_DIR%" (
+    echo Warning: No previous training results found. Starting a new training run...
+    set MODE_ARG=
+)
+set ML_AGENTS_CMD=mlagents-learn config\Kyle-b0a.yaml --run-id=KyleBeta2.b0a-020m --time-scale 1 --quality-level 5 --env=Builds\server_windows_x64\RagdollTrainer.exe --num-envs=4 --no-graphics %MODE_ARG%
+echo %ML_AGENTS_CMD%
+call %ML_AGENTS_CMD%
 if %ERRORLEVEL% neq 0 (
     echo Failed to start training.
     exit /b %ERRORLEVEL%
 )
+goto :eof
 
-:: Deactivate the conda environment (optional)
-call conda deactivate
 
-:: Return to the original directory
+:deactivate_conda
+rem call conda deactivate
+goto :eof
+
+:return_to_original_dir
 cd /d %ORIGINAL_DIR%
+goto :eof
 
-exit /b 0
+:delete_results
+set RESULTS_DIR=%ROOT%\%RAGDOLL_TRAINER%\results\KyleBeta2.b0a-020m
+echo Deleting %RESULTS_DIR%
+if exist "%RESULTS_DIR%" (
+    rmdir /s /q "%RESULTS_DIR%"
+    echo Training results deleted successfully.
+) else (
+    echo Training results directory does not exist.
+)
+goto :eof
+
+:eof
+exit /b 1
