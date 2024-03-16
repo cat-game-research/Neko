@@ -203,7 +203,7 @@ MonoBehaviour:
   m_Model: {fileID: 5022602860645237092, guid: 81070c4d069b0ac44984c467c6d1e946, type: 3}
   m_InferenceDevice: 2
   m_BehaviorType: 0
-  m_BehaviorName: Walker
+  m_BehaviorName: Kyle
   TeamId: 0
   m_UseChildSensors: 1
   m_UseChildActuators: 1
@@ -3371,7 +3371,7 @@ Transform:
   m_GameObject: {fileID: 4865303176801702408}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1, y: 1.6, z: -1.6669998}
+  m_LocalPosition: {x: 1, y: 1.6, z: -1.6670008}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

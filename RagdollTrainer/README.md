@@ -32,7 +32,7 @@ The Robot Kyle model from the Unity assets store is used for the ragdoll.
 
 # Training Process
 
-The following is the current basic overview of the iteration of the model and which environment and settings where used to achieve the latest checkpoint release.
+The following is the current basic overview of the iteration of the model and which environment and settings were used to achieve the latest checkpoint release.
 
 * Model: Walker
   1. WalkerAgent (Basic Training - Easy) [**Walker-a0a-40m**]
@@ -77,7 +77,27 @@ The following is the basic overview of how the motion perception agent model was
      * use_motion_perception = true
      * steps = 10 million
      * ... work in progress 
----
+
+## New Training Instructions
+
+To train a new model using the `train.bat` file, follow these steps:
+
+1. Open Command Prompt or Windows PowerShell.
+2. Navigate to the directory where `train.bat` is located.
+3. Execute the batch file with the desired arguments. For example:
+   ```shell
+   train.bat resume Kyle-b0a 020M 4 server
+   ```
+   This command will resume training using the `Walker-b0a` configuration, at step iteration `020M`, with `4` concurrent environments, and using the client environment path.
+
+Arguments:
+- The first argument specifies whether to `force` a new training session or `resume` an existing one.
+- The second argument is the name of the configuration file (without the `.yaml` extension).
+- The third argument is the step iteration (e.g., `020m`, `001B`, `179m`).
+- The fourth argument is the number of concurrent environments (`--num-envs`).
+- The fifth argument specifies the environment type (`client` or `server`), with `server` being the default.
+
+Ensure that the Conda environment `NekoCatGame` is properly set up before running the batch file.
 
 # How the WalkerAgent Prefab Model Works
 
