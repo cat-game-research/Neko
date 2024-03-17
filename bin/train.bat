@@ -70,12 +70,12 @@ goto :eof
 
 :run_training
 cd /d %ROOT%\%RAGDOLL_TRAINER%
-set RESULTS_DIR=results\KyleBeta2.b0a-020m
+set RESULTS_DIR=results\KyleBeta3.b0a-020m
 if not exist "%RESULTS_DIR%" (
     echo Warning: No previous training results found. Starting a new training run...
     set MODE_ARG=
 )
-set ML_AGENTS_CMD=mlagents-learn config\Kyle-b0a.yaml --run-id=KyleBeta2.b0a-020m --time-scale 1 --quality-level 5 --env=Builds\server_windows_x64\RagdollTrainer.exe --num-envs=%NUM_ENVS% --no-graphics %MODE_ARG%
+set ML_AGENTS_CMD=mlagents-learn config\Kyle-b0a.yaml --run-id=KyleBeta3.b0a-020m --time-scale 1 --quality-level 5 --env=Builds\server_windows_x64\RagdollTrainer.exe --num-envs=%NUM_ENVS% --no-graphics %MODE_ARG%
 echo %ML_AGENTS_CMD%
 call %ML_AGENTS_CMD%
 if %ERRORLEVEL% neq 0 (
@@ -93,7 +93,7 @@ cd /d %ORIGINAL_DIR%
 goto :eof
 
 :delete_results
-set RESULTS_DIR=%ROOT%\%RAGDOLL_TRAINER%\results\KyleBeta2.b0a-020m
+set RESULTS_DIR=%ROOT%\%RAGDOLL_TRAINER%\results\KyleBeta3.b0a-020m
 echo Deleting %RESULTS_DIR%
 if exist "%RESULTS_DIR%" (
     rmdir /s /q "%RESULTS_DIR%"
