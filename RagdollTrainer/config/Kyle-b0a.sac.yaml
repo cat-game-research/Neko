@@ -4,8 +4,8 @@ behaviors:
     hyperparameters:
       learning_rate: 0.0003
       learning_rate_schedule: linear
-      batch_size: 4096
-      buffer_size: 2000000
+      batch_size: 1000
+      buffer_size: 1000000
       tau: 0.005
       steps_per_update: 30.0
       init_entcoef: 1.0
@@ -16,7 +16,7 @@ behaviors:
       num_layers: 3
       vis_encode_type: simple
       memory:
-        sequence_length: 4096
+        sequence_length: 1000
         memory_size: 256
     reward_signals:
       extrinsic:
@@ -31,5 +31,5 @@ behaviors:
     keep_checkpoints: 40
     checkpoint_interval: 500000
     max_steps: 20000000
-    time_horizon: 4096
-    summary_freq: 30000
+    time_horizon: 1000
+    summary_freq: 10000
