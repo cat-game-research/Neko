@@ -200,7 +200,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: 949a0139c9c786e45a88480efce0decc, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: 441a68c78d549a54db9b651d788ea03e, type: 3}
   m_InferenceDevice: 2
   m_BehaviorType: 0
   m_BehaviorName: Kyle
@@ -444,7 +444,7 @@ MonoBehaviour:
   targetReward: 1
   groundContactPenalty: -1
   wallContactPenalty: -1
-  m_RewardScaleFactor: 2
+  m_RewardScaleFactor: 10
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
@@ -661,7 +661,7 @@ MonoBehaviour:
   targetReward: 1
   groundContactPenalty: -1
   wallContactPenalty: -1
-  m_RewardScaleFactor: 2
+  m_RewardScaleFactor: 10
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
@@ -1072,7 +1072,7 @@ MonoBehaviour:
   targetReward: 1
   groundContactPenalty: -1
   wallContactPenalty: -1
-  m_RewardScaleFactor: 2
+  m_RewardScaleFactor: 10
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
@@ -1289,7 +1289,7 @@ MonoBehaviour:
   targetReward: 1
   groundContactPenalty: -1
   wallContactPenalty: -1
-  m_RewardScaleFactor: 2
+  m_RewardScaleFactor: 10
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
@@ -1546,7 +1546,7 @@ MonoBehaviour:
   targetReward: 1
   groundContactPenalty: -1
   wallContactPenalty: -1
-  m_RewardScaleFactor: 2
+  m_RewardScaleFactor: 10
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
@@ -1694,7 +1694,7 @@ MonoBehaviour:
   targetReward: 1
   groundContactPenalty: -1
   wallContactPenalty: -1
-  m_RewardScaleFactor: 2
+  m_RewardScaleFactor: 10
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
@@ -2078,7 +2078,7 @@ MonoBehaviour:
   targetReward: 1
   groundContactPenalty: -1
   wallContactPenalty: -1
-  m_RewardScaleFactor: 2
+  m_RewardScaleFactor: 10
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
@@ -2295,7 +2295,7 @@ MonoBehaviour:
   targetReward: 1
   groundContactPenalty: -1
   wallContactPenalty: -1
-  m_RewardScaleFactor: 2
+  m_RewardScaleFactor: 10
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
@@ -2512,7 +2512,7 @@ MonoBehaviour:
   targetReward: 1
   groundContactPenalty: -1
   wallContactPenalty: -1
-  m_RewardScaleFactor: 2
+  m_RewardScaleFactor: 10
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
@@ -2737,7 +2737,7 @@ MonoBehaviour:
   targetReward: 1
   groundContactPenalty: 0
   wallContactPenalty: -1
-  m_RewardScaleFactor: 2
+  m_RewardScaleFactor: 10
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
@@ -3007,7 +3007,7 @@ MonoBehaviour:
   targetReward: 1
   groundContactPenalty: -1
   wallContactPenalty: -1
-  m_RewardScaleFactor: 2
+  m_RewardScaleFactor: 10
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
@@ -3201,7 +3201,7 @@ MonoBehaviour:
   targetReward: 1
   groundContactPenalty: 0
   wallContactPenalty: -1
-  m_RewardScaleFactor: 2
+  m_RewardScaleFactor: 10
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0
@@ -3418,7 +3418,7 @@ MonoBehaviour:
   targetReward: 1
   groundContactPenalty: -1
   wallContactPenalty: -1
-  m_RewardScaleFactor: 2
+  m_RewardScaleFactor: 10
   touchingGround: 0
   touchingWall: 0
   touchingTarget: 0

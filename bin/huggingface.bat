@@ -2,13 +2,15 @@
 cls
 setlocal enabledelayedexpansion
 
-echo [HuggingFace CMD] Starting batch process with parameters: Action=%~1, Name=%~2, Type=%~3, Version=%~4, Sequence=%~5
+rem  Ex: .\bin\huggingface.bat copy Kyle Beta3 b0a 020m C:\Users\3nigma\source\repos\
+echo [HuggingFace CMD] Starting batch process with parameters: Action=%~1, Name=%~2, Type=%~3, Version=%~4, Sequence=%~5, DESTINATION=%~6
 
 set ACTION=%~1
 set NAME=%~2
 set TYPE=%~3
 set VERSION=%~4
 set SEQUENCE=%~5
+set DESTINATION=%~6
 
 if "%ACTION%"=="" (
     echo No action specified. Exiting.
@@ -40,6 +42,12 @@ if "%SEQUENCE%"=="" (
     exit /b 1
 )
 
+if "%DESTINATION%"=="" (
+    echo No destination specified. Exiting.
+    exit /b 1
+)
+
+
 echo Parameters validated, proceeding with file operations...
 call :copy_files
 
@@ -50,12 +58,13 @@ set ORIGINAL_DIR=%CD%
 set BIN=%~dp0
 set ROOT=%BIN%..\
 set RESULTS_DIR=results\%NAME%%TYPE%.%VERSION%-%SEQUENCE%\%NAME%
-set SOURCE_PATH_ONNX=C:\Users\3nigma\Unity\NekoCatGame\RagdollTrainer\%RESULTS_DIR%
-set DESTINATION_PATH_ONNX=C:\Users\3nigma\source\repos\%NAME%-%VERSION%\models\
-set SOURCE_FILE_CONFIG=C:\Users\3nigma\Unity\NekoCatGame\RagdollTrainer\config\%NAME%-%VERSION%.yaml
-set DESTINATION_DIR_CONFIG=C:\Users\3nigma\source\repos\%NAME%-%VERSION%\config\
-set SOURCE_PATH_TF=C:\Users\3nigma\source\repos\%NAME%-%VERSION%\models\
-set DESTINATION_PATH_TF=C:\Users\3nigma\Unity\NekoCatGame\RagdollTrainer\Assets\TFModels\%NAME%-%VERSION%\
+set SOURCE_PATH_ONNX=%ROOT%RagdollTrainer\%RESULTS_DIR%
+rem set DESTINATION=C:\Users\3nigma\source\repos\
+set DESTINATION_PATH_ONNX=%DESTINATION%%NAME%-%VERSION%\models\
+set SOURCE_FILE_CONFIG=%ROOT%RagdollTrainer\config\%NAME%-%VERSION%.yaml
+set DESTINATION_DIR_CONFIG=%DESTINATION%%NAME%-%VERSION%\config\
+set SOURCE_PATH_TF=%DESTINATION%%NAME%-%VERSION%\models\
+set DESTINATION_PATH_TF=%ROOT%RagdollTrainer\Assets\TFModels\%NAME%-%VERSION%\
 
 echo Copying ONNX files from: "%SOURCE_PATH_ONNX%" to: "%DESTINATION_PATH_ONNX%"
 cd /d "%SOURCE_PATH_ONNX%"

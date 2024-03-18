@@ -3,13 +3,13 @@ behaviors:
   Kyle:
     trainer_type: ppo
     hyperparameters:
-      batch_size: 10000
-      buffer_size: 100000
+      batch_size: 4096
+      buffer_size: 40960
       learning_rate: 0.0003
       beta: 0.005
       epsilon: 0.2
       lambd: 0.95
-      num_epoch: 5
+      num_epoch: 6
       shared_critic: false
       learning_rate_schedule: linear
       beta_schedule: linear
@@ -21,7 +21,7 @@ behaviors:
       num_layers: 3
       vis_encode_type: simple
       memory:
-        sequence_length: 10000
+        sequence_length: 4096
         memory_size: 256
       goal_conditioning_type: hyper
       deterministic: false
@@ -54,7 +54,7 @@ behaviors:
     keep_checkpoints: 20
     even_checkpoints: false
     max_steps: 20000000
-    time_horizon: 10000
+    time_horizon: 4096
     summary_freq: 50000
     threaded: false
     self_play: null
