@@ -53,10 +53,12 @@ namespace Unity.MLAgentsExamples
             if (col.transform.CompareTag(k_Ground))
             {
                 touchingGround = true;
+                agent.AddReward(groundContactPenalty);
             }
             if (col.transform.CompareTag(k_Wall))
             {
                 touchingWall = true;
+                agent.AddReward(wallContactPenalty);
             }
             if (col.transform.CompareTag(k_Target))
             {
