@@ -5,9 +5,11 @@ set ROOT=%BIN%..\
 set RAGDOLL_TRAINER=RagdollTrainer
 set TRAINER_EXE=%RAGDOLL_TRAINER%.exe
 set RESULTS_DIR=results
-set CONDA_ENV=NekoCatGame
+set CONDA_ENV=Neko
 set CONFIG_DIR=config
 set BUILD_DIR=Builds\server_windows_x64
+set CUDA_AVAILABLE=0
+for /f %%i in ('where nvcc 2^>nul') do set CUDA_AVAILABLE=1
 
 set MODE=%1
 set MODEL_NAME=%2
@@ -24,6 +26,11 @@ if "%NUM_ENVS%"=="" (
 if "%MODE%"=="" goto display_help
 if "%MODE%"=="help" goto display_help
 if "%MODE%"=="--help" goto display_help
+if "%MODE%"=="check" (
+    call :activate_conda
+    call :check_conda_env
+    goto eof
+)
 
 if "%MODE%"=="create" (
     set MODE_ARG=
@@ -42,6 +49,9 @@ if "%MODE%"=="create" (
 echo Activating conda environment...
 call :activate_conda
 
+echo Checking conda environment...
+call :check_conda_env
+
 echo Starting training...
 call :run_training
 
@@ -59,20 +69,19 @@ echo Options:
 echo --help   - Display this help message.
 echo.
 echo Modes:
-echo create   - Start a new training run.
-echo resume   - Resume a previous training run.
-echo force    - Force start a new training run and overwrite any existing data.
-echo delete   - Delete the training results directory.
+echo create       Start a new training run.
+echo resume       Resume a previous training run.
+echo force        Force start a new training run and overwrite any existing data.
+echo check        Check if the correct conda environment is activated.
+echo delete       Delete the training results directory.
 echo.
-echo model-name - Specify the model name. Always passed in.
-echo.
-echo type - Specify the type. Always passed in.
-echo.
-echo version - Specify the version. Always passed in.
-echo.
-echo sequence - Specify the sequence. Always passed in.
-echo.
-echo num-envs - Optional. Specify the number of environments. Default is 1.
+echo Options:
+echo model-name   Specify the model name. Always passed in.
+echo type         Specify the type. Always passed in.
+echo version      Specify the version. Always passed in.
+echo sequence     Specify the sequence. Always passed in.
+echo num-envs     Optional. Specify the number of environments. Default is 1.
+echo cuda         Optional. Use CUDA for training if available. No argument needed.
 echo.
 goto eof
 
@@ -85,14 +94,28 @@ if %ERRORLEVEL% neq 0 (
 )
 goto :eof
 
+:check_conda_env
+for /f "tokens=*" %%i in ('conda info --envs ^| findstr /B /C:"%CONDA_ENV% "') do (
+    if "%%i"=="" (
+        echo Not in the correct conda environment. Exiting.
+        exit /b 1
+    )
+)
+echo Conda environment %CONDA_ENV% activated successfully.
+goto :eof
+
 :run_training
 cd /d %ROOT%\%RAGDOLL_TRAINER%
 set RESULTS_DIR=%RESULTS_DIR%\%MODEL_NAME%%TYPE%.%VERSION%-%SEQUENCE%
 if not exist "%RESULTS_DIR%" (
-    echo Warning: No previous training results found. Starting a new training run...
+    echo Warning: No training results found. Starting new training run...
     set MODE_ARG=
 )
-set ML_AGENTS_CMD=mlagents-learn %CONFIG_DIR%\%MODEL_NAME%-%VERSION%.yaml --run-id=%MODEL_NAME%%TYPE%.%VERSION%-%SEQUENCE% --time-scale 1 --quality-level 5 --env=%BUILD_DIR%\%TRAINER_EXE% --num-envs=%NUM_ENVS% --no-graphics %MODE_ARG%
+if %CUDA_AVAILABLE%==1 (
+    set ML_AGENTS_CMD=mlagents-learn %CONFIG_DIR%\%MODEL_NAME%-%VERSION%.yaml --run-id=%MODEL_NAME%%TYPE%.%VERSION%-%SEQUENCE% --time-scale 1 --quality-level 5 --env=%BUILD_DIR%\%TRAINER_EXE% --num-envs=%NUM_ENVS% --no-graphics %MODE_ARG% --cuda
+) else (
+    set ML_AGENTS_CMD=mlagents-learn %CONFIG_DIR%\%MODEL_NAME%-%VERSION%.yaml --run-id=%MODEL_NAME%%TYPE%.%VERSION%-%SEQUENCE% --time-scale 1 --quality-level 5 --env=%BUILD_DIR%\%TRAINER_EXE% --num-envs=%NUM_ENVS% --no-graphics %MODE_ARG%
+)
 echo %ML_AGENTS_CMD%
 call %ML_AGENTS_CMD%
 if %ERRORLEVEL% neq 0 (

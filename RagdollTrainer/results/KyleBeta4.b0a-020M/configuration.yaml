@@ -5,8 +5,8 @@ behaviors:
     hyperparameters:
       learning_rate: 0.0003
       learning_rate_schedule: linear
-      batch_size: 4096
-      buffer_size: 2000000
+      batch_size: 1000
+      buffer_size: 1000000
       buffer_init_steps: 0
       tau: 0.005
       steps_per_update: 30.0
@@ -20,7 +20,7 @@ behaviors:
       num_layers: 3
       vis_encode_type: simple
       memory:
-        sequence_length: 4096
+        sequence_length: 1000
         memory_size: 256
       goal_conditioning_type: hyper
       deterministic: false
@@ -53,8 +53,8 @@ behaviors:
     keep_checkpoints: 40
     even_checkpoints: false
     max_steps: 20000000
-    time_horizon: 4096
-    summary_freq: 30000
+    time_horizon: 1000
+    summary_freq: 10000
     threaded: false
     self_play: null
     behavioral_cloning: null
@@ -62,7 +62,7 @@ env_settings:
   env_path: Builds\server_windows_x64\RagdollTrainer.exe
   env_args: null
   base_port: 5005
-  num_envs: 2
+  num_envs: 1
   num_areas: 1
   timeout_wait: 60
   seed: -1
@@ -83,8 +83,8 @@ checkpoint_settings:
   run_id: KyleBeta4.b0a-020M
   initialize_from: null
   load_model: false
-  resume: false
-  force: true
+  resume: true
+  force: false
   train_model: false
   inference: false
   results_dir: results

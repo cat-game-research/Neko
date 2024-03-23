@@ -75,7 +75,6 @@ set SOURCE_PATH_ONNX=%ROOT%RagdollTrainer\%RESULTS_DIR%
 rem set DESTINATION=C:\Users\3nigma\source\repos\
 set DESTINATION_PATH_ONNX=%DESTINATION%%NAME%-%VERSION%\models\
 set SOURCE_FILE_CONFIG=%ROOT%RagdollTrainer\config\%NAME%-%VERSION%.yaml
-set SOURCE_FILE_SAC_CONFIG=%ROOT%RagdollTrainer\config\%NAME%-%VERSION%.sac.yaml
 set DESTINATION_DIR_CONFIG=%DESTINATION%%NAME%-%VERSION%\config\
 set SOURCE_PATH_TF=%DESTINATION%%NAME%-%VERSION%\models\
 set DESTINATION_PATH_TF=%ROOT%RagdollTrainer\Assets\TFModels\%NAME%-%VERSION%\
@@ -105,13 +104,6 @@ if not exist "%SOURCE_FILE_CONFIG%" (
 )
 echo Copying config file to: "%DESTINATION_DIR_CONFIG%"
 xcopy "%SOURCE_FILE_CONFIG%" "%DESTINATION_DIR_CONFIG%" /Y /Q
-echo Checking for config file at: "%SOURCE_FILE_SAC_CONFIG%"
-if not exist "%SOURCE_FILE_SAC_CONFIG%" (
-    echo Config file does not exist.
-    goto copy_tf
-)
-echo Copying config file to: "%DESTINATION_DIR_CONFIG%"
-xcopy "%SOURCE_FILE_SAC_CONFIG%" "%DESTINATION_DIR_CONFIG%" /Y /Q
 
 :copy_tf
 echo Checking for TensorFlow ONNX files at: "%SOURCE_PATH_TF%"
