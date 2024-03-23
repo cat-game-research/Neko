@@ -2,6 +2,7 @@
 cls
 setlocal
 call :set_variables
+call :check_existing_miniconda
 call :download_miniconda
 call :install_miniconda
 call :create_conda_env
@@ -23,6 +24,17 @@ set CONDA=%ROOT%%MINICONDA%\Scripts\conda
 set DOCTOR=%BIN%doctor.bat
 goto :eof
 
+:check_existing_miniconda
+for %%i in (conda.exe) do (
+    set CONDA_PATH=%%~$PATH:i
+)
+if not "%CONDA_PATH%"=="" (
+    echo Miniconda is already installed.
+    set CONDA=%CONDA_PATH%
+    goto :create_conda_env
+)
+goto :eof
+
 :download_miniconda
 if exist %MINICONDA_PATH% (
     goto :eof
@@ -42,7 +54,7 @@ if exist %BIN%%MINICONDA_EXE% (
 ) else (
     echo Error: missing %MINICONDA_EXE%
     echo.
-	exit /b 1
+    exit /b 1
 )
 goto :eof
 

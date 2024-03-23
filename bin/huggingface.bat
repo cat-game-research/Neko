@@ -2,6 +2,20 @@
 cls
 setlocal enabledelayedexpansion
 
+rem Check for help argument
+if /I "%~1"=="help" (
+    echo Usage: huggingface.bat [action] [name] [type] [version] [sequence] [destination]
+    echo Example: huggingface.bat copy Kyle Beta4 b0a 020M C:\Users\3nigma\source\repos\
+    echo.
+    echo [action] - The action to perform, currently only 'copy' is supported.
+    echo [name] - The name of the project or model.
+    echo [type] - The type of the project or model.
+    echo [version] - The version of the project or model.
+    echo [sequence] - The sequence identifier for the project or model.
+    echo [destination] - The destination path where the files will be copied.
+    exit /b 0
+)
+
 rem  Ex: .\bin\huggingface.bat copy Kyle Beta3 b0a 020m C:\Users\3nigma\source\repos\
 echo [HuggingFace CMD] Starting batch process with parameters: Action=%~1, Name=%~2, Type=%~3, Version=%~4, Sequence=%~5, DESTINATION=%~6
 
@@ -46,7 +60,6 @@ if "%DESTINATION%"=="" (
     echo No destination specified. Exiting.
     exit /b 1
 )
-
 
 echo Parameters validated, proceeding with file operations...
 call :copy_files
