@@ -12,7 +12,7 @@ goto :eof
 :set_variables
 set BIN=%~dp0
 set ROOT=%BIN%..\
-set PROJ=NekoCatGame
+set PROJ=Neko
 set ENV_FILE=environment.yml
 set ENV=%ROOT%%ENV_FILE%
 set MINICONDA_URL=https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86_64.exe
